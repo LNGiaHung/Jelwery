@@ -1,0 +1,296 @@
+/* hover vao the a se gach chan */
+.underline-transition {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+}
+
+.underline-transition::before {
+    content: ''; 
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #333; /* Màu của đường gạch */
+    transition: width 0.3s ease; 
+}
+
+.underline-transition:hover::before {
+    width: 100%; 
+}
+
+/* hover vao chu vua in dam vua gach chan */
+.underline-transition-bold {
+    position: relative;
+    text-decoration: none;
+    color: #333; /* Màu chữ mặc định */
+    font-weight: normal; /* Trọng lượng chữ mặc định */
+    line-height: 1.5;
+}
+
+.underline-transition-bold:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+    font-weight: bold; /* In đậm chữ khi hover */
+    text-decoration-color: #009384; /* Màu của gạch chân khi hover */
+    text-decoration-thickness: 2px; /* Độ dày của gạch chân khi hover */
+    line-height: 1.7; /* Độ cao của dòng khi hover */
+}
+
+/* hidden body, footer*/
+.hidden-body-footer {
+    background-color: #2323237e;
+    /* opacity: 0.4; */
+    pointer-events: none; /* Ngăn người dùng tương tác */
+    transition: background-color 0.3s ease; /* Thêm hiệu ứng transition */
+}
+
+.hidden-body-footer video {
+    filter: brightness(60%); /* Điều chỉnh độ sáng của video */
+    pointer-events: auto;
+}
+
+body {
+    margin: 0 !important;
+}
+
+/* STORY */
+.story {
+    position: relative;
+}
+
+.story__text p {
+    margin-left: 200px;
+    margin-right: 200px;
+    line-height: 2;
+}
+
+.text--full {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.text--full.collapsed {
+    display: none;
+}
+
+.text--full.collapsed + button {
+    display: inline-block;
+    margin-top: 10px; /* Khoảng cách giữa nút và nội dung */
+}
+
+#readMore, #readLess {
+    color: #009384;
+    cursor: pointer;
+    font-style: italic;
+}
+
+/* Infinitely Inspiring */
+.infinitely-inspiring {
+    text-align: center;
+    margin-bottom: 30px;
+    overflow: auto;
+}
+
+.infinitely-inspiring .image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    padding: 0 8px;
+}
+.infinitely-inspiring__image {
+    width: 33%;
+    position: relative;
+    
+}
+
+.infinitely-inspiring__image img {
+    width: 100%;
+    display: block;
+    z-index: 0;
+}
+
+.infinitely-inspiring__image .image-caption {
+    position: relative;
+}
+
+.infinitely-inspiring__image .text--full {
+    margin-top: 20px; /* Điều chỉnh khoảng cách giữa các phần tử khi mở rộng nội dung */
+}
+
+.image-caption__topic {
+    /* position: absolute; */
+    font-size: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+    width: 100%; /*chiều rộng của hình ảnh */
+    box-sizing: border-box; /*padding không tăng kích thước của phần tử */
+}
+
+.image-caption a.image-caption__topic {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.image-caption a.image-caption__topic:hover {
+    text-decoration: underline;
+}
+
+.image-caption__topic p {
+    top: 14px;
+}
+
+.image-caption p {
+    margin-top: 15px;
+    font-size: 12px;
+    text-align: left;
+    padding-bottom: 0; 
+    position: relative;
+    z-index: 1;
+}
+
+.text--full.collapsed {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1; /* nội dung hiển thị trên phần hình ảnh */
+    background-color: white; 
+}
+
+
+
+.inspire_readMore, .inspire_readLess{
+    color: #000;
+    cursor: pointer;
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.inspire_readMore:hover, 
+.inspire_readLess:hover {
+    color: #009384;
+}
+
+
+/* Like mother, like daughter */
+.mother-daughter {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(115, 196, 204, 0.8);
+}
+
+.mother-daughter__text {
+    flex: 1;
+    text-align: center; /* Để căn giữa nội dung văn bản */
+}
+
+.mother-daughter__text p {
+    padding-left: 25px;
+    padding-right: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 2;
+}
+
+.mother-daughter__vid {
+    flex: 2; 
+}
+
+/* Shop by Category */
+.shopCate {
+    text-align: center; 
+    padding: 48px 30px 24px;
+}
+
+.shopCate__heading {
+    margin-bottom: 20px; /* Khoảng cách giữa heading và nội dung */
+}
+
+.shopCate__content {
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap; /* Cho phép các phần tử con xuống dòng khi không đủ không gian */
+}
+
+.content__item {
+    width: 24%; 
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content__item img {
+    display: block; 
+    margin: 0 auto; /* Căn giữa hình ảnh */
+    margin-bottom: 6px; 
+}
+
+.content__item a {
+    display: block; 
+    background-color: #a3f2ea;
+    font-size: 20px;
+    /* text-decoration: underline; */
+    padding: 8px;
+}
+
+/* The bijou experience */
+.experience {
+    padding: 6px;
+    text-align: center;
+    background-color: #fafafa;
+}
+
+.experience__heading {
+    margin-bottom: 20px;
+}
+
+.experience__service-content {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 50px;
+    margin-bottom: 20px;
+}
+
+.service-content__item {
+    text-align: center;
+    width: 23%;
+}
+
+.service-content__icon {
+    margin-bottom: 10px;
+}
+
+.experience__service-text h2 {
+    font-size: 18px;
+}
+
+.experience__service-text p {
+    font-size: 14px;
+}
+
+.experience__service-link {
+    display: flex;
+    justify-content: center; /* Căn giữa dòng chữ "Book now" */
+    align-items: center; 
+    /* height: 100%; */
+}
+
+.experience__service-link a {
+    text-align: center; /* Căn giữa từng từ trong "Book now" */
+    display: inline-block; /* Đảm bảo "Book now" không chiếm toàn bộ chiều rộng */
+    vertical-align: middle;
+    font-style: italic;
+}

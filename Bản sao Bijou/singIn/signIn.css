@@ -1,0 +1,65 @@
+.sign-in-page {
+    /* text-align: center; */
+    padding-top: 104px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+
+}
+
+.sign-in__input.email-input {
+    padding-bottom: 18px;
+}
+
+.sign-in__item {
+    width: 50%;
+    padding-left: 170px;
+}
+
+.sign-in__headerText {
+    padding-bottom: 38px;
+}
+
+fieldset {
+    border: none;
+}
+
+.sign-in__pass-input,
+.sign-in__email-input {
+    display: block;
+    width: calc(100% - 60px);
+    height: 34px;
+    margin-top: 3px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+    outline: none;
+}
+
+.signin-button--input,
+.signup-button--input {
+    display: block;
+    width: calc(100% - 60px);
+    height: 56px;
+    margin: 34px 0;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    /* border: 1px solid #000; */
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+}
+
+.forgot-password {
+
+}
