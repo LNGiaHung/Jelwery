@@ -1,0 +1,187 @@
+.sign-up-page {
+    /* text-align: center; */
+    padding-top: 104px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+
+}
+
+/* .sign-up__input.email-input {
+    padding-bottom: 18px;
+} */
+
+.sign-up__item-content {
+    width: 50%;
+    padding-left: 170px;
+}
+
+.sign-up__item-img {
+    margin-top: -20%;
+    margin-left: 16%;
+    width: 78%;
+}
+
+.sign-up__headerText {
+    padding-bottom: 38px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+fieldset {
+    border: none;
+}
+
+.sign-up__name-input,
+.sign-up__pass-input,
+.sign-up__email-input {
+    display: block;
+    width: calc(100% - 60px);
+    height: 34px;
+    margin-top: 3px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+    outline: none;
+}
+
+.gender-select {
+    padding: 14px 0;
+    line-height: 2;
+}
+
+.signin-button--input,
+.signup-button--input {
+    display: block;
+    width: calc(100% - 60px);
+    height: 56px;
+    margin: 34px 0;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    /* border: 1px solid #000; */
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+}
+
+.sign-up-dob {
+    padding: 10px 0;
+}
+
+.dob-input {
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 40px);
+}
+
+.dob-input .dob {
+    width: 30%;
+}
+
+.sign-up__dob-input {
+    /* padding-bottom: -2px; */
+    text-align: center;
+    display: inline-block;
+    width: calc(100% - 60px);
+    height: 34px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+    outline: none;
+}
+
+.relationship-select {
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    display: inline-block;
+}
+
+.relationship-select select {
+    /* display: none;  Ẩn lựa chọn mặc định */
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none; /* Ẩn mũi tên dropdown mặc định */  
+}
+
+.relationship-select select:focus {
+    border: 1px solid #000;
+    outline: none;
+} 
+
+.relationship-select__input {
+    width: calc(100% - 60px);
+    height: auto;
+    padding: 8px;
+    margin-top: 20px;
+    border: none;
+    border-bottom: 1px solid #000;
+    /* border-radius: 4px; */
+    background-color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.relationship-select i {
+    padding-left: 30px;
+    position: absolute;
+    right: 64px;
+    top: 68%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    pointer-events: none; /* Ngăn click vào icon */
+    appearance: none;  
+}
+
+.relationship-select__input:focus {
+    border: 1px solid #000;
+    outline: none;
+  }
+
+  select#relationship-status {
+    top: 6px;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+.relationship-select__input {
+    width: calc(100% - 60px);
+    height: auto;
+    padding: 8px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#relationship-status option {
+    font-size: 16px;
+}
+

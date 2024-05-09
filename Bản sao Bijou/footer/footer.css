@@ -1,0 +1,172 @@
+/* footer */
+.footer {
+    display: flex;
+    background-color: #fff;
+    padding-bottom: 40px;
+}
+
+.footer__top-bar {
+    width: 100%;
+    height: 5px;
+    background-color: #81d8d0; 
+    position: absolute; 
+    left: 0;
+    right: 0;
+    z-index: 100; 
+  }
+
+.footer > * {
+    flex: 1; /* Cho các phần tử con của footer chia đều phần còn lại */
+}
+
+.footer__left {
+    display: flex;
+    flex-basis: 50%; /* Phần left chiếm 60% */
+    flex-grow: 1;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 32px; /* Khoảng cách giữa left và right */
+}
+
+.footer__left-col {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    flex-basis: 75%;
+    
+}
+
+.footer__left-col h4 {
+    margin-bottom: 16px; /* Khoảng cách giữa tiêu đề và các mục trong danh sách */
+}
+
+.footer__left-col ul {
+    list-style: none; /* Loại bỏ dấu chấm trong danh sách */
+    padding: 0;
+    margin: 0;
+}
+
+.footer__left-col li {
+    font-size: 12px;
+    margin-bottom: 20px; /* Khoảng cách giữa các mục trong danh sách */
+}
+
+.footer__right {
+    flex-basis: 25%; /* Phần right chiếm 40% */
+    padding-right: 100px;
+    font-size: 12px;
+}
+
+.footer__right-top {
+    margin-bottom: 20px;
+    margin-top: 22px;
+}
+
+
+.footer__right-top span {
+    
+}
+
+.footer__right-middle {
+}
+
+.footer__right-middle p {
+    font-size: 12px;
+    margin-top: 56px;
+}
+
+.footer__right-middle__text {
+    margin-bottom: 20px;
+}
+
+.footer__right-middle__input {
+    position: relative;
+    margin-top: 26px;
+}
+
+label[for="email"] {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    color: #999; /* Màu in mờ */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động */
+    pointer-events: none; /* Tránh label nhận sự kiện click */
+}
+
+#email:focus + label[for="email"], 
+#email:not(:placeholder-shown) + label[for="email"] {
+    top: 0;
+    font-size: 12px; /* Kích thước nhỏ hơn khi nhãn nhảy lên */
+    color: #333; /* Màu chữ khi nhãn nhảy lên */
+}
+
+.footer__right-middle__input input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    position: relative;
+    font-size: 14px;
+    border: none; /* Xóa bỏ border mặc định */
+    border-bottom: 1px solid #000; /* Đường gạch chân */
+    padding-bottom: 2px;
+    top: 0;
+    left: 0;
+    transition: top 0.3s ease-in-out;
+}
+
+.footer__right-middle__input input span {
+    /* ... (các style khác) */
+    position: absolute; /* Cần thiết cho hiệu ứng absolute */
+    top: 50%; /* Vị trí ban đầu */
+    transform: translateY(-50%); /* Di chuyển dọc theo trục Y */
+    transition: top 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+  }
+
+.footer__right-middle__input input:focus {
+    outline: none;
+}
+
+.footer__right-middle__input input:focus span {
+    /* ... (các style khác) */
+    top: 40%; /* Nhảy lên khi focus */
+    font-size: 11px; /* Thu nhỏ kích thước */
+}
+
+.focused {
+    top: -5px; /* Di chuyển text email lên trên */
+    font-size: 11px; /* Thu nhỏ kích thước */
+    transition: top 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+}
+
+.signup-button {
+    display: block;
+    width: calc(66.66% - 40px);
+    height: 34px;
+    margin-top: 26px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000; /* Khung button */
+    font-size: 1em;
+    cursor: pointer;
+    transition: width 0.3s ease;
+    font-family: "Fraunces", serif;
+}
+
+.footer__right-bottom {
+    padding-top: 40px;
+    display: flex;
+    justify-content: flex-start; /* Canh chỉnh các item con nằm về phía trái */
+  }
+  
+  .footer__right-bottom-item {
+    margin-right: 32px; 
+  }
+
+  .footer__right-bottom-item i {
+    font-size: 30px;
+  }
+  
+  /* Xóa bỏ margin mặc định của các icon (nếu có) */
+  .fa-brands fa-*:before {
+    margin: 0;
+  }

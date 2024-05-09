@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>  
+        <link rel="stylesheet" href="../assets/css/base.css">
+        <link rel="stylesheet" href="./script.js">
+        <link rel="stylesheet" href="./main.css">
+        <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.2/css/all.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="main">
+            <header>
+                <link rel="stylesheet" href="../header/header.html">
+                <link rel="stylesheet" href="../header/header.css">
+                <link rel="stylesheet" href="../header/header.js">
+            </header>
+    
+            <main class="content">
+                <main class="content">
+                    <!-- Intro video -->
+                    <div class="content__vid">
+                        <video class="video" width="100%" controls autoplay muted>
+                            <source src="../assets/img/UI/video_landing.mp4" type="video/mp4">
+                            <!-- <source src="movie.ogg" type="video/ogg"> -->
+                          </video>
+                          
+                    </div>
+                    <!--Our Story -->
+                    <div class="story">
+                        <div id="story__text" class="story__text">
+                            <h1 style="padding: 8px;">OUR STORY</h1>
+                            <p>
+                                Bijou Jewelry is a purveyor of elegant and exquisite jewelry, dedicated to providing unique, handcrafted pieces that reflect sophistication and style. Our brand is committed to delivering high-quality jewelry that combines traditional craftsmanship with contemporary design, ensuring that each piece is as unique as the individual who wears it. With a keen eye for detail and a passion for creating beautiful jewelry, Bijou Jewelry is the perfect destination for those seeking something truly special... <span id="readMore" onclick="showMore()">Read more</span>
+                            </p>
+                            <p id="story__text--full" style="display: none;">
+                                Bijou Jewelry is a purveyor of elegant and exquisite jewelry, dedicated to providing unique, handcrafted pieces that reflect sophistication and style. Our brand is committed to delivering high-quality jewelry that combines traditional craftsmanship with contemporary design, ensuring that each piece is as unique as the individual who wears it. With a keen eye for detail and a passion for creating beautiful jewelry, Bijou Jewelry is the perfect destination for those seeking something truly special.
+                                At Bijou, we believe that jewelry is more than just an accessory. It's a form of self-expression, a way to celebrate life's milestones, and a symbol of love and connection. That's why we source only the finest materials, from sparkling diamonds to vibrant gemstones, and craft each piece with care and attention to detail.
+                                We believe that traditional craftsmanship and contemporary design can coexist in perfect harmony. Our team of skilled artisans combines time-honored techniques with modern design principles to create jewelry that is both timeless and of-the-moment.
+                                At the same time, we are always looking for ways to innovate and push the boundaries of what is possible in jewelry design. This means experimenting with new materials, techniques, and technologies, and collaborating with other artists and designers to bring fresh perspectives to our work.
+                                Ultimately, our goal is to create jewelry that is not only beautiful and well-crafted, but also meaningful and relevant to the people who wear it. By balancing traditional craftsmanship with contemporary design, we are able to create pieces that are both timeless and of-the-moment, appealing to a wide range of tastes and styles...
+                                <span id="readLess" onclick="showLess()">Read less</span>
+                            </p>
+                        </div>
+    
+                        <!-- Infinitely Inspiring -->
+                        <div class="infinitely-inspiring">
+                            <h2>Infinitely inspiring</h2>
+                            <div class="image-container">
+                                <div class="infinitely-inspiring__image">
+                                    <img src="../assets/img/UI/love&commit.webp" alt="Eternal Love and Commitment">
+                                    <div class="image-caption">
+                                        <a href="#" class="image-caption__topic">Eternal Love and Commitment</a>
+                                        <p>
+                                            Inspired by the many facets of eternal love, our jewelry is designed to symbolize everlasting love, memories, and commitment. We combine traditional craftsmanship with contemporary design to create unique and meaningful pieces that will be cherished for a lifetime. Our team of skilled artisans uses time-honored techniques and modern design principles to craft jewelry...   
+                                            <span class="inspire_readMore" onclick="inspire_showMore(this)">Read more</span>
+                                        </p>
+                                        
+                                        <p class="text--full collapsed" style="display: none;"> <!-- Thêm lớp collapsed -->
+                                            Inspired by the many facets of eternal love, our jewelry is designed to symbolize everlasting love, memories, and commitment. We combine traditional craftsmanship with contemporary design to create unique and meaningful pieces that will be cherished for a lifetime. Our team of skilled artisans uses time-honored techniques and modern design principles to craft jewelry that is both timeless and of-the-moment. Whether you're looking for a special gift or a piece to mark a milestone, Bijou Jewellery has something for everyone. 
+                                            Symbolic of your relationship and your partner, and they make a statement to the world about your commitment to each other. Our collection of tailor-made matching wedding bands includes a range of styles, from modern and sleek to intricate and ornate, ensuring that you will find the perfect set that complements your relationship, and connect the soul to soul.
+                                            <span class="inspire_readLess" onclick="inspire_showLess(this)">Read less</span>
+    
+                                        </p>
+                                    </div>
+                                </div>
+                        
+                                <div class="infinitely-inspiring__image">
+                                    <img src="../assets/img/UI/love&commit.webp" alt="Timeless and Of-the-moment">
+                                    <div class="image-caption">
+                                        <a href="#" class="image-caption__topic">Timeless and Of-the-moment</a>
+                                        <p>
+                                            We believe in creating jewelry that combines timeless elegance with contemporary design. Our team of skilled artisans uses traditional craftsmanship techniques to create pieces that are both classic and modern. We draw inspiration from eternal love and the beauty of gemstones to craft jewelry that is both meaningful and stylish. By balancing timeless design with contemporary flair,...
+                                            <span class="inspire_readMore" onclick="inspire_showMore(this)">Read more</span>
+                                        </p>
+                                        
+                                        <p class="text--full collapsed" style="display: none;"> <!-- Thêm lớp collapsed -->
+                                            We believe in creating jewelry that combines timeless elegance with contemporary design. Our team of skilled artisans uses traditional craftsmanship techniques to create pieces that are both classic and modern. We draw inspiration from eternal love and the beauty of gemstones to craft jewelry that is both meaningful and stylish. By balancing timeless design with contemporary flair, we create pieces that are both enduring and of-the-moment, appealing to those who appreciate both classic and modern aesthetics.
+                                            To achieve this balance, we draw inspiration from a variety of sources, including art, fashion, and architecture. We then incorporate these influences into our designs, using traditional methods such as hand-forging, wax carving, and stone setting to bring them to life.
+                                            By balancing traditional craftsmanship with contemporary design, we are able to create jewelry that is not only beautiful and well-crafted, but also meaningful and relevant to the people who wear it.
+                                            <span class="inspire_readLess" onclick="inspire_showLess(this)">Read less</span>
+                                        </p>
+                                    </div>
+                                </div>
+                        
+                                <div class="infinitely-inspiring__image">
+                                    <img src="../assets/img/UI/love&commit.webp" alt="Fashionable and Affordable">
+                                    <div class="image-caption">
+                                        <a href="#" class="image-caption__topic">Fashionable and Affordable</a>
+                                        <p>
+                                            At Bijou Jewellery, we believe that fashionable and affordable jewelry can go hand in hand. We offer a wide range of pieces that are both stylish and accessible, allowing our customers to express their personal style without breaking the bank.
+                                            Our team of skilled artisans creates jewelry that is not only elegant and exquisite, but also on-trend and fashion-forward.
+                                            <span class="inspire_readMore" onclick="inspire_showMore(this)">Read more</span>
+                                        </p>
+                                        
+                                        <p class="text--full collapsed" style="display: none;"> <!-- Thêm lớp collapsed -->
+                                            At Bijou Jewellery, we believe that fashionable and affordable jewelry can go hand in hand. We offer a wide range of pieces that are both stylish and accessible, allowing our customers to express their personal style without breaking the bank.
+                                            Our team of skilled artisans creates jewelry that is not only elegant and exquisite, but also on-trend and fashion-forward. We draw inspiration from the latest fashion trends and incorporate them into our designs, using traditional craftsmanship techniques to create pieces that are both timeless and of-the-moment.
+                                            At the same time, we understand that affordability is an important consideration for many of our customers. That's why we offer a range of price points, from budget-friendly pieces to more luxurious items, ensuring that there is something for everyone.
+                                            Whether you're looking for a statement piece to make a bold fashion statement or simply want to add a touch of style to your everyday look, Eternity Jewellery has something for you. With our fashionable and affordable jewelry, you can express your personal style without compromising on quality or craftsmanship.
+                                            <span class="inspire_readLess" onclick="inspire_showLess(this)">Read less</span>
+                                        </p>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+    
+                        <!-- Like mother, like daughter -->
+                        <div class="mother-daughter">
+                            <div class="mother-daughter__text">
+                                <h2>Like mother, Like daughter</h2>
+                                <p>
+                                    Our short film for Mother's Day captures the infinite facets of love in mother and daughter relationships.
+                                    <div class="mother-daughter__discovery">
+                                        <a class="discovery-more underline-transition" href="">Discover more...</a>
+                                    </div>
+                                </p>
+    
+                            </div>
+                            <div class="mother-daughter__vid">
+                                <video class="video" width="100%" controls autoplay muted>
+                                    <source src="../assets/img/UI/likeMother_likeDaughter.mp4" type="video/mp4">
+                                    <!-- <source src="movie.ogg" type="video/ogg"> -->
+                                </video>
+                            </div>
+                        </div>
+                        
+                    </div>
+    
+                    <!-- Shop by Category -->
+                    <div class="shopCate">
+                        <div class="shopCate__heading">
+                            <h2>Shop by Category</h2>
+                            <span>Brilliant design and unparalleled craftsmanship.</span>
+                        </div>
+                        <div class="shopCate__content">
+                            <div class="content__item">
+                                <img width="100%" src="../assets/img/landing-page/shopCate_Ringswebp.webp" alt="">
+                                <a href="">
+                                    <span class="underline-transition">Rings</span>
+                                </a>
+                            </div>
+    
+                            <div class="content__item">
+                                <img width="100%" src="../assets/img/landing-page/shopCate_Bracelets.webp" alt="">
+                                <a href="">
+                                    <span class="underline-transition">Bracelets</span>
+                                </a>
+                            </div>
+    
+                            <div class="content__item">
+                                <img width="100%" src="../assets/img/landing-page/shopCate_Earrings.webp" alt="">
+                                <a href="">
+                                    <span class="underline-transition">Earrings</span>   
+                                </a>
+                            </div>
+    
+                            <div class="content__item">
+                                <img width="100%" src="../assets/img/landing-page/shopCate_necklacks.webp" alt="">
+                                <a href="">
+                                    <span class="underline-transition">Necklaces</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- The bijou experience -->
+                    <div class="experience">
+                        <div class="experience__heading">
+                            <h2>The Tiffany Experience</h2>
+                        </div>
+                        <div class="experience__service-content">
+                            <!-- Book an appointment -->
+                            <div class="service-content__item">
+                                <div class="service-content__icon">
+                                    <img width="36px" src="../assets/img/icon/ICON_Appointment.svg" alt="">
+                                </div>
+                                <div class="service-content__title">
+                                    <h3>Book an appointment</h3>
+                                </div>
+                                <div class="experience__service-text">
+                                    <p>We are pleased to assist you 24/7 to book an virtual appointment</p>
+                                </div>
+                                <div class="experience__service-link">
+                                    <a href="">
+                                        <span class="underline-transition">Book now</span>
+                                    </a>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                            <!-- Bijou at your service -->
+                            <div class="service-content__item">
+                                <div class="service-content__icon">
+                                    <img width="36px" src="../assets/img/icon/ICON_Appointment.svg" alt="">
+                                </div>
+                                <div class="service-content__title">
+                                    <h3>Bijou at your service</h3>
+                                </div>
+                                <div class="experience__service-text">
+                                    <p>We are pleased to assist you 24/7 to book an virtual appointment</p>
+                                </div>
+                                <div class="experience__service-link">
+                                    <a href="">
+                                        <span class="underline-transition">Book now</span>
+                                    </a>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                             </div>
+                            <!-- Complimentary Shipping & Return -->
+                            <div class="service-content__item">
+                                <div class="service-content__icon">
+                                    <img width="36px" src="../assets/img/icon/ICON_Appointment.svg" alt="">
+                                </div>
+                                <div class="service-content__title">
+                                    <h3>Complimentary Shipping & Return</h3>
+                                </div>
+                                <div class="experience__service-text">
+                                    <p>We are pleased to assist you 24/7 to book an virtual appointment</p>
+                                </div>
+                                <div class="experience__service-link">
+                                    <a href="">
+                                        <span class="underline-transition">Book now</span>
+                                    </a>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                            <!-- Wishing & Gifting -->
+                            <div class="service-content__item">
+                                <div class="service-content__icon">
+                                    <img width="36px" src="../assets/img/icon/ICON_Appointment.svg" alt="">
+                                </div>
+                                <div class="service-content__title">
+                                    <h3>Wishing & Gifting</h3>
+                                </div>
+                                <div class="experience__service-text">
+                                    <p>We are pleased to assist you 24/7 to book an virtual appointment</p>
+                                </div>
+                                <div class="experience__service-link">
+                                    <a href="">
+                                        <span class="underline-transition">Book now</span>
+                                    </a>
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </main>
+            </main>
+    
+            <footer>
+                <link rel="stylesheet" href="../footer/footer.html">
+                <link rel="stylesheet" href="../footer/footer.css">
+                <link rel="stylesheet" href="../footer/footer.js">
+            </footer>
+        </div>
+
+    </body>
+    </html>
