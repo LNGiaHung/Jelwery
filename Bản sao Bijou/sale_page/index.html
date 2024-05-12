@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" class="md-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./scss/style.css" />
+
+    <title>Bijou Jewelry</title>
+</head>
+
+<body>
+    <header id="header" class="header header--fix">
+        <!-- <div class="grid"> -->
+        <nav class="header__navbar">
+            <ul class="header__navbar-list">
+                <!-- Search button -->
+                <li class="header__navbar-item">
+                    <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+
+                </li>
+                <div class="header__navbar-item">
+                    <li class="header__navbar-item">
+                        <a href="" class="header__navbar-item-link">
+                            <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
+                            Client Care
+                        </a>
+                    </li>
+                </div>
+                <li class="header__navbar-item">
+                    <div href="" class="header__navbar-item-link">
+                        <i class="header__navbar-icon fa-regular fa-gem"></i>
+                        New Collection
+                    </div>
+                </li>
+            </ul>
+            <img class="header__navbar-logo" src="image/logo.png" alt="">
+            <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
+            <ul class="header__navbar-list">
+                <li class="header__navbar-item">
+                    <div href="" class="header__navbar-item-link">
+                        <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
+                        Book an appointment
+                    </div>
+                </li>
+                <!-- Sign in/up -->
+                <li class="header__navbar-item">
+                    <div class="header__navbar-item-link user-icon">
+                        <i class="fa-regular fa-user"></i>
+                        <!-- <span class="tooltip">Sign In or Create an Account</span> -->
+                        <div class="tooltip" id="tooltip-id">
+                            <a href="#" class="tooltip-text">Sign in</a>
+                            <a href="#" class="tooltip-text">Create an account</a>
+                        </div>
+                    </div>
+                    <!-- gio hang/sp yeu thich -->
+                <li class="header__navbar-item">
+                    <a href="" class="header__navbar-item-link"><i class="fa-regular fa-heart"></i></a>
+                </li>
+                <!-- Shoping bag -->
+                
+                <li class="header__navbar-item">
+                    <a class="header__navbar-item-link">
+                    <i class="fa-solid fa-bag-shopping"></i></a>
+                    <span class="quanity">0</span>
+                    </li>
+                </li>
+            </ul>
+        </nav>
+    <!-- Header-->
+
+        <!-- </div> -->
+
+
+        <!-- Category Shopping Nav -->
+        <div class="overlay">
+            <nav class="main-nav">
+                <ul>
+                    <!-- Jewelry -->
+                    <li class="main-nav__link-container">
+                        <a href="" class="underline-transition-bold main-nav__link">Jewelry</a>
+                        <div class="subnav">
+                            <div class="subnav__inner">
+                                <!-- subnav - Shop by category -->
+                                <div class="subnav__group">
+                                    <h3>Shop by Category</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Necklaces & Pendants</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Earrings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Bracelets</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Bracelets</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Rings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <!-- subnav - Shop by mental & gemstone -->
+                                <div class="subnav__group">
+                                    <h3>Shop by Material</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Gold Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">White Gold Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Platinum Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="subnav__group">
+
+                                    <h3>Shop by Gemstone</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Diamond Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Pearl Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Moissanite Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Sapphire Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Cubic Zirconia Jewelry</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- <div class="subnav__img subnav__img--half">
+                                    <img width="100%" src="./assets/img/landing-page/main-nav__jewelry.png" alt="">
+                                </div> -->
+
+                        </div>
+
+                    </li>
+
+                    <!-- Love & Engagement -->
+                    <li class="main-nav__link-container">
+                        <a href="" class="main-nav__link underline-transition-bold">Love & Engagement</a>
+                        <div class="subnav">
+                            <div class="subnav__inner">
+                                <!-- Engagement & Wedding -->
+                                <div class="subnav__group">
+                                    <h3>Engagement & Wedding</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Engagement Rings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Wedding Earrings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Wedding Necklaces</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Couples' Wedding Rings</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Shop by Shape -->
+                                <div class="subnav__group">
+                                    <h3>Shop by Shape</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Round</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Oval</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Heart</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Emerald</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Pear</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Radiant</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Shield</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Cushion</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Collections -->
+                                <div class="subnav__group">
+                                    <h3>Collections</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">"Trầu Cau" Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Elegant and Loving Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Salsa Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Diamond Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Eros Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Mono Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Fancy Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Bridge Accent Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">"Heo Uyên Ương" Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">"Long Phụng" Collection</span>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="main-nav__link-container">
+                        <div href="" class="main-nav__link underline-transition-bold">Story</div>
+                        <div class="subnav">
+                            <div class="subnav__inner">
+                                <div class="subnav__group">
+                                    <h3>Outstanding Story</h3>
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Like mother, like daughter</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="cta-content">
+                                                    <span class="cta-context">Out of the blue</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- Search button -->
+            <div class="search-bar" id="searchBar">
+                <!-- <h1>Search Bijou</h1> -->
+                <span>Search Bijou</span>
+                <div class="search-input-icon">
+                    <input class="input-search" type="text" placeholder="Search...">
+                    <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- </div> -->
+
+    <section>
+        <a href="" class="cover">
+            <img src="./image/cover_landing.png" alt="" />
+        </a>
+    </section>
+
+    <section class="section-after-dropdown overlay">
+
+    </section>
+
+    <section>
+        <!--MENU BELOW THE COVER-->
+        <nav class="menusection">
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">New-In</span>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li>Outstanding Collections</li>
+                        <li>New Collections</li>
+                        <li>Wedding Collections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Rings</span>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li>24K Gold Rings</li>
+                        <li>18K Gold Rings</li>
+                        <li>14K Gold Rings</li>
+                        <li>10K Gold Rings</li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Earrings</span>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li>24K Gold Earrings</li>
+                        <li>18K Gold Earringss</li>
+                        <li>14K Gold Earrings</li>
+                        <li>10K Gold Earrings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Bracelets</span>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li>24K Gold Bracelets</li>
+                        <li>18K Gold Bracelets</li>
+                        <li>14K Gold Bracelets</li>
+                        <li>10K Gold Bracelets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Necklaces</span>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li>24K Gold Necklaces</li>
+                        <li>18K Gold Necklaces</li>
+                        <li>14K Gold Necklaces</li>
+                        <li>10K Gold Necklaces</li>
+                    </ul>
+                </div>
+            </div>
+            <!--Sort by ben tay phai -->
+            <div class="dropdown-sortby">
+                <div class="select">
+                    <div class="selected">Sort by:</div>
+                    <div class="caret"></div>
+                    <ul class="menu">
+                        <li class="text" data-value="recommendation">Recommendation</li>
+                        <li class="text" data-value="wishlist">Wishlist</li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
+    </section>
+
+
+    <!--PRODUCT SECTONS-->
+    <section class="products" id="products">
+        <div class="box-container">
+            <div class="box">
+                <span class="discount">10%</span>
+                <div class="product1">
+                    <img src="./image/rings.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+
+
+                <div class="content">
+                    <h3 href="#">Diamond Engagement Rings</h3>
+                    <div class="price">$109.99 <span>$122.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings.jpg" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list1" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag1" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3 href="#">Diamond Engagement Rings</h3>
+                    <div class="price">$176.99 <span>$254.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list2" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag2" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3 href="#">Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list3" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag3" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list4" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag4" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list5" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag5" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list6" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag6" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list7" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag7" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list8" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag8" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list9" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag9" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list10" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag10" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+            <div class="box">
+                <span class="discount">15%</span>
+                <div class="product1">
+                    <img src="./image/rings1.png" alt="">
+                    <div class="icons">
+                        <a href="#" id="wish-list11" class="fa-solid fa-heart"></a>
+                        <a href="#" id="shopping-bag11" class="fa-solid fa-shopping-bag"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Diamond Engagement Rings</h3>
+                    <div class="price">$256.99 <span>$310.99</span></div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .box-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .box {
+                flex: 1 1 30%;
+                margin: 10px;
+            }
+        </style>
+
+    </section>
+
+</body>
+
+<script src="js/script.js"></script>
+
+</html>
