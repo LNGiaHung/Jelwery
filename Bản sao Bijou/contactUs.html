@@ -21,20 +21,25 @@
             <!-- <div class="grid"> -->
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
+                        <!-- Nav-mobile -->
+                        <li class="header__navbar-item">
+                            <div class="nav__bars-btn">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                        </li>
                         <!-- Search button -->
                         <li class="header__navbar-item">
                             <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
-
                         </li>
                         <div class="header__navbar-item">
-                            <li class="header__navbar-item">
+                            <li class="header__navbar-item header__navbar-item-mobile">
                                 <a href="" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                                     Client Care
                                 </a>
                             </li>
                         </div>
-                        <li class="header__navbar-item">
+                        <li class="header__navbar-item header__navbar-item-mobile">
                             <div href="" class="header__navbar-item-link">
                                 <i class="header__navbar-icon fa-regular fa-gem"></i>
                                 New Collection
@@ -44,7 +49,7 @@
                     <img class="header__navbar-logo" src="./assets/img/logo.png" alt="">
                     <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
                     <ul class="header__navbar-list">
-                        <li class="header__navbar-item">
+                        <li class="header__navbar-item header__navbar-item-mobile">
                             <div href="" class="header__navbar-item-link">
                                 <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
                                 Book an appointment
@@ -52,7 +57,7 @@
                         </li>
                         <!-- Sign in/up -->
                         <li class="header__navbar-item">
-                            <div class="header__navbar-item-link user-icon">
+                            <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
                                 <i class="fa-regular fa-user"></i>
                                 <!-- <span class="tooltip">Sign In or Create an Account</span> -->
                                 <div class="tooltip" id="tooltip-id">
@@ -68,13 +73,14 @@
                         <li class="header__navbar-item">
                             <a href="" class="header__navbar-item-link"><i class="fa-solid fa-bag-shopping"></i></a>
                         </li>
+                        </li>
                     </ul>
                 </nav>
             <!-- </div> -->
 
             <!-- Category Shopping Nav -->
             <div class="overlay">
-                <nav class="main-nav">
+                <nav class="main-nav nav_pc">
                     <ul>
                         <!-- Jewelry -->
                         <li class="main-nav__link-container">
@@ -124,9 +130,9 @@
                                             </ul>
                                         </div>
     
-                                        <!-- subnav - Shop by mental & gemstone -->
+                                        <!-- subnav - Shop by metal & gemstone -->
                                     <div class="subnav__group">
-                                            <h3>Shop by Mental</h3>
+                                            <h3>Shop by Metal</h3>
                                             <ul>
                                                 <li>
                                                     <a href="">
@@ -387,7 +393,7 @@
                             </div>
                         </li>
                         <li  class="main-nav__link-container">
-                            <div href="" class="main-nav__link underline-transition-bold">Story</div>
+                            <div href="" class="main-nav__link underline-transition-bold">Stories</div>
                             <div class="subnav">
                                 <div class="subnav__inner">
                                     <div class="subnav__group">
@@ -429,6 +435,39 @@
                 </div>
             </div>
 
+            <div class="nav_overlay"></div>
+            <!-- Mobile nav -->
+            <nav class="nav__mobile">
+                <div class="nav_mobile-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <ul class="nav__mobile-list">
+                    <!-- Landing Page -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Landing Page</a>
+                    </li>
+                    <!-- New Arrival -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Jewelry</a>
+                    </li>
+                    <!-- Shopping -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Love & Engagement</a>
+                    </li>
+                    <!-- Wishlist -->
+                    <li  class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Contact us</a>
+                    </li>
+                    <!-- Palmmie Lady -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Book an appointment</a>
+                    </li>
+                    <!-- Log in  -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">My Account</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <!-- contact page content -->

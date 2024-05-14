@@ -325,3 +325,20 @@ if (emailSpan) { // Kiểm tra nếu span tồn tại
 //     input.classList.remove('error'); // Xóa class error cho input (nếu cần)
 //   }
 // }
+
+// Responsive-menu
+let mobileClose = document.querySelector('.nav_mobile-close');
+let navMobile = document.querySelector('.nav__mobile')
+let navOverlay = document.querySelector('.nav_overlay')
+let navBarBtn = document.querySelector('.nav__bars-btn')
+
+navBarBtn.onclick = function() {
+    navMobile.classList.add('active');
+    navOverlay.classList.add('active');
+    // mobileClose.classList.add('active');
+}
+
+mobileClose.onclick = function () {
+    navMobile.classList.remove('active');
+    navOverlay.classList.remove('active');
+}
