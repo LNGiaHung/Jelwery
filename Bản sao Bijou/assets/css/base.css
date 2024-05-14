@@ -33,3 +33,26 @@ html {
     flex-wrap: wrap;
 }
 
+.grid__col-12 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+}
+
+.grid__col-3 {
+    padding-left: 14px;
+    padding-right: 14px;
+    width: calc((100% / 12)* 3); /* 0.25% */
+}
+
+.grid__col-4 {
+    padding-left: 14px;
+    padding-right: 14px;
+    width: calc((100% / 12)* 4); /* 0.25% */
+}
+
+.grid__col-6 {
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 50%
+}

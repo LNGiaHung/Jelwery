@@ -23,20 +23,25 @@
                 <!-- <div class="grid"> -->
                     <nav class="header__navbar">
                         <ul class="header__navbar-list">
+                            <!-- Nav-mobile -->
+                            <li class="header__navbar-item">
+                                <div class="nav__bars-btn">
+                                    <i class="fa-solid fa-bars"></i>
+                                </div>
+                            </li>
                             <!-- Search button -->
                             <li class="header__navbar-item">
                                 <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
-
                             </li>
                             <div class="header__navbar-item">
-                                <li class="header__navbar-item">
+                                <li class="header__navbar-item header__navbar-item-mobile">
                                     <a href="" class="header__navbar-item-link">
                                         <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                                         Client Care
                                     </a>
                                 </li>
                             </div>
-                            <li class="header__navbar-item">
+                            <li class="header__navbar-item header__navbar-item-mobile">
                                 <div href="" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-regular fa-gem"></i>
                                     New Collection
@@ -46,7 +51,7 @@
                         <img class="header__navbar-logo" src="./assets/img/logo.png" alt="">
                         <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
                         <ul class="header__navbar-list">
-                            <li class="header__navbar-item">
+                            <li class="header__navbar-item header__navbar-item-mobile">
                                 <div href="" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
                                     Book an appointment
@@ -54,7 +59,7 @@
                             </li>
                             <!-- Sign in/up -->
                             <li class="header__navbar-item">
-                                <div class="header__navbar-item-link user-icon">
+                                <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
                                     <i class="fa-regular fa-user"></i>
                                     <!-- <span class="tooltip">Sign In or Create an Account</span> -->
                                     <div class="tooltip" id="tooltip-id">
@@ -77,7 +82,7 @@
 
                 <!-- Category Shopping Nav -->
                 <div class="overlay">
-                    <nav class="main-nav">
+                    <nav class="main-nav nav_pc">
                         <ul>
                             <!-- Jewelry -->
                             <li class="main-nav__link-container">
@@ -127,9 +132,9 @@
                                                 </ul>
                                             </div>
         
-                                            <!-- subnav - Shop by mental & gemstone -->
+                                            <!-- subnav - Shop by metal & gemstone -->
                                         <div class="subnav__group">
-                                                <h3>Shop by Mental</h3>
+                                                <h3>Shop by Metal</h3>
                                                 <ul>
                                                     <li>
                                                         <a href="">
@@ -390,7 +395,7 @@
                                 </div>
                             </li>
                             <li  class="main-nav__link-container">
-                                <div href="" class="main-nav__link underline-transition-bold">Story</div>
+                                <div href="" class="main-nav__link underline-transition-bold">Stories</div>
                                 <div class="subnav">
                                     <div class="subnav__inner">
                                         <div class="subnav__group">
@@ -432,6 +437,39 @@
                     </div>
                 </div>
 
+                <div class="nav_overlay"></div>
+                <!-- Mobile nav -->
+                <nav class="nav__mobile">
+                    <div class="nav_mobile-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <ul class="nav__mobile-list">
+                        <!-- Landing Page -->
+                        <li class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">Landing Page</a>
+                        </li>
+                        <!-- New Arrival -->
+                        <li class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">Jewelry</a>
+                        </li>
+                        <!-- Shopping -->
+                        <li class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">Love & Engagement</a>
+                        </li>
+                        <!-- Wishlist -->
+                        <li  class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">Contact us</a>
+                        </li>
+                        <!-- Palmmie Lady -->
+                        <li class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">Book an appointment</a>
+                        </li>
+                        <!-- Log in  -->
+                        <li class="nav__mobile__link-container">
+                            <a href="" class="nav__mobile__link">My Account</a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
 
             <!-- Content -->
@@ -475,7 +513,7 @@
                                     </p>
                                     
                                     <p class="text--full collapsed" style="display: none;"> <!-- Thêm lớp collapsed -->
-                                        Inspired by the many facets of eternal love, our jewelry is designed to symbolize everlasting love, memories, and commitment. We combine traditional craftsmanship with contemporary design to create unique and meaningful pieces that will be cherished for a lifetime. Our team of skilled artisans uses time-honored techniques and modern design principles to craft jewelry that is both timeless and of-the-moment. Whether you're looking for a special gift or a piece to mark a milestone, Bijou Jewellery has something for everyone. 
+                                        Inspired by the many facets of eternal love, our jewelry is designed to symbolize everlasting love, memories, and commitment. We combine traditional craftsmanship with contemporary design to create unique and meaningful pieces that will be cherished for a lifetime. Our team of skilled artisans uses time-honored techniques and modern design principles to craft jewelry that is both timeless and of-the-moment. Whether you're looking for a special gift or a piece to mark a milestone, Bijou Jewelry has something for everyone. 
                                         Symbolic of your relationship and your partner, and they make a statement to the world about your commitment to each other. Our collection of tailor-made matching wedding bands includes a range of styles, from modern and sleek to intricate and ornate, ensuring that you will find the perfect set that complements your relationship, and connect the soul to soul.
                                         <span class="inspire_readLess" onclick="inspire_showLess(this)">Read less</span>
 
@@ -484,7 +522,7 @@
                             </div>
                     
                             <div class="infinitely-inspiring__image">
-                                <img src="./assets/img/UI/love&commit.webp" alt="Timeless and Of-the-moment">
+                                <img src="./assets/img/landing-page/timeless.jpeg" alt="Timeless and Of-the-moment">
                                 <div class="image-caption">
                                     <a href="#" class="image-caption__topic">Timeless and Of-the-moment</a>
                                     <p>
@@ -502,7 +540,7 @@
                             </div>
                     
                             <div class="infinitely-inspiring__image">
-                                <img src="./assets/img/UI/love&commit.webp" alt="Fashionable and Affordable">
+                                <img src="./assets/img/landing-page/fashion.jpg" alt="Fashionable and Affordable">
                                 <div class="image-caption">
                                     <a href="#" class="image-caption__topic">Fashionable and Affordable</a>
                                     <p>
@@ -583,6 +621,41 @@
                     </div>
                 </div>
 
+                <!-- Collection -->
+                <div class="collection-section-homepage">
+                        <div class="grid__row">
+                            <div class="grid__col-4">
+                                <div class="collection-section-item collection-section-item-content">
+                                    <h3>Our Newest High Jewelry Collection</h3>
+                                    <p class="collection-section-item-description">As one of the most in ternational high jewelry houses, Bijou. is celebrated for its inventive artistry and unparalleled craftsmanship. The House’s artisans set extraordinary diamonds and colored gemstones into exquisite creations that symbolize a constant dialogue between maker and material, craft and creativity.</p>
+                                    <button class="section-item__explore-btn">Explore the Collection</button>
+                                </div>
+                            </div>
+                            <div class="grid__col-4">
+                                <div class="collection-section-item">
+                                    <div class="section-item__img" style="background-image: url(https://media.tiffany.com/is/image/tiffanydm/2024_APR_BB_CelesteLP_Recirc7_Desktop?$tile$&wid=988&hei=988&fmt=webp);"></div>
+                                    </div>
+                            </div>
+                            <div class="grid__col-4">
+                                <div class="collection-section-item">
+                                    <div class="section-item__img" style="background-image: url(https://media.tiffany.com/is/image/tiffanydm/2024_APR_BB_CelesteLP_Recirc4_Desktop?$tile$&wid=988&hei=988&fmt=webp);"></div>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Love & engagement homepage-->
+                <div class="love-engagement-homepage">
+                    <div class="love-engagement-homepage-item">
+                        <!-- <img class="love-engagement-homepage-img" src="./assets/img/landing-page/love-engagement.webp" alt=""> -->
+                        <div class="love-engagement-homepage-img" style="background-image: url(https://media.tiffany.com/is/image/tiffanydm/2024-Icons-HP-FWMH-SDR-Desktop?$tile$&wid=2992&fmt=webp);"></div> 
+                        <div class="love-engagement-homepage-content">
+                            <h3 class="love-engagement-content-title">Love & Engagement</h3>
+                            <p>Bijou engagement rings feature the world's finest diamonds and unparalleled craftsmanship—signatures of the House for almost two centuries.</p>
+                            <a href="" class="love-engagement-content-explore">Explore Engagement Rings</a>
+                        </div>
+                    </div>
+                </div>
                 <!-- The bijou experience -->
                 <div class="experience">
                     <div class="experience__heading">
