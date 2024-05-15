@@ -214,6 +214,8 @@ body {
 }
 
 .tooltip-text {
+    z-index: 10000000;
+    position: relative;
     display: block;
     margin-bottom: 5px;
     color: #333333;
@@ -352,7 +354,7 @@ img {
 
 .subnav {
     position: absolute;
-    left: 30px;
+    left: 24px;
     top: 27px;
     background-color: #fff;
     z-index: 101;
@@ -510,6 +512,7 @@ a.cta .cta-content .cta-text {
     font-weight: 400;
     font-style: normal;
 }
+
 /* STORY */
 .story {
     position: relative;
@@ -717,7 +720,7 @@ p.collection-section-item-description {
 }
 
 .section-item__explore-btn {
-    width: 50%;
+    width: 60%;
     letter-spacing: 1px;
     font-size: 14px;
     background: none;
@@ -1111,5 +1114,6 @@ label[for="email"] {
     li.header__navbar-item.header__navbar-item-mobile {
         display: none;
     }
-
 }
+
+

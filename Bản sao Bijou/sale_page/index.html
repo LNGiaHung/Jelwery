@@ -18,155 +18,168 @@
         href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./scss/style.css" />
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../script.js">
 
     <title>Bijou Jewelry</title>
 </head>
 
 <body>
+    <!-- Header -->
     <header id="header" class="header header--fix">
         <!-- <div class="grid"> -->
-        <nav class="header__navbar">
-            <ul class="header__navbar-list">
-                <!-- Search button -->
-                <li class="header__navbar-item">
-                    <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
-
-                </li>
-                <div class="header__navbar-item">
+            <nav class="header__navbar">
+                <ul class="header__navbar-list">
+                    <!-- Nav-mobile -->
                     <li class="header__navbar-item">
-                        <a href="" class="header__navbar-item-link">
-                            <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
-                            Client Care
-                        </a>
-                    </li>
-                </div>
-                <li class="header__navbar-item">
-                    <div href="" class="header__navbar-item-link">
-                        <i class="header__navbar-icon fa-regular fa-gem"></i>
-                        New Collection
-                    </div>
-                </li>
-            </ul>
-            <img class="header__navbar-logo" src="image/logo.png" alt="">
-            <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
-            <ul class="header__navbar-list">
-                <li class="header__navbar-item">
-                    <div href="" class="header__navbar-item-link">
-                        <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
-                        Book an appointment
-                    </div>
-                </li>
-                <!-- Sign in/up -->
-                <li class="header__navbar-item">
-                    <div class="header__navbar-item-link user-icon">
-                        <i class="fa-regular fa-user"></i>
-                        <!-- <span class="tooltip">Sign In or Create an Account</span> -->
-                        <div class="tooltip" id="tooltip-id">
-                            <a href="#" class="tooltip-text">Sign in</a>
-                            <a href="#" class="tooltip-text">Create an account</a>
+                        <div class="nav__bars-btn">
+                            <i class="fa-solid fa-bars"></i>
                         </div>
-                    </div>
-                    <!-- gio hang/sp yeu thich -->
-                <li class="header__navbar-item">
-                    <a href="" class="header__navbar-item-link"><i class="fa-regular fa-heart"></i></a>
-                </li>
-                <!-- Shoping bag -->
-                
-                <li class="header__navbar-item">
-                    <a class="header__navbar-item-link">
-                    <i class="fa-solid fa-bag-shopping"></i></a>
-                    <span class="quanity">0</span>
                     </li>
-                </li>
-            </ul>
-        </nav>
-    <!-- Header-->
-
+                    <!-- Search button -->
+                    <li class="header__navbar-item">
+                        <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+                    </li>
+                    <div class="header__navbar-item">
+                        <li class="header__navbar-item header__navbar-item-mobile">
+                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/contactUs.html" class="header__navbar-item-link">
+                                <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
+                                Client Care
+                            </a>
+                        </li>
+                    </div>
+                    <li class="header__navbar-item header__navbar-item-mobile">
+                        <div href="" class="header__navbar-item-link">
+                            <i class="header__navbar-icon fa-regular fa-gem"></i>
+                            New Collection
+                        </div>
+                    </li>
+                </ul>
+                <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="landing-page">
+                    <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
+                </a>
+                <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item header__navbar-item-mobile">
+                        <div href="" class="header__navbar-item-link">
+                            <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
+                            Book an appointment
+                        </div>
+                    </li>
+                    <!-- Sign in/up -->
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
+                            <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                            <!-- <span class="tooltip">Sign In or Create an Account</span>
+                            <div class="tooltip" id="tooltip-id">
+                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                    <span class="tooltip-text" onclick="">Sign in</span>
+                                </a>
+                                 <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
+                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                    <span class="tooltip-text">Create an account</span>
+                                </a>
+                                <a href="#" class="tooltip-text">Create an account</a> 
+                            </div> -->
+                        </div>
+                    <!-- gio hang/sp yeu thich -->
+                    <li class="header__navbar-item">
+                        <a href="" class="header__navbar-item-link"><i class="fa-regular fa-heart"></i></a>
+                    </li>
+                    <!-- Shoping bag -->
+                    <li class="header__navbar-item">
+                        <a href="" class="header__navbar-item-link"><i class="fa-solid fa-bag-shopping"></i></a>
+                    </li>
+                    </li>
+                </ul>
+            </nav>
         <!-- </div> -->
-
 
         <!-- Category Shopping Nav -->
         <div class="overlay">
-            <nav class="main-nav">
+            <nav class="main-nav nav_pc">
                 <ul>
                     <!-- Jewelry -->
                     <li class="main-nav__link-container">
-                        <a href="" class="underline-transition-bold main-nav__link">Jewelry</a>
-                        <div class="subnav">
-                            <div class="subnav__inner">
-                                <!-- subnav - Shop by category -->
+                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
+                            <div class="subnav">
+                                <div class="subnav__inner">
+                                    <!-- subnav - Shop by category -->
+                                    <div class="subnav__group">
+                                        <h3>Shop by Category</h3>
+                                        <ul>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Necklaces & Pendants</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Earrings</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Bracelets</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Bracelets</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Rings</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!-- subnav - Shop by metal & gemstone -->
                                 <div class="subnav__group">
-                                    <h3>Shop by Category</h3>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Necklaces & Pendants</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Earrings</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Bracelets</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Bracelets</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Rings</span>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                                <!-- subnav - Shop by mental & gemstone -->
-                                <div class="subnav__group">
-                                    <h3>Shop by Material</h3>
-                                    <ul>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Gold Jewelry</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">White Gold Jewelry</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="cta-content">
-                                                    <span class="cta-context">Platinum Jewelry</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        <h3>Shop by Metal</h3>
+                                        <ul>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Gold Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">White Gold Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Platinum Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
                                 <div class="subnav__group">
-
+                                            
                                     <h3>Shop by Gemstone</h3>
                                     <ul>
                                         <li>
@@ -205,15 +218,15 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>    
 
-                            </div>
-                            <!-- <div class="subnav__img subnav__img--half">
+                                </div>
+                                <!-- <div class="subnav__img subnav__img--half">
                                     <img width="100%" src="./assets/img/landing-page/main-nav__jewelry.png" alt="">
                                 </div> -->
 
-                        </div>
-
+                            </div>
+                        
                     </li>
 
                     <!-- Love & Engagement -->
@@ -392,29 +405,29 @@
                                                 </span>
                                             </a>
                                         </li>
-
+                                        
                                     </ul>
                                 </div>
                             </div>
 
                         </div>
                     </li>
-                    <li class="main-nav__link-container">
-                        <div href="" class="main-nav__link underline-transition-bold">Story</div>
+                    <li  class="main-nav__link-container">
+                        <div href="" class="main-nav__link underline-transition-bold">Stories</div>
                         <div class="subnav">
                             <div class="subnav__inner">
                                 <div class="subnav__group">
                                     <h3>Outstanding Story</h3>
                                     <ul>
                                         <li>
-                                            <a href="">
+                                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-mother.html">
                                                 <span class="cta-content">
                                                     <span class="cta-context">Like mother, like daughter</span>
                                                 </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-blue.html">
                                                 <span class="cta-content">
                                                     <span class="cta-context">Out of the blue</span>
                                                 </span>
@@ -428,7 +441,7 @@
 
                         </div>
                     </li>
-
+                    
                 </ul>
             </nav>
             <!-- Search button -->
@@ -442,6 +455,39 @@
             </div>
         </div>
 
+        <div class="nav_overlay"></div>
+        <!-- Mobile nav -->
+        <nav class="nav__mobile">
+            <div class="nav_mobile-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <ul class="nav__mobile-list">
+                <!-- My Account  -->
+                <li class="nav__mobile__link-container">
+                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html" class="nav__mobile__link">My Account</a>
+                </li>
+                <!-- Landing Page
+                <li class="nav__mobile__link-container">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="nav__mobile__link">Landing Page</a>
+                </li> -->
+                <!-- New Arrival -->
+                <li class="nav__mobile__link-container">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html" class="nav__mobile__link">Jewelry</a>
+                </li>
+                <!-- Shopping -->
+                <li class="nav__mobile__link-container">
+                    <a href="" class="nav__mobile__link">Love & Engagement</a>
+                </li>
+                <!-- Wishlist -->
+                <li  class="nav__mobile__link-container">
+                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/contactUs.html" class="nav__mobile__link">Contact us</a>
+                </li>
+                <!-- Book an appointment -->
+                <li class="nav__mobile__link-container">
+                    <a href="" class="nav__mobile__link">Book an appointment</a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <!-- </div> -->
 
@@ -743,5 +789,6 @@
 </body>
 
 <script src="js/script.js"></script>
+<script src="../script.js"></script>
 
 </html>
