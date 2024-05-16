@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Client Care</title>
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./script.js">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.2/css/all.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Luxury Gift</title>
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./script.js">
+        <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.2/css/all.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+    </head>
 <body>
-    <div class="main" >
+    <div class="main">
         <!-- Header -->
         <header id="header" class="header header--fix">
             <!-- <div class="grid"> -->
@@ -482,119 +483,161 @@
             </nav>
         </header>
 
-        <!-- contact page content -->
-        <div class="contact-page-content">
-            <!-- CSS -->
-            <style>
-                .banner-content {
-                    position: relative;
-                    width: 100%; /* Đảm bảo phần tử cha có chiều rộng tương ứng với màn hình */
-                }
+        <!-- Content -->
+        <style>
+            .gift-section-item {
+                margin-top: 108px;
+                position: relative;
+            }
+            .gift-section-img {
+                padding-top: 36%;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            .gift-section-content {
+                position: absolute;
+                top: 20%;
+                right: 73%;
+                width: 22%;
+                /* transform: translate(-50%, -50%); */
+                text-align: center;
+                /* padding: 20px; */
+                max-width: 80%;
+                color: #000;
+                /* z-index: 20; */
+            }
+            .gift-section-content h3 {
+                letter-spacing: 1px;
+                font-size: 22px;
+            }
+            .gift-section-content p {
+                margin-bottom: 28px;
+            }
+            .gift-section-content-explore {
+                font-size: 14px;
+                letter-spacing: 1px;
+                border: 1px solid #000;
+                padding: 8px 14px;
+            }
 
-                .banner-img {
-                    position: relative;
-                }
+            .gift-section-content-explore {
+                position: relative; /* Ensure the pseudo-element is positioned relative to this */
+            }
 
-                .banner-img img {
-                    margin-top: 108px;
-                    width: 100%; /* Đảm bảo ảnh rộng bằng phần tử cha */
-                    height: auto;
-                }
-                
-                .banner-text {
-                    position: absolute;
-                    top: 40%;
-                    right: 5%;
-                    left: 55%;
-                    padding: 20px;
-                }
+            .gift-section-content-explore::after {
+                content: ''; 
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0; 
+                height: 1px; 
+                background-color: #fff; 
+                transition: width 0.3s ease; 
+            }
 
-                .banner-text__title h4 {
-                    margin-top: 0; /* Loại bỏ khoảng trắng trên đầu tiêu đề */
-                }
+            .gift-section-content-explore:hover::after {
+                width: 100%; /* On hover, transition width to 100% */
+            }
 
+            /* gift service section */
+            .gift-service-section {
+                background-color: #d3f2f5;
+                padding: 30px 0;
+            }
+            .gift-service-item {
+                text-align: center;
+            }
+            .gift-service-item-col {
+                padding: 40px 20px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .gift-service-item-left,
+            .gift-service-item-right {
+                width: 30%;
+            }
+            .gift-service-item {
+                text-align: center;
+            }
+            .gift-service-item-left__icon {
+                vertical-align: middle;
+                display: block;
+                background-size: contain;
+                padding-left: 42%;
+            }
 
-            </style>
-
-            <div class="banner-content">
-                <div class="banner-img">
-                    <img src="./assets/img/UI/contact-us.png" alt="">
+        </style>
+        <div class="gift-section">
+            <div class="gift-section-item">
+                <div class="gift-section-img" style="background-image: url(https://media.tiffany.com/is/image/tiffanydm/2024_MDAY_GiftsLP_1_Desktop?$tile$&wid=2992&fmt=webp);"></div> 
+                <div class="gift-section-content">
+                    <h3 class="gift-section-content-title">Gifts</h3>
+                    <p>Giving graciously is what we do best. Few feelings are more rewarding than seeing someone smile as they unwrap a present you've thoughtfully chosen because it's simply them.</p>
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html" class="gift-section-content-explore">Find the Perfect Gift</a>
                 </div>
-                <div class="banner-text">
-                    <div class="banner-text__title">
-                        <h4>Bijou At Your Service</h4>
-                    </div>
-                    <div class="banner-text-description">
-                        <p>
-                            There is no question too small or request too big for our Bijou client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.&nbsp;
-                        </p>
-                    </div>
+            </div>
+        </div>
+        <div class="gift-service-section">
+            <div class="gift-service-item">
+                <div class="gift-service-item__title">
+                    <h2>Gifting Made Simple</h2>
+                </div>
+                <div class="gift-service-item__des">
+                    <p>Remove the guesswork when you give the gift of Bijou With services designed to streamline the process, you can keep your focus confidently on choosing the perfect presents.</p>
+                </div>
+            </div>
+            <div class="gift-service-item-col">
+                <div class="gift-service-item gift-service-item-left">
+                    <img src="https://asset.swarovski.com/images/w_55,h_55,c_pad/dpr_2.0,f_auto,q_auto,dpr_2.0,f_auto,q_auto,c_lfill,w_55,h_55/logos/vip-events/scd-icon.png" alt="" class="gift-service-item-left__icon">
+                    <h3>FREE STANDARD SHIPPING</h3>
+                    <p>Enjoy free standard shipping on all orders over the minimum threshold in your currency.</p>
+                </div>
+                <div class="gift-service-item gift-service-item-right">
+                    <img src="https://asset.swarovski.com/images/w_55,h_55,c_pad/dpr_2.0,f_auto,q_auto,dpr_2.0,f_auto,q_auto,c_lfill,w_55,h_55/logos/vip-events/scd-icon.png" alt="" class="gift-service-item-left__icon">
+                    <h3>EXTENDED RETURN RIGHTS</h3>
+                    <p>Our top priority is to satisfy all customers. Return ordered items up to 14 days after their receipt (with the exception of Gift Cards and customized products).</p>
+                </div>
+            </div>
+        </div>
+        <!-- Shop by Category -->
+        <div class="shopCate">
+            <div class="shopCate__heading">
+                <h2>Discover Our Jewelry</h2>
+                <span>Brilliant design and unparalleled craftsmanship.</span>
+            </div>
+            <div class="shopCate__content">
+                <div class="content__item">
+                    <img width="100%" src="./assets/img/landing-page/shopCate_Ringswebp.webp" alt="">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html">
+                        <span class="underline-transition">Rings</span>
+                    </a>
+                </div>
+
+                <div class="content__item">
+                    <img width="100%" src="./assets/img/landing-page/shopCate_Bracelets.webp" alt="">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html">
+                        <span class="underline-transition">Bracelets</span>
+                    </a>
+                </div>
+
+                <div class="content__item">
+                    <img width="100%" src="./assets/img/landing-page/shopCate_Earrings.webp" alt="">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html">
+                        <span class="underline-transition">Earrings</span>   
+                    </a>
+                </div>
+
+                <div class="content__item">
+                    <img width="100%" src="./assets/img/landing-page/shopCate_necklacks.webp" alt="">
+                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html">
+                        <span class="underline-transition">Necklaces</span>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="contact-info">
-            <style>
-                .contact-info {
-                    display: flex;
-                    justify-content: space-around;
-                    padding-bottom: 40px;
-                }
-                .contact__option-item-link {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                }
-
-                .contact__option-item-link i {
-                    padding-right: 20px;
-                }
-
-                .contact__option-item-hours p {
-                    padding: 10px 0;
-                }
-            
-            </style>
-
-            <div class="contact-info__option">
-                <h3>Contact Us</h3>
-                <div class="contact__option-item">
-                    <a href="tel: 0971923550" class="contact__option-item-link">
-                        <i class="fa-solid fa-phone"></i>
-                        <p class="underline-transition">Call 0971923550</p>
-                    </a>
-                </div>
-                <div class="contact__option-item">
-                    <a href="mailto:21522021@gmail.com" class="contact__option-item-link">
-                        <i class="fa-regular fa-envelope"></i>
-                        <p class="underline-transition">Email</p>
-                    </a>
-                </div>
-                <div class="contact__option-item">
-                    <a href="bookAnAppointment.html" class="contact__option-item-link">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        <p class="underline-transition">Book an Appointment</p>
-                    </a>
-                </div>
-                <div class="contact__option-item">
-                    <a href="trackOrder.html" class="contact__option-item-link">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p class="underline-transition">Track Your Order</p>
-                    </a>
-                </div>
-            </div>
-            <div class="contact-info__option">
-                <h3>Client Care Hours of Operations</h3>
-                <div class="contact__option-item-hours">
-                    <p>Monday–Friday: 8:00AM–10:00PM EST</p>
-                    <p>Saturday: 9:00AM-10:00PM EST</p>
-                    <p>Monday–Friday: 8:00AM–10:00PM EST</p>
-                    <p>HOLIDAY:10:00AM-5:00PM</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
+        <!-- Footer --> 
         <div class="footer__top-bar"></div>
         <footer class="footer">
             <div class="footer__left">
@@ -680,7 +723,7 @@
             </div>
         </footer>
     </div>
-    
+
+    <script src="./script.js"></script>
 </body>
-<script src="./script.js"></script>
 </html>
