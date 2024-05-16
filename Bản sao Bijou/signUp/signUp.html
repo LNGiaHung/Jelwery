@@ -492,79 +492,69 @@
                         <h2>Create an Account</h2>
                         <span>With a Bijou.com account, you can save time during checkout, access your shopping bag from any device and view your order history.</span>
                     </div>
-                    <fieldset>
-                        <div class="sign-up__input">
-                            <label class="label-sign-up" for="text"> First Name</label>
-                            <input type="email" class="sign-up__name-input" maxlength="30" size="12">
-                        </div>
-                        <div class="sign-up__input">
-                            <label class="label-sign-up" for="Email"> Last Name</label>
-                            <input type="email" class="sign-up__name-input" maxlength="30" size="12">
-                        </div>
-                        <div class="sign-up__input email-input">
-                            <label class="label-sign-up" for="Email"> Email</label>
-                            <input type="email" class="sign-up__email-input" maxlength="70" size="12">
-                        </div>
-                        <div class="sign-up__input">
-                            <label class="label-sign-up" for="text"> Password</label>
-                            <input type="text" class="sign-up__pass-input" maxlength="12" size="12">
-                        </div>
-                        <div class="gender-select">
-                            <label>Gender (optional)</label>
-                            <div>
-                                <label>
-                                    <input type="radio" class="gender__input" name="gender" value="female">
-                                    Female
-                                </label>
+                    <form id="registrationForm" action="http://localhost:3001/auth" method="POST">
+                        <fieldset>
+                            <div class="sign-up__input">
+                                <label class="label-sign-up" for="text"> First Name</label>
+                                <input type="text" class="sign-up__name-input" maxlength="30" size="12" name="FirstName">
                             </div>
-                            <div>
-                                <label>
-                                    <input type="radio" class="gender__input" name="gender" value="male">
-                                    Male
-                                </label>
+                            <div class="sign-up__input">
+                                <label class="label-sign-up" for="Email"> Last Name</label>
+                                <input type="text" class="sign-up__name-input" maxlength="30" size="12" name="LastName">
                             </div>
-                        </div>
-                        <div class="sign-up-dob">
-                            <label>Date of Birth (Optional)</label>
-                            <div class="dob-input">
-                                <div class="dob">
-                                    <label for="day">Day</label>
-                                    <input class="sign-up__dob-input" type="number" id="day" name="day" min="1" max="31">
+                            <div class="sign-up__input email-input">
+                                <label class="label-sign-up" for="Email"> Email</label>
+                                <input type="email" class="sign-up__email-input" maxlength="70" size="12" name="Mail">
+                            </div>
+                            <div class="sign-up__input">
+                                <label class="label-sign-up" for="text"> Password</label>
+                                <input type="text" class="sign-up__pass-input" maxlength="12" size="12" name="Password">
+                            </div>
+                            <div class="gender-select">
+                                <label>Gender (optional)</label>
+                                <div>
+                                    <label>
+                                        <input type="radio" class="gender__input" name="Gender" value="female">
+                                        Female
+                                    </label>
                                 </div>
-                                <div class="dob">
-                                    <label for="month">Month</label>
-                                    <input class="sign-up__dob-input" type="number" id="month" name="month" min="1" max="12">
-                                </div>
-                                <div class="dob">
-                                    <label for="year">Year</label>
-                                    <input class="sign-up__dob-input" type="number" id="year" name="year" min="1900" max="2024">
+                                <div>
+                                    <label>
+                                        <input type="radio" class="gender__input" name="Gender" value="male">
+                                        Male
+                                    </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- <div class="relationship-select">
-                            <legend>Relationship Status (Optional)</legend>
-                            <select id="relationship-status" name="relationship-status">
-                                <option value="married">Married</option>
-                                <option value="single">Single</option>
-                            </select>
-                            <input type="text" class="relationship-select__input"><i class="fa-solid fa-caret-down"></i>
-                        </div> -->
-
-                        <div class="relationship-select">
-                            <label for="text">Relationship Status (Optional)</label>
-                            <select name="relationship-status" id="relationship-status">
-                                <option value></option>
-                                <option value="2">Married</option>
-                                <option value="1">Single</option>
-                            </select>
-                            <input type="text" class="relationship-select__input" placeholder="Select your relationship status">
-                            <i class="fa-solid fa-caret-down"></i>
-                        </div>
-
-                        <button class="signup-button--input" type="submit">Create an Account</button>
-                        <!-- <a class="forgot-password underline-transition" href="">Forgot your password?</a> -->
-                    </fieldset>
+                            <div class="sign-up-dob">
+                                <label>Date of Birth (Optional)</label>
+                                <div class="dob-input">
+                                    <div class="dob">
+                                        <label for="day">Day</label>
+                                        <input class="sign-up__dob-input" type="number" id="day" name="day" min="1" max="31">
+                                    </div>
+                                    <div class="dob">
+                                        <label for="month">Month</label>
+                                        <input class="sign-up__dob-input" type="number" id="month" name="month" min="1" max="12">
+                                    </div>
+                                    <div class="dob">
+                                        <label for="year">Year</label>
+                                        <input class="sign-up__dob-input" type="number" id="year" name="year" min="1900" max="2024">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relationship-select">
+                                <label for="text">Relationship Status (Optional)</label>
+                                <select name="RelationshipStatus" id="relationship-status">
+                                    <option value></option>
+                                    <option value="2">Married</option>
+                                    <option value="1">Single</option>
+                                </select>
+                                <input type="text" class="relationship-select__input" placeholder="Select your relationship status">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                            <button class="signup-button--input" type="submit">Create an Account</button>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         
@@ -664,17 +654,40 @@
 
 </body>
 <script>
-    document.querySelector('.relationship-select__input').addEventListener('click', function() {
-    this.querySelector('select').focus();
-    });
+    // document.querySelector('.relationship-select__input').addEventListener('click', function() {
+    //     this.querySelector('select').focus();
+    // });
 
-    document.querySelector('.relationship-select select').addEventListener('change', function() {
-    const selectedOption = this.options[this.selectedIndex].text;
-    this.parentNode.querySelector('.relationship-select__input').value = selectedOption;
-    });
+    // document.querySelector('.relationship-select select').addEventListener('change', function() {
+    //     const selectedOption = this.options[this.selectedIndex].text;
+    //     this.parentNode.querySelector('.relationship-select__input').value = selectedOption;
+    // });
 
+    // // Thêm mã xử lý khi người dùng đăng ký thành công
+    // document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    //     event.preventDefault(); // Ngăn chặn hành động mặc định của form
+    //     const formData = new FormData(this);
+    //     fetch('http://localhost:3001/signup', {
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(response => {
+    //         if (response.ok) {
+    //             window.location.href = 'sign-in.html'; // Chuyển hướng đến trang sign-in.html sau khi đăng ký thành công
+    //         } else {
+    //             throw new Error('Failed to register user');
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error);
+    //         // Xử lý lỗi khi đăng ký không thành công
+    //     });
+    // });
 </script>
 
+
 <script src="../script.js"></script>
+
+<script src="./signUp.js"></script>
 
 </html>
