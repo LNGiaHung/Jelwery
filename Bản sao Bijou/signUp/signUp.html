@@ -36,7 +36,7 @@
                         </li>
                         <div class="header__navbar-item">
                             <li class="header__navbar-item header__navbar-item-mobile">
-                                <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/contactUs.html" class="header__navbar-item-link">
+                                <a href="../contactUs.html" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                                     Client Care
                                 </a>
@@ -44,14 +44,14 @@
                         </div>
                         <li class="header__navbar-item header__navbar-item-mobile">
                             <div class="header__navbar-item-link">
-                                <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-blue.html">
+                                <a href="../story/story-blue.html">
                                     <i class="header__navbar-icon fa-regular fa-gem"></i>
                                     New Collection
                                 </a>
                             </div>
                         </li>
                     </ul>
-                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="landing-page">
+                    <a href="../landingPage.html" class="landing-page">
                         <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
                     </a>
                     <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
@@ -65,7 +65,7 @@
                         <!-- Sign in/up -->
                         <li class="header__navbar-item">
                             <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
-                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                <a href="../singIn/signIn.html">
                                     <i class="fa-regular fa-user"></i>
                                 </a>
                                 <!-- <span class="tooltip">Sign In or Create an Account</span>
@@ -99,7 +99,7 @@
                     <ul>
                         <!-- Jewelry -->
                         <li class="main-nav__link-container">
-                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
+                            <a href="../sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
                                 <div class="subnav">
                                     <div class="subnav__inner">
                                         <!-- subnav - Shop by category -->
@@ -415,14 +415,14 @@
                                         <h3>Outstanding Story</h3>
                                         <ul>
                                             <li>
-                                                <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-mother.html">
+                                                <a href="../story/story-mother.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Like mother, like daughter</span>
                                                     </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-blue.html">
+                                                <a href="../story/story-blue.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Out of the blue</span>
                                                     </span>
@@ -459,7 +459,7 @@
                 <ul class="nav__mobile-list">
                     <!-- My Account  -->
                     <li class="nav__mobile__link-container">
-                        <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html" class="nav__mobile__link">My Account</a>
+                        <a href="../singIn/signIn.html" class="nav__mobile__link">My Account</a>
                     </li>
                     <!-- Landing Page
                     <li class="nav__mobile__link-container">
@@ -467,15 +467,15 @@
                     </li> -->
                     <!-- New Arrival -->
                     <li class="nav__mobile__link-container">
-                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html" class="nav__mobile__link">Jewelry</a>
+                        <a href="../sale_page/index.html" class="nav__mobile__link">Jewelry</a>
                     </li>
                     <!-- Shopping -->
                     <li class="nav__mobile__link-container">
                         <a href="" class="nav__mobile__link">Love & Engagement</a>
                     </li>
-                    <!-- Wishlist -->
+                    <!-- Contact us -->
                     <li  class="nav__mobile__link-container">
-                        <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/contactUs.html" class="nav__mobile__link">Contact us</a>
+                        <a href="../contactUs.html" class="nav__mobile__link">Contact us</a>
                     </li>
                     <!-- Book an appointment -->
                     <li class="nav__mobile__link-container">
@@ -492,68 +492,78 @@
                         <h2>Create an Account</h2>
                         <span>With a Bijou.com account, you can save time during checkout, access your shopping bag from any device and view your order history.</span>
                     </div>
-                    <form id="registrationForm" action="http://localhost:3001/auth" method="POST">
-                        <fieldset>
-                            <div class="sign-up__input">
-                                <label class="label-sign-up" for="text"> First Name</label>
-                                <input type="text" class="sign-up__name-input" maxlength="30" size="12" name="FirstName">
+                    <form id="signup-form">
+                        <div class="sign-up__input">
+                            <label class="label-sign-up" for="text"> First Name</label>
+                            <input type="email" class="sign-up__name-input" maxlength="30" size="12">
+                        </div>
+                        <div class="sign-up__input">
+                            <label class="label-sign-up" for="Email"> Last Name</label>
+                            <input type="email" class="sign-up__name-input" maxlength="30" size="12">
+                        </div>
+                        <div class="sign-up__input email-input">
+                            <label class="label-sign-up" for="Email"> Email</label>
+                            <input type="email" class="sign-up__email-input" maxlength="70" size="12">
+                        </div>
+                        <div class="sign-up__input">
+                            <label class="label-sign-up" for="text"> Password</label>
+                            <input type="text" class="sign-up__pass-input" maxlength="12" size="12">
+                        </div>
+                        <div class="gender-select">
+                            <label>Gender (optional)</label>
+                            <div>
+                                <label>
+                                    <input type="radio" class="gender__input" name="gender" value="female">
+                                    Female
+                                </label>
                             </div>
-                            <div class="sign-up__input">
-                                <label class="label-sign-up" for="Email"> Last Name</label>
-                                <input type="text" class="sign-up__name-input" maxlength="30" size="12" name="LastName">
+                            <div>
+                                <label>
+                                    <input type="radio" class="gender__input" name="gender" value="male">
+                                    Male
+                                </label>
                             </div>
-                            <div class="sign-up__input email-input">
-                                <label class="label-sign-up" for="Email"> Email</label>
-                                <input type="email" class="sign-up__email-input" maxlength="70" size="12" name="Mail">
-                            </div>
-                            <div class="sign-up__input">
-                                <label class="label-sign-up" for="text"> Password</label>
-                                <input type="text" class="sign-up__pass-input" maxlength="12" size="12" name="Password">
-                            </div>
-                            <div class="gender-select">
-                                <label>Gender (optional)</label>
-                                <div>
-                                    <label>
-                                        <input type="radio" class="gender__input" name="Gender" value="female">
-                                        Female
-                                    </label>
+                        </div>
+                        <div class="sign-up-dob">
+                            <label>Date of Birth (Optional)</label>
+                            <div class="dob-input">
+                                <div class="dob">
+                                    <label for="day">Day</label>
+                                    <input class="sign-up__dob-input" type="number" id="day" name="day" min="1" max="31">
                                 </div>
-                                <div>
-                                    <label>
-                                        <input type="radio" class="gender__input" name="Gender" value="male">
-                                        Male
-                                    </label>
+                                <div class="dob">
+                                    <label for="month">Month</label>
+                                    <input class="sign-up__dob-input" type="number" id="month" name="month" min="1" max="12">
                                 </div>
-                            </div>
-                            <div class="sign-up-dob">
-                                <label>Date of Birth (Optional)</label>
-                                <div class="dob-input">
-                                    <div class="dob">
-                                        <label for="day">Day</label>
-                                        <input class="sign-up__dob-input" type="number" id="day" name="day" min="1" max="31">
-                                    </div>
-                                    <div class="dob">
-                                        <label for="month">Month</label>
-                                        <input class="sign-up__dob-input" type="number" id="month" name="month" min="1" max="12">
-                                    </div>
-                                    <div class="dob">
-                                        <label for="year">Year</label>
-                                        <input class="sign-up__dob-input" type="number" id="year" name="year" min="1900" max="2024">
-                                    </div>
+                                <div class="dob">
+                                    <label for="year">Year</label>
+                                    <input class="sign-up__dob-input" type="number" id="year" name="year" min="1900" max="2024">
                                 </div>
                             </div>
-                            <div class="relationship-select">
-                                <label for="text">Relationship Status (Optional)</label>
-                                <select name="RelationshipStatus" id="relationship-status">
-                                    <option value></option>
-                                    <option value="2">Married</option>
-                                    <option value="1">Single</option>
-                                </select>
-                                <input type="text" class="relationship-select__input" placeholder="Select your relationship status">
-                                <i class="fa-solid fa-caret-down"></i>
-                            </div>
-                            <button class="signup-button--input" type="submit">Create an Account</button>
-                        </fieldset>
+                        </div>
+
+                        <!-- <div class="relationship-select">
+                            <legend>Relationship Status (Optional)</legend>
+                            <select id="relationship-status" name="relationship-status">
+                                <option value="married">Married</option>
+                                <option value="single">Single</option>
+                            </select>
+                            <input type="text" class="relationship-select__input"><i class="fa-solid fa-caret-down"></i>
+                        </div> -->
+
+                        <div class="relationship-select">
+                            <label for="text">Relationship Status (Optional)</label>
+                            <select name="relationship-status" id="relationship-status">
+                                <option value></option>
+                                <option value="2">Married</option>
+                                <option value="1">Single</option>
+                            </select>
+                            <input type="text" class="relationship-select__input" placeholder="Select your relationship status">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+
+                        <button class="signup-button--input" type="submit">Create an Account</button>
+                        <!-- <a class="forgot-password underline-transition" href="">Forgot your password?</a> -->
                     </form>
                 </div>
             </div>
@@ -573,20 +583,20 @@
                     <h5>Client Care</h5>
                     <ul>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Product Care & Repair</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="">Book an Appointment</a>
                         </li>
                         <li>
-                            <a href="">Frequently Asked Questions</a>
+                            <a href="../ship-return-faq.html">Frequently Asked Questions</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Catalogues</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="footer__left-col">
@@ -599,7 +609,7 @@
                             <a href="">Blog</a>
                         </li>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
                         <li>
                             <a href="">Pricing</a>
@@ -654,40 +664,17 @@
 
 </body>
 <script>
-    // document.querySelector('.relationship-select__input').addEventListener('click', function() {
-    //     this.querySelector('select').focus();
-    // });
+    document.querySelector('.relationship-select__input').addEventListener('click', function() {
+    this.querySelector('select').focus();
+    });
 
-    // document.querySelector('.relationship-select select').addEventListener('change', function() {
-    //     const selectedOption = this.options[this.selectedIndex].text;
-    //     this.parentNode.querySelector('.relationship-select__input').value = selectedOption;
-    // });
+    document.querySelector('.relationship-select select').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex].text;
+    this.parentNode.querySelector('.relationship-select__input').value = selectedOption;
+    });
 
-    // // Thêm mã xử lý khi người dùng đăng ký thành công
-    // document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    //     event.preventDefault(); // Ngăn chặn hành động mặc định của form
-    //     const formData = new FormData(this);
-    //     fetch('http://localhost:3001/signup', {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             window.location.href = 'sign-in.html'; // Chuyển hướng đến trang sign-in.html sau khi đăng ký thành công
-    //         } else {
-    //             throw new Error('Failed to register user');
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //         // Xử lý lỗi khi đăng ký không thành công
-    //     });
-    // });
 </script>
 
-
 <script src="../script.js"></script>
-
-<script src="./signUp.js"></script>
 
 </html>

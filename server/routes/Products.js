@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Food, FoodType } = require('../models');
+const { Products } = require('../models');
 
 // Route to get food items by type
 router.get('/byType/:type', async (req, res) => {
@@ -27,8 +27,8 @@ router.get('/byType/:type', async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const listOfFood = await Food.findAll();
-    res.json(listOfFood);
+    const listOfProducts = await Products.findAll();
+    res.json(listOfProducts);
   } catch (error) {
     console.error('Error fetching all food items:', error);
     res.status(500).json({ error: 'Server error' });

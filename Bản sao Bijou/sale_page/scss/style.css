@@ -1061,6 +1061,7 @@ section {
   padding: 0px;
   position: relative;
   align-items: center;
+  justify-content: space-between;
 }
 
 .menusection .dropdown {
@@ -1182,6 +1183,10 @@ section {
   opacity: 1;
 }
 
+.dropdown-left {
+  margin-left: 40px;
+}
+
 /*.overlay {
   position: absolute;
   top: 0;
@@ -1196,9 +1201,10 @@ section {
   display: block;
 }*/
 .dropdown-sortby {
-  margin-left: 830px;
+  /* margin-left: 830px; */
   position: relative;
   display: block;
+  margin-right: 40px;
 }
 
 .dropdown-sortby .select {
@@ -1284,7 +1290,6 @@ section {
 .products .box-container {
   display: flex;
   flex: wrap;
-  gap: 0.1rem;
   justify-content: space-around;
   width: -moz-fit-content;
   width: fit-content;

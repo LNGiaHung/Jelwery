@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "Cahmod-2konge-goztam",
+    "password": "Gnaig06503@",
     "database": "jewelry",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
