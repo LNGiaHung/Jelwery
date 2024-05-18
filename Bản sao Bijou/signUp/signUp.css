@@ -17,10 +17,14 @@
     padding-left: 170px;
 }
 
+.sign-up__item {
+    width: 50%;
+}
+
 .sign-up__item-img {
     margin-top: -20%;
     margin-left: 16%;
-    width: 78%;
+    width: 70%;
 }
 
 .sign-up__headerText {
