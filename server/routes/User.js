@@ -5,17 +5,25 @@ const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
   try {
-    const { FirstName,LastName, Mail,DOB , Password,Gender,RelationshipStatus } = req.body;
+    const { FirstName, LastName, Mail, DOB, Password, Gender, RelationshipStatus } = req.body;
+
+    // Check if the password is empty
+    if (!Password || Password.trim() === "") {
+      return res.status(400).json({ message: "Password cannot be empty" });
+    }
+
     const hashedPassword = await bcrypt.hash(Password, 10);
+
     const user = await Users.create({
-        FirstName,
-        LastName,
-        Mail,
-        DOB,
+      FirstName,
+      LastName,
+      Mail,
+      DOB,
       Password: hashedPassword,
       Gender,
       RelationshipStatus,
     });
+
     res.json(user);
   } catch (error) {
     console.error("Error creating user:", error);
