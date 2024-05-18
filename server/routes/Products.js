@@ -82,63 +82,107 @@ router.get("/:pid", async (req, res) => {
   }
 });
 
-const getCategory = (name) => {
-  name = name.toLowerCase();
-  if (name === 'rings') {
+const getCategory = (Type) => {
+  Type = Type.toLowerCase();
+  if (Type === 'rings') {
     return 'ring';
-  } else if (name === 'earings') {
+  } else if (Type === 'earings') {
     return 'earing';
-  } else if (name === 'bracelets') {
+  } else if (Type === 'bracelets') {
     return 'bracelet';
-  } else if (name === 'necklaces') {
+  } else if (Type === 'necklaces') {
     return 'necklace';
   }
   return null; // or you can return a default category
 };
 
-router.get("/byCategory/:category", async (req, res) => {
+const getMaterialType = (materialType) => {
+  materialType=materialType.toLowerCase()
+  const materialTypes = ["10k", "14k", "18k", "24k"];
+  
+  for (let type of materialTypes) {
+    if (materialType.includes(type)) {
+      return type.toUpperCase();
+    }
+  }
+  
+  return null;
+};
+
+router.get("/byCategory/:category/:materialType", async (req, res) => {
   try {
     const categoryName = req.params.category;
+    const materialType = req.params.materialType;
+
     const category = getCategory(categoryName);
 
     if (!category) {
       return res.status(400).json({ error: 'Invalid category' });
     }
+    else{
+      // return res.status(400).json({ category });
+    }
 
-    // Fetch products by derived category
+    // Validate materialType
+    const validMaterialTypes = getMaterialType(materialType);
 
+    if (!validMaterialTypes) {
+      return res.status(400).json({ error: 'Invalid material type' });
+    }
+    else{
+      // return res.status(400).json({ validMaterialTypes });
+    }
+
+    // Fetch products by derived category and material type
+    let products;
     if (categoryName === 'rings') {
       products = await Products.findAll({
         where: {
-          Name: {
-            [Sequelize.Op.and]: [
-              {
-                [Sequelize.Op.like]: `%${category}%`
-              },
-              {
-                [Sequelize.Op.notLike]: '%earing%'
+          [Op.and]: [
+            {
+              Name: {
+                [Op.like]: `%${category}%`
               }
-            ]
-          }
+            },
+            {
+              Name: {
+                [Op.notLike]: '%earing%'
+              }
+            },
+            {
+              Category: {
+                [Op.like]: `%${validMaterialTypes}%`
+              }
+            }
+          ]
         }
       });
     } else {
       products = await Products.findAll({
         where: {
-          Name: {
-            [Sequelize.Op.like]: `%${category}%`
-          }
+          [Op.and]: [
+            {
+              Name: {
+                [Op.like]: `%${category}%`
+              }
+            },
+            {
+              Category: {
+                [Op.like]: `%${validMaterialTypes}%`
+              }
+            }
+          ]
         }
       });
     }
 
     if (products.length === 0) {
-      return res.status(404).json({ error: 'No products found for this category' });
+      return res.status(404).json({ error: 'No products found for this category and material type' });
     }
 
     res.json(products);
   } catch (error) {
-    console.error('Error fetching products by category:', error);
+    console.error('Error fetching products by category and material type:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
