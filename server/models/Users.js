@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         Mail:{
             type: DataTypes.STRING,
-            allowNULL: false
+            allowNULL: false,
+            unique: true
         },
         DOB:{
             type: DataTypes.DATE,
