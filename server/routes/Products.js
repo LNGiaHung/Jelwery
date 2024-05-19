@@ -86,8 +86,8 @@ const getCategory = (Type) => {
   Type = Type.toLowerCase();
   if (Type === 'rings') {
     return 'ring';
-  } else if (Type === 'earings') {
-    return 'earing';
+  } else if (Type === 'earrings') {
+    return 'earring';
   } else if (Type === 'bracelets') {
     return 'bracelet';
   } else if (Type === 'necklaces') {
@@ -146,7 +146,7 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
             },
             {
               Name: {
-                [Op.notLike]: '%earing%'
+                [Op.notLike]: '%earring%'
               }
             },
             {
