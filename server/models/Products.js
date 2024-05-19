@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNULL: false
     },
-    // Category:{
-    //     type: DataTypes.STRING,
-    //     allowNULL: false
-    // },
+    Category:{
+        type: DataTypes.STRING,
+        allowNULL: false
+    },
     // Stone:{
     //     type: DataTypes.DATE,
     //     allowNULL: true
