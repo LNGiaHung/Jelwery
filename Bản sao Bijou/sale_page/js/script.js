@@ -412,7 +412,7 @@ shoppingBagIcons.forEach(shoppingBagIcon => {
 
 
 // Đac
-const addToCartButtons = document.querySelectorAll(".products .box .icons [id^='shopping-bag']");
+const addToCartButtons = document.getElementById("shopping-bag");
 
 addToCartButtons.forEach(function (button) {
     button.addEventListener("click", function (event) {
