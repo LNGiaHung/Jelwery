@@ -184,7 +184,7 @@ body {
 .header__navbar-item,
 .header__navbar-item-link {
     display: inline-block;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--black-color);
     text-decoration: none;
     font-weight: 100;
@@ -214,6 +214,8 @@ body {
 }
 
 .tooltip-text {
+    z-index: 10000000;
+    position: relative;
     display: block;
     margin-bottom: 5px;
     color: #333333;
@@ -352,7 +354,7 @@ img {
 
 .subnav {
     position: absolute;
-    left: 30px;
+    left: 24px;
     top: 27px;
     background-color: #fff;
     z-index: 101;
@@ -703,11 +705,101 @@ a.cta .cta-content .cta-text {
     padding: 8px;
 }
 
+/* Collection */
+.collection-section-item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25% 0;
+}
+
+p.collection-section-item-description {
+    padding: 0 16%;
+    text-align: center;
+}
+
+.section-item__explore-btn {
+    width: 60%;
+    letter-spacing: 1px;
+    font-size: 14px;
+    background: none;
+    height: 40px;
+    padding: 10px 38px;
+    border: 1px solid #5E5E5E;
+    margin-top: 20px;
+    position: relative;
+    cursor: pointer;
+    font-family: "Fraunces", serif;
+}
+
+.section-item__img {
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    /* background-size: contain; chieu rong anh lon */
+    background-size: cover;
+}
+
+/* Love & engagement homepage */
+.love-engagement-homepage-item {
+    position: relative;
+
+}
+
+.love-engagement-homepage-img {
+    padding-top: 36%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.love-engagement-homepage-content {
+    position: absolute;
+    top: 28%;
+    left: 63%;
+    width: 22%;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+    /* padding: 20px; */
+    max-width: 80%;
+    color: #fff;
+    /* z-index: 20; */
+}
+
+.love-engagement-homepage-content h3 {
+    letter-spacing: 1px;
+    font-size: 22px;
+}
+
+.love-engagement-content-explore {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.love-engagement-content-explore {
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+}
+
+.love-engagement-content-explore::after {
+    content: ''; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; 
+    height: 1px; 
+    background-color: #fff; 
+    transition: width 0.3s ease; 
+}
+
+.love-engagement-content-explore:hover::after {
+    width: 100%; /* On hover, transition width to 100% */
+}
+
 /* The bijou experience */
 .experience {
     padding: 6px;
     text-align: center;
     background-color: #fafafa;
+    margin-bottom: 70px;
 }
 
 .experience__heading {
@@ -716,14 +808,15 @@ a.cta .cta-content .cta-text {
 
 .experience__service-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding-top: 50px;
     margin-bottom: 20px;
 }
 
 .service-content__item {
     text-align: center;
-    width: 23%;
+    width: 20%;
+    padding: 0 50px;
 }
 
 .service-content__icon {
@@ -760,7 +853,9 @@ a.cta .cta-content .cta-text {
 .footer {
     display: flex;
     background-color: #fff;
-    padding-bottom: 40px;
+    padding: 60px 0;
+    /* background-color: #000;
+    color: #fff; */
 }
 
 .footer__top-bar {
@@ -928,3 +1023,97 @@ label[for="email"] {
   .fa-brands fa-*:before {
     margin: 0;
   }
+
+  /* Responsive */
+  /* Mobile Nav */
+.nav__bars-btn {
+    width: 24px;
+    /* height: 28px; */
+    display: none;   
+}
+
+.nav_overlay {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.nav__mobile {
+    z-index: 1001;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 100%;
+    background-color: #fff;
+    transform: translateX(-100%);
+}
+
+.nav__mobile-list {
+    padding: 0 16px;
+    margin-top: 52px;
+}
+
+.nav__mobile__link-container {
+    margin: 0 14px;
+    margin-bottom: 14px;
+    margin-right: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    
+}
+
+.nav__mobile__link {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    padding-bottom: 14px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav_mobile-close {
+    width: 28px;
+    height: 28px;
+    font-size: 1.5rem;
+    color: #000;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+    .header {
+        height: 70px;
+    }
+
+    .nav__bars-btn {
+        display: block;
+    }
+
+    .overlay {
+        display: none;
+    }
+
+    .nav__mobile.active{
+        transform: translateX(0)
+    }
+
+    .nav_overlay.active {
+        display: block;
+    }
+
+    .header__navbar-item-mobile,
+    li.header__navbar-item.header__navbar-item-mobile {
+        display: none;
+    }
+}
+
+

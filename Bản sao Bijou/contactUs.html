@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
+    <title>Client Care</title>
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./script.js">
@@ -21,30 +21,39 @@
             <!-- <div class="grid"> -->
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
+                        <!-- Nav-mobile -->
+                        <li class="header__navbar-item">
+                            <div class="nav__bars-btn">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                        </li>
                         <!-- Search button -->
                         <li class="header__navbar-item">
                             <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
-
                         </li>
                         <div class="header__navbar-item">
-                            <li class="header__navbar-item">
-                                <a href="" class="header__navbar-item-link">
+                            <li class="header__navbar-item header__navbar-item-mobile">
+                                <a href="./contactUs.html" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                                     Client Care
                                 </a>
                             </li>
                         </div>
-                        <li class="header__navbar-item">
-                            <div href="" class="header__navbar-item-link">
-                                <i class="header__navbar-icon fa-regular fa-gem"></i>
-                                New Collection
+                        <li class="header__navbar-item header__navbar-item-mobile">
+                            <div class="header__navbar-item-link">
+                                <a href="./story/story-blue.html">
+                                    <i class="header__navbar-icon fa-regular fa-gem"></i>
+                                    New Collection
+                                </a>
                             </div>
                         </li>
                     </ul>
-                    <img class="header__navbar-logo" src="./assets/img/logo.png" alt="">
+                    <a href="./landingPage.html" class="landing-page">
+                        <img class="header__navbar-logo" src="./assets/img/logo.png" alt="">
+                    </a>
                     <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
                     <ul class="header__navbar-list">
-                        <li class="header__navbar-item">
+                        <li class="header__navbar-item header__navbar-item-mobile">
                             <div href="" class="header__navbar-item-link">
                                 <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
                                 Book an appointment
@@ -52,13 +61,21 @@
                         </li>
                         <!-- Sign in/up -->
                         <li class="header__navbar-item">
-                            <div class="header__navbar-item-link user-icon">
-                                <i class="fa-regular fa-user"></i>
-                                <!-- <span class="tooltip">Sign In or Create an Account</span> -->
+                            <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
+                                <a href="./singIn/signIn.html">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                                <!-- <span class="tooltip">Sign In or Create an Account</span>
                                 <div class="tooltip" id="tooltip-id">
-                                    <a href="#" class="tooltip-text">Sign in</a>
-                                    <a href="#" class="tooltip-text">Create an account</a>
-                                </div>
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text" onclick="">Sign in</span>
+                                    </a>
+                                     <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text">Create an account</span>
+                                    </a>
+                                    <a href="#" class="tooltip-text">Create an account</a> 
+                                </div> -->
                             </div>
                         <!-- gio hang/sp yeu thich -->
                         <li class="header__navbar-item">
@@ -68,17 +85,18 @@
                         <li class="header__navbar-item">
                             <a href="" class="header__navbar-item-link"><i class="fa-solid fa-bag-shopping"></i></a>
                         </li>
+                        </li>
                     </ul>
                 </nav>
             <!-- </div> -->
 
             <!-- Category Shopping Nav -->
             <div class="overlay">
-                <nav class="main-nav">
+                <nav class="main-nav nav_pc">
                     <ul>
                         <!-- Jewelry -->
                         <li class="main-nav__link-container">
-                            <a href="" class="underline-transition-bold main-nav__link">Jewelry</a>
+                            <a href="./sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
                                 <div class="subnav">
                                     <div class="subnav__inner">
                                         <!-- subnav - Shop by category -->
@@ -124,9 +142,9 @@
                                             </ul>
                                         </div>
     
-                                        <!-- subnav - Shop by mental & gemstone -->
+                                        <!-- subnav - Shop by metal & gemstone -->
                                     <div class="subnav__group">
-                                            <h3>Shop by Mental</h3>
+                                            <h3>Shop by Metal</h3>
                                             <ul>
                                                 <li>
                                                     <a href="">
@@ -387,21 +405,21 @@
                             </div>
                         </li>
                         <li  class="main-nav__link-container">
-                            <div href="" class="main-nav__link underline-transition-bold">Story</div>
+                            <div href="" class="main-nav__link underline-transition-bold">Stories</div>
                             <div class="subnav">
                                 <div class="subnav__inner">
                                     <div class="subnav__group">
                                         <h3>Outstanding Story</h3>
                                         <ul>
                                             <li>
-                                                <a href="">
+                                                <a href="./story/story-mother.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Like mother, like daughter</span>
                                                     </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="./story/story-blue.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Out of the blue</span>
                                                     </span>
@@ -429,6 +447,39 @@
                 </div>
             </div>
 
+            <div class="nav_overlay"></div>
+            <!-- Mobile nav -->
+            <nav class="nav__mobile">
+                <div class="nav_mobile-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <ul class="nav__mobile-list">
+                    <!-- My Account  -->
+                    <li class="nav__mobile__link-container">
+                        <a href="./singIn/signIn.html" class="nav__mobile__link">My Account</a>
+                    </li>
+                    <!-- Landing Page
+                    <li class="nav__mobile__link-container">
+                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="nav__mobile__link">Landing Page</a>
+                    </li> -->
+                    <!-- New Arrival -->
+                    <li class="nav__mobile__link-container">
+                        <a href="./sale_page/index.html" class="nav__mobile__link">Jewelry</a>
+                    </li>
+                    <!-- Shopping -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Love & Engagement</a>
+                    </li>
+                    <!-- Contact us -->
+                    <li  class="nav__mobile__link-container">
+                        <a href="./contactUs.html" class="nav__mobile__link">Contact us</a>
+                    </li>
+                    <!-- Book an appointment -->
+                    <li class="nav__mobile__link-container">
+                        <a href="" class="nav__mobile__link">Book an appointment</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <!-- contact page content -->
@@ -551,20 +602,20 @@
                     <h5>Client Care</h5>
                     <ul>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="./contactUs.html">Contact us</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Product Care & Repair</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="">Book an Appointment</a>
                         </li>
                         <li>
-                            <a href="">Frequently Asked Questions</a>
+                            <a href="./ship-return-faq.html">Frequently Asked Questions</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Catalogues</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="footer__left-col">
@@ -577,7 +628,7 @@
                             <a href="">Blog</a>
                         </li>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="./contactUs.html">Contact us</a>
                         </li>
                         <li>
                             <a href="">Pricing</a>
