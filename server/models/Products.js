@@ -12,14 +12,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNULL: false
     },
-    Category:{
+    Material:{
         type: DataTypes.STRING,
         allowNULL: false
     },
-    // Stone:{
-    //     type: DataTypes.DATE,
-    //     allowNULL: true
-    // },
+    Weight:{
+      type: DataTypes.FLOAT,
+      allowNULL: false
+    },
+    Stone:{
+        type: DataTypes.STRING,
+        allowNULL: false
+    },
+    Size:{
+      type: DataTypes.FLOAT,
+      allowNULL: false
+    },
     Image:{
         type: DataTypes.STRING,
         allowNULL: false
