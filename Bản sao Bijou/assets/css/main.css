@@ -234,6 +234,20 @@ body {
     /* font-weight: bold;  */
 }
 
+.header__navbar-item span{
+    background-color: #009384;
+    padding: 1px 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    color:#ffffff;
+    justify-content: center;
+    position: relative;
+    left: -5px;
+    margin-top: -22px;
+    font-size: small;
+} 
+
 a {
     text-decoration: none;
     color: inherit;
@@ -270,7 +284,7 @@ img {
     height: auto;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1080px) {
     .header .main-nav {
         display: none;
     }
