@@ -37,9 +37,7 @@ function updateHTMLWithProducts(products) {
 
     const box = document.createElement('div');
     box.classList.add('box');
-    box.addEventListener('click', () => {
-      navigateToProductDetailPage(product);
-    });
+    
 
       const discount = document.createElement('span');
       discount.classList.add('discount');
@@ -51,6 +49,9 @@ function updateHTMLWithProducts(products) {
       const productImgDiv = document.createElement('div');
       productImgDiv.classList.add('product1__img');
       productImgDiv.style.backgroundImage = `url(${product.Image})`;
+      productImgDiv.addEventListener('click', () => {
+        navigateToProductDetailPage(product);
+      });
 
       const iconsDiv = document.createElement('div');
       iconsDiv.classList.add('icons');
@@ -70,6 +71,9 @@ function updateHTMLWithProducts(products) {
 
       const h3 = document.createElement('h3');
       h3.innerHTML = `<a href="#">${product.Name}</a>`;
+      h3.addEventListener('click', () => {
+        navigateToProductDetailPage(product);
+      });
 
       const priceDiv = document.createElement('div');
       priceDiv.classList.add('price');
