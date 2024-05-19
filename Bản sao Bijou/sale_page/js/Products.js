@@ -32,6 +32,9 @@ function updateHTMLWithProducts(products) {
 
     const box = document.createElement('div');
     box.classList.add('box');
+    box.addEventListener('click', () => {
+      navigateToProductDetailPage(product);
+    });
 
     const discount = document.createElement('span');
     discount.classList.add('discount');
@@ -86,10 +89,14 @@ function updateHTMLWithProducts(products) {
 }
 
 // Function to navigate to product detail page
-function navigateToProductDetailPage(productId) {
-  // Replace this with the code to navigate to the product detail page
-  console.log(`Navigating to product detail page for product with ID: ${productId}`);
+function navigateToProductDetailPage(product) {
+  // Store the product information in local storage
+  localStorage.setItem('selectedProduct', JSON.stringify(product));
+  // Redirect to the product detail page
+  window.location.href = 'http://127.0.0.1:5501/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
-// Call the fetchProductsAndUpdateHTML function when the script runs
-fetchProductsAndUpdateHTML();
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  fetchProductsAndUpdateHTML();
+});
