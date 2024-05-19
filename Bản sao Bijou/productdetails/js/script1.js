@@ -412,7 +412,7 @@ document.querySelector('.wishlist-prev').addEventListener('click', moveToPrevIte
 
 //----------ADD TO CART---------
 // Get the shopping bag icon element
-const shoppingBagIcon = document.querySelector('.header__navbar-item .quanity');
+const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
 
 // Get the 'Add to Cart' button element
 const addToCartButton = document.querySelector('.button-ne .add');

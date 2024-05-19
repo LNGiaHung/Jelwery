@@ -248,10 +248,6 @@ medium {
   text-align: center;
 }
 
-.h2 .gif {
-  height: 20px;
-}
-
 .wishlist-nav {
   display: flex;
   justify-content: space-between;
@@ -307,67 +303,4 @@ medium {
 
 .wishlist:last-child {
   margin-right: 0;
-}
-
-.experience {
-  padding: 6px;
-  text-align: center;
-  background-color: #fafafa;
-  display: block;
-  margin-bottom: 0;
-}
-
-.experience {
-  padding: 6px;
-  text-align: center;
-  background-color: #fafafa;
-}
-
-.experience__heading {
-  margin-bottom: 20px;
-}
-
-.experience__service-content {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 50px;
-  margin-bottom: 20px;
-}
-
-.service-content__item {
-  text-align: center;
-  width: 23%;
-}
-
-.service-content__icon {
-  margin-bottom: 10px;
-}
-
-.experience__service-text h2 {
-  font-size: 18px;
-}
-
-.experience__service-text p {
-  font-size: 14px;
-}
-
-.experience__service-link {
-  display: flex;
-  justify-content: center;
-  /* Căn giữa dòng chữ "Book now" */
-  align-items: center;
-  /* height: 100%; */
-}
-
-.experience__service-link a {
-  text-align: center;
-  /* Căn giữa từng từ trong "Book now" */
-  display: inline-block;
-  /* Đảm bảo "Book now" không chiếm toàn bộ chiều rộng */
-  vertical-align: middle;
-  font-style: italic;
-}
-
-.shopCate {
-  padding-top: 20px;
 }

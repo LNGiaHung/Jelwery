@@ -265,3 +265,4 @@ addToCartButtons.forEach(function (button) {
     // Ví dụ:
     alert(message);
   }
+
