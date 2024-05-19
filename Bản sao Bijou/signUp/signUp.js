@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const day = formValues.DOB_day;
         const month = formValues.DOB_month;
         const year = formValues.DOB_year;
-        formValues.DOB = (year && month && day) ? `${day}/${month}/${year}` : null;
+        formValues.DOB = (year && month && day) ? `${month}/${day}/${year}` : null;
         delete formValues.DOB_day;
         delete formValues.DOB_month;
         delete formValues.DOB_year;
