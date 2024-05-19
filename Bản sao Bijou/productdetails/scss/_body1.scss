@@ -1,0 +1,764 @@
+body {
+  font-family: "Fraunces", sans-serif;
+}
+
+.bijou-container {
+  border-top: #009384;
+  min-width: 75%;
+  //height: 80vh;
+  margin-top: 9%;
+  background: $white;
+  padding-bottom: 2px;
+}
+
+.bijou-wrapper {
+  overflow: hidden;
+  //padding-bottom: 10px;
+}
+
+.main-product {
+  display: grid;
+  box-shadow: 0 .5rem 1.5rem $bijou;
+  border-radius: .25rem;
+  margin-left: 300px;
+  overflow: hidden;
+  width: 700px;
+}
+
+.main-product img {
+  cursor: -webkit-zoom-in;
+  align-content: stretch;
+}
+
+#main-img {
+  transition: transform 0.3s ease;
+}
+
+#main-img:hover {
+  cursor: -webkit-zoom-in;
+  transform: scale(2.0);
+}
+
+.column-left {
+  float: left;
+}
+
+.column-right {
+  float: right;
+  margin-right: 100px;
+}
+
+.column-left .column-right {
+  width: 50%;
+}
+
+.option-btn {
+  margin-right: 15px;
+  border: whitesmoke;
+  box-shadow: .5rem .5rem 1.5rem $bijou;
+  border-radius: .25rem;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.bijou-optionbox {
+  margin-top: 3%;
+  margin-left: 300px;
+}
+
+.bijou-optionbox button {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+}
+
+.column-right {
+  padding: 50px 100px 50px 50px;
+  margin-right: 400px;
+}
+
+h2 {
+  color: $black;
+  font-family: "Fraunces", sans-serif;
+  font: bold;
+  font-size: 30px;
+  margin: 20px 0 20px 0;
+}
+
+h3 {
+  color: #009384;
+}
+
+h5,
+medium {
+  color: $black
+}
+
+.button-ne {
+  width: 300%;
+  padding: 20px;
+  border: none;
+  outline: none;
+  background: $white;
+  color: $black;
+  margin-top: 5%;
+}
+
+.button-ne .add {
+  background-color: white;
+  width: 120px;
+  height: 80px;
+  font-family: "Fraunces", sans-serif;
+  font-size: medium;
+  margin-right: 20px;
+}
+
+.button-ne .buy {
+  background-color: white;
+  width: 120px;
+  height: 80px;
+  font-family: "Fraunces", sans-serif;
+  font-size: medium;
+}
+
+.button-ne .buy:hover {
+  background-color: $bijou;
+  transition: ease-in-out(4s);
+}
+
+.button-ne .add:hover {
+  background-color: $bijou;
+  transition: ease-in-out(4s);
+}
+
+.description-box {
+  background-color: $base2;
+  display: inline-block;
+  text-align: left;
+  z-index: 1;
+}
+
+.description-ne {
+  justify-items: left;
+}
+
+.description-ne h2 {
+  margin-left: 10px;
+  font-weight: 300;
+  transition: font-weight 0.2s ease-in;
+}
+
+.description-ne h2:hover {
+  font-weight: bold;
+}
+
+.description-ne h3 {
+  color: #009384;
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 30px;
+  font-weight: 400;
+  line-height: 2rem;
+  transition: font-size 0.2s ease-in-out;
+}
+
+.description-ne h3:hover {
+  font-size: larger;
+}
+
+.description-ne h4 {
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 30px;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+//-----------------------------------------------------//
+.Book-appt {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: underline() 2s;
+  margin-bottom: 10px;
+}
+
+.Book-appt:hover {
+  text-decoration: underline;
+  cursor: grabbing;
+}
+
+//-----------------------------------------------------//
+
+@media only screen and (max-width:768px) {
+  .bijou-container {
+    max-width: 90%;
+    margin: auto;
+    height: auto;
+  }
+
+  .column-left,
+  .column-right {
+    width: 100%;
+  }
+
+  .bijou-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width:511px) {
+  .bijou-container {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .column-left,
+  .column-right {
+    padding: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bijou-optionbox {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+//----------------------------
+.wishlist-look-container h2 {
+  color: #009384;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.h2 .gif {
+  height: 20px;
+}
+
+.wishlist-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.wishlist-arrow {
+  background-color: transparent;
+  border: none;
+  padding-top: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.wishlist-arrow:focus {
+  outline: none;
+}
+
+.wishlist-prev {
+  font-family: "Fraunces", sans-serif;
+  margin-right: 10px;
+}
+
+.wishlist-prev:hover {
+  text-decoration: underline;
+}
+
+.wishlist-next {
+  font-family: "Fraunces", sans-serif;
+  margin-left: 10px;
+}
+
+.wishlist-next:hover {
+  text-decoration: underline;
+}
+
+.wishlist-look-container {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.wishlist-items {
+  margin-top: 20px;
+  display: flex;
+}
+
+.wishlist-items .selected {
+  box-shadow: .0rem 1rem 8rem $bijou;
+  transform: scale(1.05);
+}
+
+.wishlist:last-child {
+  margin-right: 0;
+}
+
+//-----------------------------------------------------//
+.experience {
+  padding: 6px;
+  text-align: center;
+  background-color: #fafafa;
+  display: block;
+  margin-bottom: 0;
+}
+
+.experience {
+  padding: 6px;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+.experience__heading {
+  margin-bottom: 20px;
+}
+
+.experience__service-content {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+  margin-bottom: 20px;
+}
+
+.service-content__item {
+  text-align: center;
+  width: 23%;
+}
+
+.service-content__icon {
+  margin-bottom: 10px;
+}
+
+.experience__service-text h2 {
+  font-size: 18px;
+}
+
+.experience__service-text p {
+  font-size: 14px;
+}
+
+.experience__service-link {
+  display: flex;
+  justify-content: center;
+  /* Căn giữa dòng chữ "Book now" */
+  align-items: center;
+  /* height: 100%; */
+}
+
+.experience__service-link a {
+  text-align: center;
+  /* Căn giữa từng từ trong "Book now" */
+  display: inline-block;
+  /* Đảm bảo "Book now" không chiếm toàn bộ chiều rộng */
+  vertical-align: middle;
+  font-style: italic;
+}
+
+//-----------------------------------------------------//
+
+.shopCate {
+  padding-top: 20px;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  background-color: #fff;
+  padding: 60px 0;
+  padding-top: 10px
+    /* background-color: #000;
+  color: #fff; */
+}
+
+.footer__top-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #81d8d0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.footer>* {
+  flex: 1;
+  /* Cho các phần tử con của footer chia đều phần còn lại */
+}
+
+.footer__left {
+  display: flex;
+  flex-basis: 50%;
+  /* Phần left chiếm 60% */
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-left: 100px;
+  padding-right: 32px;
+  /* Khoảng cách giữa left và right */
+}
+
+.footer__left-col {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  flex-basis: 75%;
+
+}
+
+.footer__left-col h4 {
+  margin-bottom: 16px;
+  /* Khoảng cách giữa tiêu đề và các mục trong danh sách */
+}
+
+.footer__left-col ul {
+  list-style: none;
+  /* Loại bỏ dấu chấm trong danh sách */
+  padding: 0;
+  margin: 0;
+}
+
+.footer__left-col li {
+  font-size: 12px;
+  margin-bottom: 20px;
+  /* Khoảng cách giữa các mục trong danh sách */
+}
+
+.footer__right {
+  flex-basis: 25%;
+  /* Phần right chiếm 40% */
+  padding-right: 100px;
+  font-size: 12px;
+}
+
+.footer__right-top {
+  margin-bottom: 20px;
+  margin-top: 22px;
+}
+
+
+.footer__right-top span {}
+
+.footer__right-middle {}
+
+.footer__right-middle p {
+  font-size: 12px;
+  margin-top: 56px;
+}
+
+.footer__right-middle__text {
+  margin-bottom: 20px;
+}
+
+.footer__right-middle__input {
+  position: relative;
+  margin-top: 26px;
+}
+
+label[for="email"] {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  color: #999;
+  /* Màu in mờ */
+  transition: all 0.3s ease;
+  /* Hiệu ứng chuyển động */
+  pointer-events: none;
+  /* Tránh label nhận sự kiện click */
+}
+
+#email:focus+label[for="email"],
+#email:not(:placeholder-shown)+label[for="email"] {
+  top: 0;
+  font-size: 12px;
+  /* Kích thước nhỏ hơn khi nhãn nhảy lên */
+  color: #333;
+  /* Màu chữ khi nhãn nhảy lên */
+}
+
+.footer__right-middle__input input {
+  width: calc(100% - 40px);
+  padding: 10px;
+  position: relative;
+  font-size: 14px;
+  border: none;
+  /* Xóa bỏ border mặc định */
+  border-bottom: 1px solid #000;
+  /* Đường gạch chân */
+  padding-bottom: 2px;
+  top: 0;
+  left: 0;
+  transition: top 0.3s ease-in-out;
+}
+
+.footer__right-middle__input input span {
+  /* ... (các style khác) */
+  position: absolute;
+  /* Cần thiết cho hiệu ứng absolute */
+  top: 50%;
+  /* Vị trí ban đầu */
+  transform: translateY(-50%);
+  /* Di chuyển dọc theo trục Y */
+  transition: top 0.3s ease-in-out;
+  /* Hiệu ứng chuyển đổi */
+}
+
+.footer__right-middle__input input:focus {
+  outline: none;
+}
+
+.footer__right-middle__input input:focus span {
+  /* ... (các style khác) */
+  top: 40%;
+  /* Nhảy lên khi focus */
+  font-size: 11px;
+  /* Thu nhỏ kích thước */
+}
+
+.focused {
+  top: -5px;
+  /* Di chuyển text email lên trên */
+  font-size: 11px;
+  /* Thu nhỏ kích thước */
+  transition: top 0.3s ease-in-out;
+  /* Hiệu ứng chuyển đổi */
+}
+
+.signup-button {
+  display: block;
+  width: calc(66.66% - 40px);
+  height: 34px;
+  margin-top: 26px;
+  padding: 10px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  /* Khung button */
+  font-size: 1em;
+  cursor: pointer;
+  transition: width 0.3s ease;
+  font-family: "Fraunces", serif;
+}
+
+.footer__right-bottom {
+  padding-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  /* Canh chỉnh các item con nằm về phía trái */
+}
+
+.footer__right-bottom-item {
+  margin-right: 32px;
+}
+
+.footer__right-bottom-item i {
+  font-size: 30px;
+}
+
+/* Xóa bỏ margin mặc định của các icon (nếu có) */
+.fa-brands fa-*:before {
+  margin: 0;
+}
+
+/* Responsive */
+/* Mobile Nav */
+.nav__bars-btn {
+  width: 24px;
+  /* height: 28px; */
+  display: none;
+}
+
+.nav_overlay {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.nav__mobile {
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background-color: #fff;
+  transform: translateX(-100%);
+}
+
+.nav__mobile-list {
+  padding: 0 16px;
+  margin-top: 52px;
+}
+
+.nav__mobile__link-container {
+  margin: 0 14px;
+  margin-bottom: 14px;
+  margin-right: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.nav__mobile__link {
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+  padding-bottom: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav_mobile-close {
+  width: 28px;
+  height: 28px;
+  font-size: 1.5rem;
+  color: #000;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+  .header {
+    height: 70px;
+  }
+
+  .nav__bars-btn {
+    display: block;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .nav__mobile.active {
+    transform: translateX(0)
+  }
+
+  .nav_overlay.active {
+    display: block;
+  }
+
+  .header__navbar-item-mobile,
+  li.header__navbar-item.header__navbar-item-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .bijou-container {
+    max-width: 90%;
+    margin: auto;
+    height: auto;
+  }
+
+  .column-left,
+  .column-right {
+    width: 100%;
+  }
+
+  .bijou-container {
+    flex-direction: column;
+  }
+
+  .main-product {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .option-btn {
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .bijou-optionbox {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .column-right {
+    padding: 50px 50px 50px 50px;
+    margin-right: 0;
+  }
+
+  .description-box {
+    width: 100%;
+  }
+
+  .description-ne h2 {
+    font-size: 1.5rem;
+  }
+
+  .description-ne h3 {
+    font-size: 1.2rem;
+  }
+
+  .button-ne {
+    width: 100%;
+  }
+
+  .Book-appt {
+    font-size: 1.2rem;
+  }
+
+  .wishlist-items {
+    display: flex;
+    height: auto;
+    overflow-x: auto;
+  }
+
+  .wishlist-items .img {
+    height: auto;
+  }
+
+  .experience {
+    width: 100%;
+  }
+
+  .experience__service-text h2 {
+    font-size: 1rem;
+  }
+
+  .experience__service-text p {
+    font-size: 0.8rem;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+  }
+
+  .footer__left {
+    width: 100%;
+  }
+
+  .footer__left-col {
+    width: 50%;
+  }
+
+  .footer__right {
+    width: 50%;
+  }
+
+  .footer__right-top {
+    width: 100%;
+  }
+
+  .footer__right-middle {
+    width: 100%;
+
+  }
+}
