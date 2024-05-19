@@ -387,18 +387,18 @@ document.addEventListener('DOMContentLoaded', function() {
 //add to cart
 
 const shoppingBagIcons = [
-    document.getElementById('shopping-bag'),
-    document.getElementById('shopping-bag1'),
-    document.getElementById('shopping-bag2'),
-    document.getElementById('shopping-bag3'),
-    document.getElementById('shopping-bag4'),
-    document.getElementById('shopping-bag5'),
-    document.getElementById('shopping-bag6'),
-    document.getElementById('shopping-bag7'),
-    document.getElementById('shopping-bag8'),
-    document.getElementById('shopping-bag9'),
-    document.getElementById('shopping-bag10'),
-    document.getElementById('shopping-bag11')
+    document.getElementById('shopping-bag')
+    // document.getElementById('shopping-bag1'),
+    // document.getElementById('shopping-bag2'),
+    // document.getElementById('shopping-bag3'),
+    // document.getElementById('shopping-bag4'),
+    // document.getElementById('shopping-bag5'),
+    // document.getElementById('shopping-bag6'),
+    // document.getElementById('shopping-bag7'),
+    // document.getElementById('shopping-bag8'),
+    // document.getElementById('shopping-bag9'),
+    // document.getElementById('shopping-bag10'),
+    // document.getElementById('shopping-bag11')
   ];
 const headerShoppingBag = document.querySelector('.quanity');
 
@@ -407,7 +407,7 @@ shoppingBagIcons.forEach(shoppingBagIcon => {
       let currentQuantity = parseInt(headerShoppingBag.textContent);
       headerShoppingBag.textContent = currentQuantity + 1;
     });
-  });
+});
 
 
 
