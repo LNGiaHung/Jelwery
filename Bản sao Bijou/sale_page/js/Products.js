@@ -12,6 +12,8 @@ function fetchProductsAndUpdateHTML() {
     .then(data => {
       // Update HTML with fetched data
       updateHTMLWithProducts(data);
+        // Add event listeners to the new elements
+        addEventListenersToIcons();
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -98,6 +100,70 @@ function updateHTMLWithProducts(products) {
   }
 }
 
+
+// ------ DAC ------
+ // Function to add event listeners to the icons
+ function addEventListenersToIcons() {
+    const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
+    icons.forEach(icon => {
+      icon.addEventListener('click', async (event) => {
+        if (event.target.id === 'shopping-bag') {
+          console.log('Shopping bag button clicked');
+          event.preventDefault();
+  
+          const button = event.target;
+          const product = button.closest('.box');
+          const productImgElement = product.querySelector('.product1__img');
+          const productName = product.querySelector('.content h3').innerText;
+          // Select only the first price
+          const priceElement = product.querySelector('.price');
+          const priceText = priceElement.firstChild.textContent.trim();
+          const productPrice = priceText.split(' ')[0];
+  
+          console.log('Adding product to cart:', productName, 'with price', productPrice);
+  
+          const backgroundImage = getComputedStyle(productImgElement).backgroundImage;
+          const productImg = backgroundImage.slice(5, -2);
+  
+          console.log('Product image URL:', productImg);
+  
+          const url = new URL('http://localhost:3001/cart');
+          url.searchParams.append('username', 'user123');
+          url.searchParams.append('Name', productName);
+          url.searchParams.append('Price', productPrice);
+          url.searchParams.append('Image', productImg);
+          url.searchParams.append('Quantity', '1');
+  
+          try {
+            const response = await fetch(url.toString(), {
+              method: 'GET',
+            });
+  
+            if (response.ok) {
+              showAlert('Product added to cart successfully');
+              console.log('Product added successfully:', productName);
+            } else {
+              showAlert('Failed to add product to cart');
+              console.log('Failed to add product to cart:', productName);
+            }
+          } catch (error) {
+            console.error('Error adding product to cart:', error);
+            showAlert('Error adding product to cart');
+          }
+        }
+      });
+    });
+  }
+  
+  // Function to display alert message
+  function showAlert(message) {
+    alert(message);
+  }
+  
+  // Call the fetchProductsAndUpdateHTML function when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', fetchProductsAndUpdateHTML);
+
+  // -------- DAC-------
 
 // Function to navigate to product detail page
 function navigateToProductDetailPage(product) {
