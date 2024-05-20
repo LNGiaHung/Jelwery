@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNULL: false
     },
+    Collections:{
+      type: DataTypes.STRING,
+      allowNULL: true
+    },
     Image:{
         type: DataTypes.STRING,
         allowNULL: false
