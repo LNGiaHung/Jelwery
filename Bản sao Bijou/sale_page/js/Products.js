@@ -1,3 +1,101 @@
+let selectedCategory = '';
+let selectedMaterialType = '';
+
+// Function to fetch products from the API and update HTML with category and material type
+const fetchProductsAndUpdateHTMLWithCategory = async () => {
+  if (!selectedCategory || !selectedMaterialType) {
+    console.error('Invalid category or material type');
+    return;
+  }
+
+  try {
+    console.log('Fetching products...'); // Debugging log
+    const response = await fetch(`http://localhost:3001/Products/byCategory/${selectedCategory}/${selectedMaterialType}`);
+    const products = await response.json();
+    console.log('Fetched Products:', products); // Debugging log
+
+    if (response.ok) {
+      updateHTMLWithProducts(products);
+    } else {
+      console.error('Error:', products.error);
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
+
+const initializeDropdowns = () => {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    const select = dropdown.querySelector('.select');
+    const menu = dropdown.querySelector('.menu');
+    const selected = dropdown.querySelector('.selected');
+
+    select.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+
+    menu.querySelectorAll('li').forEach(item => {
+      item.addEventListener('click', () => {
+        selected.innerText = item.innerText;
+        menu.classList.remove('show');
+
+        const parentCategoryText = dropdown.querySelector('.select .selected').innerText.toLowerCase();
+        const selectedText = item.innerText.toLowerCase();
+        console.log('Selected parentCategoryText:', parentCategoryText);
+        // Check if the selected item is a parent category
+        const possibleCategories = ['collections', 'rings', 'earrings', 'bracelets', 'necklaces'];
+        for(const a of possibleCategories){
+          console.log('Selected possibleCategories:', a);
+          if(parentCategoryText.includes(a)){
+            if(a==='collections'){
+              selectedCategory='new-in';
+            } else{
+              selectedCategory=a;
+            }
+          }
+        }
+        console.log('Selected Category:', selectedCategory);
+        // Check if the selected item is a material type
+        const possibleMaterial = ['10k', '14k', '18k', '24k'];
+        const possibleCollection = ['outstanding collections','new collections','wedding collections'];
+        if(selectedCategory!='new-in'){
+          for(const a of possibleMaterial){
+            console.log('Selected possibleMaterial:', a);
+            if(parentCategoryText.includes(a)){
+              selectedMaterialType=a;
+            }
+          }
+        }else{
+          for(const a of possibleCollection){
+            console.log('Selected possibleCollection:', a);
+            if(parentCategoryText.includes(a)){
+              selectedMaterialType=a;
+            }
+          }
+        }
+
+        // Debugging logs to check the selected values
+        console.log('Selected Category:', selectedCategory);
+        console.log('Selected Material Type:', selectedMaterialType);
+        
+        // Call the API with the selected values
+        if (!selectedCategory) {
+          fetchProductsAndUpdateHTML();
+        } else {
+          fetchProductsAndUpdateHTMLWithCategory();
+        }
+      });
+    });
+  });
+};
+
+
+
+
+  
+
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
   return fetch('http://localhost:3001/Products')
@@ -9,6 +107,7 @@ function fetchProductsAndUpdateHTML() {
     })
     .then(data => {
       // Update HTML with fetched data
+      console.log('product fetch 1');
       updateHTMLWithProducts(data);
         // Add event listeners to the new elements
         addEventListenersToIcons();
@@ -20,6 +119,7 @@ function fetchProductsAndUpdateHTML() {
 
 // Function to update HTML with products data
 function updateHTMLWithProducts(products) {
+  console.log('product display');
   const container = document.querySelector('.box-container');
 
   // Clear existing HTML content
@@ -173,5 +273,11 @@ function navigateToProductDetailPage(product) {
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  console.log('add even fetchProductsAndUpdateHTML');
   fetchProductsAndUpdateHTML();
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  console.log('add even initializeDropdowns');
+  initializeDropdowns();
 });
