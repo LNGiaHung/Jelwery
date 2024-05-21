@@ -116,23 +116,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Sign in / Create an account
-document.addEventListener("DOMContentLoaded", function() {
-  const userIcon = document.querySelector('.user-icon');
-  const tooltip = document.querySelector('.tooltip');
+// document.addEventListener("DOMContentLoaded", function() {
+//   const userIcon = document.querySelector('.user-icon');
+//   const tooltip = document.querySelector('.tooltip');
 
-  // Xử lý sự kiện click vào icon user
-  userIcon.addEventListener('click', function(e) {
-      e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-      tooltip.classList.toggle('show'); // Thêm hoặc loại bỏ lớp 'show' khi click vào
-  });
+//   // Xử lý sự kiện click vào icon user
+//   userIcon.addEventListener('click', function(e) {
+//       e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+//       tooltip.classList.toggle('show'); // Thêm hoặc loại bỏ lớp 'show' khi click vào
+//   });
 
-  // Xử lý sự kiện click ra ngoài để ẩn đi nội dung
-  document.addEventListener('click', function(e) {
-      if (!userIcon.contains(e.target) && !tooltip.contains(e.target)) {
-          tooltip.classList.remove('show'); // Loại bỏ lớp 'show' khi click ra ngoài
-      }
-  });
-});
+//   // Xử lý sự kiện click ra ngoài để ẩn đi nội dung
+//   document.addEventListener('click', function(e) {
+//       if (!userIcon.contains(e.target) && !tooltip.contains(e.target)) {
+//           tooltip.classList.remove('show'); // Loại bỏ lớp 'show' khi click ra ngoài
+//       }
+//   });
+// });
 
 
 // Giu cho phan header-main-nav duoc hien thi khi hover vao
@@ -342,3 +342,9 @@ mobileClose.onclick = function () {
     navMobile.classList.remove('active');
     navOverlay.classList.remove('active');
 }
+
+// Navigate-to-page
+document.querySelector('.navigate-to-page').addEventListener('click', function(event) {
+    // Make sure you are not preventing the default action
+    // event.preventDefault();  // This line should not be present if you want the default link behavior
+});

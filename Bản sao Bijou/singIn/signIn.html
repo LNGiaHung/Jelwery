@@ -36,20 +36,24 @@
                         </li>
                         <div class="header__navbar-item">
                             <li class="header__navbar-item header__navbar-item-mobile">
-                                <a href="" class="header__navbar-item-link">
+                                <a href="../contactUs.html" class="header__navbar-item-link">
                                     <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                                     Client Care
                                 </a>
                             </li>
                         </div>
                         <li class="header__navbar-item header__navbar-item-mobile">
-                            <div href="" class="header__navbar-item-link">
-                                <i class="header__navbar-icon fa-regular fa-gem"></i>
-                                New Collection
+                            <div class="header__navbar-item-link">
+                                <a href="../story/story-blue.html">
+                                    <i class="header__navbar-icon fa-regular fa-gem"></i>
+                                    New Collection
+                                </a>
                             </div>
                         </li>
                     </ul>
-                    <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
+                    <a href="../landingPage.html" class="landing-page">
+                        <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
+                    </a>
                     <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item header__navbar-item-mobile">
@@ -61,12 +65,20 @@
                         <!-- Sign in/up -->
                         <li class="header__navbar-item">
                             <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
-                                <i class="fa-regular fa-user"></i>
-                                <!-- <span class="tooltip">Sign In or Create an Account</span> -->
+                                <a href="../singIn/signIn.html">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                                <!-- <span class="tooltip">Sign In or Create an Account</span>
                                 <div class="tooltip" id="tooltip-id">
-                                    <a href="#" class="tooltip-text">Sign in</a>
-                                    <a href="#" class="tooltip-text">Create an account</a>
-                                </div>
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text" onclick="">Sign in</span>
+                                    </a>
+                                     <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text">Create an account</span>
+                                    </a>
+                                    <a href="#" class="tooltip-text">Create an account</a> 
+                                </div> -->
                             </div>
                         <!-- gio hang/sp yeu thich -->
                         <li class="header__navbar-item">
@@ -87,7 +99,7 @@
                     <ul>
                         <!-- Jewelry -->
                         <li class="main-nav__link-container">
-                            <a href="" class="underline-transition-bold main-nav__link">Jewelry</a>
+                            <a href="../sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
                                 <div class="subnav">
                                     <div class="subnav__inner">
                                         <!-- subnav - Shop by category -->
@@ -403,14 +415,14 @@
                                         <h3>Outstanding Story</h3>
                                         <ul>
                                             <li>
-                                                <a href="">
+                                                <a href="../story/story-mother.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Like mother, like daughter</span>
                                                     </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="../story/story-blue.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Out of the blue</span>
                                                     </span>
@@ -445,34 +457,35 @@
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <ul class="nav__mobile-list">
-                    <!-- Landing Page -->
+                    <!-- My Account  -->
                     <li class="nav__mobile__link-container">
-                        <a href="" class="nav__mobile__link">Landing Page</a>
+                        <a href="../singIn/signIn.html" class="nav__mobile__link">My Account</a>
                     </li>
+                    <!-- Landing Page
+                    <li class="nav__mobile__link-container">
+                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="nav__mobile__link">Landing Page</a>
+                    </li> -->
                     <!-- New Arrival -->
                     <li class="nav__mobile__link-container">
-                        <a href="" class="nav__mobile__link">Jewelry</a>
+                        <a href="../sale_page/index.html" class="nav__mobile__link">Jewelry</a>
                     </li>
                     <!-- Shopping -->
                     <li class="nav__mobile__link-container">
                         <a href="" class="nav__mobile__link">Love & Engagement</a>
                     </li>
-                    <!-- Wishlist -->
+                    <!-- Contact us -->
                     <li  class="nav__mobile__link-container">
-                        <a href="" class="nav__mobile__link">Contact us</a>
+                        <a href="../contactUs.html" class="nav__mobile__link">Contact us</a>
                     </li>
-                    <!-- Palmmie Lady -->
+                    <!-- Book an appointment -->
                     <li class="nav__mobile__link-container">
                         <a href="" class="nav__mobile__link">Book an appointment</a>
-                    </li>
-                    <!-- Log in  -->
-                    <li class="nav__mobile__link-container">
-                        <a href="" class="nav__mobile__link">My Account</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
+        <!-- Content -->
         <div class="sign-in-page">
             <div class="sign-in__item">
                 <div class="sign-in-section">
@@ -480,10 +493,30 @@
                         <h2>Sign In</h2>
                         <span>Please sign in to your Bijou Account.</span>
                     </div>
-                    <fieldset>
+                    <form id="signInForm" action="http://localhost:3001/Login" method="POST">
+                        <fieldset>
+                            <div class="sign-in__input email-input">
+                                <label class="label-sign-in" for="Email"> Email</label>
+                                <input type="email" class="sign-in__email-input" maxlength="70" size="12" name="Mail">
+                            </div>
+                            <div class="sign-in__input">
+                                <label class="label-sign-in" for="text"> Password</label>
+                                <input type="password" class="sign-in__pass-input" maxlength="12" size="12" name="Password">
+                            </div>
+                            <button class="signin-button--input" type="submit">Sign In</button>
+                            <div><a class="forgot-password underline-transition" href="">Forgot your password?</a></div>
+                            <div>
+                                <a class="create-account underline-transition" href="../signUp/signUp.html">
+                                    <span>Create an Account?</span>
+                                </a>
+                            </div>
+                        </fieldset>
+                    </form>
+                    
+                    <!-- <fieldset>
                         <div class="sign-in__input email-input">
-                            <!-- <input type="email" id="email" onfocus="this.placeholder='';" onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
-                            <span></span>  -->
+                            <input type="email" id="email" onfocus="this.placeholder='';" onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
+                            <span></span> 
                             <label class="label-sign-in" for="Email"> Email</label>
                             <input type="email" class="sign-in__email-input" maxlength="70" size="12">
                         </div>
@@ -493,8 +526,13 @@
                         </div>
                         <button class="signin-button--input" type="submit">Sign In</button>
                         <div><a class="forgot-password underline-transition" href="">Forgot your password?</a></div>
-                        <div><a class="create-account underline-transition" href="">Create an Account?</a></div>
-                    </fieldset>
+                        <div>
+                            <a class="create-account underline-transition" href="../signUp/signUp.html">
+                                <span>Create an Account?</span>
+                            </a>
+                        </div>
+                    </fieldset> -->
+>>>>>>> 4e52b336336af58574e473db37338aa7df117855
                 </div>
             </div>
         
@@ -502,8 +540,6 @@
                 <img  src="../assets/img/signIn/blue-box.jpg" alt="">
             </div>
         </div>
-
-
 
         <!-- Footer -->
         <div class="footer__top-bar"></div>
@@ -513,20 +549,20 @@
                     <h5>Client Care</h5>
                     <ul>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Product Care & Repair</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="">Book an Appointment</a>
                         </li>
                         <li>
-                            <a href="">Frequently Asked Questions</a>
+                            <a href="../ship-return-faq.html">Frequently Asked Questions</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="">Catalogues</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="footer__left-col">
@@ -539,7 +575,7 @@
                             <a href="">Blog</a>
                         </li>
                         <li>
-                            <a href="">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
                         <li>
                             <a href="">Pricing</a>
@@ -594,4 +630,5 @@
 
 </body>
 <script src="../script.js"></script>
+<script src="./signIn.js"></script>
 </html>

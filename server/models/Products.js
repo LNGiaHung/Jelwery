@@ -1,24 +1,40 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define(
+  const Products = sequelize.define(
     "Products",
     {
+      PID: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
       Name: {
         type: DataTypes.STRING,
         allowNULL: false,
       },
-      Type: {
+      Price: {
         type: DataTypes.STRING,
         allowNULL: false,
       },
-      Mail: {
+      Material: {
         type: DataTypes.STRING,
         allowNULL: false,
       },
-      DOB: {
-        type: DataTypes.DATE,
+      Weight: {
+        type: DataTypes.FLOAT,
+        allowNULL: false,
+      },
+      Stone: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
+      Size: {
+        type: DataTypes.FLOAT,
+        allowNULL: false,
+      },
+      Collections: {
+        type: DataTypes.STRING,
         allowNULL: true,
       },
-      Password: {
+      Image: {
         type: DataTypes.STRING,
         allowNULL: false,
       },
@@ -27,5 +43,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
-  return Users;
+  return Products;
 };
