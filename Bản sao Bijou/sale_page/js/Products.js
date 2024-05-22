@@ -1,6 +1,7 @@
 let selectedCategory = '';
 let selectedMaterialType = '';
 
+// -------Category - Kim Long ---------
 // Function to fetch products from the API and update HTML with category and material type
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
   if (!selectedCategory || !selectedMaterialType) {
@@ -91,6 +92,7 @@ const initializeDropdowns = () => {
   });
 };
 
+// -------END: Category - Kim Long ---------
 
 
 
