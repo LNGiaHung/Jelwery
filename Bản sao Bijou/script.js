@@ -344,7 +344,36 @@ mobileClose.onclick = function () {
 }
 
 // Navigate-to-page
-document.querySelector('.navigate-to-page').addEventListener('click', function(event) {
-    // Make sure you are not preventing the default action
-    // event.preventDefault();  // This line should not be present if you want the default link behavior
-});
+// document.querySelector('.navigate-to-page').addEventListener('click', function(event) {
+//     // Make sure you are not preventing the default action
+//     // event.preventDefault();  // This line should not be present if you want the default link behavior
+// });
+
+// //cart + wishlist adding Han
+// const shoppingBagIcons = [document.getElementById('shopping-bag')];
+// const headerShoppingBag = document.querySelector('.quanity');
+
+// shoppingBagIcons.forEach(shoppingBagIcon => {
+//   shoppingBagIcon.addEventListener('click', () => {
+//     let currentQuantity = parseInt(headerShoppingBag.textContent);
+//     if (currentQuantity < 9) {
+//       headerShoppingBag.textContent = currentQuantity + 1;
+//     } else {
+//       headerShoppingBag.textContent = '9+';
+//     }
+//   });
+// });
+
+// const wishlistIcons = [document.getElementById('wish-list')];
+// const headerWishlist = document.querySelector('.quanityheart');
+
+// wishlistIcons.forEach(wishlistIcon => {
+//   wishlistIcon.addEventListener('click', () => {
+//     let currentQuantity = parseInt(headerWishlist.textContent);
+//     if (currentQuantity < 9) {
+//       headerWishlist.textContent = currentQuantity + 1;
+//     } else {
+//       headerWishlist.textContent = '9+';
+//     }
+//   });
+// });

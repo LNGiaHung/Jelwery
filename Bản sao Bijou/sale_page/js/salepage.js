@@ -34,17 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-//add to cart cua Han
+// add to cart cua Han
 
-const shoppingBagIcons = [
-    document.getElementById('shopping-bag')];
+const shoppingBagIcons = [document.getElementById('shopping-bag')];
 const headerShoppingBag = document.querySelector('.quanity');
 
 shoppingBagIcons.forEach(shoppingBagIcon => {
-    shoppingBagIcon.addEventListener('click', () => {
-      let currentQuantity = parseInt(headerShoppingBag.textContent);
+  shoppingBagIcon.addEventListener('click', () => {
+    let currentQuantity = parseInt(headerShoppingBag.textContent);
+    if (currentQuantity < 9) {
       headerShoppingBag.textContent = currentQuantity + 1;
-    });
+    } else {
+      headerShoppingBag.textContent = '9+';
+    }
+  });
 });
 
+const wishlistIcons = [document.getElementById('wish-list')];
+const headerWishlist = document.querySelector('.quanityheart');
+
+wishlistIcons.forEach(wishlistIcon => {
+  wishlistIcon.addEventListener('click', () => {
+    let currentQuantity = parseInt(headerWishlist.textContent);
+    if (currentQuantity < 9) {
+      headerWishlist.textContent = currentQuantity + 1;
+    } else {
+      headerWishlist.textContent = '9+';
+    }
+  });
+});
 
