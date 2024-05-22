@@ -37,11 +37,15 @@
     background: none;
     height: 40px;
     padding: 8px 38px 10px;
-    border: 1px solid #5E5E5E;
+    border: 1px solid #403d3d;
     position: relative;
     cursor: pointer;
     font-family: "Fraunces", serif;
     margin-top: 40px;
+}
+
+.section__btn:hover{
+    background-color: #8DC1CC;
 }
 
 .mother-daughter-story {

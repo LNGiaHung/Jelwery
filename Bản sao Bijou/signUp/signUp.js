@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('signUp.js');
     const registrationForm = document.getElementById('registrationForm');
 
     registrationForm.addEventListener('submit', async function (event) {
         event.preventDefault();
+        console.log('sumit');
 
         const formData = new FormData(registrationForm);
         const formValues = Object.fromEntries(formData.entries());
@@ -23,9 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add the relationship status value to the formValues object
         formValues['RelationshipStatus'] = relationshipStatusValue;
 
-        // Check if the password is empty, null, or an empty string
-        if (!formValues.Password || formValues.Password.trim() === "") {
-            console.error('Password cannot be empty');
+        // Check for empty fields
+        if (!formValues.FirstName || formValues.FirstName.trim() === "" ||
+            !formValues.LastName || formValues.LastName.trim() === "" ||
+            !formValues.Mail || formValues.Mail.trim() === "" ||
+            !formValues.Password || formValues.Password.trim() === "") {
+                console.log('hey');
+            showPopup('Please fill in all the required fields.');
             return;
         }
 
@@ -46,11 +52,35 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 const errorData = await response.json();
                 console.error('Error creating user:', errorData.message);
-                // Handle error, show error message to user
+                showPopup('Error creating user: ' + errorData.message);
             }
         } catch (error) {
             console.error('Error creating user:', error);
-            // Handle network errors
+            showPopup('Network error: ' + error.message);
         }
     });
+
+    // Function to show the pop-up
+    function showPopup(message) {
+        console.log('pop up');
+        const popup = document.getElementById('myPopup');
+        const popupMessage = document.getElementById('popupMessage');
+        popupMessage.textContent = message;
+        popup.style.display = "block";
+
+        // Get the <span> element that closes the pop-up
+        const span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the pop-up
+        span.onclick = function () {
+            popup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the pop-up, close it
+        window.onclick = function (event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
 });

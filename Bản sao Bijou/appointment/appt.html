@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="md-js">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="./appt.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.2/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,13 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link rel="stylesheet" href="./scss/style1.css" />
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/base.css">
-
-    <title>Bijou Jewelry</title>
+    <title>schedule-appointment</title>
 </head>
 
 <body>
@@ -44,8 +40,7 @@
                 </li>
                 <div class="header__navbar-item">
                     <li class="header__navbar-item header__navbar-item-mobile">
-                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/contactUs.html"
-                            class="header__navbar-item-link">
+                        <a href="../contactUs.html" class="header__navbar-item-link">
                             <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
                             Client Care
                         </a>
@@ -53,52 +48,55 @@
                 </div>
                 <li class="header__navbar-item header__navbar-item-mobile">
                     <div class="header__navbar-item-link">
-                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-blue.html">
+                        <a href="../story/story-blue.html">
                             <i class="header__navbar-icon fa-regular fa-gem"></i>
                             New Collection
                         </a>
                     </div>
                 </li>
             </ul>
-            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="landing-page">
+            <a href="../landingPage.html" class="landing-page">
                 <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
             </a>
             <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
             <ul class="header__navbar-list">
                 <li class="header__navbar-item header__navbar-item-mobile">
-                    <div href="" class="header__navbar-item-link">
+                    <div class="header__navbar-item-link">
+                        <a href="../appointment/appt.html">
                         <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
                         Book an appointment
+                    </a>
                     </div>
                 </li>
                 <!-- Sign in/up -->
                 <li class="header__navbar-item">
                     <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
-                        <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                        <a href="../singIn/signIn.html">
                             <i class="fa-regular fa-user"></i>
                         </a>
                         <!-- <span class="tooltip">Sign In or Create an Account</span>
-                            <div class="tooltip" id="tooltip-id">
-                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                    <span class="tooltip-text" onclick="">Sign in</span>
-                                </a>
-                                 <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
-                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                    <span class="tooltip-text">Create an account</span>
-                                </a>
-                                <a href="#" class="tooltip-text">Create an account</a> 
-                            </div> -->
+                                    <div class="tooltip" id="tooltip-id">
+                                        <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                            <span class="tooltip-text" onclick="">Sign in</span>
+                                        </a>
+                                         <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
+                                        <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                            <span class="tooltip-text">Create an account</span>
+                                        </a>
+                                        <a href="#" class="tooltip-text">Create an account</a> 
+                                    </div> -->
                     </div>
                     <!-- gio hang/sp yeu thich -->
                 <li class="header__navbar-item">
-                    <a href="" class="header__navbar-item-link"><i class="fa-regular fa-heart"></i></a>
-                    <span class="wishlist-quanity">0</span>
+                    <a href="" class="header__navbar-item-link">
+                        <i class="fa-regular fa-heart"></i></a>
+                    <span class="quanityheart">0</span>
                 </li>
                 <!-- Shoping bag -->
                 <li class="header__navbar-item">
-                    <a class="header__navbar-item-link">
-                        <a href="../sale_page/cart/index.html" class="fa-solid fa-bag-shopping"></a></a>
-                    <span class="bag-quanity">0</span>
+                    <a href="./cart/index.html" class="header__navbar-item-link">
+                        <i class="fa-solid fa-bag-shopping"></i></a>
+                    <span class="quanity">0</span>
                 </li>
                 </li>
             </ul>
@@ -111,8 +109,7 @@
                 <ul>
                     <!-- Jewelry -->
                     <li class="main-nav__link-container">
-                        <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html"
-                            class="underline-transition-bold main-nav__link">Jewelry</a>
+                        <a href="../sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
                         <div class="subnav">
                             <div class="subnav__inner">
                                 <!-- subnav - Shop by category -->
@@ -191,7 +188,7 @@
                                     <h3>Shop by Gemstone</h3>
                                     <ul>
                                         <li>
-                                            <a href="">
+                                            <a href="../sale_page/index.html">
                                                 <span class="cta-content">
                                                     <span class="cta-context">Diamond Jewelry</span>
                                                 </span>
@@ -230,8 +227,8 @@
 
                             </div>
                             <!-- <div class="subnav__img subnav__img--half">
-                                    <img width="100%" src="./assets/img/landing-page/main-nav__jewelry.png" alt="">
-                                </div> -->
+                                            <img width="100%" src="./assets/img/landing-page/main-nav__jewelry.png" alt="">
+                                        </div> -->
 
                         </div>
 
@@ -428,14 +425,14 @@
                                     <h3>Outstanding Story</h3>
                                     <ul>
                                         <li>
-                                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-mother.html">
+                                            <a href="./story/story-mother.html">
                                                 <span class="cta-content">
                                                     <span class="cta-context">Like mother, like daughter</span>
                                                 </span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/story/story-blue.html">
+                                            <a href="./story/story-blue.html">
                                                 <span class="cta-content">
                                                     <span class="cta-context">Out of the blue</span>
                                                 </span>
@@ -472,331 +469,233 @@
             <ul class="nav__mobile-list">
                 <!-- My Account  -->
                 <li class="nav__mobile__link-container">
-                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html"
-                        class="nav__mobile__link">My Account</a>
+                    <a href="./singIn/signIn.html" class="nav__mobile__link">My Account</a>
                 </li>
                 <!-- Landing Page
-                <li class="nav__mobile__link-container">
-                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="nav__mobile__link">Landing Page</a>
-                </li> -->
+                        <li class="nav__mobile__link-container">
+                            <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/landingPage.html" class="nav__mobile__link">Landing Page</a>
+                        </li> -->
                 <!-- New Arrival -->
                 <li class="nav__mobile__link-container">
-                    <a href="http://127.0.0.1:5500/Bản%20sao%20Bijou/sale_page/index.html"
-                        class="nav__mobile__link">Jewelry</a>
+                    <a href="../sale_page/index.html" class="nav__mobile__link">Jewelry</a>
                 </li>
                 <!-- Shopping -->
                 <li class="nav__mobile__link-container">
                     <a href="" class="nav__mobile__link">Love & Engagement</a>
                 </li>
-                <!-- Wishlist -->
+                <!-- Contact us -->
                 <li class="nav__mobile__link-container">
-                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/contactUs.html"
-                        class="nav__mobile__link">Contact us</a>
+                    <a href="../contactUs.html" class="nav__mobile__link">Contact us</a>
                 </li>
                 <!-- Book an appointment -->
                 <li class="nav__mobile__link-container">
-                    <a href="" class="nav__mobile__link">Book an appointment</a>
+                    <a href="./appt.html" class="nav__mobile__link">Book an appointment</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <!------------------------------------------------->
-<section>
+
+    <!-------------BOOK APPOINMENT SECTION---------->
+    <section>
+        <div class="text-box">
+            <div class="Appt-container-intro">
+                <a href="#appoinment1" class="Appt-container-intro-h1">Schedule an In-Store Consultation</a>
+                <p>Our Expert Staffs can help you choose a diamond engagement ring or diamond jewelry.
+                    Building upon our legacy of showcasing the world’s most beautiful gemstones,
+                    they can share the origin of select Bijou diamonds and the details that make a Bijou jewelry shine
+                    above all others.</p>
+            </div>
+        </div>
+
+
+        <div class="appt__box-1">
+            <div class="appt__img" style="background-image: url('../assets/img/UI/appointment.webp')"></div>
+            <div class="appt__text appt__text-right">
+                <h1>Style & Setting</h1>
+                <p>Setting refers to how gemstones are set, or mounted, into a metal band. The ring setting is meant to
+                    highlight the beauty of an engagement diamond.
+                    Style refers to the overall design aesthetic that the ring setting helps create—whether it be
+                    solitaire, halo or three stone.</p>
+            </div>
+        </div>
+                <!--FORM-->
+        <div class="appointment-form" id="appointment1">
+            <div class="appointment__item-content">
+                <div class="appointment__headerText">
+                    <h2>Schedule an Appointment With Bijou</h2>
+                </div>
+                <form id="appointment">
+                    <div class="appoitment__input">
+                        <label class="label-appointment" for="FirstName">First Name</label>
+                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="FirstName"
+                            required>
+                    </div>
+                    <div class="appoitment__input">
+                        <label class="label-appointment" for="LastName">Last Name</label>
+                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="LastName"
+                            required>
+                    </div>
+                    <div class="appoitment__input email-input">
+                        <label class="label-appointment" for="Mail">Email</label>
+                        <input type="email" class="appointment__email-input" maxlength="70" size="12" name="Mail"
+                            required>
+                    </div>
+                    <div class="appoitment__select">
+                        <label class="label-appointment" for="Interest">Your Specific Interest</label>
+                        <div>
+                            <label>
+                                <input type="radio" class="interest__input" name="New Collection"
+                                    value="New Collection">New Collection
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="radio" class="interest__input" name="Diamond" value="Diamond">Diamond
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="radio" class="interest__input" name="Wedding Jewelry"
+                                    value="Wedding Jewelry">Wedding Jewelry
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="radio" class="interest__input" name="Daily Jewerly"
+                                    value="Daily Jewerly">Daily Jewerly
+                            </label>
+                        </div>
+                    </div>
+                    <div class="appointment-date">
+                        <label class="label-appointment" for="DOS">Date of Services</label>
+                        <div class="dos-input">
+                            <div class="dos">
+                                <label for="day">Day</label>
+                                <input class="appointment__dos-input" type="number" id="day" name="DOB_day" min="1"
+                                    max="31">
+                            </div>
+                            <div class="dos">
+                                <label for="month">Month</label>
+                                <input class="appointment__dos-input" type="number" id="month" name="DOB_month" min="1"
+                                    max="12">
+                            </div>
+                            <div class="dos">
+                                <label for="year">Year</label>
+                                <input class="appointment__dos-input" type="number" id="year" name="DOB_year" min="2024"
+                                    max="2024">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="appoinment-btn--input" type="submit">Confirm the Schedule</button>
+                </form>
+            </div>
+        </div>
+        <!-----------------------FORM-------------->
+        <div class="appt__box-1">
+            <div class="appt-img-no2" style="background-image: url('../assets/img/UI/appt2.webp')"></div>
+            <div class="appt__text appt__text-left">
+                <h1>The 4Cs-The Guide to Diamonds</h1>
+                <p>Every diamond, like a human fingerprint, has certain distinguishing characteristics. The 4Cs—color,
+                    clarity, cut and carat weight—are the globally accepted standards for assessing the quality of a
+                    diamond.
+                    At Bijou, we only accept 0.04% of the world’s gem-grade diamonds.</p>
+            </div>
+        </div>
+
+ 
+    </section>
+
+    <!--Footer-->
     <div class="footer__top-bar"></div>
-<div class="bijou-container">
-    <div class="bijou-wrapper">
-    <div class="column-left">
-        <div class="main-product">
-            <img src="./img1/rings.jpg" id="main-img">
-          </div>
-          <div class="bijou-optionbox">
-            <button id="option-1" class="option-btn" data-image="./img1/rings.jpg" style="background-image: url('./img1/rings.jpg')"></button>
-            <button id="option-2" class="option-btn" data-image="./img1/tiff_rings.jpg" style="background-image: url('./img1/tiff_rings.jpg')"></button>
-            <button id="option-3" class="option-btn" data-image="./img1/rings.jpg" style="background-image: url('./img1/rings.jpg')"></button>
-            <button id="option-4" class="option-btn" data-image="./img1/rings.jpg" style="background-image: url('./img1/rings.jpg')"></button>
-          </div>
-    </div>
-    
-<div class="column-right">
-<h2>Bijou Diamond Rings</h2>
-<h3>ID: PN0000W000283</h3>
-<h3><medium>VND</medium>25,000,000 (Reference)</h3>
-<h4>Weight: NA</h4>
-<h4>Stone: NA</h4>
-<h4>Material: 24K Gold</h4>
-<h4>Size: 16</h4>
-
-
-<div class="button-ne">
-    <button class="add">Add to Cart</button>
-    <button class="buy">Buy Now
-        <a href="#"></a>
-    </button>
-    </div>
-</div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="footer__top-bar"></div>
-<div class="description-box">
-    <div class="description-ne">
-        <h2>Product Description</h2>
-        <h3>Product Name: Bijou Diamond Rings</h3>
-        <h4><medium>The quality of a diamond is determined by the 4Cs: cut, color, clarity, and carat weight. 
-            The cut of a diamond refers to its proportions, symmetry, and polish, which affect its brilliance and sparkle. The color of a diamond ranges from colorless to yellow or brown, with colorless diamonds being the most valuable. 
-            The clarity of a diamond refers to the presence of inclusions or blemishes, with diamonds that are free of inclusions being the most valuable. The carat weight of a diamond refers to its size, with larger diamonds being more valuable.
-
-            Diamond rings can be made from a variety of metals, including gold, platinum, and silver. 
-            The choice of metal can affect the overall look and durability of the ring. Gold is a popular choice for diamond rings due to its warm color and malleability, while platinum is a more durable and hypoallergenic option.
-            
-            When choosing a diamond ring, it's important to consider the style and design that best suits the wearer's taste and lifestyle. 
-            Some popular styles of diamond rings include solitaire, halo, and three-stone rings. 
-            Solitaire rings feature a single diamond set in the center of the band, while halo rings feature a center diamond surrounded by smaller diamonds. Three-stone rings feature three diamonds set in a row, representing the past, present, and future.
-            
-            Overall, diamond rings are a timeless symbol of love and commitment, and their beauty and durability make them a popular choice for engagement and wedding rings.
-        </medium></h4>
-        <a href="" class="Book-appt">Book An Appointment</a>
-    </div>
-    </div>
-<!----------------SHOP-------------------------------------->
-</section>
-<div class="footer__top-bar"></div>
-<!--------------WISHLIST-------------------------->
-<section>
-<div class="wishlist-look-container">
-      <h2>
-        Recent Items From Your Wishlist</h2>
-    <div class="wishlist-items">
-        <a href=" " class="wishlist" id="wl1">
-            <img src="./img1/ortyx-cocktail-ring-triangle-cut-green-rhodium-plated-swarovski-5600760.jpg">
-        </a>
-        <a href=" " class="wishlist" id="wl2">
-            <img src="./img1/ortyx-cocktail-ring-triangle-cut-green-rhodium-plated-swarovski-5600760.jpg">
-        </a>
-        <a href=" " class="wishlist" id="wl3">
-            <img src="./img1/ortyx-cocktail-ring-triangle-cut-green-rhodium-plated-swarovski-5600760.jpg">
-        </a>
-    </div>
-    <div class="wishlist-nav">
-        <button class="wishlist-arrow wishlist-prev">Previous</button>
-        <button class="wishlist-arrow wishlist-next">Next</button>
-      </div>
-</div>
-</section>
-<div class="footer__top-bar"></div>
-<!----------------SHOP-------------------------------------->
-                  <!-- Shop by Category -->
-                  <div class="shopCate">
-                    <div class="shopCate__heading">
-                        <h2>Shop by Category</h2>
-                        <span>Brilliant design and unparalleled craftsmanship.</span>
-                    </div>
-                    <div class="shopCate__content">
-                        <div class="content__item">
-                            <img width="100%" src="./img1/landing-page/shopCate_Ringswebp.webp" alt="">
-                            <a href="">
-                                <span class="underline-transition">Rings</span>
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="./img1/landing-page/shopCate_Bracelets.webp" alt="">
-                            <a href="">
-                                <span class="underline-transition">Bracelets</span>
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="./img1/landing-page/shopCate_Earrings.webp" alt="">
-                            <a href="">
-                                <span class="underline-transition">Earrings</span>   
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="./img1/landing-page/shopCate_necklacks.webp" alt="">
-                            <a href="">
-                                <span class="underline-transition">Necklaces</span>
-                            </a>
-                        </div>
-                    </div>
+    <footer class="footer">
+        <div class="footer__left">
+            <div class="footer__left-col">
+                <h5>Client Care</h5>
+                <ul>
+                    <li>
+                        <a href="../contactUs.html">Contact us</a>
+                    </li>
+                    <!-- <li>
+                    <a href="">Product Care & Repair</a>
+                </li> -->
+                    <li>
+                        <a href="./appt.html">Book an Appointment</a>
+                    </li>
+                    <li>
+                        <a href="../ship-return-faq.html">Frequently Asked Questions</a>
+                    </li>
+                    <!-- <li>
+                    <a href="">Catalogues</a>
+                </li> -->
+                </ul>
+            </div>
+            <div class="footer__left-col">
+                <h5>Our Company</h5>
+                <ul>
+                    <li>
+                        <a href="">About us</a>
+                    </li>
+                    <li>
+                        <a href="">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../contactUs.html">Contact us</a>
+                    </li>
+                    <li>
+                        <a href="">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__right">
+            <div class="footer__right-top">
+                <span>Latest from Bijou</span>
+            </div>
+            <div class="footer__right-middle">
+                <div class="footer__right-middle__text">
+                    <p>Be the first to know about exciting new designs, special events, store openings and much more.
+                    </p>
                 </div>
-                <div class="footer__top-bar"></div>
-                <!-- The bijou experience -->
-                <div class="experience">
-                    <div class="experience__heading">
-                        <h2>The Bijou Experience</h2>
-                    </div>
-                    <div class="experience__service-content">
-                        <!-- Book an appointment -->
-                        <div class="service-content__item">
-                            <div class="service-content__icon">
-                                <img width="36px" src="./img1/icon/ICON_Appointment.svg" alt="">
-                            </div>
-                            <div class="service-content__title">
-                                <h3>Book an appointment</h3>
-                            </div>
-                            <div class="experience__service-text">
-                                <p>We are pleased to assist you 24/7 to book an virtual appointment</p>
-                            </div>
-                            <div class="experience__service-link">
-                                <a href="">
-                                    <span class="underline-transition">Book now</span>
-                                </a>
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <!-- Bijou at your service -->
-                        <div class="service-content__item">
-                            <div class="service-content__icon">
-                                <img width="36px" src="./img1/icon/ICON_Concierge.svg" alt="">
-                            </div>
-                            <div class="service-content__title">
-                                <h3>Bijou at your service</h3>
-                            </div>
-                            <div class="experience__service-text">
-                                <p>Our client care experts always pleased to assist</p>
-                            </div>
-                            <div class="experience__service-link">
-                                <a href="">
-                                    <span class="underline-transition">Book now</span>
-                                </a>
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
-                         </div>
-                        <!-- Complimentary Shipping & Return -->
-                        <div class="service-content__item">
-                            <div class="service-content__icon">
-                                <img width="36px" src="./img1/icon/ICON_Appointment.svg" alt="">
-                            </div>
-                            <div class="service-content__title">
-                                <h3>Complimentary Shipping & Return</h3>
-                            </div>
-                            <div class="experience__service-text">
-                                <p>We offer complimentary shipment & returns on all Bijou orders</p>
-                            </div>
-                            <div class="experience__service-link">
-                                <a href="">
-                                    <span class="underline-transition">Book now</span>
-                                </a>
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        <!-- Wishing & Gifting -->
-                        <div class="service-content__item">
-                            <div class="service-content__icon">
-                                <img width="36px" src="./img1/icon/ICON_Wishlist.svg" alt="">
-                            </div>
-                            <div class="service-content__title">
-                                <h3>Wishing & Gifting</h3>
-                            </div>
-                            <div class="experience__service-text">
-                                <p>Your happiness our priority</p>
-                            </div>
-                            <div class="experience__service-link">
-                                <a href="">
-                                    <span class="underline-transition">Book now</span>
-                                </a>
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
+
+                <div class="footer__right-middle__input email-input">
+                    <input type="email" id="email" onfocus="this.placeholder='';"
+                        onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
+                    <span></span>
                 </div>
-<!----------------------------------------------->
-<!--FOOTER-->
-<section>
-        <div class="footer__top-bar"></div>
-        <footer class="footer">
-            <div class="footer__left">
-                <div class="footer__left-col">
-                    <h5>Client Care</h5>
-                    <ul>
-                        <li>
-                            <a href="">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="">Product Care & Repair</a>
-                        </li>
-                        <li>
-                            <a href="">Book an Appointment</a>
-                        </li>
-                        <li>
-                            <a href="">Frequently Asked Questions</a>
-                        </li>
-                        <li>
-                            <a href="">Catalogues</a>
-                        </li>
-                    </ul>
+                <button class="signup-button" type="submit">Sign up</button>
+
+            </div>
+            <div class="footer__right-bottom">
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-square-facebook"></i>
+                    </a>
                 </div>
-                <div class="footer__left-col">
-                    <h5>Our Company</h5>
-                    <ul>
-                        <li>
-                            <a href="">About us</a>
-                        </li>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                        <li>
-                            <a href="">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="">Testimonials</a>
-                        </li>
-                    </ul>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-square-twitter"></i>
+                    </a>
+                </div>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
                 </div>
             </div>
-            <div class="footer__right">
-                <div class="footer__right-top">
-                    <span>Latest from Bijou</span>
-                </div>
-                <div class="footer__right-middle">
-                    <div class="footer__right-middle__text">
-                        <p>Be the first to know about exciting new designs, special events, store openings and much
-                            more.</p>
-                    </div>
+        </div>
+    </footer>
 
-                    <div class="footer__right-middle__input">
-                        <input type="email" id="email" onfocus="this.placeholder='';"
-                            onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
-                        <span></span>
-                    </div>
-                    <button class="signup-button" type="submit">Sign up</button>
+    <script src="../script.js"></script>
+    <script src="./appointment.js"></script>
 
-                </div>
-                <div class="footer__right-bottom">
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-square-facebook"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-square-twitter"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <script src="js/script1.js"></script>
-        <script src="js/productDetail.js"></script>
-        </section>
 </body>
+
 </html>
