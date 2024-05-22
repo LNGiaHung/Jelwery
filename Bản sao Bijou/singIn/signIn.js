@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.ok) {
+                const responseData = await response.json();
+                // Store the user in localStorage
+                localStorage.setItem('signedInUser', JSON.stringify(responseData.user));
                 // Redirect to the home page
                 window.location.href = '../landingPage.html'; // Change 'home.html' to the actual home page URL
             } else {

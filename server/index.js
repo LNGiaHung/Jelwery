@@ -27,7 +27,7 @@ app.use(cartRoutes);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
-    console.log('Hello') 
+    console.log('Server running on localhost 3001!') 
 })
 
 })

@@ -65,26 +65,4 @@ router.post('/check-email', async (req, res) => {
   }
 });
 
-// router.put("/:userId/:status", async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-//     const { status } = req.params;
-
-//     // Find the user by ID
-//     const user = await Users.findOne({ _id: userId });
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Update the user's status
-//     user.Status = status;
-//     await user.save();
-//     res.json(user);
-//   } catch (error) {
-//     console.error("Error updating user status:", error);
-//     res.status(500).json({ message: "Error updating user status" });
-//   }
-// });
-
 module.exports = router;

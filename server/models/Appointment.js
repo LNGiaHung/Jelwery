@@ -1,28 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define("Category", {
-      Name:{
-          type: DataTypes.STRING,
-          allowNULL: false
-      },
-      Phone:{
-          type: DataTypes.STRING,
-          allowNULL: false
-      },
-      Mail:{
-          type: DataTypes.STRING,
-          allowNULL: false
-      },
-      DOB:{
-          type: DataTypes.DATE,
-          allowNULL: true
-      },
-      Password:{
-          type: DataTypes.STRING,
-          allowNULL: false
-      },
-  },{
-      timestamps: false
-  })
-  return Category;
+    const Appointments = sequelize.define("Appointments", {
+        User: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Unknown"
+        },
+        FirstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        LastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        Mail: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        BookedDate: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        Interest: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+    }, {
+        timestamps: false
+    });
+    return Appointments;
+};
   
-}
