@@ -100,10 +100,11 @@ function navigateToProductDetailPage(product) {
   // Store the product information in local storage
   localStorage.setItem('selectedProduct', JSON.stringify(product));
   // Redirect to the product detail page
-  window.location.href = 'http://127.0.0.1:5501/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
+  window.location.href = '../productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchProductsAndUpdateHTML();
 });
+
