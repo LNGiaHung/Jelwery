@@ -76,6 +76,7 @@ function deleteCart() {
 
             cartItemRow.remove();
             deleteCartItemFromDatabase(id);
+            cartTotal();
         });
     });
 }

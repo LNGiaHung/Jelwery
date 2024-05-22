@@ -203,6 +203,7 @@ function updateHTMLWithProducts(products) {
 
 // ------ DAC ------
  // Function to add event listeners to the icons
+ updateShoppingBagIcon();
  function addEventListenersToIcons() {
     const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
     icons.forEach(icon => {
@@ -210,7 +211,7 @@ function updateHTMLWithProducts(products) {
         if (event.target.id === 'shopping-bag') {
           console.log('Shopping bag button clicked');
           event.preventDefault();
-  
+
           const button = event.target;
           const product = button.closest('.box');
           const productImgElement = product.querySelector('.product1__img');
@@ -242,6 +243,7 @@ function updateHTMLWithProducts(products) {
             if (response.ok) {
               showAlert('Product added to cart successfully');
               console.log('Product added successfully:', productName);
+              updateShoppingBagIcon();
             } else {
               showAlert('Failed to add product to cart');
               console.log('Failed to add product to cart:', productName);
@@ -253,6 +255,34 @@ function updateHTMLWithProducts(products) {
         }
       });
     });
+  }
+  
+  async function updateShoppingBagIcon() {
+    try {
+      const response = await fetch('http://localhost:3001/cart-items');
+      const data = await response.json();
+    
+      console.log('Fetched data:', data); // Debugging step to inspect data structure
+    
+      // Access the cartItems array within the fetched data
+      const items = data.cartItems;
+      if (Array.isArray(items)) {
+        let totalQuantity = 0;
+        for (const item of items) {
+          totalQuantity += item.Quantity; // Corrected the property name
+        }
+        console.log('totalQuantity:', totalQuantity); // Debugging step to check total quantity
+  
+        const headerShoppingBag = document.querySelector('.quanity');
+        if (headerShoppingBag) {
+          headerShoppingBag.textContent = totalQuantity;
+        }
+      } else {
+        console.error('cartItems is not an array:', items);
+      }
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+    }
   }
   
   // Function to display alert message
@@ -270,7 +300,7 @@ function navigateToProductDetailPage(product) {
   // Store the product information in local storage
   localStorage.setItem('selectedProduct', JSON.stringify(product));
   // Redirect to the product detail page
-  window.location.href = 'http://127.0.0.1:5501/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
+  window.location.href = 'http://127.0.0.1:5502/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
 
