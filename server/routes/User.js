@@ -49,6 +49,22 @@ router.post("/Login", async (req, res) => {
   }
 });
 
+router.post('/check-email', async (req, res) => {
+  const { email } = req.body;
+  
+  try {
+      const user = await Users.findOne({ where: { Mail: email } });
+      
+      if (user) {
+          return res.status(200).json({ exists: true });
+      } else {
+          return res.status(200).json({ exists: false });
+      }
+  } catch (error) {
+      return res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+});
+
 // router.put("/:userId/:status", async (req, res) => {
 //   try {
 //     const { userId } = req.params;

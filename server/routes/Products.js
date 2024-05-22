@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Products } = require('../models');
-const { Sequelize, DataTypes, Op } = require('sequelize');
+const { Sequelize, DataTypes, Op, where } = require('sequelize');
 
 
 // Route to get product items by type
@@ -86,29 +86,53 @@ const getCategory = (Type) => {
   Type = Type.toLowerCase();
   if (Type === 'rings') {
     return 'ring';
-  } else if (Type === 'earings') {
-    return 'earing';
+  } else if (Type === 'earrings') {
+    return 'earring';
   } else if (Type === 'bracelets') {
     return 'bracelet';
   } else if (Type === 'necklaces') {
     return 'necklace';
+  } else if(Type === 'new-in'){
+    return 'collections';
   }
   return null; // or you can return a default category
+};
+
+const getCollection = (Collection) =>{
+  const outstanding =["Long Phụng"];
+  const newC =["Heo uyên ương"];
+  const wedding =["Trầu cau"];
+  if(Collection==="outstanding collections"){
+    return outstanding;
+  } else if(Collection==="new collections"){
+    return newC;
+  } else if(Collection==="wedding collections"){
+    return wedding;
+  }
+  return null;
 };
 
 const getMaterialType = (materialType) => {
   materialType=materialType.toLowerCase()
   const materialTypes = ["10k", "14k", "18k", "24k"];
-  
+  const collection = ["outstanding collections","new collections","wedding collections"];
+
   for (let type of materialTypes) {
     if (materialType.includes(type)) {
       return type.toUpperCase();
     }
   }
   
+  for (let type of collection) {
+    if (materialType.includes(type)) {
+      return getCollection(materialType);
+    }
+  }
+
   return null;
 };
 
+// Route to get products by category and material type
 router.get("/byCategory/:category/:materialType", async (req, res) => {
   try {
     const categoryName = req.params.category;
@@ -119,9 +143,6 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     if (!category) {
       return res.status(400).json({ error: 'Invalid category' });
     }
-    else{
-      // return res.status(400).json({ category });
-    }
 
     // Validate materialType
     const validMaterialTypes = getMaterialType(materialType);
@@ -129,13 +150,18 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     if (!validMaterialTypes) {
       return res.status(400).json({ error: 'Invalid material type' });
     }
-    else{
-      // return res.status(400).json({ validMaterialTypes });
-    }
 
     // Fetch products by derived category and material type
     let products;
-    if (categoryName === 'rings') {
+    if (category === 'collections') {
+      products = await Products.findAll({
+        where: {
+          Collections: {
+            [Op.in]: validMaterialTypes
+          }
+        }
+      });
+    } else if (category === 'ring') {
       products = await Products.findAll({
         where: {
           [Op.and]: [
@@ -146,11 +172,11 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
             },
             {
               Name: {
-                [Op.notLike]: '%earing%'
+                [Op.notLike]: '%earring%'
               }
             },
             {
-              Category: {
+              Material: {
                 [Op.like]: `%${validMaterialTypes}%`
               }
             }
@@ -167,7 +193,7 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
               }
             },
             {
-              Category: {
+              Material: {
                 [Op.like]: `%${validMaterialTypes}%`
               }
             }
@@ -186,6 +212,4 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
-
 module.exports = router;
