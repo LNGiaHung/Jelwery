@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.column-right h4')[2].innerText = `Material: ${storedProduct.Material}`;
         document.querySelectorAll('.column-right h4')[3].innerText = `Size: ${storedProduct.Size}`;
   
-        // ----------Example of adding event listener to "Add to Cart" button------------
+        // ----------DACC Example of adding event listener to "Add to Cart" button------------
         const addToCartButton = document.querySelector('.add');
+        updateShoppingBagIcon();
         if (addToCartButton) {
             console.log("Add to Cart button found");
             addToCartButton.addEventListener('click', async () => {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (response.ok) {
                         showAlert('Product added to cart successfully');
+                        updateShoppingBagIcon();
                         console.log('Product added successfully:', storedProduct.Name);
                     } else {
                         showAlert('Failed to add product to cart');
@@ -51,7 +53,36 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error("Add to Cart button not found");
         }
-        // ----------Example of adding event listener to "Add to Cart" button------------
+        //----------ADD TO CART  DAC ---------
+        async function updateShoppingBagIcon() {
+            try {
+              const response = await fetch('http://localhost:3001/cart-items');
+              const data = await response.json();
+            
+              console.log('Fetched data:', data); // Debugging step to inspect data structure
+            
+              // Access the cartItems array within the fetched data
+              const items = data.cartItems;
+              if (Array.isArray(items)) {
+                let totalQuantity = 0;
+                for (const item of items) {
+                  totalQuantity += item.Quantity; // Corrected the property name
+                }
+                console.log('totalQuantity:', totalQuantity); // Debugging step to check total quantity
+          
+                const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
+                if (shoppingBagIcon) {
+                    shoppingBagIcon.textContent = totalQuantity;
+                }
+              } else {
+                console.error('cartItems is not an array:', items);
+              }
+            } catch (error) {
+              console.error('Error fetching cart items:', error);
+            }
+          }
+         //----------ADD TO CART  DAC ---------
+        // ---------- DACExample of adding event listener to "Add to Cart" button------------
         // Update option buttons
         
         const optionButtons = document.querySelectorAll('.option-btn');
@@ -85,3 +116,4 @@ document.addEventListener('DOMContentLoaded', () => {
 function showAlert(message) {
     alert(message);
 }
+
