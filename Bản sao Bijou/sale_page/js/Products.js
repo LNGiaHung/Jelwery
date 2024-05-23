@@ -1,6 +1,6 @@
 let selectedCategory = '';
 let selectedMaterialType = '';
-
+const user1 = JSON.parse(sessionStorage.getItem('user'));
 // -------Category - Kim Long ---------
 // Function to fetch products from the API and update HTML with category and material type
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
@@ -26,6 +26,10 @@ const fetchProductsAndUpdateHTMLWithCategory = async () => {
 };
 
 const initializeDropdowns = () => {
+  console.log('Logged in user1:', user1);
+  const userMail = user1.Mail;
+  console.log('user mail:', userMail);
+  
   const dropdowns = document.querySelectorAll('.dropdown');
 
   dropdowns.forEach(dropdown => {

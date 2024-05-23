@@ -17,16 +17,20 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.ok) {
-                // Redirect to the home page
-                window.location.href = '../landingPage.html'; // Change 'home.html' to the actual home page URL
+                const data = await response.json();
+                // localStorage.setItem('user', JSON.stringify(data));
+                // Lưu thông tin đăng nhập vào Session Storage
+                sessionStorage.setItem('user', JSON.stringify(data));
+                // Chuyển hướng đến trang chính
+                window.location.href = '../landingPage.html';
             } else {
                 const errorData = await response.json();
                 console.error('Error logging in:', errorData.error);
-                // Handle error, show error message to user
+                // Hiển thị thông báo lỗi cho người dùng
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            // Handle network errors
+            // Xử lý lỗi mạng
         }
     });
 });
