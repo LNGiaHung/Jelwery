@@ -1,8 +1,6 @@
 let selectedCategory = '';
 let selectedMaterialType = '';
-const user1 = JSON.parse(sessionStorage.getItem('user'));
-const userMail = user1.user.Mail;
-console.log('user mail:', userMail);
+
 // -------Category - Kim Long ---------
 // Function to fetch products from the API and update HTML with category and material type
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
@@ -28,12 +26,6 @@ const fetchProductsAndUpdateHTMLWithCategory = async () => {
 };
 
 const initializeDropdowns = () => {
-//   console.log('Logged in user1:', user1);
- // Accessing the Mail property correctly from the nested user object
-// const userMail = user1.user.Mail;
-
-// console.log('user mail:', userMail);
-  
   const dropdowns = document.querySelectorAll('.dropdown');
 
   dropdowns.forEach(dropdown => {
@@ -103,8 +95,6 @@ const initializeDropdowns = () => {
 // -------END: Category - Kim Long ---------
 
 
-
-  
 
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
@@ -211,98 +201,57 @@ function updateHTMLWithProducts(products) {
 
 // ------ DAC ------
  // Function to add event listeners to the icons
-    updateShoppingBagIcon();
-    function addEventListenersToIcons() {
-    
-        const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
-        icons.forEach(icon => {
-        icon.addEventListener('click', async (event) => {
-            if (event.target.id === 'shopping-bag') {
-            console.log('Shopping bag button clicked');
-            event.preventDefault();
-
-            const button = event.target;
-            const product = button.closest('.box');
-            const productImgElement = product.querySelector('.product1__img');
-            const productName = product.querySelector('.content h3').innerText;
-            // Select only the first price
-            const priceElement = product.querySelector('.price');
-            const priceText = priceElement.firstChild.textContent.trim();
-            const productPrice = priceText.split(' ')[0];
-    
-            console.log('Adding product to cart:', productName, 'with price', productPrice);
-    
-            const backgroundImage = getComputedStyle(productImgElement).backgroundImage;
-            const productImg = backgroundImage.slice(5, -2);
-    
-            console.log('Product image URL:', productImg);
-    
-            const url = new URL('http://localhost:3001/cart');
-            url.searchParams.append('username', userMail);
-            url.searchParams.append('Name', productName);
-            url.searchParams.append('Price', productPrice);
-            url.searchParams.append('Image', productImg);
-            url.searchParams.append('Quantity', '1');
-    
-            try {
-                const response = await fetch(url.toString(), {
-                method: 'GET',
-                });
-    
-                if (response.ok) {
-                showAlert('Product added to cart successfully');
-                console.log('Product added successfully:', productName);
-                updateShoppingBagIcon();
-                } else {
-                showAlert('Failed to add product to cart');
-                console.log('Failed to add product to cart:', productName);
-                }
-            } catch (error) {
-                console.error('Error adding product to cart:', error);
-                showAlert('Error adding product to cart');
-            }
-            }
-        });
-        });
-    }
+ function addEventListenersToIcons() {
+    const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
+    icons.forEach(icon => {
+      icon.addEventListener('click', async (event) => {
+        if (event.target.id === 'shopping-bag') {
+          console.log('Shopping bag button clicked');
+          event.preventDefault();
   
-    async function updateShoppingBagIcon() {
-        try {
-            const response = await fetch('http://localhost:3001/cart-items');
-            const data = await response.json();
-            
-            // Debugging step to inspect data structure
-            console.log('Fetched data:', data);
-
-            // Access the cartItems array within the fetched data
-            const items = data.cartItems;
-
-            if (Array.isArray(items)) {
-                // Filter the items based on the allowed username
-                const userItems = items.filter(item => item.username === userMail);
-
-                // Calculate the total quantity of the filtered items
-                let totalQuantity = 0;
-                for (const item of userItems) {
-                    totalQuantity += item.Quantity;
-                }
-
-                // Debugging step to check total quantity
-                console.log('Total quantity for user:', totalQuantity);
-
-                // Update the shopping bag icon with the total quantity
-                const headerShoppingBag = document.querySelector('.quanity');
-                if (headerShoppingBag) {
-                    headerShoppingBag.textContent = totalQuantity;
-                }
+          const button = event.target;
+          const product = button.closest('.box');
+          const productImgElement = product.querySelector('.product1__img');
+          const productName = product.querySelector('.content h3').innerText;
+          // Select only the first price
+          const priceElement = product.querySelector('.price');
+          const priceText = priceElement.firstChild.textContent.trim();
+          const productPrice = priceText.split(' ')[0];
+  
+          console.log('Adding product to cart:', productName, 'with price', productPrice);
+  
+          const backgroundImage = getComputedStyle(productImgElement).backgroundImage;
+          const productImg = backgroundImage.slice(5, -2);
+  
+          console.log('Product image URL:', productImg);
+  
+          const url = new URL('http://localhost:3001/cart');
+          url.searchParams.append('username', 'user123');
+          url.searchParams.append('Name', productName);
+          url.searchParams.append('Price', productPrice);
+          url.searchParams.append('Image', productImg);
+          url.searchParams.append('Quantity', '1');
+  
+          try {
+            const response = await fetch(url.toString(), {
+              method: 'GET',
+            });
+  
+            if (response.ok) {
+              showAlert('Product added to cart successfully');
+              console.log('Product added successfully:', productName);
             } else {
-                console.error('cartItems is not an array:', items);
+              showAlert('Failed to add product to cart');
+              console.log('Failed to add product to cart:', productName);
             }
-        } catch (error) {
-            console.error('Error fetching cart items:', error);
+          } catch (error) {
+            console.error('Error adding product to cart:', error);
+            showAlert('Error adding product to cart');
+          }
         }
-    }
-
+      });
+    });
+  }
   
   // Function to display alert message
   function showAlert(message) {
@@ -319,7 +268,7 @@ function navigateToProductDetailPage(product) {
   // Store the product information in local storage
   localStorage.setItem('selectedProduct', JSON.stringify(product));
   // Redirect to the product detail page
-  window.location.href = 'http://127.0.0.1:5502/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
+  window.location.href = 'http://127.0.0.1:5501/B%E1%BA%A3n%20sao%20Bijou/productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
 
