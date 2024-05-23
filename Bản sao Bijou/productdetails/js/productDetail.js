@@ -1,3 +1,6 @@
+const user1 = JSON.parse(sessionStorage.getItem('user'));
+const userMail = user1.user.Mail;
+console.log('user mail:', userMail);
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve the stored product data from local storage
     const storedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Add to Cart button clicked");
                 // Handle click event for "Add to Cart" button
                 const url = new URL('http://localhost:3001/cart');
-                url.searchParams.append('username', 'user123');
+                url.searchParams.append('username', userMail)
                 url.searchParams.append('Name', storedProduct.Name);
                 url.searchParams.append('Price', storedProduct.Price);
                 url.searchParams.append('Image', storedProduct.Image);
@@ -64,9 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
               // Access the cartItems array within the fetched data
               const items = data.cartItems;
               if (Array.isArray(items)) {
+                const userItems = items.filter(item => item.username === userMail);
+
+                // Calculate the total quantity of the filtered items
                 let totalQuantity = 0;
-                for (const item of items) {
-                  totalQuantity += item.Quantity; // Corrected the property name
+                for (const item of userItems) {
+                    totalQuantity += item.Quantity;
                 }
                 console.log('totalQuantity:', totalQuantity); // Debugging step to check total quantity
           
