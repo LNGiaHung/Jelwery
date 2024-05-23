@@ -263,7 +263,7 @@ function updateHTMLWithProducts(products) {
   // Call the fetchProductsAndUpdateHTML function when the DOM is loaded
   document.addEventListener('DOMContentLoaded', fetchProductsAndUpdateHTML);
 
-  // -------- DAC-------
+  // -------- End DAC-------
 
 // Function to navigate to product detail page
 function navigateToProductDetailPage(product) {
