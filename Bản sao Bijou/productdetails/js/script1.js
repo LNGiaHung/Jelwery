@@ -1,4 +1,5 @@
 // Header - croll up/down
+updateShoppingBagIcon();
 let lastScrollTop = 0;
 const header = document.getElementById("header");
 
@@ -410,18 +411,20 @@ selectItem(currentIndex);
 document.querySelector('.wishlist-next').addEventListener('click', moveToNextItem);
 document.querySelector('.wishlist-prev').addEventListener('click', moveToPrevItem);
 
-//----------ADD TO CART---------
-// Get the shopping bag icon element
-const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
+// //----------ADD TO CART---------
+// // Get the shopping bag icon element
+// const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
 
-// Get the 'Add to Cart' button element
-const addToCartButton = document.querySelector('.button-ne .add');
+// // Get the 'Add to Cart' button element
+// const addToCartButton = document.querySelector('.button-ne .add');
 
-// Add a click event listener to the 'Add to Cart' button
-addToCartButton.addEventListener('click', () => {
-  // Increment the quantity by 1
-  let quantity = parseInt(shoppingBagIcon.textContent) + 1;
+// // Add a click event listener to the 'Add to Cart' button
+// addToCartButton.addEventListener('click', () => {
+//   // Increment the quantity by 1
+//   let quantity = parseInt(shoppingBagIcon.textContent) + 1;
   
-  // Update the shopping bag icon with the new quantity
-  shoppingBagIcon.textContent = quantity;
-});
+//   // Update the shopping bag icon with the new quantity
+//   shoppingBagIcon.textContent = quantity;
+// });
+
+

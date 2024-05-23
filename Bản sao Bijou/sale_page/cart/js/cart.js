@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemsFromDatabase();
 });
-
+const user1 = JSON.parse(sessionStorage.getItem('user'));
+const allowedUsername = user1.user.Mail; 
 async function fetchCartItemsFromDatabase() {
     try {
         const response = await fetch('http://localhost:3001/cart-items');
@@ -12,7 +13,9 @@ async function fetchCartItemsFromDatabase() {
         const data = await response.json();
         const cartItems = data.cartItems;
         cartItems.forEach(item => {
-            addCart(item);
+            if (item.username == allowedUsername) {
+                    addCart(item);
+            }
         });
     } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -76,6 +79,7 @@ function deleteCart() {
 
             cartItemRow.remove();
             deleteCartItemFromDatabase(id);
+            cartTotal();
         });
     });
 }
