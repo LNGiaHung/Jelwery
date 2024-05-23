@@ -75,6 +75,7 @@ router.post("/", async (req, res) => {
 //   }
 // });
 
+
 router.get("/:pid", async (req, res) => {
   try {
     const productId = req.params.pid;
@@ -93,6 +94,7 @@ router.get("/:pid", async (req, res) => {
   }
 });
 
+// khi lay gtri tu li cua html -> chuyen doi gtri thanh cac gia tri co the qeury dc
 const getCategory = (Type) => {
   Type = Type.toLowerCase();
   if (Type === 'rings') {
