@@ -1,6 +1,8 @@
 let selectedCategory = '';
 let selectedMaterialType = '';
-
+const user1 = JSON.parse(sessionStorage.getItem('user'));
+const userMail = user1.user.Mail;
+console.log('user mail:', userMail);
 // -------Category - Kim Long ---------
 // Function to fetch products from the API and update HTML with category and material type
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
@@ -211,9 +213,7 @@ function updateHTMLWithProducts(products) {
  // Function to add event listeners to the icons
     updateShoppingBagIcon();
     function addEventListenersToIcons() {
-      const user1 = JSON.parse(sessionStorage.getItem('user'));
-      const userMail = user1.user.Mail;
-      console.log('user mail:', userMail);
+    
         const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
         icons.forEach(icon => {
         icon.addEventListener('click', async (event) => {
@@ -267,9 +267,6 @@ function updateHTMLWithProducts(products) {
     }
   
     async function updateShoppingBagIcon() {
-      const user1 = JSON.parse(sessionStorage.getItem('user'));
-      const userMail = user1.user.Mail;
-      console.log('user mail:', userMail);
         try {
             const response = await fetch('http://localhost:3001/cart-items');
             const data = await response.json();
@@ -313,9 +310,7 @@ function updateHTMLWithProducts(products) {
   }
   
   // Call the fetchProductsAndUpdateHTML function when the DOM is loaded
-  document.addEventListener('DOMContentLoaded', ()=>{
-    fetchProductsAndUpdateHTML();
-  });
+  document.addEventListener('DOMContentLoaded', fetchProductsAndUpdateHTML);
 
   // -------- DAC-------
 
