@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
       formValues['RelationshipStatus'] = relationshipStatusValue;
     
       try {
+        console.log(formValues.Mail);
         const checkEmailResponse = await fetch('http://localhost:3001/auth/check-email', {
           method: 'POST',
           headers: {
@@ -69,13 +70,13 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           body: JSON.stringify({ email: formValues.Mail })
         });
-    
+        console.log("checkEmailResponse: ",checkEmailResponse);
         if (!checkEmailResponse.ok) {
           throw new Error('Failed to check email existence');
         }
     
         const checkEmailData = await checkEmailResponse.json();
-    
+        console.log("checkEmailData: ",checkEmailData);
         if (checkEmailData.exists) {
           showPopup('Email already exists. Please use a different email.');
           return;
@@ -87,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
         showPopup('Error checking email: ' + error.message);
       }
     });
-    
   
     verifyButton.addEventListener('click', async function () {
       const verificationCode = document.getElementById('verificationCode').value;
