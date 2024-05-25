@@ -38,22 +38,29 @@ document.addEventListener('DOMContentLoaded', function () {
   
     registrationForm.addEventListener('submit', async function (event) {
       event.preventDefault();
-  
+    
       const formData = new FormData(registrationForm);
       const formValues = Object.fromEntries(formData.entries());
-  
-      const day = formValues.DOB_day;
-      const month = formValues.DOB_month;
-      const year = formValues.DOB_year;
-      formValues.DOB = (year && month && day) ? `${month}/${day}/${year}` : null;
+    
+      const day = parseInt(formValues.DOB_day, 10);
+      const month = parseInt(formValues.DOB_month, 10) - 1; // Month is zero-based in Date.UTC
+      const year = parseInt(formValues.DOB_year, 10);
+    
+      if (day && month >= 0 && year) {
+        const dob = new Date(Date.UTC(year, month, day));
+        formValues.DOB = dob.toISOString().split('T')[0]; // Format to YYYY-MM-DD
+      } else {
+        formValues.DOB = null;
+      }
+    
       delete formValues.DOB_day;
       delete formValues.DOB_month;
       delete formValues.DOB_year;
-  
+    
       const relationshipStatusSelect = document.getElementById('relationship-status');
       const relationshipStatusValue = relationshipStatusSelect.value;
       formValues['RelationshipStatus'] = relationshipStatusValue;
-  
+    
       try {
         const checkEmailResponse = await fetch('http://localhost:3001/auth/check-email', {
           method: 'POST',
@@ -62,13 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           body: JSON.stringify({ email: formValues.Mail })
         });
-  
+    
         if (!checkEmailResponse.ok) {
           throw new Error('Failed to check email existence');
         }
-  
+    
         const checkEmailData = await checkEmailResponse.json();
-  
+    
         if (checkEmailData.exists) {
           showPopup('Email already exists. Please use a different email.');
           return;
@@ -80,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showPopup('Error checking email: ' + error.message);
       }
     });
+    
   
     verifyButton.addEventListener('click', async function () {
       const verificationCode = document.getElementById('verificationCode').value;
