@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: false
         },
         Role:{
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNULL: true,
             defaultValue: "customer"
         },
