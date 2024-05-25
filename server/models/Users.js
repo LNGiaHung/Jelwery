@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNULL: false
         },
+        Verify:{
+            type: DataTypes.BOOLEAN,
+            allowNULL: true,
+            defaultValue: false
+        },
     },{
         timestamps: false
     })

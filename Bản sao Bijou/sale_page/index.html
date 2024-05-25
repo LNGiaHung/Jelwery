@@ -66,41 +66,36 @@
                 <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
                 <ul class="header__navbar-list">
                     <li class="header__navbar-item header__navbar-item-mobile">
-                        <div href="" class="header__navbar-item-link">
-                            <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
-                            Book an appointment
+                        <div class="header__navbar-item-link">
+                            <a href="../Bản sao Bijou/appointment/appt.html">
+                                <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
+                                Book an appointment
+                            </a>
                         </div>
                     </li>
                     <!-- Sign in/up -->
-                    <li class="header__navbar-item">
+                    <li class="header__navbar-item" id="mobileMyAccount">
                         <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
-                            <a href="../singIn/signIn.html">
+                            <a href="./singIn/signIn.html">
                                 <i class="fa-regular fa-user"></i>
                             </a>
-                            <!-- <span class="tooltip">Sign In or Create an Account</span>
-                            <div class="tooltip" id="tooltip-id">
-                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                    <span class="tooltip-text" onclick="">Sign in</span>
-                                </a>
-                                 <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
-                                <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                    <span class="tooltip-text">Create an account</span>
-                                </a>
-                                <a href="#" class="tooltip-text">Create an account</a> 
-                            </div> -->
                         </div>
-                    <!-- gio hang/sp yeu thich -->
+                    </li>
+                    <!-- Logout button placeholder -->
+                    <li class="header__navbar-item" id="mobileLogoutButtonPlaceholder"></li>
+                    <!-- Favorites -->
                     <li class="header__navbar-item">
                         <a href="" class="header__navbar-item-link">
-                        <i class="fa-regular fa-heart"></i></a>
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
                         <span class="quanityheart">0</span>
                     </li>
-                    <!-- Shoping bag -->
+                    <!-- Shopping bag -->
                     <li class="header__navbar-item">
                         <a href="./cart/index.html" class="header__navbar-item-link">
-                        <i class="fa-solid fa-bag-shopping"></i></a>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
                         <span class="quanity">0</span>
-                    </li>
                     </li>
                 </ul>
             </nav>
@@ -836,6 +831,7 @@
 <script src="js/script.js"></script>
 <script src="js/Products.js"></script>
 <script src="../script.js"></script>
+<script src="../logout.js"></script>
 <script src="./js/salepage.js"></script>
 <script src="./js/filter.js"></script>
 
