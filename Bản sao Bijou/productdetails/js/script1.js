@@ -411,6 +411,7 @@ selectItem(currentIndex);
 document.querySelector('.wishlist-next').addEventListener('click', moveToNextItem);
 document.querySelector('.wishlist-prev').addEventListener('click', moveToPrevItem);
 
+<<<<<<< HEAD
 // //----------ADD TO CART---------
 // // Get the shopping bag icon element
 // const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
@@ -428,3 +429,19 @@ document.querySelector('.wishlist-prev').addEventListener('click', moveToPrevIte
 // });
 
 
+=======
+//add to cart cua han
+const addButtons = document.querySelectorAll('.add');
+const headerShoppingBag = document.querySelector('.bag-quanity');
+
+addButtons.forEach(addButton => {
+  addButton.addEventListener('click', () => {
+    let currentQuantity = parseInt(headerShoppingBag.textContent);
+    if (currentQuantity < 9) {
+      headerShoppingBag.textContent = currentQuantity + 1;
+    } else {
+      headerShoppingBag.textContent = '9+';
+    }
+  });
+});
+>>>>>>> 98ba04e (update cartcheckout, wishlist, payment page)

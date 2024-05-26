@@ -94,8 +94,11 @@ const initializeDropdowns = () => {
 
 // -------END: Category - Kim Long ---------
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 652ca21 (update cartcheckout, wishlist, payment page)
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
   return fetch('http://localhost:3001/Products')
