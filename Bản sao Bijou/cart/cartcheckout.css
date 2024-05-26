@@ -1,0 +1,361 @@
+.cart__checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cart__checkoutHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+    background-color: #F5F5F5;
+    border-top: 2px solid #009384;
+    border-bottom: 2px solid #009384;
+    margin-top: 110px;
+}
+
+.cart__checkoutBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cart__Body-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cart__Body-item__image {
+    display: block;
+    width: 20%;
+}
+
+.cart__Body-item__image img {
+    width: 100%;
+    height: auto;
+}
+
+.cart__Body-item__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+    align-items: stretch;
+    font-size: 18px;
+    background-color: #F5F5F5;
+    margin-top: 30px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    font-size: 18px;
+    margin-left: 40px;
+}
+
+.product__atrribute-ID,
+.product__atrribute-weight,
+.product__atrribute-material,
+.product__atrribute-size {
+    margin-top: 20px;
+}
+
+.product-info__pricename {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.product__atrribute-name {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.product__atrribute-price {
+    font-size: 25px;
+    font-weight: 500;
+    color: #009384;
+}
+
+.product-info__pricename,
+.product__atrribute-ID,
+.product__atrribute-weight,
+.product__atrribute-material,
+.product__atrribute-size {
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.cart__checkout-btn{
+    padding-top: 20px;
+    color: grey;
+    background: none;
+    border: none;
+    font-family: "Fraunces", sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.cart__checkout-btn:hover{
+    border-bottom: 2px solid #8DC1CC;
+}
+
+.cart__function {
+    border-top: 2px solid black;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 18px;
+}
+
+.cart__Body-item__btn {
+    color: grey;
+    background: none;
+    border: none;
+    font-family: "Fraunces", sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.cart__checkout-total{
+    color: black;
+    background: none;
+    border: none;
+    font-family: "Fraunces", sans-serif;
+    font-size: 30px;
+    margin-top: 20px;
+}
+.cart__checkout-total p{
+    color: black;
+    background: none;
+    border: none;
+    font-family: "Fraunces", sans-serif;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.addup:hover {
+    border-bottom: 2px solid #8DC1CC;
+}
+
+.wishlist:hover {
+    border-bottom: 2px solid #8DC1CC;
+}
+
+.message:hover {
+    border-bottom: 2px solid #8DC1CC;
+}
+
+.note:hover {
+    border-bottom: 2px solid #8DC1CC;
+}
+
+.cart__select {
+    position: relative;
+    color: grey;
+    font-size: 18px;
+}
+
+.custom-message {
+    display: none;
+    max-width: var(--message-max-width, 500px);
+}
+
+.custom-checkbox-label:active+.custom-message,
+.custom-checkbox-label:focus+.custom-message {
+    display: block;
+}
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    z-index: 1000;
+}
+
+.product__atrribute-price {
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+.cart__Body-item__btn {
+    flex-basis: calc(25% - 10px);
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.cart__Body-item__btn:last-child {
+    margin-right: 0;
+}
+
+.overllay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    pointer-events: none;
+  }
+
+.message-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000;
+    pointer-events: all;
+  }
+
+
+.message-box-input {
+    display: block;
+    width: 500px;
+    height: 200px;
+    margin: 50px auto;
+    padding: 10px;
+    font-family: "Fraunces", sans-serif;
+    font-size: 18px;
+    background-color: #fff;
+    border: 2px solid #8DC1CC;
+    border-radius: 5px;
+    z-index: 1002;
+    pointer-events: all;
+}
+.message-box__btn{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.message-box-confirm {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-family: "Fraunces", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #8DC1CC;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .message-box-cancel{
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-family: "Fraunces", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #8DC1CC;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+/*payment*/
+
+.payment-container-grid__item {
+    background-color: #F5F5F5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px; 
+    height: auto;
+    border-bottom: 2px solid #009384;
+    border-top: 2px solid #009384;
+    padding: 30px;
+}
+
+.box {
+    border-radius: 5px; 
+}
+
+.box-2 {
+    grid-column: 1 / 2; 
+    grid-row: 1 / 2; 
+}
+
+.box-2 p,
+.box-3 p{
+    font-family: "Fraunces", sans-serif;
+    font-size: 20px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.box-1 {
+    grid-column: 2 / 3; 
+    grid-row: 1 / 2; 
+}
+
+.box-1__img-pm{
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-1 h3,
+.box-2 h3,
+.box-3 h3{
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-3 {
+    grid-column: 3 / 4; 
+    grid-row: 1 / 2; 
+}
+
+.box-2__btn,
+.box-3__btn{
+    color:#009384;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.box-2__btn:hover, 
+.box-3__btn:hover{
+    text-decoration: underline;
+    font-weight: 600;
+    color: #009384;
+}
+
+@media (max-width: 768px) {
+    .cart__Body-item__btn {
+        flex-basis: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .cart__Body-item__btn {
+        flex-basis: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-info {
+        margin-left: 40px;
+    }
+
+    .product__atrribute-price {
+        margin-left: 300px;
+    }
+}

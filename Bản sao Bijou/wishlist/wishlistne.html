@@ -1,92 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="md-js">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Client-Care</title>
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="./wishlistne.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.2/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <title>Your Wishlist at Bijou</title>
 </head>
+
 <body>
-    <div class="main" >
+    <div class="main">
         <!-- Header -->
         <header id="header" class="header header--fix">
             <!-- <div class="grid"> -->
-                <nav class="header__navbar">
-                    <ul class="header__navbar-list">
-                        <!-- Nav-mobile -->
-                        <li class="header__navbar-item">
-                            <div class="nav__bars-btn">
-                                <i class="fa-solid fa-bars"></i>
-                            </div>
-                        </li>
-                        <!-- Search button -->
-                        <li class="header__navbar-item">
-                            <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
-                        </li>
-                        <div class="header__navbar-item">
-                            <li class="header__navbar-item header__navbar-item-mobile">
-                                <a href="./contactUs.html" class="header__navbar-item-link">
-                                    <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
-                                    Client Care
-                                </a>
-                            </li>
+            <nav class="header__navbar">
+                <ul class="header__navbar-list">
+                    <!-- Nav-mobile -->
+                    <li class="header__navbar-item">
+                        <div class="nav__bars-btn">
+                            <i class="fa-solid fa-bars"></i>
                         </div>
+                    </li>
+                    <!-- Search button -->
+                    <li class="header__navbar-item">
+                        <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+                    </li>
+                    <div class="header__navbar-item">
                         <li class="header__navbar-item header__navbar-item-mobile">
-                            <div class="header__navbar-item-link">
-                                <a href="./story/story-blue.html">
-                                    <i class="header__navbar-icon fa-regular fa-gem"></i>
-                                    New Collection
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="./landingPage.html" class="landing-page">
-                        <img class="header__navbar-logo" src="./assets/img/logo.png" alt="">
-                    </a>
-                    <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
-                    <ul class="header__navbar-list">
-                        <li class="header__navbar-item header__navbar-item-mobile">
-                            <div class="header__navbar-item-link">
-                                <a href="../Bản sao Bijou/appointment/appt.html">
-                                    <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
-                                    Book an appointment
-                                </a>
-                            </div>
-                        </li>
-                        <!-- Sign in/up -->
-                        <li class="header__navbar-item" id="mobileMyAccount">
-                            <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
-                                <a href="./singIn/signIn.html">
-                                    <i class="fa-regular fa-user"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <!-- Logout button placeholder -->
-                        <li class="header__navbar-item" id="mobileLogoutButtonPlaceholder"></li>
-                        <!-- Favorites -->
-                        <li class="header__navbar-item">
-                            <a href="" class="header__navbar-item-link">
-                                <i class="fa-regular fa-heart"></i>
+                            <a href="../contactUs.html" class="header__navbar-item-link">
+                                <i class="header__navbar-icon fa-solid fa-bell-concierge"></i>
+                                Client Care
                             </a>
-                            <span class="quanityheart">0</span>
                         </li>
-                        <!-- Shopping bag -->
-                        <li class="header__navbar-item">
-                            <a href="./cart/index.html" class="header__navbar-item-link">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <li class="header__navbar-item header__navbar-item-mobile">
+                        <div class="header__navbar-item-link">
+                            <a href="../story/story-blue.html">
+                                <i class="header__navbar-icon fa-regular fa-gem"></i>
+                                New Collection
                             </a>
-                            <span class="quanity">0</span>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
+                <a href="../landingPage.html" class="landing-page">
+                    <img class="header__navbar-logo" src="../assets/img/logo.png" alt="">
+                </a>
+                <!-- <h1 class="header__navbar-logo">Bijou Jewelry</h1> -->
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item header__navbar-item-mobile">
+                        <div class="header__navbar-item-link">
+                            <a href="../appointment/appt.html">
+                                <i class="header__navbar-icon fa-regular fa-calendar-check"></i>
+                                Book an appointment
+                            </a>
+                        </div>
+                    </li>
+                    <!-- Sign in/up -->
+                    <li class="header__navbar-item">
+                        <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
+                            <a href="../singIn/signIn.html">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                            <!-- <span class="tooltip">Sign In or Create an Account</span>
+                                <div class="tooltip" id="tooltip-id">
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text" onclick="">Sign in</span>
+                                    </a>
+                                     <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
+                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
+                                        <span class="tooltip-text">Create an account</span>
+                                    </a>
+                                    <a href="#" class="tooltip-text">Create an account</a> 
+                                </div> -->
+                        </div>
+                        <!-- gio hang/sp yeu thich -->
+                    <li class="header__navbar-item">
+                        <a href="" class="header__navbar-item-link">
+                            <i class="fa-regular fa-heart"></i></a>
+                        <span class="quanityheart">0</span>
+                    </li>
+                    <!-- Shoping bag -->
+                    <li class="header__navbar-item">
+                        <a href="./cartcheckout.html" class="header__navbar-item-link">
+                            <i class="fa-solid fa-bag-shopping"></i></a>
+                        <span class="quanity">0</span>
+                    </li>
+                    </li>
+                </ul>
+            </nav>
             <!-- </div> -->
 
             <!-- Category Shopping Nav -->
@@ -95,82 +110,83 @@
                     <ul>
                         <!-- Jewelry -->
                         <li class="main-nav__link-container">
-                            <a href="./sale_page/index.html" class="underline-transition-bold main-nav__link">Jewelry</a>
-                                <div class="subnav">
-                                    <div class="subnav__inner">
-                                        <!-- subnav - Shop by category -->
-                                        <div class="subnav__group">
-                                            <h3>Shop by Category</h3>
-                                            <ul>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Necklaces & Pendants</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Earrings</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Bracelets</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Bracelets</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Rings</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-    
-                                            </ul>
-                                        </div>
-    
-                                        <!-- subnav - Shop by metal & gemstone -->
+                            <a href="../sale_page/index.html"
+                                class="underline-transition-bold main-nav__link">Jewelry</a>
+                            <div class="subnav">
+                                <div class="subnav__inner">
+                                    <!-- subnav - Shop by category -->
                                     <div class="subnav__group">
-                                            <h3>Shop by Metal</h3>
-                                            <ul>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Gold Jewelry</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">White Gold Jewelry</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <span class="cta-content">
-                                                            <span class="cta-context">Platinum Jewelry</span>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <h3>Shop by Category</h3>
+                                        <ul>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Necklaces & Pendants</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Earrings</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Bracelets</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Bracelets</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Rings</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!-- subnav - Shop by metal & gemstone -->
+                                    <div class="subnav__group">
+                                        <h3>Shop by Metal</h3>
+                                        <ul>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Gold Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">White Gold Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="cta-content">
+                                                        <span class="cta-context">Platinum Jewelry</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
                                     <div class="subnav__group">
-                                                
+
                                         <h3>Shop by Gemstone</h3>
                                         <ul>
                                             <li>
@@ -209,15 +225,15 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>    
-
                                     </div>
-                                    <!-- <div class="subnav__img subnav__img--half">
+
+                                </div>
+                                <!-- <div class="subnav__img subnav__img--half">
                                         <img width="100%" src="./assets/img/landing-page/main-nav__jewelry.png" alt="">
                                     </div> -->
-    
-                                </div>
-                            
+
+                            </div>
+
                         </li>
 
                         <!-- Love & Engagement -->
@@ -396,14 +412,14 @@
                                                     </span>
                                                 </a>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
 
                             </div>
                         </li>
-                        <li  class="main-nav__link-container">
+                        <li class="main-nav__link-container">
                             <div href="" class="main-nav__link underline-transition-bold">Stories</div>
                             <div class="subnav">
                                 <div class="subnav__inner">
@@ -411,14 +427,14 @@
                                         <h3>Outstanding Story</h3>
                                         <ul>
                                             <li>
-                                                <a href="./story/story-mother.html">
+                                                <a href="../story/story-mother.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Like mother, like daughter</span>
                                                     </span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="./story/story-blue.html">
+                                                <a href="../story/story-blue.html">
                                                     <span class="cta-content">
                                                         <span class="cta-context">Out of the blue</span>
                                                     </span>
@@ -432,7 +448,7 @@
 
                             </div>
                         </li>
-                        
+
                     </ul>
                 </nav>
                 <!-- Search button -->
@@ -455,7 +471,7 @@
                 <ul class="nav__mobile-list">
                     <!-- My Account  -->
                     <li class="nav__mobile__link-container">
-                        <a href="./singIn/signIn.html" class="nav__mobile__link">My Account</a>
+                        <a href="../singIn/signIn.html" class="nav__mobile__link">My Account</a>
                     </li>
                     <!-- Landing Page
                     <li class="nav__mobile__link-container">
@@ -463,153 +479,160 @@
                     </li> -->
                     <!-- New Arrival -->
                     <li class="nav__mobile__link-container">
-                        <a href="./sale_page/index.html" class="nav__mobile__link">Jewelry</a>
+                        <a href="../sale_page/index.html" class="nav__mobile__link">Jewelry</a>
                     </li>
                     <!-- Shopping -->
                     <li class="nav__mobile__link-container">
                         <a href="" class="nav__mobile__link">Love & Engagement</a>
                     </li>
                     <!-- Contact us -->
-                    <li  class="nav__mobile__link-container">
-                        <a href="./contactUs.html" class="nav__mobile__link">Contact us</a>
+                    <li class="nav__mobile__link-container">
+                        <a href="../contactUs.html" class="nav__mobile__link">Contact us</a>
                     </li>
                     <!-- Book an appointment -->
                     <li class="nav__mobile__link-container">
-                        <a href="./appointment/appt.html" class="nav__mobile__link">Book an appointment</a>
+                        <a href="../appointment/appt.html" class="nav__mobile__link">Book an appointment</a>
                     </li>
                 </ul>
             </nav>
         </header>
+    </div>
+    <!--WISHLIST CONTAINER-->
+<section>
+    <div class="wishlistne">
+    <div class="wishlistne__grid">
 
-        <!-- contact page content -->
-        <div class="contact-page-content">
-            <!-- CSS -->
-            <style>
-                .banner-content {
-                    position: relative;
-                    width: 100%; /* Đảm bảo phần tử cha có chiều rộng tương ứng với màn hình */
-                }
+        <div class="wishlist__grid-wlHeader">
+            <span class="wishlistne Header">Your Wishlist at Bijou
+            </span>
+            <p>YOU HAVE 4 ITEMS SAVED</p>
+            <div class="wishlistne-Header__gif">
+            <img src="../productdetails/img1/wishlisticon-empty.gif">
+            </div>
+        </div>
 
-                .banner-img {
-                    position: relative;
-                }
+        <div class="wishlistne__grid__items">
 
-                .banner-img img {
-                    margin-top: 108px;
-                    width: 100%; /* Đảm bảo ảnh rộng bằng phần tử cha */
-                    height: auto;
-                }
+             <div class="wishlistbox box1">
+                <div class="wishlistbox__box1-img">
+                    <img src="../assets/img/UI/cp_rings1.webp">
+                    <div class="wishlistne-close-btn">
+                    </div>
+                    </div>
+                <div class="wishlistbox__box1-description">
+                    <a href="../productdetails/productdetails.html">Bijou Diamond Rings</a>
+                    <p>Price: VND25,000,000</p>
+                    <p>Material: 18K Gold</p>
+                </div>
+                <button href="./wishlistne.html" class="wishlistne-btn">
+                    Add to Cart</button>
+             </div>
+
+             <div class="wishlistbox box2">
+                <div class="wishlistbox__box2-img">
+                    <img src="../assets/img/UI/cp_rings1.webp">
+                    <div class="wishlistne-close-btn">
+                    </div>
+                </div>
+                <div class="wishlistbox__box2-description">
+                    <a href="../productdetails/productdetails.html">Bijou Diamond Rings</a>
+                    <p>VND25,000,000</p>
+                    <p>Material: 18K Gold</p>
+                </div>
+                <button href="./wishlistne.html" class="wishlistne-btn">
+                    Add to Cart</button>
+                </div>
                 
-                .banner-text {
-                    position: absolute;
-                    top: 40%;
-                    right: 5%;
-                    left: 55%;
-                    padding: 20px;
-                }
-
-                .banner-text__title h4 {
-                    margin-top: 0; /* Loại bỏ khoảng trắng trên đầu tiêu đề */
-                }
-
-            </style>
-
-            <div class="banner-content">
-                <div class="banner-img">
-                    <img src="./assets/img/UI/contact-us.png" alt="">
-                </div>
-                <div class="banner-text">
-                    <div class="banner-text__title">
-                        <h4>Bijou At Your Service</h4>
-                    </div>
-                    <div class="banner-text-description">
-                        <p>
-                            There is no question too small or request too big for our Bijou client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.&nbsp;
-                        </p>
+             <div class="wishlistbox box3">
+                <div class="wishlistbox__box3-img">
+                    <img src="../assets/img/UI/cp_rings1.webp">
+                    <div class="wishlistne-close-btn">
                     </div>
                 </div>
-            </div>
+                <div class="wishlistbox__box3-description">
+                        <a href="../productdetails/productdetails.html">Bijou Diamond Rings</a>
+                        <p>VND25,000,000</p>
+                        <p>Material: 18K Gold</p>
+                </div>
+                <button href="./wishlistne.html" class="wishlistne-btn">
+                    Add to Cart</button>
+             </div>
+
+             <div class="wishlistbox box4">
+                
+                <div class="wishlistbox__box4-img">
+                    <img src="../assets/img/UI/cp_rings1.webp">
+                    <div class="wishlistne-close-btn">
+                    </div>
+                </div>
+                <div class="wishlistbox__box4-description">
+                    <a href="../productdetails/productdetails.html">Bijou Diamond Rings</a>
+                    <p>VND25,000,000</p>
+                    <p>Material: 18K Gold</p>
+                </div>
+                <button href="./wishlistne.html" class="wishlistne-btn">
+                    Add to Cart</button>
+             </div>
         </div>
+    </div>
+    </div>
+</section>
 
-        <div class="contact-info">
-            <style>
-                .contact-info {
-                    display: flex;
-                    justify-content: space-around;
-                    padding-bottom: 40px;
-                }
-                .contact__option-item-link {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                }
+                <!-- Shop by Category -->
+                <div class="shopCate">
+                    <div class="shopCate__heading">
+                        <h2>Shop by Category</h2>
+                        <span>Brilliant design and unparalleled craftsmanship.</span>
+                    </div>
+                    <div class="shopCate__content">
+                        <div class="content__item">
+                            <img width="100%" src="../assets/img/landing-page/shopCate_Ringswebp.webp" alt="">
+                            <a href="../sale_page/index.html">
+                                <span class="underline-transition">Rings</span>
+                            </a>
+                        </div>
 
-                .contact__option-item-link i {
-                    padding-right: 20px;
-                }
+                        <div class="content__item">
+                            <img width="100%" src="../assets/img/landing-page/shopCate_Bracelets.webp" alt="">
+                            <a href="../sale_page/index.html">
+                                <span class="underline-transition">Bracelets</span>
+                            </a>
+                        </div>
 
-                .contact__option-item-hours p {
-                    padding: 10px 0;
-                }
-            
-            </style>
+                        <div class="content__item">
+                            <img width="100%" src="../assets/img/landing-page/shopCate_Earrings.webp" alt="">
+                            <a href="../sale_page/index.html">
+                                <span class="underline-transition">Earrings</span>   
+                            </a>
+                        </div>
 
-            <div class="contact-info__option">
-                <h3>Contact Us</h3>
-                <div class="contact__option-item">
-                    <a href="tel: 0971923550" class="contact__option-item-link">
-                        <i class="fa-solid fa-phone"></i>
-                        <p class="underline-transition">Call 0971923550</p>
-                    </a>
+                        <div class="content__item">
+                            <img width="100%" src="../assets/img/landing-page/shopCate_necklacks.webp" alt="">
+                            <a href="../sale_page/index.html">
+                                <span class="underline-transition">Necklaces</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact__option-item">
-                    <a href="mailto:21522021@gmail.com" class="contact__option-item-link">
-                        <i class="fa-regular fa-envelope"></i>
-                        <p class="underline-transition">Email</p>
-                    </a>
-                </div>
-                <div class="contact__option-item">
-                    <a href="./appointment/appt.html" class="contact__option-item-link">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        <p class="underline-transition">Book an Appointment</p>
-                    </a>
-                </div>
-                <div class="contact__option-item">
-                    <a href="trackOrder.html" class="contact__option-item-link">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p class="underline-transition">Track Your Order</p>
-                    </a>
-                </div>
-            </div>
-            <div class="contact-info__option">
-                <h3>Client Care Hours of Operations</h3>
-                <div class="contact__option-item-hours">
-                    <p>Monday–Friday: 8:00AM–10:00PM EST</p>
-                    <p>Saturday: 9:00AM-10:00PM EST</p>
-                    <p>Monday–Friday: 8:00AM–10:00PM EST</p>
-                    <p>HOLIDAY:10:00AM-5:00PM</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer__top-bar"></div>
+
+    <!--FOOTER-->
+    <div class="footer__top-bar">
         <footer class="footer">
             <div class="footer__left">
                 <div class="footer__left-col">
                     <h5>Client Care</h5>
                     <ul>
                         <li>
-                            <a href="./contactUs.html">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
                         <!-- <li>
                             <a href="">Product Care & Repair</a>
                         </li> -->
                         <li>
-                            <a href="">Book an Appointment</a>
+                            <a href="../appointment/appt.html">Book an Appointment</a>
                         </li>
                         <li>
-                            <a href="./ship-return-faq.html">Frequently Asked Questions</a>
+                            <a href="../ship-return-faq.html">Frequently Asked Questions</a>
                         </li>
                         <!-- <li>
                             <a href="">Catalogues</a>
@@ -626,7 +649,7 @@
                             <a href="">Blog</a>
                         </li>
                         <li>
-                            <a href="./contactUs.html">Contact us</a>
+                            <a href="../contactUs.html">Contact us</a>
                         </li>
                         <li>
                             <a href="">Pricing</a>
@@ -643,16 +666,16 @@
                 </div>
                 <div class="footer__right-middle">
                     <div class="footer__right-middle__text">
-                        <p>Be the first to know about exciting new designs, special events, store openings and much more.</p>
+                        <p>Be the first to know about exciting new designs, special events, store openings and much
+                            more.</p>
                     </div>
-                    
-                    <!-- <div class="footer__right-middle__input email-input">
-                        <input type="email" id="email" onfocus="this.placeholder='';" onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
-                        <span></span> 
-                    </div> -->
-                    <a href="./signUp/signUp.html">
-                        <button class="signup-button" type="submit">Sign up</button>
-                    </a>
+
+                    <div class="footer__right-middle__input email-input">
+                        <input type="email" id="email" onfocus="this.placeholder='';"
+                            onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
+                        <span></span>
+                    </div>
+                    <button class="signup-button" type="submit">Sign up</button>
 
                 </div>
                 <div class="footer__right-bottom">
@@ -680,8 +703,9 @@
             </div>
         </footer>
     </div>
-    
+
 </body>
-<script src="./script.js"></script>
-<script src="./logout.js"></script>
+<script src="../script.js">
+</script>
+<script src="./wishlistne.js"></script>
 </html>
