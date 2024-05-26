@@ -10,10 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "gauge": "^5.0.2",
     "mysql2": "^3.9.7",
+    "nodemailer": "^6.9.13",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.6.2",
     "signal-exit": "^4.1.0",

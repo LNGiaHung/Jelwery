@@ -1,0 +1,146 @@
+.wishlistne__grid {
+    margin-top: 120px;
+
+}
+
+.wishlistne__grid__items {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    height: auto; 
+    border-bottom: 2px solid #009384;
+    border-top: 2px solid #009384;
+    padding: 30px;
+}
+
+.wishlist__grid-wlHeader {
+    background-color: #b8d6dd;
+    padding: 30px;
+    border-top: 2px solid #009384;
+}
+
+.wishlist__grid-wlHeader p{
+    text-align: center;
+}
+
+.wishlistne-Header__gif {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 40px;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.wishlistne-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 1000;
+    display: block;
+    border: none;
+    background: none;
+}
+
+.wishlistne-close-btn::before {
+    content: "\f004";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 25px;
+    color: #8DC1CC;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wishlistne-close-btn:hover::before {
+    content: "\f08a";
+    font-weight: 400;
+}
+
+.wishlistne-btn {
+    border: 2px solid grey;
+    background: none;
+    font-family: "Fraunces", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wishlistne-btn:hover {
+    background-color: whitesmoke;
+}
+
+.Header:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.wishlistbox__box1-description a,
+.wishlistbox__box2-description a,
+.wishlistbox__box3-description a,
+.wishlistbox__box4-description a {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 25px;
+    color: black;
+    text-align: center;
+}
+
+.wishlistbox__box1-description,
+.wishlistbox__box2-description,
+.wishlistbox__box3-description,
+.wishlistbox__box4-description {
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+
+.wishlistbox__box1-description a:hover,
+.wishlistbox__box2-description a:hover,
+.wishlistbox__box3-description a:hover,
+.wishlistbox__box4-description a:hover {
+    color: #009384;
+
+}
+
+.wishlistbox {
+    border-radius: px;
+}
+
+.wishlistbox__box2-img,
+.wishlistbox__box1-img,
+.wishlistbox__box3-img,
+.wishlistbox__box4-img {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+    position: relative;
+    background-color: #b8d6dd;
+}
+
+.shopCate{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #009384;
+}

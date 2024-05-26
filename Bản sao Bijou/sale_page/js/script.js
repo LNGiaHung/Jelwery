@@ -1,215 +1,43 @@
 
 //MENU
-/*const menuItems = document.querySelectorAll('.menu-items');
 
-//loop cho moi cai link drop xuong
-dropdowns.forEach((dropdown) =>{
-    dropdowns.addEventListener('mouseenter',() => {
-        const select = dropdown.querySelector('.select');
-        const caret = dropdown.querySelector('.caret');
-        const menu = dropdown.querySelector('.menu');
-        const options = dropdown.querySelector('.menu li');
-        const selected = dropdown.querySelector('.selected');
-    })
-
-    
-    //add event click cho cai menu
-    select.addEventListener('click', () =>{
-
-        //style cho click
-    select.classList.toggle('select-clicked');
-
-    //activecho cai caret xoay
-    caret.classList.toggle('caret-rotate');
-
-    //add style khi open deopdown menu
-    menu.classList.toggle('menu-open');
-    });
-});
-
-
-//loop cho tat ca options
-options.forEach(option => {
-    //add event click cho cai options
-    option.addEventListener('click', () => {
-        //change innnertext cho cai option dang chon
-        selected.innerText = option.innerText;
-        //add clicked style
-        select.classList.remove('select-clicked');
-        //addd caret
-        caret.classList.remove('caret-rotate');
-        menu.classList.remove('menu-open');
-
-        options.forEach(option =>{
-            option.classList.add('active');
-    });
-});
-});*/
-
+//HAN dropdown caret
 document.addEventListener('DOMContentLoaded', function() {
     let dropdowns = document.querySelectorAll('.menusection .select');
 
     dropdowns.forEach(function(drop) {
-        
         drop.addEventListener('click', function(event) {
             let currentDropDown = this.nextElementSibling;
-            if (currentDropDown.style.display === 'block') {
-                currentDropDown.style.display = 'none';
-                caret.classList.toggle('caret-rotate');
-            }
-            else {
-                currentDropDown.style.display = 'block';
-            }
-
-            dropdowns.forEach(function(other){
-                if(other.nextElementSibling !== currentDropDown) {
-                    other.nextElementSibling.style.display = 'none';
+            
+            if (currentDropDown) {
+                if (currentDropDown.style.display === 'block') {
+                    currentDropDown.style.display = 'none';
+                    caret.classList.toggle('caret-rotate');
+                } else {
+                    currentDropDown.style.display = 'block';
                 }
-            })
-        })
-    });
-    window.onclick = function (event) {
-        if(!event.target.matches('.menusection .select')) {
-            dropdowns.forEach(function(drop) {
-                var openDropDown = drop.nextElementSibling;
-                if (openDropDown.style.display === 'block') {
-                    openDropDown.style.display = 'none';
-                }
-            })
                 
-        }
-    }
-});
-
-//sort-by 
-
-
-
-/*document.addEventListener('DOMContentLoaded', function() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    dropdowns.forEach(dropdown => {
-        const select = dropdown.querySelector('.select');
-        const caret = dropdown.querySelector('.caret');
-        const menu = dropdown.querySelector('.menu');
-
-        select.addEventListener('click', () => {
-            select.classList.toggle('select-clicked');
-            caret.classList.toggle('caret-rotate');
-            menu.classList.toggle('menu-open');
-        });
-
-        const options = menu.querySelectorAll('li');
-        const selected = select.querySelector('.selected');
-
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-                selected.innerText = option.innerText;
-                select.classList.remove('select-clicked');
-                caret.classList.remove('caret-rotate');
-                menu.classList.remove('menu-open');
-
-                options.forEach(opt => {
-                    opt.classList.remove('active');
+                dropdowns.forEach(function(other) {
+                    if (other.nextElementSibling !== currentDropDown && other.nextElementSibling) {
+                        other.nextElementSibling.style.display = 'none';
+                    }
                 });
-
-                option.classList.add('active');
-            });
+            }
         });
     });
-});*/
 
-/*document.addEventListener('DOMContentLoaded', function() {
-    let dropdowns = document.querySelectorAll('.menusection .select');
-    let carets = document.querySelectorAll('caret');
-
-    dropdowns.forEach(function(drop, i) {
-        drop.addEventListener('click', function(event) {
-            let currentDropDown = this.nextElementSibling;
-            if (currentDropDown.style.display === 'block') {
-                currentDropDown.style.display = 'none';
-                carets[i].classList.toggle('caret-rotate');
-            }
-            else {
-                currentDropDown.style.display = 'block';
-                carets[i].classList.toggle('caret-rotate');
-            }
-
-            dropdowns.forEach(function(other, j){
-                if(j !== i) {
-                    other.nextElementSibling.style.display = 'none';
-                    carets[j].classList.toggle('caret-rotate');
-                }
-            })
-        })
-    });
-
-    window.onclick = function (event) {
-        if(!event.target.matches('.menusection .select')) {
-            dropdowns.forEach(function(drop, i) {
-                var openDropDown = drop.nextElementSibling;
-                if (openDropDown.style.display === 'block') {
-                    openDropDown.style.display = 'none';
-                    carets[i].classList.toggle('caret-rotate');
-                }
-            })
-        }
-    }
-});*/
-
-/*document.addEventListener('DOMContentLoaded', function() {
-    let dropdowns = document.querySelectorAll('.menusection .select');
-  
-    dropdowns.forEach(function(drop) {
-      drop.addEventListener('mouseover', function(event) {
-        let currentDropDown = this.nextElementSibling;
-        currentDropDown.style.display = 'block';
-      });
-  
-      drop.addEventListener('mouseout', function(event) {
-        let currentDropDown = this.nextElementSibling;
-        currentDropDown.style.display = 'none';
-      });
-    });
-  
     window.onclick = function(event) {
-      if (!event.target.matches('.menusection .select')) {
-        dropdowns.forEach(function(drop) {
-          var openDropDown = drop.nextElementSibling;
-          if (openDropDown.style.display === 'block') {
-            openDropDown.style.display = 'none';
-          }
-        })
-      }
-    }
-  });*/
-
-//add to cart
-
-const shoppingBagIcons = [
-    document.getElementById('shopping-bag')
-    // document.getElementById('shopping-bag1'),
-    // document.getElementById('shopping-bag2'),
-    // document.getElementById('shopping-bag3'),
-    // document.getElementById('shopping-bag4'),
-    // document.getElementById('shopping-bag5'),
-    // document.getElementById('shopping-bag6'),
-    // document.getElementById('shopping-bag7'),
-    // document.getElementById('shopping-bag8'),
-    // document.getElementById('shopping-bag9'),
-    // document.getElementById('shopping-bag10'),
-    // document.getElementById('shopping-bag11')
-  ];
-const headerShoppingBag = document.querySelector('.quanity');
-
-shoppingBagIcons.forEach(shoppingBagIcon => {
-    shoppingBagIcon.addEventListener('click', () => {
-      let currentQuantity = parseInt(headerShoppingBag.textContent);
-      headerShoppingBag.textContent = currentQuantity + 1;
-    });
+        if (!event.target.matches('.menusection .select')) {
+            dropdowns.forEach(function(drop) {
+                let openDropDown = drop.nextElementSibling;
+                
+                if (openDropDown && openDropDown.style.display === 'block') {
+                    openDropDown.style.display = 'none';
+                }
+            });
+        }
+    };
 });
-
-
 
 // Đac
 const addToCartButtons = document.getElementById("shopping-bag");

@@ -333,6 +333,7 @@ img {
 
 .subnav {
     display: none;
+    box-shadow: 0 20px 15px rgba(0, 0, 0, 0.2);
 }
 
 .subnav.active {

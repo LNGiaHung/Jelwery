@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const signInForm = document.getElementById('signInForm');
+    const errorMessage = document.getElementById('error-message');
 
     signInForm.addEventListener('submit', async function (event) {
         event.preventDefault();
@@ -17,16 +18,25 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.ok) {
-                // Redirect to the home page
-                window.location.href = '../landingPage.html'; // Change 'home.html' to the actual home page URL
+                const data = await response.json();
+                sessionStorage.setItem('user', JSON.stringify(data));
+                window.location.href = '../landingPage.html';
             } else {
                 const errorData = await response.json();
+                showPopup("Invalid email or password");
                 console.error('Error logging in:', errorData.error);
-                // Handle error, show error message to user
+                errorMessage.textContent = 'Invalid email or password';
+                errorMessage.style.display = 'block';
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            // Handle network errors
+            errorMessage.textContent = 'Network error. Please try again later.';
+            errorMessage.style.display = 'block';
         }
     });
 });
+
+function showPopup(message) {
+    // Implement this function to show a popup with the message
+    alert(message);
+}
