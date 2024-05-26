@@ -20,14 +20,15 @@ const ProductRouter = require('./routes/Products');
 app.use("/Products", ProductRouter);
 const cartRoutes = require('./routes/Cart');
 app.use(cartRoutes);
-
+// const Appointment = require('./routes/Appointment');
+// app.use("/Appointment", Appointment);
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
-    console.log('Hello') 
+    console.log('Server running on localhost 3001!') 
 })
 
 })

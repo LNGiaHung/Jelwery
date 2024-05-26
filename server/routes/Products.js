@@ -37,6 +37,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:cate", async (req, res) => {
+  try {
+    const cate = req.params.type;
+    const listOfProducts = await Products.findAll({ where: { Category: cate} });
+    res.json(listOfProducts);
+  } catch (error) {
+    console.error('Error fetching all food items:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // Route to create a new product
 router.post("/", async (req, res) => {
   try {
