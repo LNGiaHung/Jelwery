@@ -4,9 +4,13 @@
     border: aliceblue;
 }
 
+.Appt-container-intro {
+    text-align: center;
+}
+
 .Appt-container-intro-h1{
     font-size: 40px;
-    margin-left: 670px;
+    /* margin-left: 670px; */
     text-align: center;
     font-weight: 500;
     color: #009384;
@@ -34,16 +38,18 @@
 }
 
 .appt__box-1{
+    margin-top: 60px;
     position: relative;
 }
 
-.appt__text{
+.appt__text {
     position: absolute;
-    top: 40%;
+    top: 26%;
     width: 22%;
     text-align: center;
     max-width: 80%;
     color: #000;
+    line-height: 1.6;
 }
 
 .appt__text-right{
@@ -55,11 +61,11 @@
     color: #009384;
 }
 
-.appt__text-left{
-    top:15%;
-    right:70%;
+.appt__text-left {
+    line-height: 2;
+    top: 2%;
+    right: 70%;
 }
-
 .appt__text-left h1{
     font-size: 30px;
     color: #009384;
@@ -68,7 +74,7 @@
 .appt-img-no2{
     background-repeat: no-repeat;
     background-size: contain;
-    height: 700px;
+    height: 630px;
     margin-left: 750px;
 }
 
