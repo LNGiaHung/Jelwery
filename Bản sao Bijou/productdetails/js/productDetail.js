@@ -122,8 +122,3 @@ document.addEventListener('DOMContentLoaded', () => {
 function showAlert(message) {
     alert(message);
 }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 98ba04e (update cartcheckout, wishlist, payment page)
