@@ -20,8 +20,8 @@ const ProductRouter = require('./routes/Products');
 app.use("/Products", ProductRouter);
 const cartRoutes = require('./routes/Cart');
 app.use(cartRoutes);
-// const Appointment = require('./routes/Appointment');
-// app.use("/Appointment", Appointment);
+const appointmentRoutes = require('./routes/Appointment');
+app.use("/Appointment", appointmentRoutes);
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});

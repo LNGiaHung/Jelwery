@@ -517,44 +517,38 @@
                     <h2>Schedule an Appointment With Bijou</h2>
                 </div>
                 <form id="appointment">
-                    <div class="appoitment__input">
+                    <div class="appoitment__input" id="first-name-container">
                         <label class="label-appointment" for="FirstName">First Name</label>
-                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="FirstName"
-                            required>
+                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="FirstName" required>
                     </div>
-                    <div class="appoitment__input">
+                    <div class="appoitment__input" id="last-name-container">
                         <label class="label-appointment" for="LastName">Last Name</label>
-                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="LastName"
-                            required>
+                        <input type="text" class="appointment__name-input" maxlength="30" size="12" name="LastName" required>
                     </div>
-                    <div class="appoitment__input email-input">
+                    <div class="appoitment__input email-input" id="email-container">
                         <label class="label-appointment" for="Mail">Email</label>
-                        <input type="email" class="appointment__email-input" maxlength="70" size="12" name="Mail"
-                            required>
+                        <input type="email" class="appointment__email-input" maxlength="70" size="12" name="Mail" required>
                     </div>
                     <div class="appoitment__select">
                         <label class="label-appointment" for="Interest">Your Specific Interest</label>
                         <div>
                             <label>
-                                <input type="radio" class="interest__input" name="New Collection"
-                                    value="New Collection">New Collection
+                                <input type="radio" class="interest__input" name="Interest" value="New Collection">New Collection
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" class="interest__input" name="Diamond" value="Diamond">Diamond
+                                <input type="radio" class="interest__input" name="Interest" value="Diamond">Diamond
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" class="interest__input" name="Wedding Jewelry"
-                                    value="Wedding Jewelry">Wedding Jewelry
+                                <input type="radio" class="interest__input" name="Interest" value="Wedding Jewelry">Wedding Jewelry
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="radio" class="interest__input" name="Daily Jewerly"
-                                    value="Daily Jewerly">Daily Jewerly
+                                <input type="radio" class="interest__input" name="Interest" value="Daily Jewerly">Daily Jewerly
                             </label>
                         </div>
                     </div>
@@ -563,27 +557,25 @@
                         <div class="dos-input">
                             <div class="dos">
                                 <label for="time">Time</label>
-                                <input class="appointment__dos-input" type="time" id="time" name="DOB_time" min="8" max="21">
+                                <input class="appointment__dos-input" type="time" id="time" name="DOB_time" min="08:00" max="21:00">
                             </div>
                             <div class="dos">
                                 <label for="day">Day</label>
-                                <input class="appointment__dos-input" type="number" id="day" name="DOB_day" min="1"
-                                    max="31">
+                                <input class="appointment__dos-input" type="number" id="day" name="DOB_day" min="1" max="31">
                             </div>
                             <div class="dos">
                                 <label for="month">Month</label>
-                                <input class="appointment__dos-input" type="number" id="month" name="DOB_month" min="1"
-                                    max="12">
+                                <input class="appointment__dos-input" type="number" id="month" name="DOB_month" min="1" max="12">
                             </div>
                             <div class="dos">
                                 <label for="year">Year</label>
-                                <input class="appointment__dos-input" type="number" id="year" name="DOB_year" min="2024"
-                                    max="2024">
+                                <input class="appointment__dos-input" type="number" id="year" name="DOB_year" min="2024" max="2024">
                             </div>
                         </div>
                     </div>
                     <button class="appoinment-btn--input" type="submit">Confirm the Schedule</button>
                 </form>
+                
             </div>
         </div>
         <!----------------------- END FORM-------------->
