@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
 // });
 
 
-router.get("/:pid", async (req, res) => {
+router.get("/PID/:pid", async (req, res) => {
   try {
     const productId = req.params.pid;
     console.log('Received PID:', productId); // Logging the received PID

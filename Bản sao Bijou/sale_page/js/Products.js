@@ -355,7 +355,7 @@ function navigateToProductDetailPage(product) {
   // Store the product information in local storage
   localStorage.setItem('selectedProduct', JSON.stringify(product));
   // Redirect to the product detail page
-  window.location.href = '../../productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
+  window.location.href = '../productdetails/productdetails.html'; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
 
