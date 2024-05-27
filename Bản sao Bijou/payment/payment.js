@@ -1,5 +1,6 @@
 let totalAmount = 0;
-let productsForMomo = [];
+let productsForMomo = ""; // Thay đổi thành chuỗi rỗng ban đầu
+let productCounter = 1; // Bộ đếm để đánh số thứ tự sản phẩm
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemsFromDatabase();
 });
@@ -45,51 +46,62 @@ function addCart(item) {
 
     cartItem.innerHTML = `
         <div class="paymentnebox__box2-ndbox-grid-left">
-            <h2>ORDER SUMMARY</h2>
-            <div class="paymentnebox__box2-ndbox-img">
-                <img src="${Image}" alt="">
-            </div>
+        <div class="paymentnebox__box2-ndbox-img">
+            <img src="${Image}" alt="">
         </div>
-        <div class="paymentnebox__box2-ndbox-grid-right">
-            <div class="product-infor">
-                <span class="product__atrributes-name">${Name}</span>
-                <span class="product__atrributes-ID">${PID}</span>
-                <span class="product__atrributes-price">VND${Price.toLocaleString()}</span>
-                <span class="product__atrributes-weight">Weight: ${Weight}g</span>
-                <span class="product__atrributes-material">Material: ${Material}</span>
-                <span class="product__atrributes-size">Size: ${Size}</span>
-            </div>
-            <div class = "paymentne-pay-total">
-                <span class="product__attributes-subtotal">Subtotal: VND${subtotal.toLocaleString()}</span>
-            </div>
-        </div>
-    `;
+    </div>
 
+    <div class="paymentnebox__box2-ndbox-grid-right">
+        <div class="product-infor">
+            <span class="product__atrributes-name">${Name}</span>
+            <span class="product__atrributes-ID">${PID}</span>
+            <span class="product__atrributes-price">VND ${Price}</span>
+            <span class="product__atrributes-weight">Weight: ${Weight}</span>
+            <span class="product__atrributes-material">Material: ${Material}</span>
+            <span class="product__atrributes-size">Size: ${Size}</span>
+            <span class="paymentne-pay-total__price">Subtotal: VND ${subtotal.toLocaleString()}</span>
+        </div>
+    </div>
+    `;
+   
+     // Thêm thông tin sản phẩm vào chuỗi productsForMomo
+    productsForMomo += `Product ${productCounter}: ${Name} - Quantity: ${Quantity}; `;
+    productCounter++; // Tăng bộ đếm sản phẩm
     cartBody.appendChild(cartItem);
 
     cartTotal();
 }
 
 function cartTotal() {
-    const cartItems = document.querySelectorAll(".product__attributes-subtotal");
-    let total = 0;
+    const cartItems = document.querySelectorAll(".paymentne-pay-total__price");
+    let total = 0.0;
+
+    if (cartItems.length === 0) {
+        console.error('No cart items found');  
+        return;
+    }
 
     cartItems.forEach(cartItem => {
-        const price = parseFloat(cartItem.textContent.replace(/[^0-9.-]+/g, ""));
-        total += price;
+        const priceText = cartItem.textContent.replace(/[^0-9.-]+/g, "");
+        const price = parseFloat(priceText);
+        if (!isNaN(price)) {
+            total += price;
+        } else {
+            console.error(`Error parsing price: ${priceText}`);
+        }
     });
 
     const totalSubtotalElement = document.querySelector(".paymentne-pay-total__total");
     if (!totalSubtotalElement) {
-        console.error('Total subtotal element not found');  // Kiểm tra xem phần tử tổng subtotal có tồn tại không
+        console.error('Total subtotal element not found');  
         return;
     }
-    totalSubtotalElement.textContent = "TOTAL inc. sales tax: VND" + total.toLocaleString();
-    // Lưu giá trị total vào input hidden để sử dụng khi gửi yêu cầu thanh toán
-    console.log('Total:', total);  // Kiểm tra tổng giá trị
-    totalAmount = total;
-
+    totalSubtotalElement.textContent = "TOTAL inc. sales tax: VND " + total.toLocaleString();
+    
+    totalAmount = total; // assuming totalAmount is declared somewhere else
+    console.log('Total:', total);  
 }
+
 
 
 
@@ -159,7 +171,7 @@ document.querySelector('.paymentne-checkoutbtn').addEventListener('click', async
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                 body: JSON.stringify({ amount, products: productsForMomo }) // Truyền thông tin về sản phẩm cho thanh toán Momo
+                 body: JSON.stringify({ amount, orderInfo: productsForMomo }) // Truyền thông tin về sản phẩm cho thanh toán Momo
             });
 
             const data = await response.json();

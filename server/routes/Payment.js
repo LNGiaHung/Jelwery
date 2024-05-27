@@ -11,11 +11,12 @@ router.use(cors()); // Add this line to enable CORS
 
 router.post("/payment", async (req, res) => {
     const { amount } = req.body;
+    const { orderInfo } = req.body
     console.log('Payment request received with amount:', amount);
     const partnerName = "Jelwery";
     const accessKey = 'F8BBA842ECF85';
     const secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
-    const orderInfo = 'Jelwery';
+    // const orderInfo = 'Jelwery';
     const partnerCode = 'MOMO';
     const redirectUrl = 'http://127.0.0.1:5502/B%E1%BA%A3n%20sao%20Bijou/landingPage.html';
     const ipnUrl = 'https://754a-14-241-237-150.ngrok-free.app/callback';

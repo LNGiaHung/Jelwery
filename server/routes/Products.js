@@ -124,6 +124,23 @@ router.get("/pid/:pid", async (req, res) => {
   }
 });
 
+router.get("/inPid/:keyWord", async (req, res) => {
+  const keyword = req.params.keyWord;
+
+  try {
+    const products = await Products.findAll({
+      where: {
+        PID: {
+          [Op.like]: `%${keyword}%`
+        }
+      }
+    });
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while retrieving the products.' });
+  }
+});
 
 // khi lay gtri tu li cua html -> chuyen doi gtri thanh cac gia tri co the qeury dc
 const getCategory = (Type) => {

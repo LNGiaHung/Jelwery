@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     verifyButton.addEventListener('click', async function () {
       const verificationCode = document.getElementById('verificationCode').value;
       const email = new FormData(registrationForm).get('Mail');
+      const firstName = new FormData(registrationForm).get('FirstName');
   
       if (!verificationCode) {
         showPopup('Please enter the verification code.');
@@ -109,6 +110,11 @@ document.addEventListener('DOMContentLoaded', function () {
   
         if (response.ok) {
           showPopup('Email verified successfully. You can now log in.');
+          sendWelcomeEmail(
+            email,
+            "Subject: SUCCESSFULLY SIGN UP AT BIJOU JEWELRY",
+            firstName
+          )
           window.location.href = '../singIn/signIn.html';
         } else {
           const errorData = await response.json();
@@ -162,3 +168,45 @@ document.addEventListener('DOMContentLoaded', function () {
     return regex.test(email);
   }
   
+  // Subject: SUCCESSFULLY SIGN UP AT BIJOU JEWELRY
+
+  async function sendWelcomeEmail(to, subject, userName) {
+    const htmlContent = `
+        <p><strong>Subject:</strong> ${subject}</p>
+        <br>
+        <p>Dear ${userName},</p>
+        <p>Thanks for signing up to Bijou Jewelry!</p>
+        <br>
+        <p>From now on, you'll get regular product updates and vouchers to get the most out of your purchase experience.</p>
+        <br>
+        <p>We are so glad to have you as a visitor to Bijou, do not forget to check your daily email to receive the latest of Bijou.</p>
+        <br>
+        <p>We're glad you're here!</p>
+        <p>Cheers,</p>
+        <p>Bijou Jewelry-Bringing the Finest Jewelry to Your Fingertips✨</p>
+    `;
+
+    try {
+        const encodedTo = encodeURIComponent(to);
+        const encodedSubject = encodeURIComponent(subject);
+        const encodedHtmlContent = encodeURIComponent(htmlContent);
+
+        const url = `http://localhost:3001/auth/mailer/${encodedTo}/${encodedSubject}/${encodedHtmlContent}`;
+
+        const response = await fetch(url, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            return { success: true, data: result };
+        } else {
+            const error = await response.json();
+            console.error('Failed to send email:', error);
+            return { success: false, error };
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        return { success: false, error };
+    }
+}

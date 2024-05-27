@@ -92,6 +92,29 @@ const initializeDropdowns = () => {
   });
 };
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const loveEngagementLink = document.getElementById('love-engagement-link');
+
+  loveEngagementLink.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent the default link behavior
+      console.log("add addEventListener")
+      fetchProductsWithWInPid();
+  });
+
+  function fetchProductsWithWInPid() {
+    console.log("fetchProductsWithWInPid...")
+      fetch('http://localhost:3001/Products/inPid/W')
+          .then(response => response.json())
+          .then(products => {
+            updateHTMLWithProducts(products);
+          })
+          .catch(error => {
+              console.error('Error fetching products:', error);
+          });
+  }
+
+});
+
 // -------END: Category - Kim Long ---------
 
 // Function to fetch data from the server and update HTML
@@ -385,16 +408,16 @@ async function addEventListenersToWishList(product) {
       });
   
       if (response.ok) {
-        showAlert('Product added to wishlist successfully');
+        // showAlert('Product added to wishlist successfully');
         console.log('Product added successfully:', product.Name);
         updateShoppingBagWishList();
       } else {
-        showAlert('Failed to add product to wishlist');
+        // showAlert('Failed to add product to wishlist');
         console.log('Failed to add product to wishlist:', product.Name);
       }
     } catch (error) {
       console.error('Error adding product to wishlist:', error);
-      showAlert('Error adding product to wishlist');
+    //   showAlert('Error adding product to wishlist');
     }
   }
 

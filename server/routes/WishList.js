@@ -51,80 +51,34 @@ router.get('/wishlist', async (req, res) => {
     }
   });
   
+// Route to delete a wishlist item
+router.delete("/wishlist-items/:pid", async (req, res) => {
+    try {
+        const { pid } = req.params;
 
+        // Check if the PID parameter is provided
+        if (!pid) {
+            return res.status(400).json({ message: "Missing required parameter: pid" });
+        }
 
-// // Route to add a cart item
-// router.post("/cart-items", async (req, res) => {
-//   try {
-//     const { username, Name, Price, Image, Quantity } = req.body;
+        // Find the wishlist item by PID in the database
+        const wishListItem = await WishList.findOne({ where: { PID: pid } });
 
-//     if (!username || !Name || !Price || !Image || !Quantity) {
-//       return res.status(400).json({ message: "Missing required parameters" });
-//     }
+        // Check if the wishlist item exists
+        if (!wishListItem) {
+            return res.status(404).json({ message: "Wishlist item not found" });
+        }
 
-//     const newCartItem = await Cart.create({
-//       username,
-//       Name,
-//       Price,
-//       Image,
-//       Quantity,
-//     });
+        // Delete the wishlist item from the database
+        await wishListItem.destroy();
 
-//     res.status(201).json({ cartItem: newCartItem });
-//   } catch (error) {
-//     console.error("Error adding item to cart:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
-
-// // Route to update a cart item's quantity
-// router.put("/cart-items/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { Quantity } = req.body;
-
-//     if (!id || !Quantity) {
-//       return res.status(400).json({ message: "Missing required parameters" });
-//     }
-
-//     const cartItem = await Cart.findByPk(id);
-
-//     if (!cartItem) {
-//       return res.status(404).json({ message: "Cart item not found" });
-//     }
-
-//     cartItem.Quantity = Quantity;
-//     await cartItem.save();
-
-//     res.status(200).json({ message: "Cart item updated successfully", cartItem });
-//   } catch (error) {
-//     console.error("Error updating cart item:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
-
-// // Route to delete a cart item
-// router.delete("/cart-items/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     if (!id) {
-//       return res.status(400).json({ message: "Missing required parameter: id" });
-//     }
-
-//     const cartItem = await Cart.findByPk(id);
-
-//     if (!cartItem) {
-//       return res.status(404).json({ message: "Cart item not found" });
-//     }
-
-//     await cartItem.destroy();
-
-//     res.status(200).json({ message: "Cart item deleted successfully" });
-//   } catch (error) {
-//     console.error("Error deleting cart item:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
+        // Respond with a success message
+        res.status(200).json({ message: "Wishlist item deleted successfully" });
+    } catch (error) {
+        // Handle errors
+        console.error("Error deleting wishlist item:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 module.exports = router;
