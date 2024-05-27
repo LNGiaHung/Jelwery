@@ -3,15 +3,16 @@ const router = express.Router();
 const { Appointments } = require("../models");
 
 // Route to create a new appointment using URL parameters
-router.post("/:FirstName/:LastName/:Mail/:BookedDate/:Interest", async (req, res) => {
+router.post("/:UserID/:FirstName/:LastName/:Mail/:BookedDate/:Interest", async (req, res) => {
     try {
-        const { FirstName, LastName, Mail, BookedDate, Interest } = req.params;
+        const {UserID, FirstName, LastName, Mail, BookedDate, Interest } = req.params;
         // console.log("FirstName: ",FirstName);
         // console.log("LastName: ",LastName);
         // console.log("Mail: ",Mail);
         // console.log("BookedDate: ",BookedDate);
         // console.log("Interest: ",Interest);
         const appointmentData = {
+            UserID,
             FirstName,
             LastName,
             Mail,

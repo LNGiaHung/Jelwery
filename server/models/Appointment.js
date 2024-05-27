@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Appointments = sequelize.define("Appointments", {
+        UserID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         FirstName: {
             type: DataTypes.STRING,
             allowNull: false
