@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
         User: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "Unknown"
         },
         FirstName: {
             type: DataTypes.STRING,
