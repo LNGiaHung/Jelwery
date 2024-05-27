@@ -93,6 +93,7 @@ const initializeDropdowns = () => {
 };
 
 // -------END: Category - Kim Long ---------
+
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
   return fetch('http://localhost:3001/Products')
@@ -106,8 +107,6 @@ function fetchProductsAndUpdateHTML() {
       // Update HTML with fetched data
       console.log('product fetch 1');
       updateHTMLWithProducts(data);
-        // Add event listeners to the new elements
-        addEventListenersToIcons();
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -150,6 +149,7 @@ function updateHTMLWithProducts(products) {
         navigateToProductDetailPage(product);
       });
 
+
       const iconsDiv = document.createElement('div');
       iconsDiv.classList.add('icons');
 
@@ -157,12 +157,20 @@ function updateHTMLWithProducts(products) {
       heartLink.setAttribute('href', '#');
       heartLink.setAttribute('id', 'wish-list');
       heartLink.classList.add('fa-solid', 'fa-heart');
-
+        // Dac
+        heartLink.addEventListener('click', () => {
+            addEventListenersToWishList(product);
+        });
+        // Dac
       const shoppingBagLink = document.createElement('a');
       shoppingBagLink.setAttribute('href', '#');
       shoppingBagLink.setAttribute('id', 'shopping-bag');
       shoppingBagLink.classList.add('fa-solid', 'fa-shopping-bag');
-
+      // Dac
+      shoppingBagLink.addEventListener('click', () => {
+        addEventListenersToIcons(product);
+      });
+      // Dac
       const contentDiv = document.createElement('div');
       contentDiv.classList.add('content');
 
@@ -239,62 +247,59 @@ function updateHTMLWithProducts(products) {
 //               showAlert('Product added to cart successfully');
 //               console.log('Product added successfully:', productName);
 // =======
+// -------------------_CART (DAC)----------------------------------------
     updateShoppingBagIcon();
-    function addEventListenersToIcons() {
-      const user1 = JSON.parse(sessionStorage.getItem('user'));
-      const userMail = user1.user.Mail;
-      console.log('user mail:', userMail);
-        const icons = document.querySelectorAll('.grid__col-3 .box .product1 .icons a');
-        icons.forEach(icon => {
-        icon.addEventListener('click', async (event) => {
-            if (event.target.id === 'shopping-bag') {
-            console.log('Shopping bag button clicked');
-            event.preventDefault();
-
-            const button = event.target;
-            const product = button.closest('.box');
-            const productImgElement = product.querySelector('.product1__img');
-            const productName = product.querySelector('.content h3').innerText;
-            // Select only the first price
-            const priceElement = product.querySelector('.price');
-            const priceText = priceElement.firstChild.textContent.trim();
-            const productPrice = priceText.split(' ')[0];
+    // Function to add event listeners and handle adding product to cart
+    async function addEventListenersToIcons(product) {
+        const user1 = JSON.parse(sessionStorage.getItem('user'));
+        if (!user1 || !user1.user || !user1.user.Mail) {
+          console.error('User data not found');
+          showAlert('User not logged in');
+          return;
+        }
+      
+        const userMail = user1.user.Mail;
+        console.log('User mail:', userMail);
+      
+        const url = new URL('http://localhost:3001/cart');
+        url.searchParams.append('username', userMail);
+        url.searchParams.append('PID', product.PID);
+        url.searchParams.append('Name', product.Name);
+        url.searchParams.append('Price', product.Price);
+        url.searchParams.append('Material', product.Material);
+        url.searchParams.append('Weight', product.Weight);
+        url.searchParams.append('Size', product.Size);
+        url.searchParams.append('Image', product.Image);
+        url.searchParams.append('Quantity', '1');
+      
+        try {
+          const response = await fetch(url.toString(), {
+            method: 'GET',
+          });
+      
+          if (response.ok) {
+            showAlert('Product added to cart successfully');
+            console.log('Product added successfully:', product.Name);
+            updateShoppingBagIcon();
+          } else {
+            showAlert('Failed to add product to cart');
+            console.log('Failed to add product to cart:', product.Name);
+          }
+        } catch (error) {
+          console.error('Error adding product to cart:', error);
+          showAlert('Error adding product to cart');
+        }
+      }
+      
+      // Dummy functions to mimic actual functionality
+      function showAlert(message) {
+        console.log('Alert:', message);
+      }
+      
+      function updateShoppingBagIcon() {
+        console.log('Updating shopping bag icon');
+      }
     
-            console.log('Adding product to cart:', productName, 'with price', productPrice);
-    
-            const backgroundImage = getComputedStyle(productImgElement).backgroundImage;
-            const productImg = backgroundImage.slice(5, -2);
-    
-            console.log('Product image URL:', productImg);
-    
-            const url = new URL('http://localhost:3001/cart');
-            url.searchParams.append('username', userMail);
-            url.searchParams.append('Name', productName);
-            url.searchParams.append('Price', productPrice);
-            url.searchParams.append('Image', productImg);
-            url.searchParams.append('Quantity', '1');
-    
-            try {
-                const response = await fetch(url.toString(), {
-                method: 'GET',
-                });
-    
-                if (response.ok) {
-                showAlert('Product added to cart successfully');
-                console.log('Product added successfully:', productName);
-                updateShoppingBagIcon();
-                } else {
-                showAlert('Failed to add product to cart');
-                console.log('Failed to add product to cart:', productName);
-                }
-            } catch (error) {
-                console.error('Error adding product to cart:', error);
-                showAlert('Error adding product to cart');
-            }
-            }
-        });
-        });
-    }
   
     async function updateShoppingBagIcon() {
       const user1 = JSON.parse(sessionStorage.getItem('user'));
@@ -347,8 +352,106 @@ function updateHTMLWithProducts(products) {
   document.addEventListener('DOMContentLoaded', ()=>{
     fetchProductsAndUpdateHTML();
   });
+// -----------------------_CART DAC ------------------------
 
-  // -------- End DAC-------
+// -----------------------_WISHLIST DAC------------------------
+updateShoppingBagWishList();
+// Function to add event listeners and handle adding product to wishlist
+async function addEventListenersToWishList(product) {
+    const user1 = JSON.parse(sessionStorage.getItem('user'));
+    if (!user1 || !user1.user || !user1.user.Mail) {
+      console.error('User data not found');
+      showAlert('User not logged in');
+      return;
+    }
+  
+    const userMail = user1.user.Mail;
+    console.log('User mail:', userMail);
+  
+    const url = new URL('http://localhost:3001/wishlist');
+    url.searchParams.append('username', userMail);
+    url.searchParams.append('PID', product.PID);
+    url.searchParams.append('Name', product.Name);
+    url.searchParams.append('Price', product.Price);
+    url.searchParams.append('Material', product.Material);
+    url.searchParams.append('Weight', product.Weight);
+    url.searchParams.append('Size', product.Size);
+    url.searchParams.append('Image', product.Image);
+    url.searchParams.append('Quantity', '1');
+  
+    try {
+      const response = await fetch(url.toString(), {
+        method: 'GET',
+      });
+  
+      if (response.ok) {
+        // showAlert('Product added to wishlist successfully');
+        console.log('Product added successfully:', product.Name);
+        updateShoppingBagWishList();
+      } else {
+        // showAlert('Failed to add product to wishlist');
+        console.log('Failed to add product to wishlist:', product.Name);
+      }
+    } catch (error) {
+      console.error('Error adding product to wishlist:', error);
+    //   showAlert('Error adding product to wishlist');
+    }
+  }
+
+
+async function updateShoppingBagWishList() {
+  const user1 = JSON.parse(sessionStorage.getItem('user'));
+  const userMail = user1.user.Mail;
+  console.log('user mail:', userMail);
+    try {
+        const response = await fetch('http://localhost:3001/wishlist-items');
+        const data = await response.json();
+        
+        // Debugging step to inspect data structure
+        console.log('Fetched data:', data);
+
+        // Access the WishListItems array within the fetched data
+        const items = data.WishListItems;
+
+        if (Array.isArray(items)) {
+            // Filter the items based on the allowed username
+            const userItems = items.filter(item => item.username === userMail);
+
+            // Calculate the total quantity of the filtered items
+            let totalQuantity = 0;
+            for (const item of userItems) {
+                totalQuantity += item.Quantity;
+            }
+
+            // Debugging step to check total quantity
+            console.log('Total quantity for user:', totalQuantity);
+
+            // Update the shopping bag icon with the total quantity
+            const headerShoppingBag = document.querySelector('.quanityheart');
+            if (headerShoppingBag) {
+                headerShoppingBag.textContent = totalQuantity;
+            }
+        } else {
+          showAlert('Failed to add product to wishlist');
+          console.log('Failed to add product to wishlist:', productName);
+        }
+      } catch (error) {
+        console.error('Error adding product to wishlist:', error);
+        showAlert('Error adding product to wishlist');
+      }
+}
+
+// Function to display alert message
+function showAlert(message) {
+alert(message);
+}
+
+// Call the fetchProductsAndUpdateHTML function when the DOM is loaded
+document.addEventListener('DOMContentLoaded', ()=>{
+fetchProductsAndUpdateHTML();
+});
+// --------------------------_WISHLIST DAC -------------------------
+// -------- End DAC----------------------------_END---------------------------
 
 // Function to navigate to product detail page
 function navigateToProductDetailPage(product) {
