@@ -1,17 +1,138 @@
-// wrapping caret
-const checkboxLabel = document.querySelector('.custom-checkbox-label');
-const caret = document.createElement('span');
-caret.classList.add('caret');
-const message = checkboxLabel.nextElementSibling;
-
-checkboxLabel.addEventListener('click', () => {
-  message.style.display = message.style.display === 'block' ? 'none' : 'block';
-  if (message.style.display === 'block') {
-    checkboxLabel.insertBefore(caret,checkboxLabel.firstChild);
-  } else {
-    caret.remove();
-  }
+// ------DAC -----
+document.addEventListener('DOMContentLoaded', function() {
+    fetchCartItemsFromDatabase();
 });
+
+const user1 = JSON.parse(sessionStorage.getItem('user'));
+const allowedUsername = user1.user.Mail;
+
+async function fetchCartItemsFromDatabase() {
+    try {
+        const response = await fetch('http://localhost:3001/cart-items');
+        if (!response.ok) {
+            throw new Error('Failed to fetch cart items');
+        }
+
+        const data = await response.json();
+        const cartItems = data.cartItems;
+        cartItems.forEach(item => {
+            if (item.username === allowedUsername) {
+                addCart(item);
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching cart items:', error);
+    }
+}
+
+function addCart(item) {
+    const { PID, Price, Image, Name, Weight, Material, Size, Quantity } = item;
+    const subtotal = Price * Quantity;
+    const cartBody = document.querySelector(".cart__checkout");
+
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart__checkoutBody");
+
+    cartItem.innerHTML = `
+    <div class="cart__Body-item">
+        <div class="cart__Body-item__info">
+            <div class="cart__Body-item__image">
+                <img src="${Image}" alt="${Name}">
+            </div>
+            <div class="product-info">
+                <div class="product-info__pricename">
+                    <span class="product__atrribute-name">${Name}</span>
+                    <span class="product__atrribute-price">VND${Price.toLocaleString()}</span>
+                </div>
+                <span class="product__atrribute-ID">${PID}</span>
+                <span class="product__atrribute-weight">Weight: ${Weight}</span>
+                <span class="product__atrribute-material">Material: ${Material}</span>
+                <span class="product__atrribute-size">Size: ${Size}</span>
+
+                <div class="cart__function">
+                    <div class="cart__Body-item__btn">
+                        <button class="cart__Body-item__btn addup">
+                            <a href="../sale_page/index.html">Add Another Item</a>
+                        </button>
+                        <button class="cart__Body-item__btn wishlist">Add To Wishlist</button>
+                        <button class="cart__Body-item__btn message">Add Gift Message</button>
+                    </div>
+
+                    <div class="cart__select">
+                        <label class="label-cart" for="Wrapping-${PID}">
+                            <input type="checkbox" id="Wrapping-${PID}">
+                            <span class="custom-checkbox-label">Add Gift Wrapping</span>
+                            <div class="custom-message">A complementary Bijou shopping bag is included with every item. Boutique pickup orders will not be gift-wrapped so you can verify your order; however, you may request it from the boutique team upon arrival.</div>
+                        </label>
+                    </div>
+
+                    <div class="message-box">
+                        <textarea class="message-box-input"></textarea>
+                        <div class="message-box__btn">
+                            <button class="message-box-confirm">Confirm</button>
+                            <button class="message-box-cancel">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="cart__checkout-total">SUBTOTAL: VND${subtotal.toLocaleString()}
+            <p>Shipping and taxes calculated at checkout.</p>
+        </div>
+    `;
+     // Wrapping caret
+     const checkboxLabel = cartItem.querySelector('.custom-checkbox-label');
+     const caret = document.createElement('span');
+     caret.classList.add('caret');
+     const message = checkboxLabel.nextElementSibling;
+ 
+     checkboxLabel.addEventListener('click', () => {
+         message.style.display = message.style.display === 'block' ? 'none' : 'block';
+         if (message.style.display === 'block') {
+             checkboxLabel.insertBefore(caret,checkboxLabel.firstChild);
+         } else {
+             caret.remove();
+         }
+     });
+ 
+     cartBody.appendChild(cartItem);
+
+    cartBody.appendChild(cartItem);
+    // cartTotal();
+}
+
+function cartTotal() {
+    const cartItems = document.querySelectorAll(".cart__Body-item__info");
+    let total = 0;
+
+    cartItems.forEach(cartItem => {
+        const priceElement = cartItem.querySelector(".product__atrribute-price");
+        const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, ""));
+        total += price;
+    });
+
+    const totalSubtotalElement = document.querySelector(".cart__checkout-total");
+    totalSubtotalElement.textContent = "SUBTOTAL: VND" + total.toLocaleString();
+}
+
+// ------DAC -----
+
+// wrapping caret
+// const checkboxLabel = document.querySelector('.custom-checkbox-label');
+// const caret = document.createElement('span');
+// caret.classList.add('caret');
+// const message = checkboxLabel.nextElementSibling;
+
+// checkboxLabel.addEventListener('click', () => {
+//   message.style.display = message.style.display === 'block' ? 'none' : 'block';
+//   if (message.style.display === 'block') {
+//     checkboxLabel.insertBefore(caret,checkboxLabel.firstChild);
+//   } else {
+//     caret.remove();
+//   }
+// });
 
 // fit position cho cai content box
 const adjustMessagePosition = () => {
