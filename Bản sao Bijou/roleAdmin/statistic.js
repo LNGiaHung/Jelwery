@@ -1,35 +1,168 @@
-// Sidebar toggle
+// Fetch all invoices
+function fetchInvoice() {
+  return fetch('http://localhost:3001/Invoice')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Update HTML with fetched data
+      console.log('product fetch 1');
+      updateHTMLWithInvoice(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+// Fetch invoices with status 'Done'
+function fetchDoneInvoice() {
+  return fetch('http://localhost:3001/Invoice/status/done')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      updateDoneInvoiceData(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+function CountInvoice() {
+  return fetch('http://localhost:3001/Invoice/all')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      updateAllInvoiceData(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+function CountProducts() {
+  return fetch('http://localhost:3001/Products/all')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      updateAllProductData(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+function fetchSoldProducts() {
+  return fetch('http://localhost:3001/Products/status/available')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      updateSoldProductData(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+function fetchInvoiceByMonthForAreaChart(year) {
+  return fetch(`http://localhost:3001/Invoice/Year/${year}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      UpdateAreaChart(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+// Update HTML with the number of 'Done' invoices
+function updateDoneInvoiceData(DoneInvoiceData) {
+  document.querySelector('.sale-order').innerText = DoneInvoiceData.total;
+  console.log(DoneInvoiceData.total);
+}
+
+function updateSoldProductData(DoneInvoiceData) {
+  document.querySelector('.available-product').innerText = DoneInvoiceData.total;
+  console.log(DoneInvoiceData.total);
+}
+
+function updateAllInvoiceData(DoneInvoiceData) {
+  document.querySelector('.purchase-order').innerText = DoneInvoiceData.total;
+  console.log(DoneInvoiceData.total);
+}
+
+function updateAllProductData(DoneInvoiceData) {
+  document.querySelector('.product-qty').innerText = DoneInvoiceData.total;
+  console.log(DoneInvoiceData.total);
+}
+
+// Fetch data when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('hello');
+  fetchDoneInvoice();
+  CountInvoice()
+  CountProducts()
+  fetchSoldProducts(); 
+  fetchInvoiceByMonthForAreaChart(2024);
+});
 
 var sidebarOpen = false;
 var sidebar = document.getElementById("sidebar");
 
 function openSidebar() {
-    if (!sidebarOpen) {
-        sidebar.classList.add("sidebar-responsive");
-        sidebarOpen = true;
-    }
+  if (!sidebarOpen) {
+    sidebar.classList.add("sidebar-responsive");
+    sidebarOpen = true;
+  }
 }
 
 function closeSidebar() {
-    if (sidebarOpen) {
-        sidebar.classList.remove("sidebar-responsive");
-        sidebarOpen = false;
-    }
+  if (sidebarOpen) {
+    sidebar.classList.remove("sidebar-responsive");
+    sidebarOpen = false;
+  }
 }
 
 // ----------CHARTS-----------
 
 // Bar chart
-
 var barChartOptions = {
-    series: [{
+  series: [{
     data: [10, 8, 6, 4, 8]
   }],
-    chart: {
+  chart: {
     type: 'bar',
     height: 350,
     toolbar: {
-        show: false
+      show: false
     },
   },
   colors: [
@@ -41,92 +174,84 @@ var barChartOptions = {
   ],
   plotOptions: {
     bar: {
-        distribute: true,
-        borderRadius: 4,
-        // borderRadiusApplication: 'end',
-        horizontal: false,
-        columnWidth: '40%',
+      distribute: true,
+      borderRadius: 4,
+      horizontal: false,
+      columnWidth: '40%',
     }
   },
   dataLabels: {
     enabled: false
   },
-  legend : {
+  legend: {
     show: false
   },
   xaxis: {
-    categories: ['Rings', 'Bracelets', 'Necklaces', 'Earrings', 'Wedding jewelry'
-    ],
+    categories: ['Rings', 'Bracelets', 'Necklaces', 'Earrings', 'Wedding jewelry'],
   },
   yaxis: {
     title: {
-        text: "Quantity"
+      text: "Quantity"
     }
   }
-  };
+};
 
-  var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
-  barChart.render();
+var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+barChart.render();
 
-// area chart
-var areaChartOptions = {
-    series: [{
-    name: 'Purchase Orders',
-    // type: 'area',
-    data: [31, 40, 28, 51, 42, 109, 100]
-  }, {
-    name: 'Sales Orders',
-    // type: 'line',
-    data: [11, 32, 45, 32, 34, 52, 41]
-  }],
+function UpdateAreaChart(invoiceData) {
+  const months = invoiceData.map((entry) => entry.month);
+  const doneCounts = invoiceData.map((entry) => entry.doneCount);
+  const All = invoiceData.map((entry) => entry.All);
+
+  const areaChartOptions = {
+    series: [
+      {
+        name: 'Sale Orders (Done)',
+        data: doneCounts,
+      },
+      {
+        name: 'Purchase Orders (All)',
+        data: All,
+      },
+    ],
     chart: {
-    height: 350,
-    type: 'area',
-    toolbar: {
-        show: false
-    },
-  },
-  colors: ["#4f35a1", "#246dec"],
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: 'smooth'
-  },
-//   fill: {
-//     type:'solid',
-//     opacity: [0.35, 1],
-//   },
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-  markers: {
-    size: 0
-  },
-  yaxis: [
-    {
-      title: {
-        text: 'Purchase Orders',
+      height: 350,
+      type: 'area',
+      toolbar: {
+        show: false,
       },
     },
-    {
-      opposite: true,
-      title: {
-        text: 'Sales Orders',
-      },
+    colors: ["#4f35a1", "#246dec"],
+    dataLabels: {
+      enabled: false,
     },
-  ],
-  tooltip: {
-    shared: true,
-    intersect: false,
-    // y: {
-    //   formatter: function (y) {
-    //     if(typeof y !== "undefined") {
-    //       return  y.toFixed(0) + " points";
-    //     }
-    //     return y;
-    //   }
-    // }
-  }
+    stroke: {
+      curve: 'smooth',
+    },
+    labels: months,
+    markers: {
+      size: 0,
+    },
+    yaxis: [
+      {
+        title: {
+          text: 'Sale Orders (Done)',
+        },
+      },
+      {
+        opposite: true,
+        title: {
+          text: 'Purchase Orders (All)',
+        },
+      },
+    ],
+    tooltip: {
+      shared: true,
+      intersect: false,
+    },
   };
 
-  var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
+  const areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
   areaChart.render();
+}
