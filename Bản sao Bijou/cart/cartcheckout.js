@@ -1,4 +1,5 @@
 // ------DAC -----
+let total = 0;
 updateShoppingBagIcon();
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemsFromDatabase();
@@ -16,9 +17,11 @@ async function fetchCartItemsFromDatabase() {
 
         const data = await response.json();
         const cartItems = data.cartItems;
+        
         cartItems.forEach(item => {
             if (item.username === allowedUsername) {
                 addCart(item);
+                calculateTotal(item);
             }
         });
     } catch (error) {
@@ -28,7 +31,6 @@ async function fetchCartItemsFromDatabase() {
 
 function addCart(item) {
     const { PID, Price, Image, Name, Weight, Material, Size, Quantity } = item;
-    const subtotal = Price * Quantity;
     const cartBody = document.querySelector(".cart__checkout");
 
     const cartItem = document.createElement("div");
@@ -79,8 +81,6 @@ function addCart(item) {
             </div>
         </div>
     </div>
-        <div class="cart__checkout-total">SUBTOTAL: VND${subtotal.toLocaleString()}
-            <p>Shipping and taxes calculated at checkout.</p>
         </div>
     `;
      // Wrapping caret
@@ -97,26 +97,23 @@ function addCart(item) {
              caret.remove();
          }
      });
- 
      cartBody.appendChild(cartItem);
-
-    cartBody.appendChild(cartItem);
-    // cartTotal();
 }
 
-function cartTotal() {
-    const cartItems = document.querySelectorAll(".cart__Body-item__info");
-    let total = 0;
+function calculateTotal(item) {
+    const { PID, Price, Image, Name, Weight, Material, Size, Quantity } = item;
+    // Tính tổng giá trị của sản phẩm hiện tại bằng cách nhân giá với số lượng
+    const subtotal = Price * Quantity;
 
-    cartItems.forEach(cartItem => {
-        const priceElement = cartItem.querySelector(".product__atrribute-price");
-        const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g, ""));
-        total += price;
-    });
+    // Cộng tổng giá trị của sản phẩm hiện tại vào tổng tổng thể
+    total += subtotal;
 
+    // Hiển thị tổng giá trị vào phần tổng cộng của giỏ hàng
     const totalSubtotalElement = document.querySelector(".cart__checkout-total");
     totalSubtotalElement.textContent = "SUBTOTAL: VND" + total.toLocaleString();
 }
+
+
 
 // ------DAC -----
 

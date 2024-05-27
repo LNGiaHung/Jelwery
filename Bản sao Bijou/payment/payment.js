@@ -1,5 +1,6 @@
 let totalAmount = 0;
-let productsForMomo = [];
+let productsForMomo = ""; // Thay đổi thành chuỗi rỗng ban đầu
+let productCounter = 1; // Bộ đếm để đánh số thứ tự sản phẩm
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemsFromDatabase();
 });
@@ -64,7 +65,9 @@ function addCart(item) {
             </div>
         </div>
     `;
-
+     // Thêm thông tin sản phẩm vào chuỗi productsForMomo
+    productsForMomo += `Product ${productCounter}: ${Name} - Quantity: ${Quantity}; `;
+    productCounter++; // Tăng bộ đếm sản phẩm
     cartBody.appendChild(cartItem);
 
     cartTotal();
@@ -159,7 +162,7 @@ document.querySelector('.paymentne-checkoutbtn').addEventListener('click', async
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                 body: JSON.stringify({ amount, products: productsForMomo }) // Truyền thông tin về sản phẩm cho thanh toán Momo
+                 body: JSON.stringify({ amount, orderInfo: productsForMomo }) // Truyền thông tin về sản phẩm cho thanh toán Momo
             });
 
             const data = await response.json();
