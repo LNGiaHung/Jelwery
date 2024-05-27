@@ -149,21 +149,30 @@ document.addEventListener('DOMContentLoaded', () => {
                   showAlert('Error adding product to wishlist');
                 }
           }
+
        
 
-        // //Update option buttons
-        // const optionButtons = document.querySelectorAll('.option-btn');
-        // for (let i = 1; i <= 4; i++) {
-        //     document.querySelector(`.option-${i}`).style
-        // }
+        // Update option buttons
+        const optionButtons = document.querySelectorAll('.option-btn');
+        const images = [
+            `${storedProduct.Image}`,
+            `${storedProduct.Image1}`,
+            `${storedProduct.Image2}`,
+            `${storedProduct.Image3}`
+        ];
 
+        optionButtons.forEach((button, index) => {
+            button.style.backgroundImage = `url('${images[index]}')`;
+            button.dataset.image = `${images[index]}`;
+        });
 
-        // // Add event listeners to option buttons to change the main product image
-        // optionButtons.forEach((button) => {
-        //     button.addEventListener('click', () => {
-        //         mainImg.src = button.dataset.image;
-        //     });
-        // });
+        // Add event listeners to option buttons to change the main product image
+        optionButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                mainImg.src = button.dataset.image;
+            });
+        });
+
 
         // Add event listener to "Buy Now" button
         const buyNowButton = document.querySelector('.buy a');
