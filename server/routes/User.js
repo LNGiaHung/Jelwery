@@ -51,6 +51,21 @@ const sendMail = async (to, subject, htmlContent) => {
   }
 };
 
+router.post("/mailer/:to/:subject/:htmlContent", async (req, res) => {
+  const { to, subject, htmlContent } = req.params;
+
+  if (!to || !subject || !htmlContent) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  try {
+    const info = await sendMail(to, subject, htmlContent);
+    res.status(200).json({ message: 'Email sent successfully', info });
+  } catch (error) {
+    res.status(500).json({ message: 'Error sending email', error });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const { FirstName, LastName, Mail, DOB, Password, Gender, RelationshipStatus } = req.body;

@@ -89,10 +89,11 @@
 
 /*form*/
 
-.appointment__headerText{
-   color: #009384;
-   text-align: center;
-   font-weight: 500;
+.appointment__headerText {
+    margin-left: -40px;
+    color: #009384;
+    text-align: center;
+    font-weight: 500;
 }
 
 .appointment-form {
@@ -105,7 +106,7 @@
 
 .appointment__item-content {
     width: 50%;
-    padding-left: 170px;
+    /* padding-left: 170px; */
 }
 
 .appointment__item{

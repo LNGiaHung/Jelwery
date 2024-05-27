@@ -24,6 +24,9 @@ const PaymentRouter = require('./routes/Payment');
 app.use(PaymentRouter);
 // const Appointment = require('./routes/Appointment');
 // app.use("/Appointment", Appointment);
+const appointmentRoutes = require('./routes/Appointment');
+app.use("/Appointment", appointmentRoutes);
+
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});
