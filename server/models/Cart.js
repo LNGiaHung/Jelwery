@@ -1,7 +1,10 @@
-// models/Cart.js
 module.exports = (sequelize, DataTypes) => {
     const Cart = sequelize.define("Cart", {
       username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      PID: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -17,13 +20,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      Weight: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      Material: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      Size: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       Quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
     },{
         timestamps: false
-    })
+    });
     return Cart;
   };
   

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "giahung1232003",
+    "password": "admin@1234",
     "database": "jewelry",
     "host": "localhost",
     "dialect": "mysql"

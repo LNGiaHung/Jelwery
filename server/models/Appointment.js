@@ -1,9 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Appointments = sequelize.define("Appointments", {
+<<<<<<< HEAD
         User: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+=======
+>>>>>>> 2cdeff876bf9b9ddd422f93bfb86075073870b36
         FirstName: {
             type: DataTypes.STRING,
             allowNull: false
