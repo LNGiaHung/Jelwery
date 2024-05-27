@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function createAppointment(appointmentData) {
     try {
-        const url = `http://localhost:3001/Appointment/${appointmentData.FirstName}/${appointmentData.LastName}/${appointmentData.Mail}/${appointmentData.BookedDate}/${appointmentData.Interest}`;
+        const url = `http://localhost:3001/Appointment/${appointmentData.UserID}/${appointmentData.FirstName}/${appointmentData.LastName}/${appointmentData.Mail}/${appointmentData.BookedDate}/${appointmentData.Interest}`;
         const response = await fetch(url, { method: 'POST' });
 
         if (response.ok) {
@@ -162,6 +162,7 @@ function getFormData(form, user) {
     const bookedDate = `${dobYear}-${dobMonth.padStart(2, '0')}-${dobDay.padStart(2, '0')}T${dobTime}:00.000Z`;
 
     return {
+        UserID: user ? user.id : 0,
         FirstName: user ? user.FirstName : formDataObj.FirstName,
         LastName: user ? user.LastName : formDataObj.LastName,
         Mail: user ? user.Mail : formDataObj.Mail,
