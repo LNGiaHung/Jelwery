@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     console.log('totalQuantity:', totalQuantity); // Debugging step to check total quantity
 
-                    const shoppingBagIcon = document.querySelector('.header__navbar-item .quanity');
+                    const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
                     if (shoppingBagIcon) {
                         shoppingBagIcon.textContent = totalQuantity;
                     }
@@ -65,20 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const addToCartButton = document.querySelector('.add');
         if (addToCartButton) {
             if(sessionStorage.getItem('user')!==null){
-                const user1 = JSON.parse(sessionStorage.getItem('user'));
-                const userMail = user1.user.Mail;
                 updateShoppingBagIcon();
                 console.log("Add to Cart button found");
                 addToCartButton.addEventListener('click', async () => {
                     console.log("Add to Cart button clicked");
                     const url = new URL('http://localhost:3001/cart');
                     url.searchParams.append('username', userMail);
-                    url.searchParams.append('PID', storedProduct.PID);
                     url.searchParams.append('Name', storedProduct.Name);
                     url.searchParams.append('Price', storedProduct.Price);
-                    url.searchParams.append('Material', storedProduct.Material);
-                    url.searchParams.append('Weight', storedProduct.Weight);
-                    url.searchParams.append('Size', storedProduct.Size);
                     url.searchParams.append('Image', storedProduct.Image);
                     url.searchParams.append('Quantity', '1');
 
@@ -106,64 +100,30 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error("Add to Cart button not found");
         }
-        updateShoppingBagWishList();
-        // UPDATE WISLIST ICON 
-        async function updateShoppingBagWishList() {
-            const user1 = JSON.parse(sessionStorage.getItem('user'));
-            const userMail = user1.user.Mail;
-            console.log('user mail:', userMail);
-              try {
-                  const response = await fetch('http://localhost:3001/wishlist-items');
-                  const data = await response.json();
-                  
-                  // Debugging step to inspect data structure
-                  console.log('Fetched data:', data);
-          
-                  // Access the WishListItems array within the fetched data
-                  const items = data.WishListItems;
-          
-                  if (Array.isArray(items)) {
-                      // Filter the items based on the allowed username
-                      const userItems = items.filter(item => item.username === userMail);
-          
-                      // Calculate the total quantity of the filtered items
-                      let totalQuantity = 0;
-                      for (const item of userItems) {
-                          totalQuantity += item.Quantity;
-                      }
-          
-                      // Debugging step to check total quantity
-                      console.log('Total quantity for user:', totalQuantity);
-          
-                      // Update the shopping bag icon with the total quantity
-                      const headerShoppingBag = document.querySelector('.quanityheart');
-                      if (headerShoppingBag) {
-                          headerShoppingBag.textContent = totalQuantity;
-                      }
-                  } else {
-                    showAlert('Failed to add product to wishlist');
-                    console.log('Failed to add product to wishlist:', productName);
-                  }
-                } catch (error) {
-                  console.error('Error adding product to wishlist:', error);
-                  showAlert('Error adding product to wishlist');
-                }
-          }
+
        
 
-        // //Update option buttons
-        // const optionButtons = document.querySelectorAll('.option-btn');
-        // for (let i = 1; i <= 4; i++) {
-        //     document.querySelector(`.option-${i}`).style
-        // }
+        // Update option buttons
+        const optionButtons = document.querySelectorAll('.option-btn');
+        const images = [
+            `${storedProduct.Image}`,
+            `${storedProduct.Image1}`,
+            `${storedProduct.Image2}`,
+            `${storedProduct.Image3}`
+        ];
 
+        optionButtons.forEach((button, index) => {
+            button.style.backgroundImage = `url('${images[index]}')`;
+            button.dataset.image = `${images[index]}`;
+        });
 
-        // // Add event listeners to option buttons to change the main product image
-        // optionButtons.forEach((button) => {
-        //     button.addEventListener('click', () => {
-        //         mainImg.src = button.dataset.image;
-        //     });
-        // });
+        // Add event listeners to option buttons to change the main product image
+        optionButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                mainImg.src = button.dataset.image;
+            });
+        });
+
 
         // Add event listener to "Buy Now" button
         const buyNowButton = document.querySelector('.buy a');
