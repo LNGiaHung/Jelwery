@@ -103,28 +103,34 @@ router.get('/cart', async (req, res) => {
 //   }
 // });
 
-// // Route to delete a cart item
-// router.delete("/cart-items/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
+// Route to delete a cart item
+router.delete("/cart-items/:pid", async (req, res) => {
+    try {
+        const { pid } = req.params;
 
-//     if (!id) {
-//       return res.status(400).json({ message: "Missing required parameter: id" });
-//     }
+        // Check if the PID parameter is provided
+        if (!pid) {
+            return res.status(400).json({ message: "Missing required parameter: pid" });
+        }
 
-//     const cartItem = await Cart.findByPk(id);
+        // Find the cart item by PID in the database
+        const cartItem = await Cart.findOne({ where: { PID: pid } });
 
-//     if (!cartItem) {
-//       return res.status(404).json({ message: "Cart item not found" });
-//     }
+        // Check if the cart item exists
+        if (!cartItem) {
+            return res.status(404).json({ message: "Cart item not found" });
+        }
 
-//     await cartItem.destroy();
+        // Delete the cart item from the database
+        await cartItem.destroy();
 
-//     res.status(200).json({ message: "Cart item deleted successfully" });
-//   } catch (error) {
-//     console.error("Error deleting cart item:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
+        // Respond with a success message
+        res.status(200).json({ message: "Cart item deleted successfully" });
+    } catch (error) {
+        // Handle errors
+        console.error("Error deleting cart item:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 module.exports = router;
