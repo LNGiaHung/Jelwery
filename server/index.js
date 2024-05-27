@@ -20,18 +20,11 @@ const ProductRouter = require('./routes/Products');
 app.use("/Products", ProductRouter);
 const cartRoutes = require('./routes/Cart');
 app.use(cartRoutes);
-<<<<<<< HEAD
-const Appointment = require('./routes/Appointment');
-app.use("/Appointment", Appointment);
-=======
 const PaymentRouter = require('./routes/Payment');
 app.use(PaymentRouter);
-// const Appointment = require('./routes/Appointment');
-// app.use("/Appointment", Appointment);
+
 const appointmentRoutes = require('./routes/Appointment');
 app.use("/Appointment", appointmentRoutes);
-
->>>>>>> 2cdeff876bf9b9ddd422f93bfb86075073870b36
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});
