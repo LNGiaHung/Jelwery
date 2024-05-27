@@ -385,16 +385,16 @@ async function addEventListenersToWishList(product) {
       });
   
       if (response.ok) {
-        showAlert('Product added to wishlist successfully');
+        // showAlert('Product added to wishlist successfully');
         console.log('Product added successfully:', product.Name);
         updateShoppingBagWishList();
       } else {
-        showAlert('Failed to add product to wishlist');
+        // showAlert('Failed to add product to wishlist');
         console.log('Failed to add product to wishlist:', product.Name);
       }
     } catch (error) {
       console.error('Error adding product to wishlist:', error);
-      showAlert('Error adding product to wishlist');
+    //   showAlert('Error adding product to wishlist');
     }
   }
 
