@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
 // });
 
 
-router.get("/:pid", async (req, res) => {
+router.get("/pid/:pid", async (req, res) => {
   try {
     const productId = req.params.pid;
     console.log('Received PID:', productId); // Logging the received PID
@@ -93,6 +93,7 @@ router.get("/:pid", async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 // khi lay gtri tu li cua html -> chuyen doi gtri thanh cac gia tri co the qeury dc
 const getCategory = (Type) => {
