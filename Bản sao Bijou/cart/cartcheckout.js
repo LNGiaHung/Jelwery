@@ -1,5 +1,6 @@
 // ------DAC -----
 let total = 0;
+// Khai báo biến toàn cục để lưu trữ cartItems
 updateShoppingBagIcon();
 document.addEventListener('DOMContentLoaded', function() {
     fetchCartItemsFromDatabase();
@@ -21,7 +22,6 @@ async function fetchCartItemsFromDatabase() {
         cartItems.forEach(item => {
             if (item.username === allowedUsername) {
                 addCart(item);
-                calculateTotal(item);
             }
         });
     } catch (error) {
@@ -51,6 +51,9 @@ function addCart(item) {
                 <span class="product__atrribute-weight">Weight: ${Weight}</span>
                 <span class="product__atrribute-material">Material: ${Material}</span>
                 <span class="product__atrribute-size">Size: ${Size}</span>
+                <span class="product__atrribute-size">Quantity:
+                    <span class="product__atrribute-size__quantity">${Quantity}</span>
+                </span>
 
                 <div class="cart__function">
                     <div class="cart__Body-item__btn">
@@ -78,11 +81,15 @@ function addCart(item) {
                     </div>
                     <div class="overlay"></div>
                 </div>
+                </div>
+                    <i class="delete-cart fa-solid fa-xmark"></i>
+                </div>
             </div>
         </div>
     </div>
         </div>
     `;
+    
      // Wrapping caret
      const checkboxLabel = cartItem.querySelector('.custom-checkbox-label');
      const caret = document.createElement('span');
@@ -97,22 +104,108 @@ function addCart(item) {
              caret.remove();
          }
      });
-     cartBody.appendChild(cartItem);
+     // Add event listener to delete button
+     const deleteButton = cartItem.querySelector('.delete-cart');
+     if (deleteButton) {
+         deleteButton.addEventListener('click', (event) => {
+             console.log('Deleting PID:', PID);
+             if (PID) {
+                 cartItem.remove();
+                 deleteCartItemFromDatabase(PID);
+                 calculateTotal();
+             } else {
+                 console.error('Failed to get product ID for deletion');
+             }
+         });
+     } else {
+         console.error('Delete button not found in cart item');
+     }
+     
+    cartBody.appendChild(cartItem);
+    calculateTotal();
 }
 
-function calculateTotal(item) {
-    const { PID, Price, Image, Name, Weight, Material, Size, Quantity } = item;
-    // Tính tổng giá trị của sản phẩm hiện tại bằng cách nhân giá với số lượng
-    const subtotal = Price * Quantity;
+async function deleteCartItemFromDatabase(pid) {
+    try {
+        const response = await fetch(`http://localhost:3001/cart-items/${pid}`, {
+            method: 'DELETE'
+        });
 
-    // Cộng tổng giá trị của sản phẩm hiện tại vào tổng tổng thể
-    total += subtotal;
+        if (!response.ok) {
+            throw new Error('Failed to delete cart item');
+        }
+
+        console.log('Cart item deleted successfully');
+        
+        // Loại bỏ phần tử khỏi giao diện
+        const cartItem = document.querySelector(`.cart__checkoutBody[data-pid="${pid}"]`);
+        if (cartItem) {
+            cartItem.remove();
+        } else {
+            console.error('Failed to find cart item with PID:', pid);
+        }
+        
+        // Tính toán lại tổng số tiền
+        const deletedItem = cartItems.find(item => item.PID === pid);
+        cupdateTotal();
+        
+        // Cập nhật biểu tượng giỏ hàng
+        updateShoppingBagIcon();
+        
+    } catch (error) {
+        console.error('Error deleting cart item:', error);
+    }
+}
+
+
+
+
+function calculateTotal() {
+    let total = 0;
+
+    // Lặp qua từng sản phẩm trong giỏ hàng và tính tổng số tiền
+    const cartItemsElements = document.querySelectorAll('.cart__checkoutBody');
+    cartItemsElements.forEach(cartItemElement => {
+        const priceElement = cartItemElement.querySelector('.product__atrribute-price');
+        const quantityElement = cartItemElement.querySelector('.product__atrribute-size__quantity');
+
+        // Kiểm tra nếu priceElement và quantityElement không null
+        if (priceElement && quantityElement) {
+            // Lấy giá và số lượng từ các phần tử HTML
+            const price = parseFloat(priceElement.textContent.replace('VND', '').replace(/,/g, '')); // Chuyển đổi giá từ chuỗi sang số và loại bỏ ký tự 'VND'
+            const quantity = parseInt(quantityElement.textContent);
+            console.log("Price", price);
+            console.log("quantity", quantity);
+            // Tính tổng số tiền
+            total += price * quantity;
+        }
+    });
 
     // Hiển thị tổng giá trị vào phần tổng cộng của giỏ hàng
     const totalSubtotalElement = document.querySelector(".cart__checkout-total");
-    totalSubtotalElement.textContent = "SUBTOTAL: VND" + total.toLocaleString();
+    if (totalSubtotalElement) {
+        totalSubtotalElement.textContent = "SUBTOTAL: VND " + total.toLocaleString();
+    }
 }
 
+
+
+
+
+// function updateTotal() {
+//     // Reset total
+//     total = 0;
+    
+//     // Tính lại tổng số tiền từ cartItems mới
+//     cartItems.forEach(item => {
+//         const { Price, Quantity } = item;
+//         total += Price * Quantity;
+//     });
+
+//     // Hiển thị tổng giá trị vào phần tổng cộng của giỏ hàng
+//     const totalSubtotalElement = document.querySelector(".cart__checkout-total");
+//     totalSubtotalElement.textContent = "SUBTOTAL: VND" + total.toLocaleString();
+// }
 
 
 // ------DAC -----
