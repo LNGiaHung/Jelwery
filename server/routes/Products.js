@@ -4,6 +4,36 @@ const { Products } = require('../models');
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
 
 
+router.get("/all", async (req, res) => {
+  try {
+    const countAll = await Products.findAndCountAll();
+    res.json({
+      total: countAll.count,
+      invoices: countAll.rows
+    });
+  } catch (error) {
+    console.error('Error fetching invoices all":', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get("/status/available", async (req, res) => {
+  try {
+    const soldProduct = await Products.findAndCountAll({
+      where: {
+        Status: 'Available',
+      }
+    });
+    res.json({
+      total: soldProduct.count,
+      invoices: soldProduct.rows
+    });
+  } catch (error) {
+    console.error('Error fetching invoices with status "Done":', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // Route to get product items by type
 router.get('/byType/:type', async (req, res) => {
   try {

@@ -3,12 +3,6 @@ const app = express();
 const cors = require("cors")
 const path = require('path');
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Add a route to serve images from /foodpictures
-app.use('/foodpicture', express.static(path.join(__dirname, 'public', 'foodpicture')));
-
 app.use(express.json())
 app.use(cors())
 const db = require("./models");
@@ -25,6 +19,10 @@ app.use(PaymentRouter);
 
 const appointmentRoutes = require('./routes/Appointment');
 app.use("/Appointment", appointmentRoutes);
+const WishListRoutes = require('./routes/WishList');
+app.use(WishListRoutes);
+const InvoiceRoutes = require('./routes/Invoice');
+app.use("/Invoice",InvoiceRoutes);
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});
