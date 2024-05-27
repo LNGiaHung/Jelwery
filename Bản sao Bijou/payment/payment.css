@@ -12,9 +12,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     height: auto;
-    border-bottom: 2px solid #009384;
+    /* border-bottom: 2px solid #009384; */
     border-top: 2px solid #009384;
-    padding: 30px;
+    padding: 30px 30px 0;
 }
 
 .paymentne__box1-grid {
@@ -161,9 +161,15 @@
 }
 
 .paymentnebox__box2-ndbox {
-    margin-top: 50px;
+    margin-top: 52px;
     display: flex;
+    flex-direction: column;
     background-color: #f5f5f5;
+    border-bottom: 2px solid grey;
+}
+
+.paymentnebox__box2-ndbox h2 {
+    margin-left: 20px;
 }
 
 .paymentnebox__box2-ndbox-grid {
@@ -172,7 +178,7 @@
     grid-template-areas: "left right";
     gap: 15px;
     height: auto;
-    padding: 30px;
+    padding: 4px 30px;
 }
 
 .product-infor {
@@ -181,35 +187,38 @@
     align-items: flex-end;
     font-size: 20px;
     font-weight: 600;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     gap: 15px;
-    border-bottom: 2px solid grey;
+    /* border-bottom: 2px solid grey; */
 }
 
 .paymentne-pay-total {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     font-size: 20px;
     gap: 10px;
+    margin-left: 55%;
+    margin-right: 0;
 }
 
 .paymentne-checkoutbtn {
+    align-items: center;
     display: flex;
     color: grey;
     background: none;
     border: none;
-    margin-top: 40px;
     font-family: "Fraunces", sans-serif;
     font-size: 20px;
-    justify-content: space-around;
+    justify-content: center;
     cursor: pointer;
     padding: 30px;
+    margin: 0 32% 30px;
 }
 
 .paymentne-checkoutbtn:hover {
-    background-color: #8DC1CC;
+    background-color: #81d8d0;
     color: black;
     border: #333;
 }
@@ -232,4 +241,14 @@
 .paymentne-container-grid__item__Header .rengreng-gif img {
     height: 2em;
     vertical-align: middle;
+}
+
+.paymentnebox__box2-ndbox-grid-right-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 60px 40px;
+}
+
+.paymentnebox__box2-ndbox-grid-right-bottom-img1 {
+    padding-right: 40px;
 }

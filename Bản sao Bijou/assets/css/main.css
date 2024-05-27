@@ -721,12 +721,16 @@ a.cta .cta-content .cta-text {
 }
 
 /* Collection */
+.collection-section-homepage {
+    padding-bottom: 50px;
+}
+
 .collection-section-item-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25% 0;
+    padding: 8% 0;
 }
 
 p.collection-section-item-description {
@@ -753,6 +757,11 @@ p.collection-section-item-description {
     background-repeat: no-repeat;
     /* background-size: contain; chieu rong anh lon */
     background-size: cover;
+}
+
+.section-item__img-left {
+    background-position: 30%;
+    background-size: 150%; 
 }
 
 /* Love & engagement homepage */
