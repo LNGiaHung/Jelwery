@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     console.log('totalQuantity:', totalQuantity); // Debugging step to check total quantity
 
-                    const shoppingBagIcon = document.querySelector('.header__navbar-item .quanity');
+                    const shoppingBagIcon = document.querySelector('.header__navbar-item .bag-quanity');
                     if (shoppingBagIcon) {
                         shoppingBagIcon.textContent = totalQuantity;
                     }
@@ -65,20 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const addToCartButton = document.querySelector('.add');
         if (addToCartButton) {
             if(sessionStorage.getItem('user')!==null){
-                const user1 = JSON.parse(sessionStorage.getItem('user'));
-                const userMail = user1.user.Mail;
                 updateShoppingBagIcon();
                 console.log("Add to Cart button found");
                 addToCartButton.addEventListener('click', async () => {
                     console.log("Add to Cart button clicked");
                     const url = new URL('http://localhost:3001/cart');
                     url.searchParams.append('username', userMail);
-                    url.searchParams.append('PID', storedProduct.PID);
                     url.searchParams.append('Name', storedProduct.Name);
                     url.searchParams.append('Price', storedProduct.Price);
-                    url.searchParams.append('Material', storedProduct.Material);
-                    url.searchParams.append('Weight', storedProduct.Weight);
-                    url.searchParams.append('Size', storedProduct.Size);
                     url.searchParams.append('Image', storedProduct.Image);
                     url.searchParams.append('Quantity', '1');
 
@@ -106,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error("Add to Cart button not found");
         }
+
         updateShoppingBagWishList();
         // UPDATE WISLIST ICON 
         async function updateShoppingBagWishList() {
