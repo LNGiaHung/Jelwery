@@ -70,35 +70,28 @@
                         </div>
                     </li>
                     <!-- Sign in/up -->
-                    <li class="header__navbar-item">
+                    <li class="header__navbar-item" id="mobileMyAccount">
                         <div class="header__navbar-item-link user-icon header__navbar-item-mobile">
                             <a href="../singIn/signIn.html">
                                 <i class="fa-regular fa-user"></i>
                             </a>
-                            <!-- <span class="tooltip">Sign In or Create an Account</span>
-                                <div class="tooltip" id="tooltip-id">
-                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                        <span class="tooltip-text" onclick="">Sign in</span>
-                                    </a>
-                                     <a href="" class="tooltip-text navigate-to-page">Sign in</a> 
-                                    <a href="http://127.0.0.1:5500/B%E1%BA%A3n%20sao%20Bijou/singIn/signIn.html">
-                                        <span class="tooltip-text">Create an account</span>
-                                    </a>
-                                    <a href="#" class="tooltip-text">Create an account</a> 
-                                </div> -->
                         </div>
-                        <!-- gio hang/sp yeu thich -->
+                    </li>
+                    <!-- Logout button placeholder -->
+                    <li class="header__navbar-item" id="mobileLogoutButtonPlaceholder"></li>
+                    <!-- Favorites -->
                     <li class="header__navbar-item">
-                        <a href="" class="header__navbar-item-link">
-                            <i class="fa-regular fa-heart"></i></a>
+                        <a href="./wishlistne.html" class="header__navbar-item-link">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
                         <span class="quanityheart">0</span>
                     </li>
-                    <!-- Shoping bag -->
+                    <!-- Shopping bag -->
                     <li class="header__navbar-item">
                         <a href="../cart/cartcheckout.html" class="header__navbar-item-link">
-                            <i class="fa-solid fa-bag-shopping"></i></a>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
                         <span class="quanity">0</span>
-                    </li>
                     </li>
                 </ul>
             </nav>
@@ -238,7 +231,8 @@
 
                         <!-- Love & Engagement -->
                         <li class="main-nav__link-container">
-                            <a href="" class="main-nav__link underline-transition-bold">Love & Engagement</a>
+                            <a href="../sale_page/index.html" class="main-nav__link underline-transition-bold">Love &
+                                Engagement</a>
                             <div class="subnav">
                                 <div class="subnav__inner">
                                     <!-- Engagement & Wedding -->
@@ -457,7 +451,7 @@
                     <span>Search Bijou</span>
                     <div class="search-input-icon">
                         <input class="input-search" type="text" placeholder="Search...">
-                        <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a href="../sale_page/index.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </div>
                 </div>
             </div>
@@ -471,7 +465,7 @@
                 <ul class="nav__mobile-list">
                     <!-- My Account  -->
                     <li class="nav__mobile__link-container">
-                        <a href="../singIn/signIn.html" class="nav__mobile__link">My Account</a>
+                        <a href="..singIn/signIn.html" class="nav__mobile__link">My Account</a>
                     </li>
                     <!-- Landing Page
                     <li class="nav__mobile__link-container">
@@ -498,22 +492,22 @@
         </header>
     </div>
     <!--WISHLIST CONTAINER-->
-<section>
-    <div class="wishlistne">
-    <div class="wishlistne__grid">
+    <section>
+        <div class="wishlistne">
+            <div class="wishlistne__grid">
 
-        <div class="wishlist__grid-wlHeader">
-            <span class="wishlistne Header">Your Wishlist at Bijou
-            </span>
-            <p>YOU HAVE 4 ITEMS SAVED</p>
-            <div class="wishlistne-Header__gif">
-            <img src="../productdetails/img1/wishlisticon-empty.gif">
-            </div>
-        </div>
+                <div class="wishlist__grid-wlHeader">
+                    <span class="wishlistne Header">Your Wishlist at Bijou
+                    </span>
+                    <p>YOU HAVE 4 ITEMS SAVED</p>
+                    <div class="wishlistne-Header__gif">
+                        <img src="../productdetails/img1/wishlisticon-empty.gif">
+                    </div>
+                </div>
 
-        <div class="wishlistne__grid__items">
+                <div class="wishlistne__grid__items">
 
-             <!-- <div class="wishlistbox box1">
+                    <!-- <div class="wishlistbox box1">
                 <div class="wishlistbox__box1-img">
                     <img src="../assets/img/UI/cp_rings1.webp">
                     <div class="wishlistne-close-btn">
@@ -527,139 +521,133 @@
                 <button href="./wishlistne.html" class="wishlistne-btn">
                     Add to Cart</button>
              </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <div class="shopCate">
+        <div class="shopCate__heading">
+            <h2>Shop by Category</h2>
+            <span>Brilliant design and unparalleled craftsmanship.</span>
+        </div>
+        <div class="shopCate__content">
+            <div class="content__item">
+                <img width="100%" src="../assets/img/landing-page/shopCate_Ringswebp.webp" alt="">
+                <a href="../sale_page/index.html">
+                    <span class="underline-transition">Rings</span>
+                </a>
+            </div>
+
+            <div class="content__item">
+                <img width="100%" src="../assets/img/landing-page/shopCate_Bracelets.webp" alt="">
+                <a href="../sale_page/index.html">
+                    <span class="underline-transition">Bracelets</span>
+                </a>
+            </div>
+
+            <div class="content__item">
+                <img width="100%" src="../assets/img/landing-page/shopCate_Earrings.webp" alt="">
+                <a href="../sale_page/index.html">
+                    <span class="underline-transition">Earrings</span>
+                </a>
+            </div>
+
+            <div class="content__item">
+                <img width="100%" src="../assets/img/landing-page/shopCate_necklacks.webp" alt="">
+                <a href="../sale_page/index.html">
+                    <span class="underline-transition">Necklaces</span>
+                </a>
+            </div>
         </div>
     </div>
-    </div>
-</section>
 
-                <!-- Shop by Category -->
-                <div class="shopCate">
-                    <div class="shopCate__heading">
-                        <h2>Shop by Category</h2>
-                        <span>Brilliant design and unparalleled craftsmanship.</span>
-                    </div>
-                    <div class="shopCate__content">
-                        <div class="content__item">
-                            <img width="100%" src="../assets/img/landing-page/shopCate_Ringswebp.webp" alt="">
-                            <a href="../sale_page/index.html">
-                                <span class="underline-transition">Rings</span>
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="../assets/img/landing-page/shopCate_Bracelets.webp" alt="">
-                            <a href="../sale_page/index.html">
-                                <span class="underline-transition">Bracelets</span>
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="../assets/img/landing-page/shopCate_Earrings.webp" alt="">
-                            <a href="../sale_page/index.html">
-                                <span class="underline-transition">Earrings</span>   
-                            </a>
-                        </div>
-
-                        <div class="content__item">
-                            <img width="100%" src="../assets/img/landing-page/shopCate_necklacks.webp" alt="">
-                            <a href="../sale_page/index.html">
-                                <span class="underline-transition">Necklaces</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-    <!--FOOTER-->
-    <div class="footer__top-bar">
-        <footer class="footer">
-            <div class="footer__left">
-                <div class="footer__left-col">
-                    <h5>Client Care</h5>
-                    <ul>
-                        <li>
-                            <a href="../contactUs.html">Contact us</a>
-                        </li>
-                        <!-- <li>
-                            <a href="">Product Care & Repair</a>
-                        </li> -->
-                        <li>
-                            <a href="../appointment/appt.html">Book an Appointment</a>
-                        </li>
-                        <li>
-                            <a href="../ship-return-faq.html">Frequently Asked Questions</a>
-                        </li>
-                        <!-- <li>
-                            <a href="">Catalogues</a>
-                        </li> -->
-                    </ul>
-                </div>
-                <div class="footer__left-col">
-                    <h5>Our Company</h5>
-                    <ul>
-                        <li>
-                            <a href="">About us</a>
-                        </li>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                        <li>
-                            <a href="../contactUs.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="">Testimonials</a>
-                        </li>
-                    </ul>
-                </div>
+    <!-- !-- Footer -->
+    <div class="footer__top-bar"></div>
+    <footer class="footer">
+        <div class="footer__left">
+            <div class="footer__left-col">
+                <h5>Client Care</h5>
+                <ul>
+                    <li>
+                        <a href="../contactUs.html">Contact us</a>
+                    </li>
+                    <!-- <li>
+                        <a href="">Product Care & Repair</a>
+                    </li> -->
+                    <li>
+                        <a href="../appointment/appt.html">Book an Appointment</a>
+                    </li>
+                    <li>
+                        <a href="../ship-return-faq.html">Frequently Asked Questions</a>
+                    </li>
+                    <!-- <li>
+                        <a href="">Catalogues</a>
+                    </li> -->
+                </ul>
             </div>
-            <div class="footer__right">
-                <div class="footer__right-top">
-                    <span>Latest from Bijou</span>
+            <div class="footer__left-col">
+                <h5>Our Company</h5>
+                <ul>
+                    <li>
+                        <a href="../aboutUs.html">About us</a>
+                    </li>
+                    <li>
+                        <a href="../aboutUs.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../giftPage.html">Gift</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__right">
+            <div class="footer__right-top">
+                <span>Latest from Bijou</span>
+            </div>
+            <div class="footer__right-middle">
+                <div class="footer__right-middle__text">
+                    <p>Be the first to know about exciting new designs, special events, store openings and much more.</p>
                 </div>
-                <div class="footer__right-middle">
-                    <div class="footer__right-middle__text">
-                        <p>Be the first to know about exciting new designs, special events, store openings and much
-                            more.</p>
-                    </div>
-
-                    <div class="footer__right-middle__input email-input">
-                        <input type="email" id="email" onfocus="this.placeholder='';"
-                            onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
-                        <span></span>
-                    </div>
+                
+                <!-- <div class="footer__right-middle__input email-input">
+                    <input type="email" id="email" onfocus="this.placeholder='';" onblur="if (this.value === '') {this.placeholder='Email'} else {previousValue = this.value}">
+                    <span></span> 
+                </div> -->
+                <a href="../signUp/signUp.html">
                     <button class="signup-button" type="submit">Sign up</button>
+                </a>
 
+            </div>
+            <div class="footer__right-bottom">
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-square-facebook"></i>
+                    </a>
                 </div>
-                <div class="footer__right-bottom">
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-square-facebook"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-square-twitter"></i>
-                        </a>
-                    </div>
-                    <div class="footer__right-bottom-item">
-                        <a href="">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                    </div>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-square-twitter"></i>
+                    </a>
+                </div>
+                <div class="footer__right-bottom-item">
+                    <a href="">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
 </body>
 <script src="../script.js">
 </script>
 <script src="./wishlistne.js"></script>
+
 </html>
