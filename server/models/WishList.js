@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Cart = sequelize.define("Cart", {
+    const WishList = sequelize.define("WishList", {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -39,6 +39,6 @@ module.exports = (sequelize, DataTypes) => {
     },{
         timestamps: false
     });
-    return Cart;
+    return WishList;
   };
   

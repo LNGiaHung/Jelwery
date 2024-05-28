@@ -1,5 +1,8 @@
 // Header - croll up/down
 let lastScrollTop = 0;
+updateShoppingBagIcon(); 
+updateShoppingBagWishList();
+
 const header = document.getElementById("header");
 
 window.addEventListener("scroll", function() {
@@ -377,3 +380,90 @@ mobileClose.onclick = function () {
 //     }
 //   });
 // });
+
+// ------- DAC ------
+
+
+async function updateShoppingBagIcon() {
+    const user1 = JSON.parse(sessionStorage.getItem('user'));
+    const userMail = user1.user.Mail;
+    console.log('user mail:', userMail);
+      try {
+          const response = await fetch('http://localhost:3001/cart-items');
+          const data = await response.json();
+          
+          // Debugging step to inspect data structure
+          console.log('Fetched data:', data);
+  
+          // Access the cartItems array within the fetched data
+          const items = data.cartItems;
+  
+          if (Array.isArray(items)) {
+              // Filter the items based on the allowed username
+              const userItems = items.filter(item => item.username === userMail);
+  
+              // Calculate the total quantity of the filtered items
+              let totalQuantity = 0;
+              for (const item of userItems) {
+                  totalQuantity += item.Quantity;
+              }
+  
+              // Debugging step to check total quantity
+              console.log('Total quantity for user:', totalQuantity);
+  
+              // Update the shopping bag icon with the total quantity
+              const headerShoppingBag = document.querySelector('.quanity');
+              if (headerShoppingBag) {
+                  headerShoppingBag.textContent = totalQuantity;
+              }
+          } else {
+            showAlert('Failed to add product to cart');
+            console.log('Failed to add product to cart:', productName);
+          }
+        } catch (error) {
+          console.error('Error adding product to cart:', error);
+          showAlert('Error adding product to cart');
+        }
+  }
+
+  async function updateShoppingBagWishList() {
+    const user1 = JSON.parse(sessionStorage.getItem('user'));
+    const userMail = user1.user.Mail;
+    console.log('user mail:', userMail);
+      try {
+          const response = await fetch('http://localhost:3001/wishlist-items');
+          const data = await response.json();
+          
+          // Debugging step to inspect data structure
+          console.log('Fetched data:', data);
+  
+          // Access the WishListItems array within the fetched data
+          const items = data.WishListItems;
+  
+          if (Array.isArray(items)) {
+              // Filter the items based on the allowed username
+              const userItems = items.filter(item => item.username === userMail);
+  
+              // Calculate the total quantity of the filtered items
+              let totalQuantity = 0;
+              for (const item of userItems) {
+                  totalQuantity += item.Quantity;
+              }
+  
+              // Debugging step to check total quantity
+              console.log('Total quantity for user:', totalQuantity);
+  
+              // Update the shopping bag icon with the total quantity
+              const headerShoppingBag = document.querySelector('.quanityheart');
+              if (headerShoppingBag) {
+                  headerShoppingBag.textContent = totalQuantity;
+              }
+          } else {
+            showAlert('Failed to add product to wishlist');
+            console.log('Failed to add product to wishlist:', productName);
+          }
+        } catch (error) {
+          console.error('Error adding product to wishlist:', error);
+          showAlert('Error adding product to wishlist');
+        }
+  }

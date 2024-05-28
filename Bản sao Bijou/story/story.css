@@ -85,6 +85,15 @@
     text-align: center;
 }
 
+.blue-section-add {
+    margin-bottom: 60px ;
+}
+
+.blue-content-section-img {
+    padding-top: 47%;
+    background-size: cover;
+}
+
 /* .blue-section__description {
     display: flex;
     flex-direction: row;
@@ -104,8 +113,8 @@
 
 .blue__description-text {
     position: absolute;
-    top: 28%;
-    width: 22%;
+    top: 18%;
+    width: 25%;
     text-align: center;
     max-width: 80%;
     color: #000;

@@ -82,6 +82,7 @@ body {
 }
 
 .bijou-optionbox button {
+  background-color: #fff;
   display: inline-block;
   width: 120px;
   height: 120px;

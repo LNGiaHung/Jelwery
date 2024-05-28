@@ -4,6 +4,36 @@ const { Products } = require('../models');
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
 
 
+router.get("/all", async (req, res) => {
+  try {
+    const countAll = await Products.findAndCountAll();
+    res.json({
+      total: countAll.count,
+      invoices: countAll.rows
+    });
+  } catch (error) {
+    console.error('Error fetching invoices all":', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get("/status/available", async (req, res) => {
+  try {
+    const soldProduct = await Products.findAndCountAll({
+      where: {
+        Status: 'Available',
+      }
+    });
+    res.json({
+      total: soldProduct.count,
+      invoices: soldProduct.rows
+    });
+  } catch (error) {
+    console.error('Error fetching invoices with status "Done":', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // Route to get product items by type
 router.get('/byType/:type', async (req, res) => {
   try {
@@ -76,7 +106,7 @@ router.post("/", async (req, res) => {
 // });
 
 
-router.get("/PID/:pid", async (req, res) => {
+router.get("/pid/:pid", async (req, res) => {
   try {
     const productId = req.params.pid;
     console.log('Received PID:', productId); // Logging the received PID
@@ -91,6 +121,24 @@ router.get("/PID/:pid", async (req, res) => {
   } catch (error) {
     console.error('Error fetching product by PID:', error);
     res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get("/inPid/:keyWord", async (req, res) => {
+  const keyword = req.params.keyWord;
+
+  try {
+    const products = await Products.findAll({
+      where: {
+        PID: {
+          [Op.like]: `%${keyword}%`
+        }
+      }
+    });
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while retrieving the products.' });
   }
 });
 

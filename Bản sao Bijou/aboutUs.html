@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Home</title>
+        <title>About Bijou | Bijou</title>
         <link rel="stylesheet" href="./assets/css/base.css">
         <link rel="stylesheet" href="./assets/css/main.css">
         <link rel="stylesheet" href="./script.js">
@@ -481,199 +481,161 @@
                 </ul>
             </nav>
         </header>
+        
+        <style>
+            .grid__col-4 {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .bijou-teaser__picture{
+                position: relative;
+                padding-top: 40%;
+                background-size: cover;
+            }
+
+            .bijou-teaser__content {
+                font-size: 50px;
+                letter-spacing: 1.5px;
+                position: absolute;
+                top: 40%;
+                margin-left: 38%;
+                text-align: center;
+                color: #fff;
+            }
+
+            .bijou-story {
+                padding: 30px 140px 0;
+                text-align: center;
+            }
+
+            .bijou-story h2 {
+                font-size: 40px;
+                font-weight: 500;
+            }
+
+            .bijou-story p {
+                line-height: 1.8;
+            }
+
+            .story-vid {
+                padding: 60px 140px;
+            }
+
+            .component__title {
+                font-size: 40px;
+                text-align: center;
+                padding-bottom: 30px;
+                font-weight: 600;
+            }
+
+            .component-item__img {
+                padding-top: 100%;
+                background-size: cover;
+            }
+
+            .grid__component-story {
+                padding-bottom: 60px;
+            }
+
+            .video.component-item_video {
+                width: 100%; /* Ensure the video width covers 100% of its container */
+                height: 594px; /* Set the desired height */
+                object-fit: cover; /* This ensures the video is scaled and cropped to cover the container */
+            }
+        </style>
 
         <!-- Content -->
         <div class="content">
-            <h2>Frequently Asked Questions</h2>
-                <style>
-                    .content {
-                        max-width: 80%;
-                        margin: auto;
-                    }
-                    .content h2 {
-                        text-align: center;
-                        margin-top: 110px;
-                        letter-spacing: 2px;
-                        font-family: "Fraunces", serif;
-                    }
-                    .faq {
-                        margin: 25px 0;
-                        /* border: 1px solid rgba(0, 0, 0, 0.2); */
-                    }
-                    .faq__question {
-                        background-color: #fff;
-                        color: rgba(0, 0, 0, 0.9);
-                        cursor: pointer;
-                        font-size: 16px;
-                        width: 100%;
-                        padding: 10px 0;
-                        border: none;
-                        outline: none;
-                        transition: 0.4s;
-                        letter-spacing: 0.8px;
-                        display: flex;
-                        justify-content: space-between;
-                    }
-                    .faq__question:hover {
-                        background-color: #f9f9f9;
-                    }
-                    .faq_answer {
-                        margin: 20px 0;
-                        padding: 0 18px;
-                        background-color: #f9f9f9;
-                        display: none;
-                        line-height: 1.8rem;
-                    }
-                    .faq_answer p {
-                        margin-top: 28px;
-                    }
-                    .faq_answer-title {
-                        font-weight: bold;
-                    }
-                    .faq_answer ul li {
-                        list-style-type: disc;
-                    }
-                    /* .faq.active {
-
-                    } */
-                    .faq_answer a:hover {
-                        text-decoration: underline;
-                    }
-                    </style>
-
-            <!-- Question 1 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    What shipping options are available on Bijou.com?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>For each address within the Ho Chi Minh city, the following charges apply:</p>
-                    <p class="faq_answer-title">Standard Shipping: free </p>
-                    <p>Available on all orders under 20 million. Please allow 3-5 business days to receive your items. Items ordered together may not always ship together.</p>
-                    <p class="faq_answer-title">Express Shipping with signature on delivery: free </p>
-                    <p>Available on all orders above 20 million. Please allow 1-2 business days to receive your items. Items ordered together may not always ship together.</p>
-                    <p class="faq_answer-title">Next-day delivery: 100 thousand, (complimentary for orders above 50 million)</p>
-                    <ul>
-                        <li>Orders placed before 3:00PM EST Monday through Friday will be delivered on the following day.</li>
-                        <li>Orders placed on Saturday before 1:00PM EST will be delivered Monday. </li>
-                    </ul>
-                    <p class="faq_answer-title">Vietnam Scheduled Delivery (Signature Required) - Same Day delivery slot available
-                    </p>
-                    <ul>
-                        <li>Orders placed before 1:00PM EST Monday through Saturday will be available for delivery on the same day.</li>
-                        <li>Orders placed after 1:00PM EST Monday through Sunday will be available for delivery on the following day. </li>
-                        <li>Holiday delivery is not available.</li>
-                        <li>Complimentary on all orders above 10 million.</li>
-                        <li>40 thousand on all orders below 10 million.</li>
-                    </ul>
-                    <a href="./contactUs.html">View Customer Service Hours</a>
+            <div class="bijou-teaser">
+                <div class="bijou-teaser__picture" style="background-image: url(https://asset.swarovski.com/images/c_crop,g_xy_center,w_1920,h_650,x_960,y_333/dpr_2.0,f_auto,q_auto,c_lfill,w_1449,h_600/swa-cms/ABOUT-US-REFRESH-TT/.jpg);"></div>
+                <h1 class="bijou-teaser__content">About Bijou</h1>
+            </div>
+            <div class="bijou-story">
+                <h2>Our Story</h2>
+                <p>Every story has a beginning. Discover how Bijou was founded and how it evolved into a luxury House renowned the world over for extraordinary jewels, relentless innovation and exceptional craftsmanship.</p>
+            </div>
+            <div class="content__vid story-vid">
+                <video class="video" width="100%" controls autoplay muted>
+                    <source src="./assets/img/aboutUs_story.mp4" type="video/mp4">
+                    <!-- <source src="movie.ogg" type="video/ogg"> -->
+                </video>
+            </div>
+            <div class="grid__col-12">
+                <div class="grid__component">
+                    <h2 class="component__title">Craftmanship & Mastery</h2>
+                    <div class="grid__row">
+                        <div class="grid__col-4">
+                            <div class="component-item">
+                                <div class="component-item__img" style="background-image: url(https://asset.swarovski.com/images/c_crop,g_xy_center,w_2688,h_3584,x_1930,y_1792/dpr_2.0,f_auto,q_auto,c_lfill,w_1024,h_1365/swa-cms/B2C_ABOUTUS_VISUAL-HERITAGE-OLDEST-PROD-CATALOTUE_NP_GL/.jpg);"></div>
+                                <div class="component-item__text">
+                                    <h2 class="component-text__title">Creativity</h2>
+                                    <p>From inspiration brief to collection launch, Bijou’s creative process is uniquely prolific. With a focus on trend curation, design, and meaningful branding, every piece tells a story and embodies over 125 years of mastered craftsmanship. The continuous evolution of material and technique makes Bijou the leader of crystal cut creations.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid__col-4">
+                            <div class="component-item">
+                                <div class="component-item__img" style="background-image: url(https://asset.swarovski.com/images/c_crop,g_xy_center,w_2874,h_3833,x_1888,y_1917/dpr_2.0,f_auto,q_auto,c_lfill,w_768,h_1024/swa-cms/B2C_ABOUTUS_VISUAL-HERITAGE-FRENCH-VOGUE-1964/.jpg);"></div>
+                                <div class="component-item__text">
+                                    <h2 class="component-text__title">Know-How</h2>
+                                    <p>From inspiration brief to collection launch, Bijou’s creative process is uniquely prolific. With a focus on trend curation, design, and meaningful branding, every piece tells a story and embodies over 125 years of mastered craftsmanship. The continuous evolution of material and technique makes Bijou the leader of crystal cut creations.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid__col-4">
+                            <div class="component-item">
+                                <div class="component-item__img" style="background-image: url(https://media.tiffany.com/is/image/tiffanydm/WOT-LP-FWMH1-Desktop?$tile$&wid=2992&fmt=webp);"></div>
+                                <div class="component-item__text">
+                                    <h2 class="component-text__title">Quality</h2>
+                                    <p>From inspiration brief to collection launch, Bijou’s creative process is uniquely prolific. With a focus on trend curation, design, and meaningful branding, every piece tells a story and embodies over 125 years of mastered craftsmanship. The continuous evolution of material and technique makes Bijou the leader of crystal cut creations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Question 2 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    How can I make returns or exchanges?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p class="faq_answer-title">What products are eligible for returns?</p>
-                    <p>Products are accepted for credit or exchange in the VND. within 30 days of purchase. All merchandise must be in perfect saleable condition, with the sales receipt. Exclusions apply, please note:</p>
-                    <ul>
-                        <li>Merchandise under 100 million will be accepted for return or exchange within 30 days of purchase.</li>
-                        <li>Merchandise 100 million or more will be eligible for exchange within 30 days of purchase. No refunds will be issued for purchases above 100 million.</li>
-                        <li>Merchandise must be accompanied by all original packaging for a refund. Including jewelry boxes and pouches.</li>
-                        <li>Certain limited edition and collaboration merchandise may be ineligible for a refund.</li>
-                    </ul>
-                    <p class="faq_answer-title">What will my refund look like?</p>
-                    <ul>
-                        <li class="faq_answer-title">For online/phone purchases: </li>
-                        <span>Credit or charge card purchases will receive a credit to the original cardholder’s account on which the purchase was made. If a credit or charge card has been used to make this purchase, the terms and conditions in the agreement between the cardholder and the issuer of that credit card shall also apply.</span>    
-                        <li class="faq_answer-title">For in-store purchases:</li>
-                        <span>Refunds will be made to the original form of payment. Refunds will be provided only for purchases by cash or check to the original purchaser; credit or charge card purchases will receive a credit to the original cardholder’s account on which the purchase was made. If a credit or charge card has been used to make this purchase, the terms and conditions in the agreement between the cardholder and the issue of that credit card shall also apply. Refunds for purchases by check will be issued by company mail check upon presentation of the sales receipt and only if the funds have been received by Bijou.</span>
-                    </ul>
-                    
+            <div class="grid__col-12">
+                <div class="grid__component grid__component-story">
+                    <h2 class="component__title">Collections</h2>
+                    <div class="grid__row">
+                        <div class="grid__col-6 ">
+                            <div class="component-item">
+                                <a href="./story/story-mother.html" class="mother-story__nav">
+                                    <video class="video component-item_video" width="100%" controls autoplay muted>
+                                        <source src="./assets/img/UI/likeMother_likeDaughter.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                                <div class="component-item__text">
+                                    <h2>Like Mother, Like Daughter</h2>
+                                    <p>This Mother’s Day, Bijou celebrates the infinite love of mothers and daughters. Our short film explores how these enduring connections echo through generations, intertwining past, present and future.</p>
+                                    <div class="mother-daughter__discovery">
+                                        <a class="discovery-more underline-transition" href="./story/story-mother.html">Discover more...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid__col-6 ">
+                            <div class="component-item">
+                                <a href="./story/story-blue.html" class="blue-story__nav">
+                                    <video class="video component-item_video" width="100%" height="594px" controls autoplay muted>
+                                        <source src="./assets/img/new-collection/header-video.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                                <div class="component-item__text">
+                                    <h2>Out of the blue</h2>
+                                    <p>Out of the blue is inspired by sea, choreographing unparalleled manifestations of its majesty and mystery. Honoring this legacy, Blue Book 2024: Out of the Blue both perpetuates and reinvents the</p>
+                                    <div class="mother-daughter__discovery">
+                                        <a class="discovery-more underline-transition" href="./story/story-blue.html">Discover more...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Question 3 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    Can I track my online order?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>A shipping notification with tracking details will be sent via email after your order has shipped. You will receive multiple email acknowledgements if your order results in more than one shipment.</p>
-                    </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    How much does it cost to repair my Bijou jewelry?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>The cost to repair a Bijou product varies and is determined after an assessment is made by one of our repair professionals. Repair pricing varies based on the type of product, material and/or gemstone. When the assessment is complete, we will send you a free estimate. </p>
-                    </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    How can I schedule a consultation with a Bijou Diamond Expert?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>We offer a variety of ways to get in touch with a Diamond Expert, including online chat, by phone and in-store consultations.</p>
-                    </div>
-            </div>
-
-            <!-- Question 6 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    Can I change my shipping address after I’ve placed my order to keep my engagement ring a surprise?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>Yes, as long as your order has not shipped. Please contact us to make any modifications to your order.</p>
-                    </div>
-            </div>
-
-            <!-- Question 7 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    What if I need to return my engagement ring?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>All engagement rings, may be returned for up to 30 days from the date of original purchase for refund, credit or exchange. The engagement ring must be in saleable condition, include all product documentation (e.g. Bijou Diamond Certificate, or Colored Stone or Diamond reports) and be accompanied by a sales receipt.</p>
-                    <p>To make a return, please use the complimentary shipping label provided with your package and drop it off at the nearest FedEx location. You may also return your engagement ring at any Bijou retail store in the country of purchase.</p>
-                    </div>
-            </div>
-
-            <!-- Question 8 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    How long does a Bijou order take to ship?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>Please allow 3-5 business days for Bijou items to be shipped. Items ordered together may not always ship together.</p>
-                    </div>
-            </div>
-
-            <!-- Question 9 -->
-            <div class="faq active">
-                <button class="faq__question">
-                    Will my Bijou.com purchase arrive gift-wrapped?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq_answer">
-                    <p>All Bijou.com purchases arrive in the signature Bijou Blue Box, tied with a white satin ribbon. At the checkout process you will have the option of writing a gift message for each item in your order which will arrive with your gift package, enclosed in a white envelope. If you choose not to write a gift message, one blank card per recipient will be included in your order.</p>
-                    </div>
-            </div>
         </div>
 
         <!-- Footer -->
@@ -758,27 +720,8 @@
             </div>
         </footer>
     </div>
-    <script src="./script.js"></script>
-    <script src="./logout.js"></script>
-    <script>
-        var acc = document.getElementsByClassName("faq__question");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function (){
-                this.classList.toggle("active");
-                this.parentElement.classList.toggle("active");
-
-                var answer = this.nextElementSibling;
-
-                if (answer.style.display === "block") {
-                    answer.style.display = "none"; 
-                }else {
-                    answer.style.display = "block";
-                }
-            })
-        }
-    </script>
-
+    
 </body>
+    <script src="script.js"></script>
+    <script src="logout.js"></script>
 </html>

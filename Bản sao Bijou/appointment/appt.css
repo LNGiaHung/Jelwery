@@ -45,7 +45,7 @@
 .appt__text {
     position: absolute;
     top: 26%;
-    width: 22%;
+    width: 32%;
     text-align: center;
     max-width: 80%;
     color: #000;
@@ -64,10 +64,10 @@
 .appt__text-left {
     line-height: 2;
     top: 2%;
-    right: 70%;
+    right: 60%;
 }
 .appt__text-left h1{
-    font-size: 30px;
+    font-size: 28px;
     color: #009384;
 }
 
