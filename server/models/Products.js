@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNULL: false
     },
     Price:{
-        type: DataTypes.STRING,
+        type: DataTypes.FLOAT,
         allowNULL: false
     },
     Material:{
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNULL: false
     },
     Weight:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNULL: false
     },
     Stone:{
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNULL: false
     },
     Size:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNULL: false
     },
     Collections:{
@@ -35,6 +35,18 @@ module.exports = (sequelize, DataTypes) => {
     Image:{
         type: DataTypes.STRING,
         allowNULL: false
+    },
+    Image1:{
+      type: DataTypes.STRING,
+      allowNULL: true
+    },
+    Image2:{
+      type: DataTypes.STRING,
+      allowNULL: true
+    },
+    Image3:{
+      type: DataTypes.STRING,
+      allowNULL: true
     },
   },{
       timestamps: false
