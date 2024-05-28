@@ -1,8 +1,58 @@
 let selectedCategory = '';
 let selectedMaterialType = '';
-
 // -------Category - Kim Long ---------
 // Function to fetch products from the API and update HTML with category and material type
+document.addEventListener('DOMContentLoaded', (event) => {
+  console.log("add even keyWord");
+  // Get the search keyword from sessionStorage
+  const keyWord = JSON.parse(sessionStorage.getItem('searchKeyword'));
+  console.log("keyWord.searchKeyword: ",keyWord);
+  if (keyWord) {
+      // Fetch products by name
+      fetch(`http://localhost:3001/Products/inName/${encodeURIComponent(keyWord)}`)
+          .then(response => response.json())
+          .then(products => {
+            updateHTMLWithProducts(products);
+          })
+          .catch(error => {
+              console.error('Error fetching products:', error);
+          });
+  }
+
+});
+
+// document.addEventListener('DOMContentLoaded', (event) => {
+//   // Get the search keyword from sessionStorage
+//   const storedKeyword = JSON.parse(sessionStorage.getItem('searchKeyword'));
+//   // const storedKeyword = sessionStorage.getItem('searchKeyword');
+//   let keyWord = null;
+
+//   // Check if storedKeyword is not null and a valid JSON
+//   if (storedKeyword) {
+//     try {
+//       keyWord = JSON.parse(storedKeyword);
+//     } catch (error) {
+//       console.error('Error parsing search keyword:', error);
+//     }
+//   }
+
+//   if (keyWord && keyWord.searchKeyword) {
+//     console.log("keyWord.searchKeyword:", keyWord.searchKeyword);
+//     // Fetch products by name
+//     fetch(`http://localhost:3001/Products/inName/${encodeURIComponent(keyWord.searchKeyword)}`)
+//       .then(response => response.json())
+//       .then(products => {
+//         updateHTMLWithProducts(products);
+//       })
+//       .catch(error => {
+//         console.error('Error fetching products:', error);
+//       });
+//   } else {
+//     console.log('No valid search keyword found in sessionStorage');
+//   }
+// });
+
+
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
   if (!selectedCategory || !selectedMaterialType) {
     console.error('Invalid category or material type');
@@ -114,6 +164,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
 });
+
+
 
 // -------END: Category - Kim Long ---------
 
