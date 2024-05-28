@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNULL: true
     },
+    Status:{
+      type: DataTypes.STRING,
+      allowNULL: false
+    },
   },{
       timestamps: false
   })

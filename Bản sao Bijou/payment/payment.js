@@ -74,7 +74,7 @@ function addCart(item) {
 
 function cartTotal() {
     const cartItems = document.querySelectorAll(".paymentne-pay-total__price");
-    let total = 0.0;
+    let total = 0;
 
     if (cartItems.length === 0) {
         console.error('No cart items found');  
@@ -162,7 +162,7 @@ document.querySelector('.paymentne-checkoutbtn').addEventListener('click', async
         // Nếu đã chọn 'Momo', bạn có thể thực hiện các xử lý tiếp theo ở đây
         console.log('Selected payment method:', selectedPaymentMethod);
         console.log("Total amount", totalAmount );
-        const amount = totalAmount;
+        const amount = totalAmount * 1000;
         console.log('Initiating payment with amount:', amount);
 
         try {
