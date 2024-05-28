@@ -1,5 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+
 const { Appointments } = require("../models");
 
 // Route to create a new appointment using URL parameters

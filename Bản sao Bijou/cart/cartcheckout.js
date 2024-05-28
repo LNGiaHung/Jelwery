@@ -123,6 +123,10 @@ function addCart(item) {
      
     cartBody.appendChild(cartItem);
     calculateTotal();
+    const addWishList = cartItem.querySelector('.cart__Body-item__btn .wishlist');
+    addWishList.addEventListener('click', () => {
+        addEventListenersToWishList(item);
+      });
 }
 
 async function deleteCartItemFromDatabase(pid) {
@@ -136,29 +140,12 @@ async function deleteCartItemFromDatabase(pid) {
         }
 
         console.log('Cart item deleted successfully');
-        
-        // Loại bỏ phần tử khỏi giao diện
-        const cartItem = document.querySelector(`.cart__checkoutBody[data-pid="${pid}"]`);
-        if (cartItem) {
-            cartItem.remove();
-        } else {
-            console.error('Failed to find cart item with PID:', pid);
-        }
-        
-        // Tính toán lại tổng số tiền
-        const deletedItem = cartItems.find(item => item.PID === pid);
-        cupdateTotal();
-        
-        // Cập nhật biểu tượng giỏ hàng
         updateShoppingBagIcon();
-        
+        // Loại bỏ phần tử khỏi giao diện
     } catch (error) {
         console.error('Error deleting cart item:', error);
     }
 }
-
-
-
 
 function calculateTotal() {
     let total = 0;
@@ -190,25 +177,157 @@ function calculateTotal() {
 
 
 
-
-
-// function updateTotal() {
-//     // Reset total
-//     total = 0;
-    
-//     // Tính lại tổng số tiền từ cartItems mới
-//     cartItems.forEach(item => {
-//         const { Price, Quantity } = item;
-//         total += Price * Quantity;
-//     });
-
-//     // Hiển thị tổng giá trị vào phần tổng cộng của giỏ hàng
-//     const totalSubtotalElement = document.querySelector(".cart__checkout-total");
-//     totalSubtotalElement.textContent = "SUBTOTAL: VND" + total.toLocaleString();
-// }
-
-
 // ------DAC -----
+
+//add wishlist
+const wishlistButtons = document.querySelectorAll('.cart__Body-item__btn.wishlist');
+const headerWishlist = document.querySelector('.quanityheart');
+
+wishlistButtons.forEach(wishlistButton => {
+  wishlistButton.addEventListener('click', () => {
+    let currentQuantity = parseInt(headerWishlist.textContent);
+    if (currentQuantity < 9) {
+      headerWishlist.textContent = currentQuantity + 1;
+    } else {
+      headerWishlist.textContent = '9+';
+    }
+  });
+});
+
+
+// ---- DAC ------
+
+async function updateShoppingBagIcon() {
+    const user1 = JSON.parse(sessionStorage.getItem('user'));
+    const userMail = user1.user.Mail;
+    console.log('user mail:', userMail);
+      try {
+          const response = await fetch('http://localhost:3001/cart-items');
+          const data = await response.json();
+          
+          // Debugging step to inspect data structure
+          console.log('Fetched data:', data);
+  
+          // Access the cartItems array within the fetched data
+          const items = data.cartItems;
+  
+          if (Array.isArray(items)) {
+              // Filter the items based on the allowed username
+              const userItems = items.filter(item => item.username === userMail);
+  
+              // Calculate the total quantity of the filtered items
+              let totalQuantity = 0;
+              for (const item of userItems) {
+                  totalQuantity += item.Quantity;
+              }
+  
+              // Debugging step to check total quantity
+              console.log('Total quantity for user:', totalQuantity);
+  
+              // Update the shopping bag icon with the total quantity
+              const headerShoppingBag = document.querySelector('.quanity');
+              if (headerShoppingBag) {
+                  headerShoppingBag.textContent = totalQuantity;
+              }
+          } else {
+            showAlert('Failed to add product to cart');
+            console.log('Failed to add product to cart:', productName);
+          }
+        } catch (error) {
+          console.error('Error adding product to cart:', error);
+          showAlert('Error adding product to cart');
+        }
+  }
+// ---- DAC -----
+
+/// ADD WISH LIST
+async function addEventListenersToWishList(product) {
+    const user1 = JSON.parse(sessionStorage.getItem('user'));
+    if (!user1 || !user1.user || !user1.user.Mail) {
+      console.error('User data not found');
+      showAlert('User not logged in');
+      return;
+    }
+  
+    const userMail = user1.user.Mail;
+    console.log('User mail:', userMail);
+  
+    const url = new URL('http://localhost:3001/wishlist');
+    url.searchParams.append('username', userMail);
+    url.searchParams.append('PID', product.PID);
+    url.searchParams.append('Name', product.Name);
+    url.searchParams.append('Price', product.Price);
+    url.searchParams.append('Material', product.Material);
+    url.searchParams.append('Weight', product.Weight);
+    url.searchParams.append('Size', product.Size);
+    url.searchParams.append('Image', product.Image);
+    url.searchParams.append('Quantity', '1');
+  
+    try {
+      const response = await fetch(url.toString(), {
+        method: 'GET',
+      });
+  
+      if (response.ok) {
+        // showAlert('Product added to wishlist successfully');
+        console.log('Product added successfully:', product.Name);
+        updateShoppingBagWishList();
+      } else {
+        // showAlert('Failed to add product to wishlist');
+        console.log('Failed to add product to wishlist:', product.Name);
+      }
+    } catch (error) {
+      console.error('Error adding product to wishlist:', error);
+    //   showAlert('Error adding product to wishlist');
+    }
+  }
+
+
+async function updateShoppingBagWishList() {
+  const user1 = JSON.parse(sessionStorage.getItem('user'));
+  const userMail = user1.user.Mail;
+  console.log('user mail:', userMail);
+    try {
+        const response = await fetch('http://localhost:3001/wishlist-items');
+        const data = await response.json();
+        
+        // Debugging step to inspect data structure
+        console.log('Fetched data:', data);
+
+        // Access the WishListItems array within the fetched data
+        const items = data.WishListItems;
+
+        if (Array.isArray(items)) {
+            // Filter the items based on the allowed username
+            const userItems = items.filter(item => item.username === userMail);
+
+            // Calculate the total quantity of the filtered items
+            let totalQuantity = 0;
+            for (const item of userItems) {
+                totalQuantity += item.Quantity;
+            }
+
+            // Debugging step to check total quantity
+            console.log('Total quantity for user:', totalQuantity);
+
+            // Update the shopping bag icon with the total quantity
+            const headerShoppingBag = document.querySelector('.quanityheart');
+            if (headerShoppingBag) {
+                headerShoppingBag.textContent = totalQuantity;
+            }
+        } else {
+          showAlert('Failed to add product to wishlist');
+          console.log('Failed to add product to wishlist:', productName);
+        }
+      } catch (error) {
+        console.error('Error adding product to wishlist:', error);
+        showAlert('Error adding product to wishlist');
+      }
+}
+
+
+// ------ CUA AI DO --
+
 
 // wrapping caret
 // const checkboxLabel = document.querySelector('.custom-checkbox-label');
@@ -225,7 +344,7 @@ function calculateTotal() {
 //   }
 // });
 
-// fit position cho cai content box
+//fit position cho cai content box
 const adjustMessagePosition = () => {
   const messageWidth = message.offsetWidth;
   const messageHeight = message.offsetHeight;
@@ -296,64 +415,3 @@ document.addEventListener('click', (event) => {
     overlay.style.display = 'block';
   }
 });
-
-//add wishlist
-const wishlistButtons = document.querySelectorAll('.cart__Body-item__btn.wishlist');
-const headerWishlist = document.querySelector('.quanityheart');
-
-wishlistButtons.forEach(wishlistButton => {
-  wishlistButton.addEventListener('click', () => {
-    let currentQuantity = parseInt(headerWishlist.textContent);
-    if (currentQuantity < 9) {
-      headerWishlist.textContent = currentQuantity + 1;
-    } else {
-      headerWishlist.textContent = '9+';
-    }
-  });
-});
-
-
-// ---- DAC ------
-
-async function updateShoppingBagIcon() {
-    const user1 = JSON.parse(sessionStorage.getItem('user'));
-    const userMail = user1.user.Mail;
-    console.log('user mail:', userMail);
-      try {
-          const response = await fetch('http://localhost:3001/cart-items');
-          const data = await response.json();
-          
-          // Debugging step to inspect data structure
-          console.log('Fetched data:', data);
-  
-          // Access the cartItems array within the fetched data
-          const items = data.cartItems;
-  
-          if (Array.isArray(items)) {
-              // Filter the items based on the allowed username
-              const userItems = items.filter(item => item.username === userMail);
-  
-              // Calculate the total quantity of the filtered items
-              let totalQuantity = 0;
-              for (const item of userItems) {
-                  totalQuantity += item.Quantity;
-              }
-  
-              // Debugging step to check total quantity
-              console.log('Total quantity for user:', totalQuantity);
-  
-              // Update the shopping bag icon with the total quantity
-              const headerShoppingBag = document.querySelector('.quanity');
-              if (headerShoppingBag) {
-                  headerShoppingBag.textContent = totalQuantity;
-              }
-          } else {
-            showAlert('Failed to add product to cart');
-            console.log('Failed to add product to cart:', productName);
-          }
-        } catch (error) {
-          console.error('Error adding product to cart:', error);
-          showAlert('Error adding product to cart');
-        }
-  }
-// ---- DAC -----

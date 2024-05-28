@@ -257,7 +257,7 @@ function updateHTMLWithProducts(products) {
 
       const priceDiv = document.createElement('div');
       priceDiv.classList.add('price');
-      priceDiv.innerHTML = `$${product.Price} <span>$${product.Price - product.Price * 0.1}</span>`;
+      priceDiv.innerHTML = `${product.Price} vnđ <span>${product.Price - product.Price * 0.1} vnđ</span>`;
 
       // Append elements to their respective parents
       productDiv.appendChild(productImgDiv);
