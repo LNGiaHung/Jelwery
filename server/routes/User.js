@@ -18,7 +18,7 @@ const mailConfig = {
   HOST: 'smtp.gmail.com',
   PORT: 587,
   USERNAME: '21521099@gm.uit.edu.vn',
-  PASSWORD: 'vmtv cdoi calt bkci',
+  PASSWORD: 'tgdc pjku ogbu zbqq',
   FROM_ADDRESS: '21521099@gm.uit.edu.vn'
 };
 
@@ -119,7 +119,6 @@ router.post("/verify", async (req, res) => {
         DOB: user.DOB,
         Password: user.Password,
         Gender: user.Gender,
-        RelationshipStatus: user.RelationshipStatus,
         Verify: true
       });
 

@@ -1,60 +1,63 @@
 module.exports = (sequelize, DataTypes) => {
-  const Products = sequelize.define("Products", {
-    PID:{
-      type: DataTypes.STRING,
-      allowNULL: false
-    },
-    Name:{
+  const Products = sequelize.define(
+    "Products",
+    {
+      PID: {
         type: DataTypes.STRING,
-        allowNULL: false
-    },
-    Price:{
+        allowNULL: false,
+      },
+      Name: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
+      Price: {
         type: DataTypes.FLOAT,
-        allowNULL: false
-    },
-    Material:{
+        allowNULL: false,
+      },
+      Material: {
         type: DataTypes.STRING,
-        allowNULL: false
-    },
-    Weight:{
-      type: DataTypes.STRING,
-      allowNULL: false
-    },
-    Stone:{
+        allowNULL: false,
+      },
+      Weight: {
         type: DataTypes.STRING,
-        allowNULL: false
-    },
-    Size:{
-      type: DataTypes.STRING,
-      allowNULL: false
-    },
-    Collections:{
-      type: DataTypes.STRING,
-      allowNULL: true
-    },
-    Image:{
+        allowNULL: false,
+      },
+      Stone: {
         type: DataTypes.STRING,
-        allowNULL: false
+        allowNULL: false,
+      },
+      Size: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
+      Collections: {
+        type: DataTypes.STRING,
+        allowNULL: true,
+      },
+      Image: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
+      Image1: {
+        type: DataTypes.STRING,
+        allowNULL: true,
+      },
+      Image2: {
+        type: DataTypes.STRING,
+        allowNULL: true,
+      },
+      Image3: {
+        type: DataTypes.STRING,
+        allowNULL: true,
+      },
+      Status: {
+        type: DataTypes.STRING,
+        allowNULL: false,
+      },
     },
-    Image1:{
-      type: DataTypes.STRING,
-      allowNULL: true
-    },
-    Image2:{
-      type: DataTypes.STRING,
-      allowNULL: true
-    },
-    Image3:{
-      type: DataTypes.STRING,
-      allowNULL: true
-    },
-    Status:{
-      type: DataTypes.STRING,
-      allowNULL: false
-    },
-  },{
-      timestamps: false
-  })
+    {
+      timestamps: false,
+    }
+  );
   return Products;
-  
-}
+};
