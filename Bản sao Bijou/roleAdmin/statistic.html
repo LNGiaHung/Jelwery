@@ -27,12 +27,21 @@
                 <!-- <span class="material-icons-outlined">menu</span> -->
                 <i class="material-icons-outlined fa-solid fa-bars"></i>
             </div>
+            <!-- Search -->
             <div class="header-left">
-                <i class="material-icons-outlined fa-solid fa-magnifying-glass"></i>
+                <label >
+                    <i class="material-icons-outlined fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search here">
+                </label>
             </div>
+            <!-- Sign in/out -->
             <div class="header-right">
-                <i class="material-icons-outlined fa-regular fa-envelope"></i>
-                <i class="material-icons-outlined fa-solid fa-user-tie"></i>
+                <!-- <i class="material-icons-outlined fa-regular fa-envelope"></i> -->
+                <a href="../singIn/signIn.html">
+                    <i class="material-icons-outlined fa-solid fa-user-tie"></i>
+                </a>
+                <!-- Logout button placeholder -->
+                <!-- <li class="header__navbar-item" id="mobileLogoutButtonPlaceholder"></li> -->
             </div>
         </header>
 
@@ -44,28 +53,32 @@
                 </div>
                 <i class="material-icons-outlined fa-solid fa-xmark" onclick="closeSidebar()"></i>
             </div>
-
+    
             <ul class="sidebar-list">
                 <li class="sidebar-list-item">
-                    <i class="fa-solid fa-table"></i> Dashboard
+                    <a href="./statistic.html">
+                        <i class="fa-solid fa-table"></i> Dashboard
+                    </a>
                 </li>
                 <li class="sidebar-list-item">
                     <i class="fa-regular fa-gem"></i> Product
                 </li>
-                <li class="sidebar-list-item">
+                <!-- <li class="sidebar-list-item">
                     <i class="fa-solid fa-industry"></i> Inventory 
-                </li>
-                <li class="sidebar-list-item">
+                </li> -->
+                <!-- <li class="sidebar-list-item">
                     <i class="fa-solid fa-cart-plus"></i> Purchase Orders
-                </li>
+                </li> -->
                 <li class="sidebar-list-item">
-                    <i class="fa-solid fa-cart-shopping"></i> Sales Orders
+                    <a href="./orderManage.html">
+                        <i class="fa-solid fa-cart-shopping"></i> Sales Orders
+                    </a>
                 </li>
-                <li class="sidebar-list-item">
+                <!-- <li class="sidebar-list-item">
                     <i class="fa-solid fa-square-poll-vertical"></i> Reports
-                </li>
+                </li> -->
                 <li class="sidebar-list-item">
-                    <i class="fa-solid fa-gear"></i> Settings
+                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
                 </li>
             </ul>
         </aside>
@@ -77,20 +90,21 @@
             </div>
 
             <div class="main-cards">
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">REVENUE</p>
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <span class="text-rpimary font-weight-bold purchase-order">83</span>
+                </div>
+                
                 <div class="card">
                     <div class="card-inner">
                         <p class="text-primary">PRODUCTS</p>
                         <i class="fa-regular fa-gem text-blue"></i>
                     </div>
                     <span class="text-rpimary font-weight-bold product-qty">249</span>
-                </div>
-
-                <div class="card">
-                    <div class="card-inner">
-                        <p class="text-primary">PURCHASE ORDERS</p>
-                        <i class="fa-solid fa-cart-plus text-blue"></i>
-                    </div>
-                    <span class="text-rpimary font-weight-bold purchase-order">83</span>
                 </div>
 
                 <div class="card">
