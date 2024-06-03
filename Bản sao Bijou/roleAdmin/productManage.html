@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Bijou - Product Management</title>
+        <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.2/css/all.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="./statistic.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet">
+    
+    </head>
+<body>
+    <div class="grid-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <!-- <span class="material-icons-outlined">menu</span> -->
+                <i class="material-icons-outlined fa-solid fa-bars"></i>
+            </div>
+            <!-- Search -->
+            <div class="header-left">
+                <label >
+                    <i class="material-icons-outlined fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search here">
+                </label>
+            </div>
+            <!-- Sign in/out -->
+            <div class="header-right">
+                <!-- <i class="material-icons-outlined fa-regular fa-envelope"></i> -->
+                <a href="../singIn/signIn.html">
+                    <i class="material-icons-outlined fa-solid fa-user-tie"></i>
+                </a>
+                <!-- Logout button placeholder -->
+                <!-- <li class="header__navbar-item" id="mobileLogoutButtonPlaceholder"></li> -->
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <i class="fa-solid fa-warehouse"></i>Bijou Jewelry
+                </div>
+                <i class="material-icons-outlined fa-solid fa-xmark" onclick="closeSidebar()"></i>
+            </div>
+    
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <a href="./statistic.html">
+                        <i class="fa-solid fa-table"></i> Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-list-item">
+                    <i class="fa-regular fa-gem"></i> Product
+                </li>
+                <!-- <li class="sidebar-list-item">
+                    <i class="fa-solid fa-industry"></i> Inventory 
+                </li> -->
+                <!-- <li class="sidebar-list-item">
+                    <i class="fa-solid fa-cart-plus"></i> Purchase Orders
+                </li> -->
+                <li class="sidebar-list-item">
+                    <a href="./orderManage.html">
+                        <i class="fa-solid fa-cart-shopping"></i> Sales Orders
+                    </a>
+                </li>
+                <!-- <li class="sidebar-list-item">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Reports
+                </li> -->
+                <li class="sidebar-list-item">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main -->
+        <div class="main-container">
+             <!-- Chart -->
+            <div class="main-card-chart">
+                <div class="main-cards-col">
+                    <div class="card-col">
+                        <div class="card-inner">
+                            <h2 class="text-primary">Total Category</h2>
+                            <!-- <i class="fa-solid fa-hand-holding-dollar"></i> -->
+                        </div>
+                        <span class="text-rpimary font-weight-bold purchase-order">10</span>
+                    </div>
+                    
+                    <div class="card-col">
+                        <div class="card-inner">
+                            <h2 class="text-primary">Total Product</h2>
+                            <!-- <i class="fa-regular fa-gem text-blue"></i> -->
+                        </div>
+                        <span class="text-rpimary font-weight-bold product-qty">1000</span>
+                    </div>
+                </div>
+    
+                <div class="charts-one">
+                    <div class="charts-card">
+                        <p class="chart-title">Product Quantity According to Category</p>
+                        <div id="stackedCol-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table of cate -->
+            <div class="category">
+                <div class="table-category">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Category Name</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+        
+                        <tbody >
+                            <tr>
+                                <td>1</td> 
+                                <td>Gold</td>
+                                <td>
+                                    <span class="status return">Delete</span>
+                                    <span class="status inProgress">Edit</span>
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <td>2</td> 
+                                <td>Platinum</td>
+                                <td>
+                                    <span class="status return">Delete</span>
+                                    <span class="status inProgress">Edit</span>
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <td>3</td> 
+                                <td>Diamond</td>
+                                <td>
+                                    <span class="status return">Delete</span>
+                                    <span class="status inProgress">Edit</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                     </table>
+                     <div class="btn-mode">
+                        <a href="#" class="btn" id="addBtn">Add</a>
+                    </div>
+
+                    <!-- Pop up them cate -->
+                    <div id="popupForm" class="popup">
+                        <div class="popup-content">
+                            <span class="close">&times;</span>
+                            <h2>Add a New Category</h2>
+                            <form id="categoryForm">
+                                <label for="categoryName">Category Name:</label>
+                                <input type="text" id="categoryName" name="categoryName" required>
+                                <div class="button-container">
+                                    <button type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="charts-one">
+                    <div class="charts-card">
+                        <p class="chart-title">Percentage of Categories</p>
+                        <div id="pie-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table of product -->
+            <div class="table-product">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Product Name</td>
+                            <td>Category Name</td>
+                            <td>Quantity</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+    
+                    <tbody >
+                        <tr>
+                            <td>1</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>2</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>4</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>6</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>8</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>10</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+    
+                        <tr>
+                            <td>12</td> 
+                            <td>Couple engagement rings</td>
+                            <td>Rings</td>
+                            <td>66</td>
+                            <td>
+                                <span class="status return">Delete</span>
+                                <span class="status inProgress" id="editProductBtn" >Edit</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                 </table>
+                 <div class="btn-mode">
+                    <a href="#" class="btn" id="addProductBtn">Add</a>
+                </div>
+
+                <!-- Pop up them sp -->
+                <div id="popupProductForm" class="popupProduct">
+                    <div class="product-popup-content">
+                        <span class="productAddClose">&times;</span>
+                        <h2 id="productPopupTitle">Add a New Product</h2>
+                        <form id="productForm">
+                            <label for="productName">Product Name:</label>
+                            <input type="text" id="productName" name="productName" required>
+                            <br><br>
+                            <label for="productCategoryName">Category Name:</label>
+                            <select>
+                                <option value="0">Select Categories:</option>
+                                <option value="1" >Category 1</option>
+                                <option value="2" >Category 2</option>
+                                <option value="3" >Category 3</option>
+                                <option value="4" >Category 4</option>
+                                <option value="5" >Category 5</option>
+                                <option value="6">Category 6</option>
+                              </select>
+                            <br><br>
+                            <label for="productQuantity">Quantity:</label>
+                            <input type="text" id="productQuantity" name="productQuantity" required>
+                            <br><br>
+                            <div class="button-container">
+                                <button type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js" ></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.js" integrity="sha512-JkP6iYJ/r4nK3OAOoK3DT52vzSziR5z4QG9JwlRReLNT6AyLsDeWeB+HnxW6CWqDtgtkTjSwb9Xw0AaTdMUpmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</body>
+<script src="./statistic.js"></script>
+<script src="../logout.js"></script>
+<script src="./productManage.js"></script>
+</html>
