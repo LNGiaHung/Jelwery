@@ -68,6 +68,35 @@ async function fetchAndDisplayInvoices(apiUrl, limit = null) {
   const tableBody = document.getElementById('invoice-table-body');
   tableBody.innerHTML = ''; // Clear existing table rows
 
+  var editModeBtn = document.getElementById("editModeBtn");
+  var popupOrderForm = document.getElementById("popupOrderForm");
+  // var editStatusBtns = document.getElementsByClassName("editStatus");
+  var popupTitleOrder = document.getElementById("popupTitleOrder");
+  var closeOrderPopupBtn = document.getElementsByClassName("orderClose")[0];
+
+  // Toggle edit mode and button text
+  editModeBtn.addEventListener('click', function(e) {
+    console.log("edit mode")
+      e.preventDefault();
+      const table = document.querySelector('table');
+      table.classList.toggle('edit-mode');
+      this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
+  });
+
+
+  // Close the modal when the user clicks on <span> (x)
+  closeOrderPopupBtn.onclick = function() {
+      popupOrderForm.style.display = "none";
+  }
+
+  // Close the modal when the user clicks anywhere outside of the modal
+  window.onclick = function(event) {
+      if (event.target == popupOrderForm) {
+          popupOrderForm.style.display = "none";
+      }
+  }
+
+
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error('Network response was not ok');
@@ -85,6 +114,13 @@ async function fetchAndDisplayInvoices(apiUrl, limit = null) {
         <td>${invoice.Payment}</td>
         <td><span class="status ${invoice.Status.toLowerCase()}">${invoice.Status}</span></td>
       `;
+      row.onclick = function() {
+        console.log("click")
+        if (document.querySelector('table').classList.contains('edit-mode')) {
+          popupTitleOrder.textContent = "Edit Order Status";
+          popupOrderForm.style.display = "block";
+        }
+      };
 
       tableBody.appendChild(row);
     });
@@ -95,21 +131,20 @@ async function fetchAndDisplayInvoices(apiUrl, limit = null) {
 
 // Get the buttons by their IDs
 const viewAllBtn = document.getElementById('viewAllBtn');
-const editModeBtn = document.getElementById('editModeBtn');
-
 // Add onclick event to viewAllBtn
 viewAllBtn.addEventListener('click', function() {
   fetchAndDisplayInvoices(`${API_BASE_URL}`);
     console.log('View All button clicked');
 });
 
-// Add onclick event to editModeBtn
-editModeBtn.addEventListener('click', function() {
-    // Call a function or execute code when editModeBtn is clicked
-    // For example:
-    console.log('Edit Mode button clicked');
-});
-
+// Handle form submission
+document.getElementById("orderForm").onsubmit = function(event) {
+    event.preventDefault();
+    var orderStatus = document.querySelector("#orderForm select").value;
+    console.log("Order Status:", orderStatus);
+    // Here you can add code to save the order status
+    popupOrderForm.style.display = "none"; // Close the pop-up after saving
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentYear = new Date().getFullYear();
