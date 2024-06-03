@@ -2,43 +2,56 @@ module.exports = (sequelize, DataTypes) => {
   const Users = sequelize.define(
     "Users",
     {
+      CID: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
       FirstName: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       LastName: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Mail: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
         unique: true,
       },
       DOB: {
-        type: DataTypes.DATE,
-        allowNULL: true,
+        type: DataTypes.DATEONLY,
+        allowNull: true,
       },
       Password: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Gender: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       RelationshipStatus: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
+      },
+      Phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      Address: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       Verify: {
-        type: DataTypes.BOOLEAN,
-        allowNULL: true,
+        type: DataTypes.STRING,
+        allowNull: true,
         defaultValue: false,
       },
       Role: {
         type: DataTypes.STRING,
-        allowNULL: true,
+        allowNull: true,
         defaultValue: "customer",
       },
     },
@@ -46,5 +59,15 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+
+  // Assuming you have an Invoices model defined elsewhere
+  // Replace 'models.Invoices' with the actual model name if needed
+  Users.associate = (models) => {
+    Users.hasMany(models.Invoices, {
+      foreignKey: 'User', // The foreign key in the Invoices model that references the Users model
+      as: 'invoices', // Alias for the association (optional)
+    });
+  };
+
   return Users;
 };

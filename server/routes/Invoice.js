@@ -108,6 +108,64 @@ router.get("/year/:year", async (req, res) => {
   }
 });
 
+router.get("/revenue/:year", async (req, res) => {
+  const { year } = req.params;
+  const revenueByMonth = [];
+
+  try {
+    for (let month = 1; month <= 12; month++) {
+      // Calculate start and end dates for the month in the current year
+      const startDateCurrentYear = new Date(year, month - 1, 1);
+      const endDateCurrentYear = new Date(year, month, 0); // Last day of the month
+
+      // Calculate start and end dates for the same month in the previous year
+      const startDateLastYear = new Date(year - 1, month - 1, 1);
+      const endDateLastYear = new Date(year - 1, month, 0); // Last day of the month
+
+      // Sum revenue for the specified month in the current year
+      const currentYearRevenue = await Invoices.sum('Price', {
+        where: {
+          BookedDate: {
+            [Op.between]: [startDateCurrentYear, endDateCurrentYear]
+          }
+        }
+      });
+
+      // Sum revenue for the specified month in the previous year
+      const lastYearRevenue = await Invoices.sum('Price', {
+        where: {
+          BookedDate: {
+            [Op.between]: [startDateLastYear, endDateLastYear]
+          }
+        }
+      });
+
+      const doneInvoices = await Invoices.count({
+        where: {
+          BookedDate: {
+            [Op.between]: [startDateCurrentYear, endDateCurrentYear]
+          },
+          Status: 'Done'
+        }
+      });
+
+      revenueByMonth.push({
+        month,
+        year,
+        currentYearRevenue: currentYearRevenue || 0,
+        lastYearRevenue: lastYearRevenue || 0,
+        Sales: doneInvoices || 0
+      });
+    }
+
+    // Send the revenue data as a JSON response
+    res.json(revenueByMonth);
+  } catch (error) {
+    console.error('Error fetching revenue for year:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 
 module.exports = router;
