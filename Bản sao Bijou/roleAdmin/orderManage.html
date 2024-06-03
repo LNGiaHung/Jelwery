@@ -167,7 +167,7 @@
                                 <td>Bracelets</td>
                                 <td>10000000</td>
                                 <td>Paid</td>
-                                <td><span class="status delivered">Delivered </span></td>
+                                <td><span class="status delivered editStatus">Delivered </span></td>
                             </tr>
 
                             <tr>
@@ -175,7 +175,7 @@
                                 <td>Couple Rings</td>
                                 <td>90000000</td>
                                 <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
+                                <td><span class="status pending editStatus">Pending</span></td>
                             </tr>
 
                             <tr>
@@ -183,7 +183,7 @@
                                 <td>Diamond Ring</td>
                                 <td>220000000</td>
                                 <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
+                                <td><span class="status return editStatus">Return</span></td>
                             </tr>
 
                             <tr>
@@ -191,7 +191,7 @@
                                 <td>Earrings</td >
                                 <td>6000000</td>
                                 <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
+                                <td><span class="status inProgress editStatus">In Progress</span></td>
                             </tr>
 
                             <tr>
@@ -199,7 +199,7 @@
                                 <td>Earrings</td >
                                 <td>6000000</td>
                                 <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
+                                <td><span class="status delivered editStatus">Delivered</span></td>
                             </tr>
 
                             <tr>
@@ -207,7 +207,7 @@
                                 <td>Earrings</td >
                                 <td>6000000</td>
                                 <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span ></td>
+                                <td><span class="status delivered editStatus">Delivered</span ></td>
                             </tr>
 
                             <tr>
@@ -215,7 +215,7 @@
                                 <td>Couple Rings</td>
                                 <td>90000000</td>
                                 <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
+                                <td><span class="status pending editStatus">Pending</span></td>
                             </tr>
 
                             <tr>
@@ -223,7 +223,7 @@
                                 <td>Diamond Ring</td>
                                 <td>220000000</td>
                                 <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
+                                <td><span class="status return editStatus">Return</span></td>
                             </tr>
 
                             <tr>
@@ -231,7 +231,7 @@
                                 <td>Earrings</td >
                                 <td>6000000</td>
                                 <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
+                                <td><span class="status inProgress editStatus">In Progress</span></td>
                             </tr>
 
                             <tr>
@@ -239,10 +239,31 @@
                                 <td>Earrings</td >
                                 <td>6000000</td>
                                 <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span ></td>
+                                <td><span class="status delivered editStatus">Delivered</span ></td>
                             </tr>
                         </tbody>
                      </table>
+
+                     <div id="popupOrderForm" class="popupOrder">
+                        <div class="popup-order-content">
+                            <span class="orderClose">&times;</span>
+                            <h2 id="popupTitleOrder">Edit Order Status</h2>
+                            <form id="orderForm">
+                                <!-- <label for="orderStatus">Order Status:</label> -->
+                                <select>
+                                    <option value="0">Select Order Status:</option>
+                                    <option value="1" >Delivered</option>
+                                    <option value="2" >Pending</option>
+                                    <option value="3" >Return</option>
+                                    <option value="4" >In Progress</option>
+                                </select>
+                                <br><br>
+                                <div class="button-container">
+                                    <button type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- New customer -->

@@ -635,6 +635,7 @@ body {
 }
 
 /* Style for the pop-up form */
+.popupOrder,
 .popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -648,6 +649,7 @@ body {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.popup-order-content,
 .popup-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -658,11 +660,13 @@ body {
     border-radius: 10px;
 }
 
+.popupTitleOrder,
 .popup-content h2 {
     text-align: center;
     margin-top: 10px;
 }
 
+.orderClose,
 .productAddClose,
 .close {
     color: #aaa;
@@ -671,6 +675,8 @@ body {
     font-weight: bold;
 }
 
+.orderClose:hover,
+.orderClose:focus,
 .productAddClose:hover,
 .productAddClose:focus,
 .close:hover,
@@ -695,6 +701,7 @@ body {
     font-size: 16px;
 }
 
+#popupTitleOrder:focus,
 #productQuantity:focus,
 #productName:focus,
 #categoryName:focus {
@@ -763,13 +770,17 @@ body {
     font-size: 16px;
 }
 
+#orderForm select, 
 #productForm select {
+    padding: 6px;
+    font-size: 15px;
     width: 100%;
     height: 40px;
     margin-top: 8px;
     /* margin-left: 11px; */
 }
 
+#orderForm select option,
 #productForm select option {
     font-size: 14px;
 }

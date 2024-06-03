@@ -1,10 +1,58 @@
 // -------------------------Order Management ------------------------------
-document.getElementById('editModeBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    const table = document.querySelector('.recentOrders table');
-    table.classList.toggle('edit-mode');
-    this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
-  });
+// document.getElementById('editModeBtn').addEventListener('click', function(e) {
+//     e.preventDefault();
+//     const table = document.querySelector('.recentOrders table');
+//     table.classList.toggle('edit-mode');
+//     this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
+//   });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var popupOrderForm = document.getElementById("popupOrderForm");
+    var editModeBtn = document.getElementById("editModeBtn");
+    var editStatusBtns = document.getElementsByClassName("editStatus");
+    var popupTitleOrder = document.getElementById("popupTitleOrder");
+    var closeOrderPopupBtn = document.getElementsByClassName("orderClose")[0];
+
+    // Toggle edit mode and button text
+    editModeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const table = document.querySelector('table');
+        table.classList.toggle('edit-mode');
+        this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
+    });
+
+    // Open modal when any editStatus button is clicked
+    for (var i = 0; i < editStatusBtns.length; i++) {
+        editStatusBtns[i].onclick = function() {
+            if (document.querySelector('table').classList.contains('edit-mode')) {
+                popupTitleOrder.textContent = "Edit Order Status";
+                popupOrderForm.style.display = "block";
+            }
+        };
+    }
+
+    // Close the modal when the user clicks on <span> (x)
+    closeOrderPopupBtn.onclick = function() {
+        popupOrderForm.style.display = "none";
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == popupOrderForm) {
+            popupOrderForm.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    document.getElementById("orderForm").onsubmit = function(event) {
+        event.preventDefault();
+        var orderStatus = document.querySelector("#orderForm select").value;
+        console.log("Order Status:", orderStatus);
+        // Here you can add code to save the order status
+        popupOrderForm.style.display = "none"; // Close the pop-up after saving
+    }
+});
+
   
   var groupChartEarningOptions = {
     series: [
