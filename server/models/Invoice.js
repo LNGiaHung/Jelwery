@@ -36,6 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       as: 'details', // Alias for the association (optional)
     });
   };
+  // Define associations
+  Invoices.associate = (models) => {
+    Invoices.belongsTo(models.Users, {
+      foreignKey: 'User', // The foreign key in the Invoices model that references the Users model
+      as: 'customer', // Alias for the association (optional)
+    });
+  };
 
   return Invoices;
 };

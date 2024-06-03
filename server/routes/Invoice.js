@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { Invoices, InvoiceDetail } = require('../models'); // Ensure these are the correct model names
+const { Invoices, InvoiceDetail, Users } = require('../models'); // Ensure these are the correct model names
 const { Op } = require('sequelize');
 
 
 // Get all invoices
 router.get("/", async (req, res) => {
   try {
-    const listOfInvoices = await Invoices.findAll();
+    const listOfInvoices = await Invoices.findAll({
+      include: [{ model: Users, as: 'customer' }],
+      order: [['ID', 'DESC']]
+    });
     res.json(listOfInvoices);
   } catch (error) {
     console.error('Error fetching all invoices:', error);

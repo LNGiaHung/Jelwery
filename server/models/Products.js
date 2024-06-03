@@ -1,58 +1,64 @@
+const Category = require("./Category");
+
 module.exports = (sequelize, DataTypes) => {
   const Products = sequelize.define(
     "Products",
     {
       PID: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Name: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Price: {
         type: DataTypes.FLOAT,
-        allowNULL: false,
+        allowNull: false,
       },
       Material: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Weight: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Stone: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Size: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
-      Collections: {
-        type: DataTypes.STRING,
-        allowNULL: true,
+      CategoryId: {  // Changed 'Category' to 'CategoryId'
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: Category,
+          key: 'id',
+        }
       },
       Image: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Image1: {
         type: DataTypes.STRING,
-        allowNULL: true,
+        allowNull: true,
       },
       Image2: {
         type: DataTypes.STRING,
-        allowNULL: true,
+        allowNull: true,
       },
       Image3: {
         type: DataTypes.STRING,
-        allowNULL: true,
+        allowNull: true,
       },
       Status: {
         type: DataTypes.STRING,
-        allowNULL: false,
+        allowNull: false,
       },
       Quantity: {
         type: DataTypes.FLOAT,
@@ -63,5 +69,13 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     }
   );
+
+  Products.associate = (models) => {
+    Products.belongsTo(models.Category, {
+      foreignKey: 'CategoryId',
+      as: 'category',  // Alias for the association
+    });
+  };
+
   return Products;
 };
