@@ -76,27 +76,26 @@ function ShowInvoices(number = null) {
     });
 }
 
-function ShowInvoices(number = null) {
+function ShowRecentCustomers(number = null) {
   fetch(`${API_BASE_URL}`)
     .then(response => response.json())
     .then(data => {
-      const invoices = data;
-      const topInvoices = number ? invoices.slice(0, number) : invoices;
-      const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
-      invoiceTableBody.innerHTML = topInvoices.map(invoice => `
-        <tr data-id="${invoice.ID}" class="editable">
-          <td>${invoice.ID}</td>
-          <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
-          <td>${formatRevenue(invoice.Price)}</td>
-          <td>${invoice.Payment}</td>
-          <td><span class="status ${invoice.Status.toLowerCase()}">${invoice.Status}</span></td>
+      const customers = data;
+      const topCustomers = number ? customers.slice(0, number) : customers;
+      const customerTableBody = document.querySelector('.recentCustomers table tbody');
+      customerTableBody.innerHTML = topCustomers.map(customer => `
+        <tr>
+          <td width="60px">
+            <div class="imgBox"> <img src="../assets/img/avt_girl.png" alt=""></div>
+          </td>
+          <td>
+            <h4>${customer.customer.LastName}<br><span>${customer.customer.Address}</span></h4>
+          </td>
         </tr>
       `).join('');
-
-      addEditModeListeners();
     })
     .catch(error => {
-      console.error('Error fetching invoices:', error);
+      console.error('Error fetching recent customers:', error);
     });
 }
 
