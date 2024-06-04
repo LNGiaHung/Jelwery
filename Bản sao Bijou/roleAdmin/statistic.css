@@ -355,6 +355,23 @@ body {
     margin: 4px 0;
  }
 
+ .prev-next-page {
+    display: flex;
+    /* text-align: center; */
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.prev-page-btn, 
+.next-page-btn {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    font-size: 18px;
+}
+
  .table-product .btn,
  .table-category .btn,
  .cardHeader .btn {
@@ -399,7 +416,7 @@ body {
  .details table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 24px;
+    margin: 24px 0;
  }
 
 
