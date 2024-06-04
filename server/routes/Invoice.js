@@ -169,6 +169,20 @@ router.get("/revenue/:year", async (req, res) => {
   }
 });
 
-
+router.put("/update", async (req, res) => {
+  const { id, status } = req.body;
+  try {
+    const invoice = await Invoices.findByPk(id);
+    if (!invoice) {
+      return res.status(404).json({ error: 'Invoice not found' });
+    }
+    invoice.Status = status;
+    await invoice.save();
+    res.json({ message: 'Invoice updated successfully' });
+  } catch (error) {
+    console.error('Error updating invoice:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router;
