@@ -172,6 +172,27 @@ function getStatusValueFromText(statusText) {
   return statusMap[statusText] || '0';
 }
 
+async function searchInvoices(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/search/${id}`);
+    const data = await response.json();
+    const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
+    invoiceTableBody.innerHTML = data.map(invoice => `
+      <tr data-id="${invoice.ID}">
+        <td>${invoice.ID}</td>
+        <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
+        <td>${formatRevenue(invoice.Price)}</td>
+        <td>${invoice.Payment}</td>
+        <td><span class="status ${invoice.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${invoice.Status}</span></td>
+      </tr>
+    `).join('');
+
+    addEditModeListeners();
+  } catch (error) {
+    console.error('Error fetching invoices:', error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const currentYear = new Date().getFullYear();
   localStorage.setItem('editMode', 'off');
@@ -189,6 +210,19 @@ document.addEventListener('DOMContentLoaded', function () {
       closeOrderForm();
     }
   };
+
+  const searchInput = document.getElementById('searchInput');
+  const searchIcon = document.getElementById('searchIcon');
+
+  // Event listener for Enter key press
+  searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+          searchInvoices(searchInput.value);
+      }
+  });
+
+  // Event listener for magnifying glass icon click
+  searchIcon.addEventListener('click', logSearchText);
 
   fetchGraph(currentYear);
   ShowInvoices(10);

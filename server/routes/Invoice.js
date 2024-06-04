@@ -18,6 +18,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/search/:id", async (req, res) => {
+  const invoiceID = req.params.id;
+  try {
+    const listOfInvoices = await Invoices.findAll({
+      where: {ID: invoiceID},
+      include: [{ model: Users, as: 'customer' }],
+      order: [['ID', 'DESC']]
+    });
+    res.json(listOfInvoices);
+  } catch (error) {
+    console.error('Error fetching all invoices:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // Get all invoices with status 'Done' and their total count
 router.get("/status/done", async (req, res) => {
   try {
