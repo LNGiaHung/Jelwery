@@ -259,12 +259,6 @@ function UpdateAreaChart(invoiceData) {
 
 
 // -------------------------Order Management ------------------------------
-document.getElementById('editModeBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  const table = document.querySelector('.recentOrders table');
-  table.classList.toggle('edit-mode');
-  this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
-});
 
 
 // Area chart for quantity and earning on 12 months

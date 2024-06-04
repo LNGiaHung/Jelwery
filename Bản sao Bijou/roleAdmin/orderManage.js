@@ -7,153 +7,188 @@ function formatRevenue(totalRevenue) {
   return totalRevenue.toFixed(2) + 'đ';
 }
 
-async function fetchRevenueDataAndUpdateChart(year) {
+let groupChartEarning;
+const groupChartEarningOptions = {
+  series: [
+    { name: 'Last Year', group: 'budget', data: [] },
+    { name: 'This Year', group: 'actual', data: [] }
+  ],
+  chart: { type: 'bar', height: 550, stacked: true },
+  stroke: { width: 1, colors: ['#fff'] },
+  dataLabels: { formatter: (value) => formatRevenue(value) },
+  plotOptions: { bar: { horizontal: false } },
+  xaxis: { title: { text: 'Month' }, categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] },
+  fill: { opacity: 1 },
+  colors: ['#80c7fd', '#00E396'],
+  yaxis: { title: { text: 'Revenue' }, labels: { formatter: (value) => formatRevenue(value) } },
+  legend: { position: 'top', horizontalAlign: 'left' }
+};
+
+async function fetchGraph(year) {
   try {
     const response = await fetch(`${API_BASE_URL}/revenue/${year}`);
     const data = await response.json();
 
-    const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
+    const currentYearRevenue = data.map(item => item.currentYearRevenue);
+    const totalRevenue = data.reduce((sum, item) => sum + item.currentYearRevenue, 0);
+    const sales = data.reduce((sum, item) => sum + item.Sales, 0);
 
-    const currentYearRevenue = [];
-    const lastYearRevenue = [
-      234560000, 150000000, 4156231000, 641230000, 3654894000,
-      452100000, 145620000, 421003000, 984512000, 845120000,
-      214530000, 1871520000
+    groupChartEarningOptions.series[0].data = [
+      234560000, 150000000, 4156231000, 641230000, 3654894000, 452100000, 145620000, 421003000, 984512000, 845120000, 214530000, 1871520000
     ];
-    let totalRevenue = 0;
-    let sales = 0;
-
-    data.forEach(item => {
-      currentYearRevenue.push(item.currentYearRevenue);
-      totalRevenue += item.currentYearRevenue;
-      sales += item.Sales;
-    });
+    groupChartEarningOptions.series[1].data = currentYearRevenue;
 
     document.querySelector('.total-amount-order').innerText = formatRevenue(totalRevenue);
     document.querySelector('.sale-qty').innerText = sales;
 
-    const groupChartEarningOptions = {
-      series: [
-        { name: 'Last Year', group: 'budget', data: lastYearRevenue },
-        { name: 'This Year', group: 'actual', data: currentYearRevenue }
-      ],
-      chart: { type: 'bar', height: 550, stacked: true },
-      stroke: { width: 1, colors: ['#fff'] },
-      dataLabels: { formatter: formatRevenue },
-      plotOptions: { bar: { horizontal: false } },
-      xaxis: { title: { text: 'Month' }, categories: months },
-      fill: { opacity: 1 },
-      colors: ['#80c7fd', '#00E396'],
-      yaxis: {
-        title: { text: 'Revenue' },
-        labels: { formatter: formatRevenue }
-      },
-      legend: { position: 'top', horizontalAlign: 'left' }
-    };
-
-    const groupChartEarning = new ApexCharts(
-      document.querySelector("#group-chart_earning-quantity"),
-      groupChartEarningOptions
-    );
-    groupChartEarning.render();
+    if (!groupChartEarning) {
+      groupChartEarning = new ApexCharts(document.querySelector("#group-chart_earning-quantity"), groupChartEarningOptions);
+      groupChartEarning.render();
+    } else {
+      groupChartEarning.updateOptions(groupChartEarningOptions);
+    }
   } catch (error) {
     console.error('Error fetching revenue data:', error);
   }
 }
 
-async function fetchAndDisplayInvoices(apiUrl, limit = null) {
-  const tableBody = document.getElementById('invoice-table-body');
-  tableBody.innerHTML = ''; // Clear existing table rows
+function ShowInvoices(number = null) {
+  fetch(`${API_BASE_URL}`)
+    .then(response => response.json())
+    .then(data => {
+      const invoices = data;
+      const topInvoices = number ? invoices.slice(0, number) : invoices;
+      const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
+      invoiceTableBody.innerHTML = topInvoices.map(invoice => `
+        <tr>
+          <td>${invoice.ID}</td>
+          <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
+          <td>${formatRevenue(invoice.Price)}</td>
+          <td>${invoice.Payment}</td>
+          <td><span class="status ${invoice.Status.toLowerCase()} editStatus">${invoice.Status}</span></td>
+        </tr>
+      `).join('');
 
-  var editModeBtn = document.getElementById("editModeBtn");
-  var popupOrderForm = document.getElementById("popupOrderForm");
-  // var editStatusBtns = document.getElementsByClassName("editStatus");
-  var popupTitleOrder = document.getElementById("popupTitleOrder");
-  var closeOrderPopupBtn = document.getElementsByClassName("orderClose")[0];
-
-  // Toggle edit mode and button text
-  editModeBtn.addEventListener('click', function(e) {
-    console.log("edit mode")
-      e.preventDefault();
-      const table = document.querySelector('table');
-      table.classList.toggle('edit-mode');
-      this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
-  });
-
-
-  // Close the modal when the user clicks on <span> (x)
-  closeOrderPopupBtn.onclick = function() {
-      popupOrderForm.style.display = "none";
-  }
-
-  // Close the modal when the user clicks anywhere outside of the modal
-  window.onclick = function(event) {
-      if (event.target == popupOrderForm) {
-          popupOrderForm.style.display = "none";
-      }
-  }
-
-
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('Network response was not ok');
-    console.log(response)
-    const data = await response.json();
-    const invoices = limit ? data.slice(0, limit) : data;
-
-    invoices.forEach(invoice => {
-      const row = document.createElement('tr');
-
-      row.innerHTML = `
-        <td>${invoice.ID}</td>
-        <td>${invoice.customer.FirstName + " " + invoice.customer.LastName}</td>
-        <td>${invoice.Price.toLocaleString('vi-VN')}</td>
-        <td>${invoice.Payment}</td>
-        <td><span class="status ${invoice.Status.toLowerCase()}">${invoice.Status}</span></td>
-      `;
-      row.onclick = function() {
-        console.log("click")
-        if (document.querySelector('table').classList.contains('edit-mode')) {
-          popupTitleOrder.textContent = "Edit Order Status";
-          popupOrderForm.style.display = "block";
-        }
-      };
-
-      tableBody.appendChild(row);
+      addEditModeListeners();
+    })
+    .catch(error => {
+      console.error('Error fetching invoices:', error);
     });
-  } catch (error) {
-    console.error('Error fetching invoices:', error);
-  }
 }
 
-// Get the buttons by their IDs
-const viewAllBtn = document.getElementById('viewAllBtn');
-// Add onclick event to viewAllBtn
-viewAllBtn.addEventListener('click', function() {
-  fetchAndDisplayInvoices(`${API_BASE_URL}`);
-    console.log('View All button clicked');
-});
-
-// Handle form submission
-document.getElementById("orderForm").onsubmit = function(event) {
-    event.preventDefault();
-    var orderStatus = document.querySelector("#orderForm select").value;
-    console.log("Order Status:", orderStatus);
-    // Here you can add code to save the order status
-    popupOrderForm.style.display = "none"; // Close the pop-up after saving
+function ShowRecentCustomers(number = null) {
+  fetch(`${API_BASE_URL}`)
+    .then(response => response.json())
+    .then(data => {
+      const customers = data;
+      const topCustomers = number ? customers.slice(0, number) : customers;
+      const customerTableBody = document.querySelector('.recentCustomers table tbody');
+      customerTableBody.innerHTML = topCustomers.map(customer => `
+        <tr>
+          <td width="60px">
+            <div class="imgBox"> <img src="../assets/img/avt_girl.png" alt=""></div>
+          </td>
+          <td>
+            <h4>${customer.customer.LastName}<br><span>${customer.customer.Address}</span></h4>
+          </td>
+        </tr>
+      `).join('');
+    })
+    .catch(error => {
+      console.error('Error fetching recent customers:', error);
+    });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function addEditModeListeners() {
+  const editModeBtn = document.getElementById('editModeBtn');
+  const orderCloseBtn = document.querySelector('.orderClose');
+  const orderForm = document.getElementById('orderForm');
+
+  editModeBtn.addEventListener('click', toggleEditMode);
+  orderCloseBtn.addEventListener('click', closeOrderForm);
+  orderForm.addEventListener('submit', updateOrderStatus);
+
+  const editStatusBtns = document.querySelectorAll('.editStatus');
+  editStatusBtns.forEach(statusElement => {
+    statusElement.classList.add('editable');
+    statusElement.addEventListener('click', (event) => {
+      if (localStorage.getItem('editMode')==='on') {
+        showOrderForm(event);
+      }
+    });
+  });
+}
+
+function toggleEditMode() {
+  const table = document.querySelector('table');
+  table.classList.toggle('edit-mode');
+  if(table.classList.contains('edit-mode'))
+    localStorage.setItem('editMode','on')
+  else
+    localStorage.setItem('editMode','off')
+  this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
+}
+
+function showOrderForm(event) {
+  const statusElement = event.target;
+  const orderId = statusElement.parentElement.parentElement.firstElementChild.textContent;
+  const orderStatus = statusElement.textContent.toLowerCase();
+
+  const statusSelect = document.getElementById('orderForm').querySelector('select');
+  statusSelect.value = getStatusValueFromText(orderStatus);
+
+  document.getElementById('popupOrderForm').style.display = 'flex';
+  document.getElementById('popupTitleOrder').textContent = `Edit Order #${orderId}`;
+}
+
+function closeOrderForm() {
+  document.getElementById('popupOrderForm').style.display = 'none';
+}
+
+function getStatusValueFromText(statusText) {
+  const statusMap = {
+    delivered: '1',
+    pending: '2',
+    return: '3',
+    'in progress': '4'
+  };
+  return statusMap[statusText] || '0';
+}
+
+function updateOrderStatus(event) {
+  event.preventDefault();
+  console.log('Updating order status...');
+  closeOrderForm();
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
   const currentYear = new Date().getFullYear();
-  document.querySelector('.year').innerText = currentYear;
-  fetchRevenueDataAndUpdateChart(currentYear);
-  fetchAndDisplayInvoices(`${API_BASE_URL}`, 10);
-});
+  localStorage.setItem('editMode','off')
 
-// Optional: Function to show all invoices if needed
-async function showAllInvoices() {
-  await fetchAndDisplayInvoices(`${API_BASE_URL}`);
-}
+  const popupOrderForm = document.getElementById("popupOrderForm");
+  const editModeBtn = document.getElementById("editModeBtn");
+  const popupTitleOrder = document.getElementById("popupTitleOrder");
+  const closeOrderPopupBtn = document.querySelector(".orderClose");
+  const showAllBtn = document.getElementById("showAllBtn");
+
+  editModeBtn.addEventListener('click', toggleEditMode);
+  showAllBtn.addEventListener('click', () => {ShowInvoices(null);ShowRecentCustomers(null);});
+
+  const editStatusBtns = document.getElementsByClassName("editStatus");
+  for (let i = 0; i < editStatusBtns.length; i++) {
+    editStatusBtns[i].onclick = showOrderForm;
+  }
+
+  closeOrderPopupBtn.onclick = closeOrderForm;
+
+  window.onclick = function(event) {
+    if (event.target == popupOrderForm) {
+      closeOrderForm();
+    }
+  }
+
+  fetchGraph(currentYear);
+  ShowInvoices(10);
+  ShowRecentCustomers(5)
+});
