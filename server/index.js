@@ -23,6 +23,8 @@ const WishListRoutes = require('./routes/WishList');
 app.use(WishListRoutes);
 const InvoiceRoutes = require('./routes/Invoice');
 app.use("/Invoice",InvoiceRoutes);
+const CateRoutes = require('./routes/Category');
+app.use("/cate",CateRoutes);
 //app.get('/', async(req, res) => {
 //    res.sendFile(path.join(__dirname, '../Bản sao Bijou', 'landing.html'));
 //});

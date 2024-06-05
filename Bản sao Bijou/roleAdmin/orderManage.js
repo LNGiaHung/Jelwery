@@ -34,7 +34,7 @@ async function fetchGraph(year) {
     const sales = data.reduce((sum, item) => sum + item.Sales, 0);
 
     groupChartEarningOptions.series[0].data = [
-      234560000, 150000000, 4156231000, 641230000, 3654894000, 452100000, 145620000, 421003000, 984512000, 845120000, 214530000, 1871520000
+      23456000000, 15000000000, 41562310000, 64123000000, 36548940000, 45210000000, 54562000000, 42100300000, 39845120000, 28451200000, 21453000000, 48715200000
     ];
     groupChartEarningOptions.series[1].data = currentYearRevenue;
 
@@ -52,62 +52,57 @@ async function fetchGraph(year) {
   }
 }
 
-function ShowInvoices(number = null) {
-  fetch(`${API_BASE_URL}`)
-    .then(response => response.json())
-    .then(data => {
-      const invoices = data;
-      const topInvoices = number ? invoices.slice(0, number) : invoices;
-      const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
-      invoiceTableBody.innerHTML = topInvoices.map(invoice => `
-        <tr>
-          <td>${invoice.ID}</td>
-          <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
-          <td>${formatRevenue(invoice.Price)}</td>
-          <td>${invoice.Payment}</td>
-          <td><span class="status ${invoice.Status.toLowerCase()} editStatus">${invoice.Status}</span></td>
-        </tr>
-      `).join('');
+async function ShowInvoices(start, end) {
+  try {
+    const response = await fetch(`${API_BASE_URL}`);
+    const data = await response.json();
+    const topInvoices = data.slice(start, end);
+    const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
+    invoiceTableBody.innerHTML = topInvoices.map(invoice => `
+      <tr data-id="${invoice.ID}">
+        <td>${invoice.ID}</td>
+        <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
+        <td>${formatRevenue(invoice.Price)}</td>
+        <td>${invoice.Payment}</td>
+        <td><span class="status ${invoice.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${invoice.Status}</span></td>
+      </tr>
+    `).join('');
 
-      addEditModeListeners();
-    })
-    .catch(error => {
-      console.error('Error fetching invoices:', error);
-    });
+    addEditModeListeners();
+  } catch (error) {
+    console.error('Error fetching invoices:', error);
+  }
 }
 
-function ShowRecentCustomers(number = null) {
-  fetch(`${API_BASE_URL}`)
-    .then(response => response.json())
-    .then(data => {
-      const customers = data;
-      const topCustomers = number ? customers.slice(0, number) : customers;
-      const customerTableBody = document.querySelector('.recentCustomers table tbody');
-      customerTableBody.innerHTML = topCustomers.map(customer => `
-        <tr>
-          <td width="60px">
-            <div class="imgBox"> <img src="../assets/img/avt_girl.png" alt=""></div>
-          </td>
-          <td>
-            <h4>${customer.customer.LastName}<br><span>${customer.customer.Address}</span></h4>
-          </td>
-        </tr>
-      `).join('');
-    })
-    .catch(error => {
-      console.error('Error fetching recent customers:', error);
-    });
+async function ShowRecentCustomers(number = null) {
+  try {
+    const response = await fetch(`${API_BASE_URL}`);
+    const data = await response.json();
+    const topCustomers = number ? data.slice(0, number) : data;
+    const customerTableBody = document.querySelector('.recentCustomers table tbody');
+    customerTableBody.innerHTML = topCustomers.map(customer => `
+      <tr>
+        <td width="60px">
+          <div class="imgBox"><img src="../assets/img/avt_girl.png" alt=""></div>
+        </td>
+        <td>
+          <h4>${customer.customer.LastName}<br><span>${customer.customer.Address}</span></h4>
+        </td>
+      </tr>
+    `).join('');
+  } catch (error) {
+    console.error('Error fetching recent customers:', error);
+  }
 }
 
 function addEditModeListeners() {
   const editModeBtn = document.getElementById('editModeBtn');
   const orderCloseBtn = document.querySelector('.orderClose');
-  
 
   editModeBtn.addEventListener('click', toggleEditMode);
   orderCloseBtn.addEventListener('click', closeOrderForm);
-  
-  const editableRows = document.querySelectorAll('.InvoiceTable tbody tr.editable');
+
+  const editableRows = document.querySelectorAll('.InvoiceTable tbody tr');
   editableRows.forEach(row => {
     row.addEventListener('click', (event) => {
       if (localStorage.getItem('editMode') === 'on') {
@@ -122,20 +117,20 @@ function showOrderForm(event) {
   const orderId = row.dataset.id;
   const orderStatus = row.querySelector('.status').textContent.toLowerCase();
   const orderForm = document.getElementById('orderForm');
-
   const statusSelect = orderForm.querySelector('select');
+
   statusSelect.value = getStatusValueFromText(orderStatus);
 
   document.getElementById('popupOrderForm').style.display = 'flex';
   document.getElementById('popupTitleOrder').textContent = `Edit Order #${orderId}`;
 
-  orderForm.addEventListener('submit', async (event) => {
+  orderForm.onsubmit = async function(event) {
     event.preventDefault();
     const selectedOption = statusSelect.options[statusSelect.selectedIndex];
     const newStatus = selectedOption.text;
 
     try {
-      const response = await fetch('http://localhost:3001/Invoice/update', {
+      const response = await fetch(`${API_BASE_URL}/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -153,16 +148,13 @@ function showOrderForm(event) {
     } catch (error) {
       console.error('Error communicating with the server:', error);
     }
-  });
+  };
 }
 
 function toggleEditMode() {
   const table = document.querySelector('table');
   table.classList.toggle('edit-mode');
-  if(table.classList.contains('edit-mode'))
-    localStorage.setItem('editMode','on')
-  else
-    localStorage.setItem('editMode','off')
+  localStorage.setItem('editMode', table.classList.contains('edit-mode') ? 'on' : 'off');
   this.textContent = table.classList.contains('edit-mode') ? 'Save' : 'Edit Mode';
 }
 
@@ -180,43 +172,80 @@ function getStatusValueFromText(statusText) {
   return statusMap[statusText] || '0';
 }
 
-function updateOrderStatus(event) {
-  event.preventDefault();
-  console.log('Updating order status...');
-  const id = localStorage.getItem('editItem');
+async function searchInvoices(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/search/${id}`);
+    const data = await response.json();
+    const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
+    invoiceTableBody.innerHTML = data.map(invoice => `
+      <tr data-id="${invoice.ID}">
+        <td>${invoice.ID}</td>
+        <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
+        <td>${formatRevenue(invoice.Price)}</td>
+        <td>${invoice.Payment}</td>
+        <td><span class="status ${invoice.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${invoice.Status}</span></td>
+      </tr>
+    `).join('');
 
-  localStorage.setItem('editItem', orderId);
-  closeOrderForm();
+    addEditModeListeners();
+  } catch (error) {
+    console.error('Error fetching invoices:', error);
+  }
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
   const currentYear = new Date().getFullYear();
-  localStorage.setItem('editMode','off')
+  localStorage.setItem('editMode', 'off');
 
-  const popupOrderForm = document.getElementById("popupOrderForm");
-  const editModeBtn = document.getElementById("editModeBtn");
-  const popupTitleOrder = document.getElementById("popupTitleOrder");
-  const closeOrderPopupBtn = document.querySelector(".orderClose");
-  const showAllBtn = document.getElementById("showAllBtn");
+  document.getElementById('editModeBtn').addEventListener('click', toggleEditMode);
 
-  editModeBtn.addEventListener('click', toggleEditMode);
-  showAllBtn.addEventListener('click', () => {ShowInvoices(null);ShowRecentCustomers(null);});
-
-  const Btns = documenteditStatus.getElementsByClassName("editStatus");
-  for (let i = 0; i < editStatusBtns.length; i++) {
-    editStatusBtns[i].onclick = showOrderForm;
-  }
-
-  closeOrderPopupBtn.onclick = closeOrderForm;
+  document.querySelector('.orderClose').onclick = closeOrderForm;
 
   window.onclick = function(event) {
-    if (event.target == popupOrderForm) {
+    if (event.target == document.getElementById('popupOrderForm')) {
       closeOrderForm();
     }
-  }
+  };
+
+  const searchInput = document.getElementById('searchInput');
+  const searchIcon = document.getElementById('searchIcon');
+
+  // Event listener for Enter key press
+  searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+          searchInvoices(searchInput.value);
+      }
+  });
+
+  // Event listener for magnifying glass icon click
+  searchIcon.addEventListener('click', searchInvoices(searchInput.value));
+
+  const prevButton = document.querySelector('.prev-page-btn');
+  const nextButton = document.querySelector('.next-page-btn');
+
+  prevButton.addEventListener('click', () => {
+    console.log('Previous page button clicked');
+    if(start===0)
+      console.log('nomorepage');
+    else{
+      start -= 10;
+      end -= 10;
+      ShowInvoices(start,end);
+    }
+  });
+  nextButton.addEventListener('click', () => {
+    console.log('Next page button clicked');
+    start += 10;
+    end += 10;
+    ShowInvoices(start,end);
+  });
+
+  var start = 0
+  var end = 10
 
   fetchGraph(currentYear);
-  ShowInvoices(10);
-  ShowRecentCustomers(6)
+  ShowInvoices(start,end);
+  ShowRecentCustomers(7);
 });
+
+

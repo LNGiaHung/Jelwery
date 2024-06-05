@@ -93,7 +93,7 @@
                             <h2 class="text-primary">Total Category</h2>
                             <!-- <i class="fa-solid fa-hand-holding-dollar"></i> -->
                         </div>
-                        <span class="text-rpimary font-weight-bold purchase-order">10</span>
+                        <span class="text-rpimary font-weight-bold total-cate">10</span>
                     </div>
                     
                     <div class="card-col">
@@ -131,7 +131,7 @@
                                 <td>Gold</td>
                                 <td>
                                     <span class="status return">Delete</span>
-                                    <span class="status inProgress cateEditBtn">Edit</span>
+                                    <span class="status inprogress cateEditBtn">Edit</span>
                                 </td>
                             </tr>
         
@@ -140,7 +140,7 @@
                                 <td>Platinum</td>
                                 <td>
                                     <span class="status return">Delete</span>
-                                    <span class="status inProgress cateEditBtn">Edit</span>
+                                    <span class="status inprogress cateEditBtn">Edit</span>
                                 </td>
                             </tr>
         
@@ -149,7 +149,7 @@
                                 <td>Diamond</td>
                                 <td>
                                     <span class="status return">Delete</span>
-                                    <span class="status inProgress cateEditBtn">Edit</span>
+                                    <span class="status inprogress cateEditBtn">Edit</span>
                                 </td>
                             </tr>
 
@@ -196,7 +196,7 @@
                         </tr>
                     </thead>
     
-                    <tbody >
+                    <tbody id="productTableBody">
                         <tr>
                             <td>1</td> 
                             <td>Couple engagement rings</td>
@@ -204,7 +204,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -215,7 +215,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -226,7 +226,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -237,7 +237,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -248,7 +248,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -259,7 +259,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -270,7 +270,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -281,7 +281,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -292,7 +292,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -303,7 +303,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -314,7 +314,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
     
@@ -325,7 +325,7 @@
                             <td>66</td>
                             <td>
                                 <span class="status return">Delete</span>
-                                <span class="status inProgress editProductBtn">Edit</span>
+                                <span class="status inprogress editProductBtn">Edit</span>
                             </td>
                         </tr>
 
@@ -334,8 +334,16 @@
                  <div class="btn-mode">
                     <a href="#" class="btn" id="addProductBtn">Add</a>
                 </div>
+                <div class="prev-next-page">
+                    <button class="prev-page-btn">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                    <button class="next-page-btn">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                 </div>
 
-                <!-- Pop up them sp -->
+                <!-- Pop up edit sp -->
                 <div id="popupProductForm" class="popupProduct">
                     <div class="product-popup-content">
                         <span class="productAddClose">&times;</span>
@@ -345,15 +353,9 @@
                             <input type="text" id="productName" name="productName" required>
                             <br><br>
                             <label for="productCategoryName">Category Name:</label>
-                            <select>
-                                <option value="0">Select Categories:</option>
-                                <option value="1" >Category 1</option>
-                                <option value="2" >Category 2</option>
-                                <option value="3" >Category 3</option>
-                                <option value="4" >Category 4</option>
-                                <option value="5" >Category 5</option>
-                                <option value="6">Category 6</option>
-                              </select>
+                            <select id="productCategoryName">
+                                <option value="0">Select Category:</option>
+                            </select>
                             <br><br>
                             <label for="productQuantity">Quantity:</label>
                             <input type="text" id="productQuantity" name="productQuantity" required>
@@ -364,6 +366,64 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- Pop up add sp -->
+                <div id="popupProductFormAdd" class="popupProductAdd">
+                    <div class="product-popup-content-add">
+                        <span class="productAddClose">&times;</span>
+                        <h2 id="productPopupTitle">Add a New Product</h2>
+                        <form id="productFormAdd">
+                            <div class="productAddGrid">
+                                <div class="productAddLeft">
+                                    <label for="productNameAdd">Name:</label>
+                                    <input type="text" id="productNameAdd" name="productNameAdd" required>
+                                    <br><br>
+                                    <label for="productPriceAdd">Price:</label>
+                                    <input type="number" id="productPriceAdd" name="productPriceAdd" required>
+                                    <br><br>
+                                    <label for="productMaterialAdd">Material:</label>
+                                    <input type="text" id="productMaterialAdd" name="productMaterialAdd" required>
+                                    <br><br>
+                                    <label for="productWeightAdd">Weight:</label>
+                                    <input type="number" id="productWeightAdd" name="productWeightAdd" required>
+                                    <br><br>
+                                    <label for="productStoneAdd">Stone:</label>
+                                    <input type="text" id="productStoneAdd" name="productStoneAdd" required>
+                                    <br><br>
+                                    <label for="productSizeAdd">Size:</label>
+                                    <input type="text" id="productSizeAdd" name="productSizeAdd" required>
+                                    <br><br>
+                                </div>
+                                <div class="productAddRight">
+                                    <label for="productCategoryNameAdd">Category Name:</label>
+                                    <select id="productCategoryNameAdd">
+                                        <option value="0">Select Category:</option>
+                                    </select>
+                                    <br><br>
+                                    <label for="productImageAdd">Image:</label>
+                                    <input type="text" id="productImageAdd" name="productImageAdd" required>
+                                    <br><br>
+                                    <label for="productImage1">Image 1:</label>
+                                    <input type="text" id="productImage1" name="productImage1">
+                                    <br><br>
+                                    <label for="productImage2">Image 2:</label>
+                                    <input type="text" id="productImage2" name="productImage2" >
+                                    <br><br>
+                                    <label for="productImage3">Image 3:</label>
+                                    <input type="link" id="productImage3" name="productImage3">
+                                    <br><br>
+                                    <label for="productQuantityAdd">Quantity:</label>
+                                    <input type="text" id="productQuantityAdd" name="productQuantity" required>
+                                    <br><br>
+                                </div>
+                            </div>
+                            <div class="button-container">
+                                <button type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
 
             </div>
         </div>

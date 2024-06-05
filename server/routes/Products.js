@@ -1,18 +1,83 @@
 const express = require('express');
 const router = express.Router();
-const { Products } = require('../models');
+const { Products, Category } = require('../models');
 const { Sequelize, DataTypes, Op, where } = require('sequelize');
+const sequelize = new Sequelize({
+  dialect: 'mysql', // Use the appropriate dialect (e.g., 'mysql', 'postgres', etc.)
+  host: 'localhost', //
+  username: 'root',
+  password: 'giahung1232003',
+  database: 'jewelry'
+});
 
 
 router.get("/all", async (req, res) => {
   try {
-    const countAll = await Products.findAndCountAll();
+    const countAll = await Products.findAndCountAll({
+      include: [{ model: Category, as: 'category' }],
+    });
     res.json({
       total: countAll.count,
-      invoices: countAll.rows
+      Products: countAll.rows
     });
   } catch (error) {
     console.error('Error fetching invoices all":', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get("/all/byCate", async (req, res) => {
+  try {
+    const productCounts = await Products.findAll({
+      attributes: [
+        'CategoryId', // Include the grouped column
+        [sequelize.fn('COUNT', sequelize.col('Products.id')), 'productCount'] // Count products
+      ],
+      include: [{
+        model: Category,
+        as: 'category'
+      }],
+      group: ['CategoryId'] // Group by category ID
+    });
+
+    res.json(productCounts);
+  } catch (error) {
+    console.error('Error fetching product counts grouped by category:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
+
+router.put("/update", async (req, res) => {
+  const { id, Name, CategoryId, Quantity } = req.body;
+  try {
+    const product = await Products.findByPk(id);
+    if (!product) {
+      return res.status(404).json({ error: 'Invoice not found' });
+    }
+    product.Name = Name;
+    product.CategoryId = CategoryId;
+    product.Quantity = Quantity;
+    await product.save();
+    res.json({ message: 'Invoice updated successfully' ,product: product });
+  } catch (error) {
+    console.error('Error updating invoice:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.delete("/delete", async (req, res) => {
+  const { id } = req.body;
+  try {
+    const cate = await Products.findByPk(id);
+    if (!cate) {
+      return res.status(404).json({ error: 'Invoice not found' });
+    }
+    cate.destroy();
+    res.json({ message: 'Invoice delete successfully' });
+  } catch (error) {
+    console.error('Error deleting invoice:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -34,26 +99,6 @@ router.get("/status/available", async (req, res) => {
   }
 });
 
-// Route to get product items by type
-router.get('/byType/:type', async (req, res) => {
-  try {
-    const foodType = req.params.type;
-    // Find the FoodType record by TypeName
-    const typeRecord = await FoodType.findOne({ where: { TypeName: foodType } });
-
-    if (!typeRecord) {
-      return res.status(404).json({ error: 'Food type not found' });
-    }
-
-    // Find all food items with the matching FoodTypeID
-    const foods = await Food.findAll({ where: { FoodTypeID: typeRecord.id } });
-
-    res.json(foods);
-  } catch (error) {
-    console.error('Error fetching food by type:', error);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
 
 // Your existing routes for getting all food items, creating new food items, and getting a single food item by ID can remain unchanged.
 // Route to get all products
@@ -78,32 +123,6 @@ router.get("/:cate", async (req, res) => {
   }
 });
 
-// Route to create a new product
-router.post("/", async (req, res) => {
-  try {
-    const food = req.body;
-    await Food.create(food);
-    res.json(food);
-  } catch (error) {
-    console.error('Error creating new food item:', error);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
-
-// // Route to get a single product by ID
-// router.get("/:id", async (req, res) => {
-//   try {
-//       const foodId = req.params.id;
-//       const food = await Food.findByPk(foodId);
-//       if (!food) {
-//           return res.status(404).json({ error: "Food not found" });
-//       }
-//       res.json(food);
-//   } catch (error) {
-//       console.error('Error fetching food by ID:', error);
-//       res.status(500).json({ error: 'Server error' });
-//   }
-// });
 
 
 router.get("/pid/:pid", async (req, res) => {

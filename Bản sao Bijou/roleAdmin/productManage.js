@@ -69,172 +69,411 @@ var stackColChartOptions = {
   
 
 //   Polar chart
+function renderPieChart(){
+    var cateName = [];
+    var cateQuantity = [];
+    fetch('http://localhost:3001/Products/all/byCate')
+        .then(response => response.json())
+        .then(data => {
+            // Step 1: Parse the fetched data
+            data.forEach(item => {
+                cateName.push(item.category.Name);
+                cateQuantity.push(item.productCount);
+            });
+            
+            // Step 2: Update series and labels
+            pieChartOptions.series = cateQuantity;
+            pieChartOptions.labels = cateName;
+            
+            // Step 3: Render the pie chart
+            var pieChart = new ApexCharts(document.querySelector("#pie-chart"), pieChartOptions);
+            pieChart.render();
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
 
+// Pie chart options
 var pieChartOptions = {
-    series: [44, 55, 13, 43, 22],
+    series: [], // Will be updated dynamically
     chart: {
-    width: 380,
-    type: 'pie',
-  },
-  labels: ['Cate A', 'Cate B', 'Cate C', 'Cate D', 'Cate E'],
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
-  };
+        width: 550,
+        type: 'pie',
+    },
+    labels: [], // Will be updated dynamically
+    responsive: [{
+        breakpoint: 700,
+        options: {
+            chart: {
+                width: 300
+            },
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }]
+};
 
-  var pieChart = new ApexCharts(document.querySelector("#pie-chart"), pieChartOptions);
-  pieChart.render();
+// Call the function to render the pie chart
+renderPieChart();
 
-// ========== Add new category ===========
-// //   Pop up
-// // Get the modal
-// var popup = document.getElementById("popupForm");
 
-// // Get the button that opens the modal
-// var btn = document.getElementById("addBtn");
+  function updateAllCateData(Cate) {
+    document.querySelector('.total-cate').innerText = Cate.total;
+    console.log(Cate.total);
+  }
 
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
+  document.addEventListener('DOMContentLoaded', function () {
+    var start = 0
+    var end = 15
 
-// // When the user clicks the button, open the modal 
-// btn.onclick = function() {
-//     popup.style.display = "block";
-// }
+    renderCategoryTable();
+    fetchProducts(start,end)
 
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//     popup.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == popup) {
-//         popup.style.display = "none";
-//     }
-// }
-
-// // Handle form submission
-// document.getElementById("categoryForm").onsubmit = function(event) {
-//     event.preventDefault();
-//     var categoryName = document.getElementById("categoryName").value;
-//     console.log("Category Name:", categoryName);
-//     // Here you can add code to save the category
-//     popup.style.display = "none"; // Close the pop-up after saving
-// }
-
-document.addEventListener('DOMContentLoaded', function () {
     var popup = document.getElementById("popupForm");
     var addBtn = document.getElementById("addBtn");
-    var editBtns = document.getElementsByClassName("cateEditBtn");
-    var popupTitleCate = document.getElementById("popupTitleCate");
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the add button, open the modal and set title
+    // Open the modal and set title for adding a new category
     addBtn.onclick = function() {
         popupTitleCate.textContent = "Add a New Category";
         popup.style.display = "block";
     }
 
-    // When the user clicks on any edit button, open the modal and set title
-    for (var i = 0; i < editBtns.length; i++) {
-        editBtns[i].onclick = function() {
-            popupTitleCate.textContent = "Edit Category";
-            popup.style.display = "block";
-        };
-    }
-
-    // When the user clicks on <span> (x), close the modal
+    // Close the modal when clicking on <span> (x)
     span.onclick = function() {
         popup.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    // Close the modal when clicking outside of it
     window.onclick = function(event) {
         if (event.target == popup) {
             popup.style.display = "none";
         }
     }
-
-    // Handle form submission
-    document.getElementById("categoryForm").onsubmit = function(event) {
-        event.preventDefault();
-        var categoryName = document.getElementById("categoryName").value;
-        console.log("Category Name:", categoryName);
-        // Here you can add code to save the category
-        popup.style.display = "none"; // Close the pop-up after saving
-    }
 });
 
+async function showCateAddForm() {
+    const orderForm = document.getElementById("categoryForm");
+    const categoryNameInput = document.getElementById('categoryName');
 
+    orderForm.onsubmit = async function(event) {
+        event.preventDefault();
 
-// =======Pop up to add product========
-// // Get the modal
+        const newCateName = categoryNameInput.value;
 
-document.addEventListener('DOMContentLoaded', function () {
-    var productPopup = document.getElementById("popupProductForm");
-    var addProductBtn = document.getElementById("addProductBtn");
-    var editProductBtns = document.getElementsByClassName("editProductBtn");
-    var productPopupTitle = document.getElementById("productPopupTitle");
-    var closeProductPopupBtn = document.getElementsByClassName("productAddClose")[0];
+        try {
+            const response = await fetch("http://localhost:3001/cate/create", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: newCateName })
+            });
 
-    // When the user clicks the button, open the modal 
-    function openModal(title) {
-        productPopupTitle.textContent = title;
-        productPopup.style.display = "block";
+            if (response.ok) {
+                console.log('Category created successfully');
+                closeOrderForm();
+                window.location.reload();
+            } else {
+                console.error('Error creating category:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error communicating with the server:', error);
+        }
+    };
+}
+
+function renderCategoryTable() {
+    var popup = document.getElementById("popupForm");
+    var span = document.getElementsByClassName("close")[0];
+    var addBtn = document.getElementById("addBtn");
+
+    addBtn.onclick = showCateAddForm() 
+
+    fetch('http://localhost:3001/Cate')
+      .then(response => response.json())
+      .then(data => {
+            const tableBody = document.querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            updateAllCateData(data)
+
+            data.invoices.forEach(invoice => {
+                const row = document.createElement('tr');
+
+                const idCell = document.createElement('td');
+                idCell.textContent = invoice.ID;
+                row.appendChild(idCell);
+
+                const nameCell = document.createElement('td');
+                nameCell.classList.add('CateName');
+                nameCell.textContent = invoice.Name;
+                row.appendChild(nameCell);
+
+                const actionCell = document.createElement('td');
+
+                // const deleteSpan = document.createElement('span');
+                // deleteSpan.classList.add('status', 'return');
+                // deleteSpan.textContent = 'Delete';
+                // deleteSpan.addEventListener('click', () => deleteCategory(invoice.ID));
+                // actionCell.appendChild(deleteSpan);
+
+                const editSpan = document.createElement('span');
+                editSpan.classList.add('status', 'inprogress', 'cateEditBtn');
+                editSpan.textContent = 'Edit';
+                editSpan.addEventListener('click', (event) => {
+                    popupTitleCate.textContent = `Edit Category #${invoice.ID}`;
+                    const categoryNameInput = document.getElementById('categoryName');
+                    categoryNameInput.value = invoice.Name; // Directly set the value
+                    popup.style.display = "block";
+                    showCateEditForm(invoice.ID, categoryNameInput);
+                });
+                actionCell.appendChild(editSpan);
+
+                row.appendChild(actionCell);
+                tableBody.appendChild(row);
+            });
+
+            span.onclick = function() {
+                popup.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == popup) {
+                    popup.style.display = "none";
+                }
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+async function showCateEditForm(cateId, categoryNameInput) {
+    const orderForm = document.getElementById("categoryForm");
+
+    orderForm.onsubmit = async function(event) {
+        event.preventDefault();
+
+        const newCateName = categoryNameInput.value;
+
+        try {
+            const response = await fetch("http://localhost:3001/cate/update", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: cateId, name: newCateName })
+            });
+
+            if (response.ok) {
+                console.log('Category updated successfully');
+                closeOrderForm();
+                window.location.reload();
+            } else {
+                console.error('Error updating category:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error communicating with the server:', error);
+        }
+    };
+}
+
+async function deleteCategory(id) {
+    try {
+        const response = await fetch("http://localhost:3001/cate/delete", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id })
+        });
+
+        if (response.ok) {
+            console.log('Category delete successfully');
+            closeOrderForm();
+            window.location.reload();
+        } else {
+            console.error('Error deleting category:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error communicating with the server:', error);
     }
-    
-    addProductBtn.onclick = function() {
-        openModal("Add a New Product");
+}
+
+function closeOrderForm() {
+    const orderForm = document.getElementById("categoryForm");
+    orderForm.style.display = "none";
+}
+
+
+function fetchProducts(start, end) {
+    fetch('http://localhost:3001/Products/all')
+        .then(response => response.json())
+        .then(data => {
+            console.log('product nek: ',data);
+            const topProducts = data.Products.slice(start, end);
+            const productTableBody = document.getElementById('productTableBody');
+            productTableBody.innerHTML = ''; // Clear existing rows
+            topProducts.forEach(product => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${product.PID}</td>
+                    <td>${product.Name}</td>
+                    <td>${product.category.Name}</td>
+                    <td>${product.Quantity || 'N/A'}</td>
+                    <td>
+                        <span class="status return" onclick="deleteProduct(${product.id})">Delete</span>
+                        <span class="status inprogress editProductBtn" onclick="editProduct(${product.id},'${product.PID}')">Edit</span>
+                    </td>
+                `;
+                productTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+
+function fetchCategories() {
+    fetch('http://localhost:3001/Cate')
+        .then(response => response.json())
+        .then(data => {
+            const categorySelect = document.getElementById('productCategoryName');
+            categorySelect.innerHTML = '<option value="0">Select Category:</option>'; // Reset options
+
+            data.invoices.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.ID;
+                option.textContent = category.Name;
+                categorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching categories:', error));
+}
+
+function fetchCategories() {
+    fetch('http://localhost:3001/Cate')
+        .then(response => response.json())
+        .then(data => {
+            const categorySelect = document.getElementById('productCategoryName');
+            categorySelect.innerHTML = '<option value="0">Select Category:</option>'; // Reset options
+
+            data.invoices.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.ID;
+                option.textContent = category.Name;
+                categorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching categories:', error));
+}
+
+async function deleteProduct(productId) {
+    try {
+        const response = await fetch("http://localhost:3001/Products/delete", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: productId })
+        });
+
+        if (response.ok) {
+            console.log('Category delete successfully');
+            closeOrderForm();
+            window.location.reload();
+        } else {
+            console.error('Error deleting category:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error communicating with the server:', error);
+    }
+}
+
+async function editProduct(productId, PID) {
+    const productPopup = document.getElementById("popupProductForm");
+    const productForm = document.getElementById("productForm");
+    const closeProductPopupBtn = document.getElementsByClassName("productAddClose")[0];
+
+    fetchCategories();
+
+    document.getElementById("productPopupTitle").textContent = `Edit Product with ID: ${PID}`;
+    productPopup.style.display = "block";
+
+    productForm.onsubmit = async function (event) {
+        event.preventDefault();
+
+        const productName = document.getElementById('productName').value;
+        const productCategoryName = document.getElementById('productCategoryName').value;
+        const productQuantity = document.getElementById('productQuantity').value;
+        console.log(productCategoryName)
+
+        try {
+            const response = await fetch("http://localhost:3001/Products/update", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: productId,
+                    Name: productName,
+                    CategoryId: productCategoryName,
+                    Quantity: productQuantity
+                })
+            });
+
+            if (response.ok) {
+                console.log('Product updated successfully');
+                productPopup.style.display = "none";
+                console.log(response)
+                window.location.reload();
+            } else {
+                console.error('Error updating product:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error communicating with the server:', error);
+        }
     };
 
-    for (var i = 0; i < editProductBtns.length; i++) {
-        editProductBtns[i].onclick = function() {
-            openModal("Edit a Product");
-        };
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    closeProductPopupBtn.onclick = function() {
+    closeProductPopupBtn.onclick = function () {
         productPopup.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == productPopup) {
             productPopup.style.display = "none";
         }
     }
+}
 
-    // Handle form submission
-    document.getElementById("productForm").onsubmit = function(event) {
+async function showProductAddForm() {
+    const productForm = document.getElementById("productForm");
+    const productNameInput = document.getElementById('productName');
+
+    productForm.onsubmit = async function(event) {
         event.preventDefault();
-        var productName = document.getElementById("productName").value;
-        var categoryNames = Array.from(document.getElementById("productCategoryName").selectedOptions).map(option => option.value);
-        var productQuantity = document.getElementById("productQuantity").value;
 
-        console.log("Product Name:", productName);
-        console.log("Category Names:", categoryNames);
-        console.log("Product Quantity:", productQuantity);
+        const newProductName = productNameInput.value;
 
-        // Add code to save the product here (GIA HUNG)
-        productPopup.style.display = "none"; // Close the pop-up after saving
-    }
+        try {
+            const response = await fetch("http://localhost:3001/cate/create", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: newCateName })
+            });
 
-    // Show hidden options when the select is clicked
-    var categorySelect = document.getElementById('productCategoryName');
-    categorySelect.addEventListener('mousedown', function () {
-        var options = categorySelect.getElementsByClassName('categoryOption');
-        for (var i = 0; i < options.length; i++) {
-            options[i].style.display = 'block';
+            if (response.ok) {
+                console.log('Category created successfully');
+                closeOrderForm();
+                window.location.reload();
+            } else {
+                console.error('Error creating category:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error communicating with the server:', error);
         }
-    });
-});
-
+    };
+}

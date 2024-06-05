@@ -35,10 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       CategoryId: {  // Changed 'Category' to 'CategoryId'
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: {
-          model: Category,
-          key: 'id',
-        }
       },
       Image: {
         type: DataTypes.STRING,
@@ -59,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       Status: {
         type: DataTypes.STRING,
         allowNull: false,
+        default: 'Available'
       },
       Quantity: {
         type: DataTypes.FLOAT,
