@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.12.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -17,6 +18,7 @@
     "gauge": "^5.0.2",
     "mysql2": "^3.9.7",
     "nodemailer": "^6.9.13",
+    "openai": "^4.48.1",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.6.2",
     "signal-exit": "^4.1.0",

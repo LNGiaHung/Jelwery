@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
   editModeBtn.addEventListener('click', toggleEditMode);
   showAllBtn.addEventListener('click', () => {ShowInvoices(null);ShowRecentCustomers(null);});
 
-  const editStatusBtns = document.getElementsByClassName("editStatus");
+  const Btns = documenteditStatus.getElementsByClassName("editStatus");
   for (let i = 0; i < editStatusBtns.length; i++) {
     editStatusBtns[i].onclick = showOrderForm;
   }
