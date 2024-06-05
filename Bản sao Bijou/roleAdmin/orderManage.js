@@ -34,7 +34,7 @@ async function fetchGraph(year) {
     const sales = data.reduce((sum, item) => sum + item.Sales, 0);
 
     groupChartEarningOptions.series[0].data = [
-      234560000, 150000000, 4156231000, 641230000, 3654894000, 452100000, 145620000, 421003000, 984512000, 845120000, 214530000, 1871520000
+      23456000000, 15000000000, 41562310000, 64123000000, 36548940000, 45210000000, 54562000000, 42100300000, 39845120000, 28451200000, 21453000000, 48715200000
     ];
     groupChartEarningOptions.series[1].data = currentYearRevenue;
 
@@ -52,11 +52,11 @@ async function fetchGraph(year) {
   }
 }
 
-async function ShowInvoices(number = null) {
+async function ShowInvoices(start, end) {
   try {
     const response = await fetch(`${API_BASE_URL}`);
     const data = await response.json();
-    const topInvoices = number ? data.slice(0, number) : data;
+    const topInvoices = data.slice(start, end);
     const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
     invoiceTableBody.innerHTML = topInvoices.map(invoice => `
       <tr data-id="${invoice.ID}">
@@ -198,10 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
   localStorage.setItem('editMode', 'off');
 
   document.getElementById('editModeBtn').addEventListener('click', toggleEditMode);
-  document.getElementById('showAllBtn').addEventListener('click', () => {
-    ShowInvoices(null);
-    ShowRecentCustomers(null);
-  });
 
   document.querySelector('.orderClose').onclick = closeOrderForm;
 
@@ -222,9 +218,34 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Event listener for magnifying glass icon click
-  searchIcon.addEventListener('click', logSearchText);
+  searchIcon.addEventListener('click', searchInvoices(searchInput.value));
+
+  const prevButton = document.querySelector('.prev-page-btn');
+  const nextButton = document.querySelector('.next-page-btn');
+
+  prevButton.addEventListener('click', () => {
+    console.log('Previous page button clicked');
+    if(start===0)
+      console.log('nomorepage');
+    else{
+      start -= 10;
+      end -= 10;
+      ShowInvoices(start,end);
+    }
+  });
+  nextButton.addEventListener('click', () => {
+    console.log('Next page button clicked');
+    start += 10;
+    end += 10;
+    ShowInvoices(start,end);
+  });
+
+  var start = 0
+  var end = 10
 
   fetchGraph(currentYear);
-  ShowInvoices(10);
-  ShowRecentCustomers(6);
+  ShowInvoices(start,end);
+  ShowRecentCustomers(7);
 });
+
+
