@@ -135,8 +135,9 @@ function fetchProductsAndUpdateHTML() {
   // Get the search keyword from sessionStorage
   const keyWord = JSON.parse(sessionStorage.getItem("searchKeyword"));
   const selectedCategory = JSON.parse(sessionStorage.getItem("selectedCategory"));
-  console.log("keyWord.searchKeyword: ", keyWord);
-  console.log("selectedCategory: ", selectedCategory);
+  const selectedStone = JSON.parse(sessionStorage.getItem("selectedStone"));
+  // console.log("keyWord.searchKeyword: ", keyWord);
+  // console.log("selectedNavigate: ", selectedCategory);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -169,6 +170,23 @@ function fetchProductsAndUpdateHTML() {
     .catch((error) => {
       console.error("Error fetching products by category:", error);
     });
+  }else if(selectedStone !== null){
+    const stone =encodeURIComponent(selectedStone); // Ensure category is URL-safe
+
+    fetch(`http://localhost:3001/Products/byStone/${stone}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((products) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("selectedStone",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by stone:", error);
+      })
   }else {
     return fetch("http://localhost:3001/Products")
       .then((response) => {
