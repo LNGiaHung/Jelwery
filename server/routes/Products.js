@@ -47,7 +47,46 @@ router.get("/all/byCate", async (req, res) => {
   }
 });
 
+router.post("/create", async (req, res) => {
+  const {
+    pid,
+    name,
+    price,
+    material,
+    weight,
+    stone,
+    size,
+    category,
+    quantity,
+    image,
+    image1,
+    image2,
+    image3,
+  } = req.body;
 
+  try {
+    const product = await Products.create({
+      PID: pid,
+      Name: name,
+      Price: price,
+      Material: material,
+      Weight: weight,
+      Stone: stone,
+      Size: size,
+      CategoryId: category, // Assuming categoryId is a foreign key in the Product model
+      Quantity: quantity,
+      Image: image,
+      Image1: image1,
+      Image2: image2,
+      Image3: image3,
+      Status: 'Available'
+    });
+    res.json({ message: 'Product created successfully', product });
+  } catch (error) {
+    console.error('Error creating product:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 router.put("/update", async (req, res) => {
   const { id, Name, CategoryId, Quantity } = req.body;
