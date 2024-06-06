@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         body: JSON.stringify(formValues)
       });
-  
+      console.log("response: ",response);
       if (response.ok) {
         showPopup('Verification code sent. Please check your email.');
         registrationForm.style.display = 'none';
