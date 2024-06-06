@@ -230,6 +230,19 @@ const getMaterialType = (materialType) => {
   return null;
 };
 
+const getStoneType = (stoneType) =>{
+  stoneType=stoneType.toLowerCase()
+  const stoneTypes = ["diamond","pearl","moissanite","sapphire","cubic zirconia"];
+
+  for(let type of stoneTypes){
+    if(stoneType.includes(type)){
+      return type;
+    }
+  }
+
+  return null;
+}
+
 // Route to get products by category and material type
 router.get("/byCategory/:category/:materialType", async (req, res) => {
   try {
@@ -342,5 +355,35 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+router.get('/byStone/:stone', async (req, res) => {
+  try {
+    const stone = req.params.stone;
+
+    const stoneType = getStoneType(stone);
+
+    if (!stoneType) {
+      return res.status(400).json({ error: 'Invalid stoneType' });
+    }
+
+    const products = await Products.findAll({
+      where: { 
+        // Stone: stoneType 
+        Stone: {
+          [Op.like]: `%${stoneType}%`
+        }
+      }
+    });
+
+    if (products.length > 0) {
+      res.status(200).json(products);
+    } else {
+      res.status(404).json({ message: 'No products found with the specified stone type.' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred while fetching products.', error: error.message });
+  }
+});
+
 module.exports = router;
 
