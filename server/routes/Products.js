@@ -221,13 +221,13 @@ router.get("/inName/:keyWord", async (req, res) => {
 // khi lay gtri tu li cua html -> chuyen doi gtri thanh cac gia tri co the qeury dc
 const getCategory = (Type) => {
   Type = Type.toLowerCase();
-  if (Type === 'rings') {
+  if (Type.includes('rings') && !Type.includes('earrings')) {
     return 'ring';
-  } else if (Type === 'earrings') {
+  } else if (Type.includes('earrings')) {
     return 'earring';
-  } else if (Type === 'bracelets') {
+  } else if (Type.includes('bracelets')) {
     return 'bracelet';
-  } else if (Type === 'necklaces') {
+  } else if (Type.includes('necklaces')) {
     return 'necklace';
   } else if(Type === 'new-in'){
     return 'collections';
@@ -269,6 +269,19 @@ const getMaterialType = (materialType) => {
   return null;
 };
 
+const getStoneType = (stoneType) =>{
+  stoneType=stoneType.toLowerCase()
+  const stoneTypes = ["diamond","pearl","moissanite","sapphire","cubic zirconia"];
+
+  for(let type of stoneTypes){
+    if(stoneType.includes(type)){
+      return type;
+    }
+  }
+
+  return null;
+}
+
 // Route to get products by category and material type
 router.get("/byCategory/:category/:materialType", async (req, res) => {
   try {
@@ -283,10 +296,9 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
 
     // Validate materialType
     const validMaterialTypes = getMaterialType(materialType);
-
-    if (!validMaterialTypes) {
-      return res.status(400).json({ error: 'Invalid material type' });
-    }
+    // if (!validMaterialTypes) {
+    //   return res.status(400).json({ error: 'Invalid material type' });
+    // }
 
     // Fetch products by derived category and material type
     let products;
@@ -312,15 +324,43 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
                 [Op.notLike]: '%earring%'
               }
             },
-            {
+            validMaterialTypes !== null ? {
               Material: {
                 [Op.like]: `%${validMaterialTypes}%`
               }
-            }
+            } : {}
+            // {
+            //   Material: {
+            //     [Op.like]: `%${validMaterialTypes}%`
+            //   }
+            // }
           ]
         }
       });
-    } else {
+    } else if(category === 'necklace'){
+      products = await Products.findAll({
+        where: {
+          [Op.and]: [
+            {
+              [Op.or]: [
+                { Name: { [Op.like]: `%${category}%` } },
+                { Name: { [Op.like]: 'Pendants' } }
+              ]
+            },
+            validMaterialTypes !== null ? {
+              Material: {
+                [Op.like]: `%${validMaterialTypes}%`
+              }
+            } : {}
+            // {
+            //   Material: {
+            //     [Op.like]: `%${validMaterialTypes}%`
+            //   }
+            // }
+          ]
+        }
+      });
+    }else {
       products = await Products.findAll({
         where: {
           [Op.and]: [
@@ -329,11 +369,16 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
                 [Op.like]: `%${category}%`
               }
             },
-            {
+            validMaterialTypes !== null ? {
               Material: {
                 [Op.like]: `%${validMaterialTypes}%`
               }
-            }
+            } : {}
+            // {
+            //   Material: {
+            //     [Op.like]: `%${validMaterialTypes}%`
+            //   }
+            // }
           ]
         }
       });
@@ -349,5 +394,35 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+router.get('/byStone/:stone', async (req, res) => {
+  try {
+    const stone = req.params.stone;
+
+    const stoneType = getStoneType(stone);
+
+    if (!stoneType) {
+      return res.status(400).json({ error: 'Invalid stoneType' });
+    }
+
+    const products = await Products.findAll({
+      where: { 
+        // Stone: stoneType 
+        Stone: {
+          [Op.like]: `%${stoneType}%`
+        }
+      }
+    });
+
+    if (products.length > 0) {
+      res.status(200).json(products);
+    } else {
+      res.status(404).json({ message: 'No products found with the specified stone type.' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred while fetching products.', error: error.message });
+  }
+});
+
 module.exports = router;
 
