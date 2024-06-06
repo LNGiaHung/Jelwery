@@ -395,7 +395,7 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
   }
 });
 
-router.get('/byStone/:stone', async (req, res) => {
+router.get("/byStone/:stone", async (req, res) => {
   try {
     const stone = req.params.stone;
 
@@ -424,5 +424,6 @@ router.get('/byStone/:stone', async (req, res) => {
   }
 });
 
+// router.get("/byCategory/:")
 module.exports = router;
 
