@@ -96,12 +96,13 @@ function renderPieChart(){
 
 // Pie chart options
 var pieChartOptions = {
-    series: [], // Will be updated dynamically
+    series: [], 
     chart: {
         width: 550,
         type: 'pie',
     },
-    labels: [], // Will be updated dynamically
+    labels: [], 
+    colors: ['#FFFF33', '#008FFB', '#00E396', '#FEB019', '#00BB00', '#546E7A', '#33CCFF', '#FF6699'], // Add your desired colors here
     responsive: [{
         breakpoint: 700,
         options: {
@@ -114,6 +115,7 @@ var pieChartOptions = {
         }
     }]
 };
+
 
 // Call the function to render the pie chart
 renderPieChart();
