@@ -152,6 +152,27 @@ renderPieChart();
             popup.style.display = "none";
         }
     }
+    showProductAddForm();
+
+    const prevButton = document.querySelector('.prev-page-btn');
+    const nextButton = document.querySelector('.next-page-btn');
+
+    prevButton.addEventListener('click', () => {
+        console.log('Previous page button clicked');
+        if(start===0)
+        console.log('nomorepage');
+        else{
+        start -= 10;
+        end -= 10;
+        fetchProducts(start,end);
+        }
+    });
+    nextButton.addEventListener('click', () => {
+        console.log('Next page button clicked');
+        start += 10;
+        end += 10;
+        fetchProducts(start,end);
+    });
 });
 
 async function showCateAddForm() {
@@ -448,35 +469,120 @@ async function editProduct(productId, PID) {
 }
 
 async function showProductAddForm() {
-    const productForm = document.getElementById("productForm");
-    const productNameInput = document.getElementById('productName');
+    const popup = document.getElementById('popupProductFormAdd');
+    const openPopupButton = document.getElementById('addProductBtn');
+    const closePopupButton = document.querySelector('.productAddClose');
+    const categorySelect = document.getElementById('productCategoryNameAdd');
+    const productFormAdd = document.getElementById('productFormAdd');
 
-    productForm.onsubmit = async function(event) {
+    async function fetchCategories() {
+        try {
+            const response = await fetch("http://localhost:3001/Cate");
+            const data = await response.json();
+
+            if (response.ok) {
+                const categories = data.invoices;
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.ID;
+                    option.textContent = category.Name;
+                    categorySelect.appendChild(option);
+                });
+            } else {
+                console.error('Error fetching categories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error communicating with the server:', error);
+        }
+    }
+
+    openPopupButton.addEventListener('click', () => {
+        popup.style.display = 'block';
+        fetchCategories(); // Fetch categories when the popup is opened
+        console.log('open');
+    });
+
+    closePopupButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+        console.log('close');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+            console.log('close');
+        }
+    });
+
+    function nameToId(name) {
+        // Convert to lowercase
+        let idStr = name.toLowerCase();
+        // Split the string into words
+        let words = idStr.split(/\s+/);
+        // Take the first two characters of each word
+        let initials = words.map(word => {
+          if (word.length >= 2) {
+            return word.substring(0, 2).toUpperCase();
+          } else {
+            return word.toUpperCase();
+          }
+        }).join('');
+        // Remove any non-alphanumeric characters
+        initials = initials.replace(/[^A-Z0-9]/g, '');
+        return initials;
+    }
+
+    productFormAdd.onsubmit = async function(event) {
         event.preventDefault();
 
-        const newProductName = productNameInput.value;
+        const newProductName = document.getElementById('productNameAdd').value;
+        const newProductPrice = document.getElementById('productPriceAdd').value;
+        const newProductMaterial = document.getElementById('productMaterialAdd').value;
+        const newProductWeight = document.getElementById('productWeightAdd').value;
+        const newProductStone = document.getElementById('productStoneAdd').value;
+        const newProductSize = document.getElementById('productSizeAdd').value;
+        const newProductCategory = document.getElementById('productCategoryNameAdd').value;
+        const newProductQuantity = document.getElementById('productQuantityAdd').value;
+        const newProductImage = document.getElementById('productImageAdd').value;
+        const newProductImage1 = document.getElementById('productImage1').value;
+        const newProductImage2 = document.getElementById('productImage2').value;
+        const newProductImage3 = document.getElementById('productImage3').value;
+        const newProductPID = nameToId(newProductName) + nameToId(newProductMaterial) + nameToId(newProductStone) + nameToId(newProductSize);
+
+        const productData = {
+            pid: newProductPID,
+            name: newProductName,
+            price: newProductPrice,
+            material: newProductMaterial,
+            weight: newProductWeight,
+            stone: newProductStone,
+            size: newProductSize,
+            category: newProductCategory,
+            quantity: newProductQuantity,
+            image: newProductImage,
+            image1: newProductImage1,
+            image2: newProductImage2,
+            image3: newProductImage3
+        };
 
         try {
-            const response = await fetch("http://localhost:3001/cate/create", {
+            const response = await fetch("http://localhost:3001/Products/create", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name: newCateName })
+                body: JSON.stringify(productData)
             });
 
             if (response.ok) {
-                console.log('Category created successfully');
-                closeOrderForm();
+                console.log('Product created successfully');
+                popup.style.display = 'none';
                 window.location.reload();
             } else {
-                console.error('Error creating category:', response.statusText);
+                console.error('Error creating product:', response.statusText);
             }
         } catch (error) {
             console.error('Error communicating with the server:', error);
         }
     };
 }
-
-
-// Pop up add new product cua Giang

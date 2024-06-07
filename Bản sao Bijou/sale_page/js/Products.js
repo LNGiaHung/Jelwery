@@ -1,56 +1,6 @@
 let selectedCategory = "";
 let selectedMaterialType = "";
 // -------Category - Kim Long ---------
-// Function to fetch products from the API and update HTML with category and material type
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   console.log("add even keyWord");
-//   // Get the search keyword from sessionStorage
-//   const keyWord = JSON.parse(sessionStorage.getItem('searchKeyword'));
-//   console.log("keyWord.searchKeyword: ",keyWord);
-//   if (keyWord) {
-//       // Fetch products by name
-//       fetch(`http://localhost:3001/Products/inName/${encodeURIComponent(keyWord)}`)
-//           .then(response => response.json())
-//           .then(products => {
-//             updateHTMLWithProducts(products);
-//           })
-//           .catch(error => {
-//               console.error('Error fetching products:', error);
-//           });
-//   }
-
-// });
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   // Get the search keyword from sessionStorage
-//   const storedKeyword = JSON.parse(sessionStorage.getItem('searchKeyword'));
-//   // const storedKeyword = sessionStorage.getItem('searchKeyword');
-//   let keyWord = null;
-
-//   // Check if storedKeyword is not null and a valid JSON
-//   if (storedKeyword) {
-//     try {
-//       keyWord = JSON.parse(storedKeyword);
-//     } catch (error) {
-//       console.error('Error parsing search keyword:', error);
-//     }
-//   }
-
-//   if (keyWord && keyWord.searchKeyword) {
-//     console.log("keyWord.searchKeyword:", keyWord.searchKeyword);
-//     // Fetch products by name
-//     fetch(`http://localhost:3001/Products/inName/${encodeURIComponent(keyWord.searchKeyword)}`)
-//       .then(response => response.json())
-//       .then(products => {
-//         updateHTMLWithProducts(products);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching products:', error);
-//       });
-//   } else {
-//     console.log('No valid search keyword found in sessionStorage');
-//   }
-// });
 
 const fetchProductsAndUpdateHTMLWithCategory = async () => {
   if (!selectedCategory || !selectedMaterialType) {
@@ -184,7 +134,11 @@ function fetchProductsAndUpdateHTML() {
   console.log("add even keyWord");
   // Get the search keyword from sessionStorage
   const keyWord = JSON.parse(sessionStorage.getItem("searchKeyword"));
-  console.log("keyWord.searchKeyword: ", keyWord);
+  const selectedCategory = JSON.parse(sessionStorage.getItem("selectedCategory"));
+  const selectedStone = JSON.parse(sessionStorage.getItem("selectedStone"));
+  const selectedEngagementAndWedding = JSON.parse(sessionStorage.getItem("selectedEngagementAndWedding"));
+  // console.log("keyWord.searchKeyword: ", keyWord);
+  // console.log("selectedNavigate: ", selectedCategory);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -198,7 +152,60 @@ function fetchProductsAndUpdateHTML() {
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
-  } else {
+  } else if(selectedCategory !== null){
+// Fetch products by category
+  const category = encodeURIComponent(selectedCategory); // Ensure category is URL-safe
+  const materialType = "all"; // Replace with actual material type or logic to determine it
+
+  fetch(`http://localhost:3001/Products/byCategory/${category}/${materialType}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((products) => {
+      updateHTMLWithProducts(products);
+      sessionStorage.setItem("selectedCategory", null);
+    })
+    .catch((error) => {
+      console.error("Error fetching products by category:", error);
+    });
+  }else if(selectedStone !== null){
+    const stone =encodeURIComponent(selectedStone); // Ensure category is URL-safe
+
+    fetch(`http://localhost:3001/Products/byStone/${stone}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((products) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("selectedStone",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by stone:", error);
+      })
+  }else if(selectedEngagementAndWedding!==null){
+    const engagementAndWedding=encodeURIComponent(selectedEngagementAndWedding);
+
+    fetch(`http://localhost:3001/Products/inName/${engagementAndWedding}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((product) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("selectedEngagementAndWedding",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by Engagement And Wedding:", error);
+      })
+  }else {
     return fetch("http://localhost:3001/Products")
       .then((response) => {
         if (!response.ok) {
