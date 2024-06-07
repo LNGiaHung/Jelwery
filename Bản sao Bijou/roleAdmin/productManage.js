@@ -477,3 +477,6 @@ async function showProductAddForm() {
         }
     };
 }
+
+
+// Pop up add new product cua Giang
