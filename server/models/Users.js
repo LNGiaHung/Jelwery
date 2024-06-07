@@ -31,18 +31,22 @@ module.exports = (sequelize, DataTypes) => {
       Gender: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "unknow"
       },
       RelationshipStatus: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "unknow"
       },
       Phone: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "unknow"
       },
       Address: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "unknow"
       },
       Verify: {
         type: DataTypes.STRING,
