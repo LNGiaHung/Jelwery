@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "Gnaig06503@",
+=======
+    "password": "Cahmod-2konge-goztam",
+>>>>>>> 7d2a23252a6a721d53671345fce754764ed7460b
     "database": "jewelry",
     "host": "localhost",
     "dialect": "mysql"
