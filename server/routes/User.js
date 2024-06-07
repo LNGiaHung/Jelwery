@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const router = express.Router();
 const { Users } = require('../models');
@@ -17,11 +19,11 @@ const signInPage = {
 
 // Mail configuration
 const mailConfig = {
-  HOST: 'smtp.gmail.com',
-  PORT: 587,
-  USERNAME: '21521099@gm.uit.edu.vn',
-  PASSWORD: 'isdv jbhy yagw heuh',
-  FROM_ADDRESS: '21521099@gm.uit.edu.vn'
+  HOST: process.env.MAIL_HOST,
+  PORT: process.env.MAIL_PORT,
+  USERNAME: process.env.MAIL_USERNAME,
+  PASSWORD: process.env.MAIL_PASSWORD,
+  FROM_ADDRESS: process.env.MAIL_FROM_ADDRESS
 };
 
 // Function to send email
