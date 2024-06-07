@@ -53,49 +53,55 @@ const sendMail = async (to, subject, htmlContent) => {
   }
 };
 
-router.post("/mailer/:to/:subject/:htmlContent", async (req, res) => {
+router.post('/mailer/:to/:subject/:htmlContent', async (req, res) => {
   const { to, subject, htmlContent } = req.params;
 
   if (!to || !subject || !htmlContent) {
-      return res.status(400).json({ message: 'Missing required fields' });
+    return res.status(400).json({ message: 'Missing required fields' });
   }
 
   try {
-      const info = await sendMail(to, subject, htmlContent);
-      res.status(200).json({ message: 'Email sent successfully', info });
+    const info = await sendMail(to, subject, htmlContent);
+    res.status(200).json({ message: 'Email sent successfully', info });
   } catch (error) {
-      res.status(500).json({ message: 'Error sending email', error });
+    res.status(500).json({ message: 'Error sending email', error });
   }
 });
 
-router.post("/", async (req, res) => {
+const getNextCID = async () => {
+  // Retrieve the highest CID from the database
+  const lastUser = await Users.findOne({
+    attributes: [[sequelize.fn('MAX', sequelize.col('CID')), 'maxCID']],
+    where: {
+      CID: {
+        [Op.like]: 'customer%',
+      },
+    },
+    raw: true,
+  });
+
+  let newCID = 'customer1'; // Default CID if no users exist
+
+  if (lastUser && lastUser.maxCID) {
+    const lastCIDNumber = parseInt(lastUser.maxCID.replace('customer', '')) || 0;
+    newCID = `customer${lastCIDNumber + 1}`;
+  }
+
+  return newCID;
+};
+
+router.post('/', async (req, res) => {
   try {
     const { FirstName, LastName, Mail, DOB, Password, Gender, RelationshipStatus } = req.body;
 
-    if (!Password || Password.trim() === "") {
-      return res.status(400).json({ message: "Password cannot be empty" });
+    if (!Password || Password.trim() === '') {
+      return res.status(400).json({ message: 'Password cannot be empty' });
     }
 
     const hashedPassword = await bcrypt.hash(Password, 10);
     const verificationCode = crypto.randomInt(100000, 999999).toString();
 
-    // Retrieve the highest CID from the database
-    const lastUser = await Users.findOne({
-      attributes: [[sequelize.fn('MAX', sequelize.col('CID')), 'maxCID']],
-      where: {
-        CID: {
-          [Op.like]: 'customer%',
-        },
-      },
-      raw: true,
-    });
-
-    let newCID = 'customer1'; // Default CID if no users exist
-
-    if (lastUser && lastUser.maxCID) {
-      const lastCIDNumber = parseInt(lastUser.maxCID.replace('customer', '')) || 0;
-      newCID = `customer${lastCIDNumber + 1}`;
-    }
+    const newCID = await getNextCID(); // Use the new function to get the next CID
 
     const user = {
       CID: newCID, // Assign the new CID
@@ -106,22 +112,24 @@ router.post("/", async (req, res) => {
       Password: hashedPassword,
       Gender,
       RelationshipStatus,
+      // Phone: "0",
+      // Address: "0",
       verificationCode
     };
 
     userStore.set(Mail, user);
     tokenStore.set(Mail, verificationCode);
 
-    await sendMail(Mail, "Verify Email", `Your verification code is: ${verificationCode}`);
+    await sendMail(Mail, 'Verify Email', `Your verification code is: ${verificationCode}`);
 
     res.status(200).json({ message: 'Verification email sent. Please check your email.' });
   } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ message: "Error creating user" });
+    console.error('Error creating user:', error);
+    res.status(500).json({ message: 'Error creating user' });
   }
 });
 
-router.post("/verify", async (req, res) => {
+router.post('/verify', async (req, res) => {
   const { email, code } = req.body;
 
   if (tokenStore.has(email)) {
@@ -140,23 +148,24 @@ router.post("/verify", async (req, res) => {
         Password: user.Password,
         Gender: user.Gender,
         RelationshipStatus: user.RelationshipStatus,
+        // Phone: user.Phone,
+        // Address: user.Address,
         Verify: true
       });
 
       tokenStore.delete(email);
       userStore.delete(email);
 
-      res.status(200).json({ message: "Email verified successfully. You can now log in." });
+      res.status(200).json({ message: 'Email verified successfully. You can now log in.' });
     } else {
-      res.status(400).json({ message: "Invalid verification code." });
+      res.status(400).json({ message: 'Invalid verification code.' });
     }
   } else {
-    res.status(400).json({ message: "Invalid or expired verification request." });
+    res.status(400).json({ message: 'Invalid or expired verification request.' });
   }
 });
 
-
-router.post("/Login", async (req, res) => {
+router.post('/Login', async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ where: { Mail: email } });
 
@@ -166,9 +175,9 @@ router.post("/Login", async (req, res) => {
     const match = await bcrypt.compare(password, user.Password);
 
     if (!match) {
-      res.status(400).json({ error: "Wrong Username And Password Combination" });
+      res.status(400).json({ error: 'Wrong Username And Password Combination' });
     } else {
-      res.json({ message: "YOU LOGGED IN!!!", user: user });
+      res.json({ message: 'YOU LOGGED IN!!!', user: user });
     }
   }
 });
