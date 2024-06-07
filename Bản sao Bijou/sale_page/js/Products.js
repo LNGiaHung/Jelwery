@@ -138,7 +138,8 @@ function fetchProductsAndUpdateHTML() {
   const selectedStone = JSON.parse(sessionStorage.getItem("selectedStone"));
   const selectedEngagementAndWedding = JSON.parse(sessionStorage.getItem("selectedEngagementAndWedding"));
   // console.log("keyWord.searchKeyword: ", keyWord);
-  // console.log("selectedNavigate: ", selectedCategory);
+  console.log("selectedNavigate: ", selectedCategory);
+  // console.log("selectedEngagementAndWedding: ", selectedEngagementAndWedding);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -198,7 +199,7 @@ function fetchProductsAndUpdateHTML() {
         }
         return response.json();
       })
-      .then((product) => {
+      .then((products) => {
         updateHTMLWithProducts(products);
         sessionStorage.setItem("selectedEngagementAndWedding",null);
       })
@@ -222,6 +223,9 @@ function fetchProductsAndUpdateHTML() {
         console.error("Error fetching data:", error);
       });
   }
+  // sessionStorage.setItem("selectedCategory", null);
+  // sessionStorage.setItem("selectedStone",null);
+  // sessionStorage.setItem("selectedEngagementAndWedding",null);
 }
 
 // Function to update HTML with products data
