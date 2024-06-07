@@ -1,9 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { Users } = require("../models");
-const bcrypt = require("bcrypt");
+const { Users } = require('../models');
+const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const { sequelize } = require('../models');
+const { Op } = require('sequelize');
 
 // In-memory store for tokens and users (in production, use a database or Redis)
 const tokenStore = new Map();
@@ -18,7 +20,7 @@ const mailConfig = {
   HOST: 'smtp.gmail.com',
   PORT: 587,
   USERNAME: '21521099@gm.uit.edu.vn',
-  PASSWORD: 'tgdc pjku ogbu zbqq',
+  PASSWORD: 'isdv jbhy yagw heuh',
   FROM_ADDRESS: '21521099@gm.uit.edu.vn'
 };
 
@@ -66,8 +68,6 @@ router.post("/mailer/:to/:subject/:htmlContent", async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.post("/", async (req, res) => {
   try {
     const { FirstName, LastName, Mail, DOB, Password, Gender, RelationshipStatus } = req.body;
@@ -79,7 +79,26 @@ router.post("/", async (req, res) => {
     const hashedPassword = await bcrypt.hash(Password, 10);
     const verificationCode = crypto.randomInt(100000, 999999).toString();
 
+    // Retrieve the highest CID from the database
+    const lastUser = await Users.findOne({
+      attributes: [[sequelize.fn('MAX', sequelize.col('CID')), 'maxCID']],
+      where: {
+        CID: {
+          [Op.like]: 'customer%',
+        },
+      },
+      raw: true,
+    });
+
+    let newCID = 'customer1'; // Default CID if no users exist
+
+    if (lastUser && lastUser.maxCID) {
+      const lastCIDNumber = parseInt(lastUser.maxCID.replace('customer', '')) || 0;
+      newCID = `customer${lastCIDNumber + 1}`;
+    }
+
     const user = {
+      CID: newCID, // Assign the new CID
       FirstName,
       LastName,
       Mail,
@@ -113,12 +132,14 @@ router.post("/verify", async (req, res) => {
 
       // Update the user in the database
       await Users.create({
+        CID: user.CID, // Include CID here
         FirstName: user.FirstName,
         LastName: user.LastName,
         Mail: user.Mail,
         DOB: user.DOB,
         Password: user.Password,
         Gender: user.Gender,
+        RelationshipStatus: user.RelationshipStatus,
         Verify: true
       });
 
@@ -133,6 +154,7 @@ router.post("/verify", async (req, res) => {
     res.status(400).json({ message: "Invalid or expired verification request." });
   }
 });
+
 
 router.post("/Login", async (req, res) => {
   const { email, password } = req.body;
