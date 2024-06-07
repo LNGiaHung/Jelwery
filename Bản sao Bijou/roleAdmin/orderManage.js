@@ -57,6 +57,7 @@ async function ShowInvoices(start, end) {
     const response = await fetch(`${API_BASE_URL}`);
     const data = await response.json();
     const topInvoices = data.slice(start, end);
+    localStorage.setItem('InvLength', data.length);
     const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
     invoiceTableBody.innerHTML = topInvoices.map(invoice => `
       <tr data-id="${invoice.ID}">
@@ -173,21 +174,26 @@ function getStatusValueFromText(statusText) {
 }
 
 async function searchInvoices(id) {
+  id = parseInt(id, 10);
   try {
     const response = await fetch(`${API_BASE_URL}/search/${id}`);
     const data = await response.json();
-    const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
-    invoiceTableBody.innerHTML = data.map(invoice => `
-      <tr data-id="${invoice.ID}">
-        <td>${invoice.ID}</td>
-        <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
-        <td>${formatRevenue(invoice.Price)}</td>
-        <td>${invoice.Payment}</td>
-        <td><span class="status ${invoice.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${invoice.Status}</span></td>
-      </tr>
-    `).join('');
+    if(data){
+      const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
+      invoiceTableBody.innerHTML = `
+        <tr data-id="${data.ID}">
+          <td>${data.ID}</td>
+          <td>${data.customer.FirstName} ${data.customer.LastName}</td>
+          <td>${formatRevenue(data.Price)}</td>
+          <td>${data.Payment}</td>
+          <td><span class="status ${data.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${data.Status}</span></td>
+        </tr>
+      `;
 
-    addEditModeListeners();
+      addEditModeListeners();
+    }else{
+      ShowInvoices(0,10);
+    }
   } catch (error) {
     console.error('Error fetching invoices:', error);
   }
@@ -237,6 +243,10 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Next page button clicked');
     start += 10;
     end += 10;
+    if(start > localStorage.getItem('InvLength')){
+      start = 0;
+      end = 10;
+  }
     ShowInvoices(start,end);
   });
 

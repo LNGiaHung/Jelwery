@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 router.get("/search/:id", async (req, res) => {
   const invoiceID = req.params.id;
   try {
-    const listOfInvoices = await Invoices.findAll({
+    const listOfInvoices = await Invoices.findOne({
       where: {ID: invoiceID},
       include: [{ model: Users, as: 'customer' }],
       order: [['ID', 'DESC']]

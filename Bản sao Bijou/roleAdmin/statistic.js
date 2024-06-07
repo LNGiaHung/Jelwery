@@ -133,6 +133,20 @@ document.addEventListener('DOMContentLoaded', () => {
   CountProducts()
   fetchSoldProducts(); 
   fetchInvoiceByMonthForAreaChart(currentYear);
+  document.getElementById('Logout').addEventListener('click', function() {
+    console.log("Logging out...");
+    sessionStorage.removeItem('user');
+    location.href="../singIn/signIn.html";
+  });
+  document.getElementById('DashBoard').addEventListener('click', function() {
+    location.href="./statistic.html";
+  });
+  document.getElementById('ProductPage').addEventListener('click', function() {
+    location.href="./productManage.html";
+  });
+  document.getElementById('SaleOrderPage').addEventListener('click', function() {
+    location.href="./orderManage.html";
+  });
 });
 
 var sidebarOpen = false;

@@ -162,15 +162,19 @@ renderPieChart();
         if(start===0)
         console.log('nomorepage');
         else{
-        start -= 10;
-        end -= 10;
+        start -= 15;
+        end -= 15;
         fetchProducts(start,end);
         }
     });
     nextButton.addEventListener('click', () => {
         console.log('Next page button clicked');
-        start += 10;
-        end += 10;
+        start += 15;
+        end += 15;
+        if(start > localStorage.getItem('ProductLength')){
+            start = 0;
+            end = 15;
+        }
         fetchProducts(start,end);
     });
 });
@@ -334,6 +338,7 @@ function fetchProducts(start, end) {
         .then(data => {
             console.log('product nek: ',data);
             const topProducts = data.Products.slice(start, end);
+            localStorage.setItem('ProductLength', data.Products.length);
             const productTableBody = document.getElementById('productTableBody');
             productTableBody.innerHTML = ''; // Clear existing rows
             topProducts.forEach(product => {

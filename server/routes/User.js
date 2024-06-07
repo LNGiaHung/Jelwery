@@ -108,6 +108,7 @@ router.post('/', async (req, res) => {
       FirstName,
       LastName,
       Mail,
+      Phone: '0987654321',
       DOB,
       Password: hashedPassword,
       Gender,
