@@ -239,12 +239,21 @@ const getCollection = (Collection) =>{
   const outstanding =["Long Phụng"];
   const newC =["Heo uyên ương"];
   const wedding =["Trầu cau"];
+  const collections = ["trầu cau","elegant and loving","salsa","diamon","eros","mono","fancy","bridge accent","heo uyên ương","long phụng"];
   if(Collection==="outstanding collections"){
     return outstanding;
   } else if(Collection==="new collections"){
     return newC;
   } else if(Collection==="wedding collections"){
     return wedding;
+  }else{
+    for (let collection of collections) {
+      if (Collection.includes(collection)) {
+        return collection;
+      }else{
+        return null;
+      }
+  }
   }
   return null;
 };
@@ -305,7 +314,7 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     if (category === 'collections') {
       products = await Products.findAll({
         where: {
-          Collections: {
+          Collection: {
             [Op.in]: validMaterialTypes
           }
         }
@@ -329,11 +338,6 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
                 [Op.like]: `%${validMaterialTypes}%`
               }
             } : {}
-            // {
-            //   Material: {
-            //     [Op.like]: `%${validMaterialTypes}%`
-            //   }
-            // }
           ]
         }
       });
@@ -352,11 +356,6 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
                 [Op.like]: `%${validMaterialTypes}%`
               }
             } : {}
-            // {
-            //   Material: {
-            //     [Op.like]: `%${validMaterialTypes}%`
-            //   }
-            // }
           ]
         }
       });
@@ -374,11 +373,6 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
                 [Op.like]: `%${validMaterialTypes}%`
               }
             } : {}
-            // {
-            //   Material: {
-            //     [Op.like]: `%${validMaterialTypes}%`
-            //   }
-            // }
           ]
         }
       });
@@ -424,6 +418,34 @@ router.get("/byStone/:stone", async (req, res) => {
   }
 });
 
-// router.get("/byCategory/:")
+// const getCollection = (collection) => {
+
+// }
+
+router.get('/byCollection/:collection', async (req, res) => {
+  try {
+    const collectionName = req.params.collection;
+    const collection=getCollection(collectionName)
+
+    const products = await Products.findAll({
+      where: {
+        Collection: {
+          [Op.iLike]: collection
+        }
+      }
+    });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: 'No products found in this collection' });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error('Error querying products by collection:', error);
+    res.status(500).json({ message: 'An error occurred while fetching products', error: error.message });
+  }
+});
+
+
 module.exports = router;
 
