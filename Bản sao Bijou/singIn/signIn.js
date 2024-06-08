@@ -20,7 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.ok) {
                 const data = await response.json();
                 sessionStorage.setItem('user', JSON.stringify(data));
-                window.location.href = '../landingPage.html';
+                checkAdmin(email).then(isAdmin => {
+                    if (isAdmin) {
+                        window.location.href = '../landingPage.html';
+                    } else {
+                        window.location.href = '../roleAdmin/statistic.html';
+                    }
+                  });
+                // window.location.href = '../landingPage.html';
             } else {
                 const errorData = await response.json();
                 showPopup("Invalid email or password");
@@ -35,6 +42,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+async function checkAdmin(email) {
+    try {
+      const response = await fetch(`http://localhost:3001/check-admin/${email}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data.isAdmin;
+    } catch (error) {
+      console.error('Error:', error);
+      return false; // Default to false if there is an error
+    }
+  }
 
 function showPopup(message) {
     // Implement this function to show a popup with the message

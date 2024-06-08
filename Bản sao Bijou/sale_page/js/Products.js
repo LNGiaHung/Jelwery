@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
-  console.log("add even keyWord");
+  // console.log("add even keyWord");
   // Get the search keyword from sessionStorage
   const keyWord = JSON.parse(sessionStorage.getItem("searchKeyword"));
   const selectedCategory = JSON.parse(sessionStorage.getItem("selectedCategory"));
