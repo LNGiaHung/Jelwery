@@ -30,12 +30,11 @@ async function fetchGraph(year) {
     const data = await response.json();
 
     const currentYearRevenue = data.map(item => item.currentYearRevenue);
+    const lastYearRevenue = data.map(item => item.lastYearRevenue);
     const totalRevenue = data.reduce((sum, item) => sum + item.currentYearRevenue, 0);
     const sales = data.reduce((sum, item) => sum + item.Sales, 0);
 
-    groupChartEarningOptions.series[0].data = [
-      23456000000, 15000000000, 41562310000, 64123000000, 36548940000, 45210000000, 54562000000, 42100300000, 39845120000, 28451200000, 21453000000, 48715200000
-    ];
+    groupChartEarningOptions.series[0].data = lastYearRevenue;
     groupChartEarningOptions.series[1].data = currentYearRevenue;
 
     document.querySelector('.total-amount-order').innerText = formatRevenue(totalRevenue);
@@ -56,11 +55,13 @@ async function ShowInvoices(start, end) {
   try {
     const response = await fetch(`${API_BASE_URL}`);
     const data = await response.json();
+    console.log("Fetched data:", data); // Log fetched data for debugging
     const topInvoices = data.slice(start, end);
     localStorage.setItem('InvLength', data.length);
+
     const invoiceTableBody = document.querySelector('.InvoiceTable tbody');
     invoiceTableBody.innerHTML = topInvoices.map(invoice => `
-      <tr data-id="${invoice.ID}">
+      <tr data-id="${invoice.ID}" class="InvoiceLine">
         <td>${invoice.ID}</td>
         <td>${invoice.customer.FirstName} ${invoice.customer.LastName}</td>
         <td>${formatRevenue(invoice.Price)}</td>
@@ -69,11 +70,103 @@ async function ShowInvoices(start, end) {
       </tr>
     `).join('');
 
+    document.querySelectorAll('.InvoiceLine').forEach(row => {
+      row.addEventListener('click', (event) => {
+        if (localStorage.getItem('editMode') === 'off') {
+          const invoiceId = row.getAttribute('data-id');
+          showDetailForm(invoiceId);
+        }
+      });
+    });
+
     addEditModeListeners();
   } catch (error) {
     console.error('Error fetching invoices:', error);
   }
 }
+
+
+function formatPrice(price) {
+  // Convert the price to a string
+  let priceString = price.toString();
+
+  // Split the string into parts before and after the decimal point
+  let parts = priceString.split('.');
+
+  // Format the part before the decimal point
+  let formattedPrice = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  // If there is a part after the decimal point, add it back
+  if (parts.length > 1) {
+    formattedPrice += ',' + parts[1];
+  }
+
+  return formattedPrice;
+}
+
+async function showDetailForm(invoice) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/detail/${invoice}`);
+    const data = await response.json();
+    
+    // Get the popup element
+    const popup = document.getElementById('popupViewOrder');
+    
+    // Set the title
+    document.getElementById('popupTitleOrderDetails').innerText = 'View Order Details';
+
+    // Initialize a counter for row numbers
+    let i = 1;
+
+    // Generate the table rows for each product in the invoice
+    const rows = data.flatMap(item => item.details.map(detail => {
+      const row = `
+        <tr>
+          <td>${i}</td>
+          <td>${detail.Products}</td>
+          <td>${detail.Quantity}</td>
+          <td>${formatPrice(detail.UnitPrice)}</td>
+          <td>${formatPrice(detail.Total)}</td>
+          <td><span class="status ${item.Status.toLowerCase().replace(/\s+/g, '')} editStatus">${item.Status}</span></td>
+        </tr>`;
+      i++;
+      return row;
+    })).join('');
+
+    // Set the table body content
+    const tableBody = popup.querySelector('tbody');
+    tableBody.innerHTML = rows;
+
+    // Calculate the total amount
+    const totalAmount = data.reduce((sum, item) => {
+      const detailsTotal = item.details.reduce((acc, detail) => acc + detail.Total, 0);
+      return sum + detailsTotal;
+    }, 0);
+
+    // Set the total amount
+    document.getElementById('totalAmount').innerText = `${formatPrice(totalAmount)} VND`;
+
+    // Show the popup
+    popup.style.display = 'block';
+
+    // Add event listener to close button
+    popup.querySelector('.orderDetailsClose').addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    // Close popup when clicking outside of it
+    window.addEventListener('click', (event) => {
+      if (event.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching invoices:', error);
+  }
+}
+
+
+
 
 async function ShowRecentCustomers(number = null) {
   try {
@@ -201,6 +294,10 @@ async function searchInvoices(id) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const currentYear = new Date().getFullYear();
+
+  yearShow = document.getElementById('currentYear');
+  yearShow.innerText = currentYear;
+
   localStorage.setItem('editMode', 'off');
 
   document.getElementById('editModeBtn').addEventListener('click', toggleEditMode);

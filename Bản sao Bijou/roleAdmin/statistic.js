@@ -103,6 +103,23 @@ function fetchInvoiceByMonthForAreaChart(year) {
     });
 }
 
+function fetchInvoiceByMonthForBarChart(year) {
+  return fetch(`http://localhost:3001/Invoice/Year/${year}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      UpdateBarChart(data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+}
+
 // Update HTML with the number of 'Done' invoices
 function updateDoneInvoiceData(DoneInvoiceData) {
   document.querySelector('.sale-order').innerText = DoneInvoiceData.total;
@@ -133,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
   CountProducts()
   fetchSoldProducts(); 
   fetchInvoiceByMonthForAreaChart(currentYear);
+  fetchInvoiceByMonthForBarChart(currentYear-1);
+  yearShow = document.getElementById('currentYear');
+  yearShow.innerText = currentYear;
   document.getElementById('Logout').addEventListener('click', function() {
     console.log("Logging out...");
     sessionStorage.removeItem('user');
@@ -167,52 +187,57 @@ function closeSidebar() {
 }
 
 // ----------CHARTS-----------
+function UpdateBarChart(invoiceData) {
+  const months = invoiceData.map((entry) => entry.month);
+  const doneCounts = invoiceData.map((entry) => entry.doneCount);
+  const All = invoiceData.map((entry) => entry.All);
 
-// Bar chart
-var barChartOptions = {
-  series: [{
-    data: [10, 8, 6, 4, 8]
-  }],
-  chart: {
-    type: 'bar',
-    height: 350,
-    toolbar: {
+  var barChartOptions = {
+    series: [{
+      data: All,
+    }],
+    chart: {
+      type: 'bar',
+      height: 350,
+      toolbar: {
+        show: false
+      },
+    },
+    colors: [
+      "#246dec",
+      "#cc3c43",
+      "#367952",
+      "#f5b74f",
+      "#4f35a1"
+    ],
+    plotOptions: {
+      bar: {
+        distribute: true,
+        borderRadius: 4,
+        horizontal: false,
+        columnWidth: '40%',
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    legend: {
       show: false
     },
-  },
-  colors: [
-    "#246dec",
-    "#cc3c43",
-    "#367952",
-    "#f5b74f",
-    "#4f35a1"
-  ],
-  plotOptions: {
-    bar: {
-      distribute: true,
-      borderRadius: 4,
-      horizontal: false,
-      columnWidth: '40%',
+    xaxis: {
+      categories: months,
+    },
+    yaxis: {
+      title: {
+        text: "Number of Sales"
+      }
     }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  legend: {
-    show: false
-  },
-  xaxis: {
-    categories: ['Rings', 'Bracelets', 'Necklaces', 'Earrings', 'Wedding jewelry'],
-  },
-  yaxis: {
-    title: {
-      text: "Quantity"
-    }
-  }
-};
+  };
+  
+  var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+  barChart.render();
+}
 
-var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
-barChart.render();
 
 function UpdateAreaChart(invoiceData) {
   const months = invoiceData.map((entry) => entry.month);
