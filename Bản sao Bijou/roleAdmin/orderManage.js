@@ -294,6 +294,29 @@ async function searchInvoices(id) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const currentYear = new Date().getFullYear();
+  if(sessionStorage.getItem('user')===null) {
+    alert('Please Login')
+    window.location.href = '../singIn/signIn.html';
+  }
+
+  const signOut = document.getElementById('SignOut');
+  signOut.addEventListener('click', () => {
+      console.log('Sign out button clicked');
+      window.location.href = '../singIn/signIn.html';
+  });
+  const ProductManage = document.getElementById('ProductsManage');
+  ProductManage.addEventListener('click', () => {
+    console.log('ProductManage button clicked');
+      window.location.href = './productManage.html';
+  });
+  const OrderManage = document.getElementById('OrderManage');
+  OrderManage.addEventListener('click', () => {
+      window.location.href = './orderManage.html';
+  });
+  const Statistic = document.getElementById('StatisticTab');
+    Statistic.addEventListener('click', () => {
+        window.location.href = './statistic.html';
+    });
 
   yearShow = document.getElementById('currentYear');
   yearShow.innerText = currentYear;

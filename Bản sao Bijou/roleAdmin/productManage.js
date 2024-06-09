@@ -1,71 +1,44 @@
-// ===================product management==================
-// stack column chart
 
-// var stackColChartOptions = {
-//     series: [{
-//         name: 'Product A',
-//         data: [44, 55, 41, 67, 22, 43]
-//     }, {
-//         name: 'Product B',
-//         data: [13, 23, 20, 8, 13, 27]
-//     }, {
-//         name: 'Product C',
-//         data: [11, 17, 15, 15, 21, 14]
-//     }, {
-//         name: 'Product D',
-//         data: [21, 7, 25, 13, 22, 8]
-//     }],
-//     chart: {
-//         type: 'bar',
-//         height: 350,
-//         stacked: true,
-//         toolbar: {
-//             show: true
-//         },
-//         zoom: {
-//             enabled: true
-//         }
-//     },
-//     responsive: [{
-//         breakpoint: 480,
-//         options: {
-//             legend: {
-//                 position: 'bottom',
-//                 offsetX: -10,
-//                 offsetY: 0
-//             }
-//         }
-//     }],
-//     plotOptions: {
-//         bar: {
-//             horizontal: false,
-//             borderRadius: 10,
-//             dataLabels: {
-//                 total: {
-//                     enabled: true,
-//                     style: {
-//                         fontSize: '13px',
-//                         fontWeight: 900
-//                     }
-//                 }
-//             }
-//         }
-//     },
-//     xaxis: {
-//         type: 'category',
-//         categories: ['Category A', 'Category B', 'Category C', 'Category D', 'Category E', 'Category F'],
-//     },
-//     legend: {
-//         position: 'right',
-//         offsetY: 40
-//     },
-//     fill: {
-//         opacity: 1
-//     }
-//   };
+
+
+
   
-//   var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
-//   stackColChart.render();
+
+//   Polar chart
+function renderPieChart(){
+    var cateName = [];
+    var cateQuantity = [];
+    fetch('http://localhost:3001/Products/all/byCate')
+        .then(response => response.json())
+        .then(data => {
+            // Step 1: Parse the fetched data
+            data.forEach(item => {
+                cateName.push(item.category.Name);
+                cateQuantity.push(item.productCount);
+            });
+            
+            // Step 2: Update series and labels for pie chart
+            pieChartOptions.series = cateQuantity;
+            pieChartOptions.labels = cateName;
+
+            // Step 2: Update series and categories for stacked column chart
+            stackColChartOptions.series = [{
+                data: cateQuantity
+            }];
+            stackColChartOptions.xaxis.categories = cateName;
+
+            // Step 3: Render the pie chart
+            var pieChart = new ApexCharts(document.querySelector("#pie-chart"), pieChartOptions);
+            pieChart.render();
+
+            // Step 3: Render the stacked column chart
+            var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
+            stackColChart.render();
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
 
 var stackColChartOptions = {
     series: [{
@@ -140,36 +113,8 @@ var stackColChartOptions = {
   }
   };
 
-  var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
-  stackColChart.render();
-
-  
-
-//   Polar chart
-function renderPieChart(){
-    var cateName = [];
-    var cateQuantity = [];
-    fetch('http://localhost:3001/Products/all/byCate')
-        .then(response => response.json())
-        .then(data => {
-            // Step 1: Parse the fetched data
-            data.forEach(item => {
-                cateName.push(item.category.Name);
-                cateQuantity.push(item.productCount);
-            });
-            
-            // Step 2: Update series and labels
-            pieChartOptions.series = cateQuantity;
-            pieChartOptions.labels = cateName;
-            
-            // Step 3: Render the pie chart
-            var pieChart = new ApexCharts(document.querySelector("#pie-chart"), pieChartOptions);
-            pieChart.render();
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
+//   var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
+//   stackColChart.render();
 
 // Pie chart options
 var pieChartOptions = {
@@ -209,6 +154,30 @@ renderPieChart();
 
     renderCategoryTable();
     fetchProducts(start,end)
+
+    if(sessionStorage.getItem('user')===null) {
+        alert('Please Login')
+        window.location.href = '../singIn/signIn.html';
+      }
+
+    const signOut = document.getElementById('SignOut');
+    signOut.addEventListener('click', () => {
+        console.log('Sign out button clicked');
+        sessionStorage.removeItem('user');
+        window.location.href = '../singIn/signIn.html';
+    });
+    const ProductManage = document.getElementById('ProductsManage');
+    ProductManage.addEventListener('click', () => {
+        window.location.href = './productManage.html';
+    });
+    const OrderManage = document.getElementById('OrderManage');
+    OrderManage.addEventListener('click', () => {
+        window.location.href = './orderManage.html';
+    });
+    const Statistic = document.getElementById('StatisticTab');
+    Statistic.addEventListener('click', () => {
+        window.location.href = './statistic.html';
+    });
 
     var popup = document.getElementById("popupForm");
     var addBtn = document.getElementById("addBtn");

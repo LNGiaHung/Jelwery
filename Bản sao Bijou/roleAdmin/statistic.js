@@ -144,6 +144,10 @@ function updateAllProductData(DoneInvoiceData) {
 // Fetch data when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('hello');
+  if(sessionStorage.getItem('user')===null) {
+    alert('Please Login')
+    window.location.href = '../singIn/signIn.html';
+  }
   const currentYear = new Date().getFullYear();
   fetchDoneInvoice();
   CountInvoice()
