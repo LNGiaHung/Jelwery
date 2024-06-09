@@ -330,14 +330,16 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
     const categoryName = req.params.category;
     const materialType = req.params.materialType;
 
+    console.log("category: ",categoryName);
     const category = getCategory(categoryName);
-
+    console.log("category: ",category);
     if (!category) {
       return res.status(400).json({ error: 'Invalid category' });
     }
 
     // Validate materialType
     const validMaterialTypes = getMaterialType(materialType);
+    console.log("validMaterialTypes: ",validMaterialTypes);
     // if (!validMaterialTypes) {
     //   return res.status(400).json({ error: 'Invalid material type' });
     // }
@@ -348,7 +350,9 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
       products = await Products.findAll({
         where: {
           Collection: {
-            [Op.in]: validMaterialTypes
+            [Op.or]: validMaterialTypes.map(type => ({
+              [Op.iLike]: type
+            }))
           }
         }
       });
@@ -454,12 +458,15 @@ router.get("/byStone/:stone", async (req, res) => {
 router.get('/byCollection/:collection', async (req, res) => {
   try {
     const collectionName = req.params.collection;
-    const collection=getCollection(collectionName)
-
+    const collection=getCollection(collectionName);
+    console.log("--------------------------------");
+    console.log("collectionName: ",collectionName);
+    console.log("collection: ",collection);
+    console.log("--------------------------------");
     const products = await Products.findAll({
       where: {
         Collection: {
-          [Op.iLike]: collection
+          [Op.like]: collection
         }
       }
     });
@@ -476,6 +483,7 @@ router.get('/byCollection/:collection', async (req, res) => {
 });
 
 const getCategoryName = (categoryName) =>{
+  categoryName=categoryName.toLowerCase()
   // const categoryNames = ["white", "gold", "platinum"];
   if(categoryName.includes("white")){
     return "white";
@@ -489,11 +497,13 @@ const getCategoryName = (categoryName) =>{
 }
 
 // Route to get products by category name
-router.get('/byCategory/:categoryName', async (req, res) => {
+router.get('/byCategoryName/:categoryName', async (req, res) => {
   try {
     const categoryName = req.params.categoryName;
     const category = getCategoryName(categoryName);
 
+    console.log("categoryName: ",categoryName);
+    console.log("category: ",category);
     // Query the database for products in the specified category
     const products = await Products.findAll({
       include: [
@@ -502,7 +512,7 @@ router.get('/byCategory/:categoryName', async (req, res) => {
           as: 'category',
           where: {
             Name: {
-              [Op.iLike]: category
+              [Op.like]: `%${category}%`
             }
           }
         }
