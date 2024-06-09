@@ -350,8 +350,8 @@ router.get("/byCategory/:category/:materialType", async (req, res) => {
       products = await Products.findAll({
         where: {
           Collection: {
-            [Op.or]: validMaterialTypes.map(type => ({
-              [Op.iLike]: type
+            [Op.or]: validMaterialTypes.map(name => ({
+              [Op.like]: `%${name}%`
             }))
           }
         }
@@ -459,10 +459,8 @@ router.get('/byCollection/:collection', async (req, res) => {
   try {
     const collectionName = req.params.collection;
     const collection=getCollection(collectionName);
-    console.log("--------------------------------");
     console.log("collectionName: ",collectionName);
     console.log("collection: ",collection);
-    console.log("--------------------------------");
     const products = await Products.findAll({
       where: {
         Collection: {
