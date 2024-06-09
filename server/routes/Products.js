@@ -451,10 +451,6 @@ router.get("/byStone/:stone", async (req, res) => {
   }
 });
 
-// const getCollection = (collection) => {
-
-// }
-
 router.get('/byCollection/:collection', async (req, res) => {
   try {
     const collectionName = req.params.collection;
@@ -479,6 +475,53 @@ router.get('/byCollection/:collection', async (req, res) => {
   }
 });
 
+const getCategoryName = (categoryName) =>{
+  // const categoryNames = ["white", "gold", "platinum"];
+  if(categoryName.includes("white")){
+    return "white";
+  }else if(categoryName.includes("platinum")){
+    return "platinum";
+  }else if(categoryName.includes("gold")){
+    return "gold";
+  }
+
+  return null;
+}
+
+// Route to get products by category name
+router.get('/byCategory/:categoryName', async (req, res) => {
+  try {
+    const categoryName = req.params.categoryName;
+    const category = getCategoryName(categoryName);
+
+    // Query the database for products in the specified category
+    const products = await Products.findAll({
+      include: [
+        {
+          model: Category,
+          as: 'category',
+          where: {
+            Name: {
+              [Op.iLike]: category
+            }
+          }
+        }
+      ]
+    });
+
+    // If no products found, send a 404 response
+    if (!products || products.length === 0) {
+      return res.status(404).json({ message: 'No products found for the specified category' });
+    }
+
+    // Send the found products as the response
+    res.json(products);
+  } catch (error) {
+    // Handle any errors
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while fetching the products' });
+  }
+});
 
 module.exports = router;
 
