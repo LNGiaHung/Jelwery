@@ -43,49 +43,37 @@ const initializeDropdowns = () => {
         selected.innerText = item.innerText;
         menu.classList.remove("show");
 
-        const parentCategoryText = dropdown
-          .querySelector(".select .selected")
-          .innerText.toLowerCase();
+        const parentCategoryText = dropdown.querySelector(".select .selected").innerText.toLowerCase();
         const selectedText = item.innerText.toLowerCase();
-        console.log("Selected parentCategoryText:", parentCategoryText);
+
         // Check if the selected item is a parent category
-        const possibleCategories = [
-          "collections",
-          "rings",
-          "earrings",
-          "bracelets",
-          "necklaces",
-        ];
-        for (const a of possibleCategories) {
-          console.log("Selected possibleCategories:", a);
-          if (parentCategoryText.includes(a)) {
-            if (a === "collections") {
-              selectedCategory = "new-in";
-            } else {
-              selectedCategory = a;
+        const possibleCategories = ["collections", "rings", "earrings", "bracelets", "necklaces"];
+        if (parentCategoryText.includes("collections")) {
+          selectedCategory = "new-in";
+        } else {
+          for (const category of possibleCategories) {
+            if (parentCategoryText.includes(category)) {
+              selectedCategory = category;
+              break;
             }
           }
         }
-        console.log("Selected Category:", selectedCategory);
-        // Check if the selected item is a material type
-        const possibleMaterial = ["10k", "14k", "18k", "24k"];
-        const possibleCollection = [
-          "outstanding collections",
-          "new collections",
-          "wedding collections",
-        ];
-        if (selectedCategory != "new-in") {
-          for (const a of possibleMaterial) {
-            console.log("Selected possibleMaterial:", a);
-            if (parentCategoryText.includes(a)) {
-              selectedMaterialType = a;
+
+        // Check if the selected item is a material type or a collection type
+        if (selectedCategory === "new-in") {
+          const possibleCollection = ["outstanding collections", "new collections", "wedding collections"];
+          for (const collection of possibleCollection) {
+            if (selectedText.includes(collection)) {
+              selectedMaterialType = collection;
+              break;
             }
           }
         } else {
-          for (const a of possibleCollection) {
-            console.log("Selected possibleCollection:", a);
-            if (parentCategoryText.includes(a)) {
-              selectedMaterialType = a;
+          const possibleMaterial = ["10k", "14k", "18k", "24k"];
+          for (const material of possibleMaterial) {
+            if (selectedText.includes(material)) {
+              selectedMaterialType = material;
+              break;
             }
           }
         }
@@ -94,16 +82,44 @@ const initializeDropdowns = () => {
         console.log("Selected Category:", selectedCategory);
         console.log("Selected Material Type:", selectedMaterialType);
 
-        // Call the API with the selected values
+        // Call the appropriate API function
         if (!selectedCategory) {
           fetchProductsAndUpdateHTML();
         } else {
-          fetchProductsAndUpdateHTMLWithCategory();
+          fetchProductsAndUpdateHTMLWithCategory(selectedCategory, selectedMaterialType);
         }
       });
     });
   });
 };
+
+function fetchProductsByStone(dropdownId, stoneType) {
+  const diamondDiv = document.getElementById(dropdownId);
+  if (diamondDiv) {
+      const diamondSpan = diamondDiv.querySelector('.selected');
+      if (diamondSpan) {
+          diamondSpan.addEventListener('click', () => {
+              console.log("add fetchProductsByStone");
+              const stone = encodeURIComponent(stoneType); // Ensure category is URL-safe
+              console.log("stone: ", stone);
+              fetch(`http://localhost:3001/Products/byStone/${stone}`)
+                  .then((response) => {
+                      if (!response.ok) {
+                          throw new Error("Network response was not ok");
+                      }
+                      return response.json();
+                  })
+                  .then((products) => {
+                      updateHTMLWithProducts(products);
+                      sessionStorage.setItem("selectedStone", null);
+                  })
+                  .catch((error) => {
+                      console.error("Error fetching products by stone:", error);
+                  });
+          });
+      }
+  }
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const loveEngagementLink = document.getElementById("love-engagement-link");
@@ -142,6 +158,8 @@ function fetchProductsAndUpdateHTML() {
   // console.log("keyWord.searchKeyword: ", keyWord);
   // console.log("selectedNavigate: ", selectedCategory);
   // console.log("selectedEngagementAndWedding: ", selectedEngagementAndWedding);
+  // console.log("selectedCollection: ", selectedCollection);
+  // console.log("selectedMetal: ", selectedMetal);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -177,7 +195,7 @@ function fetchProductsAndUpdateHTML() {
   }else if(selectedMetal !== null){
     const metal =encodeURIComponent(selectedMetal);
 
-    fetch(`http://localhost:3001/Products/byCategory/${metal}`)
+    fetch(`http://localhost:3001/Products/byCategoryName/${metal}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -229,19 +247,19 @@ function fetchProductsAndUpdateHTML() {
     const collection=encodeURIComponent(selectedCollection);
 
     fetch(`http://localhost:3001/Products/byCollection/${collection}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((products) => {
-      updateHTMLWithProducts(products);
-      sessionStorage.setItem("collection",null);
-    })
-    .catch((error) => {
-      console.error("Error fetching products by collection:", error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((products) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("collection",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by collection:", error);
+      });
   }else {
     return fetch("http://localhost:3001/Products")
       .then((response) => {
@@ -259,6 +277,7 @@ function fetchProductsAndUpdateHTML() {
         console.error("Error fetching data:", error);
       });
   }
+  // sessionStorage.setItem("selectedMetal",null);
 }
 
 // Function to update HTML with products data
@@ -606,12 +625,24 @@ function navigateToProductDetailPage(product) {
   window.location.href = "../productdetails/productdetails.html"; // Replace 'product_detail_page.html' with your actual product detail page URL
 }
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("add even fetchProductsAndUpdateHTML");
-  fetchProductsAndUpdateHTML();
-});
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   console.log("add even fetchProductsAndUpdateHTML");
+//   fetchProductsAndUpdateHTML();
+// });
+
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   console.log("add even initializeDropdowns");
+//   initializeDropdowns();
+// });
+
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   fetchProductsByStone('.menusection', 'diamond');
+// });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("add even initializeDropdowns");
+  console.log("DOM content loaded");
+  // Call all your initialization functions here
+  fetchProductsAndUpdateHTML();
   initializeDropdowns();
+  fetchProductsByStone('Diamond', 'diamond');
 });
