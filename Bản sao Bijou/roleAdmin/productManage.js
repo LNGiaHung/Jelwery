@@ -1,71 +1,148 @@
 // ===================product management==================
 // stack column chart
 
+// var stackColChartOptions = {
+//     series: [{
+//         name: 'Product A',
+//         data: [44, 55, 41, 67, 22, 43]
+//     }, {
+//         name: 'Product B',
+//         data: [13, 23, 20, 8, 13, 27]
+//     }, {
+//         name: 'Product C',
+//         data: [11, 17, 15, 15, 21, 14]
+//     }, {
+//         name: 'Product D',
+//         data: [21, 7, 25, 13, 22, 8]
+//     }],
+//     chart: {
+//         type: 'bar',
+//         height: 350,
+//         stacked: true,
+//         toolbar: {
+//             show: true
+//         },
+//         zoom: {
+//             enabled: true
+//         }
+//     },
+//     responsive: [{
+//         breakpoint: 480,
+//         options: {
+//             legend: {
+//                 position: 'bottom',
+//                 offsetX: -10,
+//                 offsetY: 0
+//             }
+//         }
+//     }],
+//     plotOptions: {
+//         bar: {
+//             horizontal: false,
+//             borderRadius: 10,
+//             dataLabels: {
+//                 total: {
+//                     enabled: true,
+//                     style: {
+//                         fontSize: '13px',
+//                         fontWeight: 900
+//                     }
+//                 }
+//             }
+//         }
+//     },
+//     xaxis: {
+//         type: 'category',
+//         categories: ['Category A', 'Category B', 'Category C', 'Category D', 'Category E', 'Category F'],
+//     },
+//     legend: {
+//         position: 'right',
+//         offsetY: 40
+//     },
+//     fill: {
+//         opacity: 1
+//     }
+//   };
+  
+//   var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
+//   stackColChart.render();
+
 var stackColChartOptions = {
     series: [{
-        name: 'Product A',
-        data: [44, 55, 41, 67, 22, 43]
-    }, {
-        name: 'Product B',
-        data: [13, 23, 20, 8, 13, 27]
-    }, {
-        name: 'Product C',
-        data: [11, 17, 15, 15, 21, 14]
-    }, {
-        name: 'Product D',
-        data: [21, 7, 25, 13, 22, 8]
-    }],
+    data: [400, 430, 448, 470, 540, 580, 690, 1100]
+  }],
     chart: {
-        type: 'bar',
-        height: 350,
-        stacked: true,
-        toolbar: {
-            show: true
-        },
-        zoom: {
-            enabled: true
-        }
-    },
-    responsive: [{
-        breakpoint: 480,
-        options: {
-            legend: {
-                position: 'bottom',
-                offsetX: -10,
-                offsetY: 0
-            }
-        }
-    }],
-    plotOptions: {
-        bar: {
-            horizontal: false,
-            borderRadius: 10,
-            dataLabels: {
-                total: {
-                    enabled: true,
-                    style: {
-                        fontSize: '13px',
-                        fontWeight: 900
-                    }
-                }
-            }
-        }
-    },
-    xaxis: {
-        type: 'category',
-        categories: ['Category A', 'Category B', 'Category C', 'Category D', 'Category E', 'Category F'],
-    },
-    legend: {
-        position: 'right',
-        offsetY: 40
-    },
-    fill: {
-        opacity: 1
+    type: 'bar',
+    height: 380
+  },
+  plotOptions: {
+    bar: {
+      barHeight: '100%',
+      distributed: true,
+      horizontal: true,
+      dataLabels: {
+        position: 'bottom'
+      },
     }
+  },
+  colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+    '#f48024', '#69d2e7'
+  ],
+  dataLabels: {
+    enabled: true,
+    textAnchor: 'start',
+    style: {
+      colors: ['#fff']
+    },
+    formatter: function (val, opt) {
+      return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+    },
+    offsetX: 0,
+    dropShadow: {
+      enabled: true
+    }
+  },
+  stroke: {
+    width: 1,
+    colors: ['#fff']
+  },
+  xaxis: {
+    categories: ['Cate A', 'Cate B', 'Cate C', 'Cate C', 'Cate D', 'Cate E', 'Cate F',
+      'Cate G'
+    ],
+  },
+  yaxis: {
+    labels: {
+      show: false
+    }
+  },
+  title: {
+    //   text: 'Custom DataLabels',
+      align: 'center',
+      floating: true
+  },
+  subtitle: {
+      text: 'Category Names as DataLabels inside bars',
+      align: 'center',
+  },
+  tooltip: {
+    theme: 'dark',
+    x: {
+      show: false
+    },
+    y: {
+      title: {
+        formatter: function () {
+          return ''
+        }
+      }
+    }
+  }
   };
-  
+
   var stackColChart = new ApexCharts(document.querySelector("#stackedCol-chart"), stackColChartOptions);
   stackColChart.render();
+
   
 
 //   Polar chart
