@@ -8,7 +8,10 @@ const { Op } = require('sequelize');
 router.get("/", async (req, res) => {
   try {
     const listOfInvoices = await Invoices.findAll({
-      include: [{ model: Users, as: 'customer' }],
+      include: [
+        { model: Users, as: 'customer' },
+        { model: InvoiceDetail, as: 'details' } // Corrected alias to 'details'
+      ],
       order: [['ID', 'DESC']]
     });
     res.json(listOfInvoices);
@@ -17,6 +20,26 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+router.get("/detail/:id", async (req, res) => {
+  const invoiceID = req.params.id;
+  try {
+    const listOfInvoices = await Invoices.findAll({
+      include: [
+        { model: InvoiceDetail, as: 'details' } // Corrected alias to 'details'
+      ],
+      where: {
+        ID: invoiceID
+      },
+      order: [['ID', 'DESC']]
+    });
+    res.json(listOfInvoices);
+  } catch (error) {
+    console.error('Error fetching all invoices:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 router.get("/search/:id", async (req, res) => {
   const invoiceID = req.params.id;
@@ -97,7 +120,7 @@ router.get("/year/:year", async (req, res) => {
           BookedDate: {
             [Op.between]: [startDate, endDate]
           },
-          Status: 'Done'
+          Status: 'Delivered'
         }
       });
 
@@ -106,9 +129,11 @@ router.get("/year/:year", async (req, res) => {
           BookedDate: {
             [Op.between]: [startDate, endDate]
           },
-          Status: 'Pending'
+          Status: {
+            [Op.or]: ['Pending', 'Return', 'In Progress']
+          }
         }
-      });
+      });      
 
       invoicesByMonth.push({
         month,
@@ -145,7 +170,8 @@ router.get("/revenue/:year", async (req, res) => {
         where: {
           BookedDate: {
             [Op.between]: [startDateCurrentYear, endDateCurrentYear]
-          }
+          },
+          Status: 'Delivered'
         }
       });
 
@@ -154,7 +180,8 @@ router.get("/revenue/:year", async (req, res) => {
         where: {
           BookedDate: {
             [Op.between]: [startDateLastYear, endDateLastYear]
-          }
+          },
+          Status: 'Delivered'
         }
       });
 
@@ -163,7 +190,7 @@ router.get("/revenue/:year", async (req, res) => {
           BookedDate: {
             [Op.between]: [startDateCurrentYear, endDateCurrentYear]
           },
-          Status: 'Done'
+          Status: 'Delivered'
         }
       });
 

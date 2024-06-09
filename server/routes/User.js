@@ -7,7 +7,8 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const { sequelize } = require('../models');
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
+const Mail = require('nodemailer/lib/mailer');
 
 // In-memory store for tokens and users (in production, use a database or Redis)
 const tokenStore = new Map();
@@ -200,5 +201,31 @@ router.post('/check-email', async (req, res) => {
     return res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 });
+
+router.get('/check-admin/:email', async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const user = await Users.findOne({
+      where: {
+        Mail: email
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.Role === 'admin') {
+      return res.status(200).json({ isAdmin: true });
+    } else {
+      return res.status(200).json({ isAdmin: false });
+    }
+  } catch (error) {
+    console.error('Error checking admin role:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 
 module.exports = router;

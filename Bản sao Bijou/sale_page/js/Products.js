@@ -131,14 +131,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // Function to fetch data from the server and update HTML
 function fetchProductsAndUpdateHTML() {
-  console.log("add even keyWord");
+  // console.log("add even keyWord");
   // Get the search keyword from sessionStorage
   const keyWord = JSON.parse(sessionStorage.getItem("searchKeyword"));
   const selectedCategory = JSON.parse(sessionStorage.getItem("selectedCategory"));
   const selectedStone = JSON.parse(sessionStorage.getItem("selectedStone"));
   const selectedEngagementAndWedding = JSON.parse(sessionStorage.getItem("selectedEngagementAndWedding"));
+  const selectedCollection = JSON.parse(sessionStorage.getItem("collection"));
+  const selectedMetal = JSON.parse(sessionStorage.getItem("selectedMetal"));
   // console.log("keyWord.searchKeyword: ", keyWord);
   // console.log("selectedNavigate: ", selectedCategory);
+  // console.log("selectedEngagementAndWedding: ", selectedEngagementAndWedding);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -171,6 +174,23 @@ function fetchProductsAndUpdateHTML() {
     .catch((error) => {
       console.error("Error fetching products by category:", error);
     });
+  }else if(selectedMetal !== null){
+    const metal =encodeURIComponent(selectedMetal);
+
+    fetch(`http://localhost:3001/Products/byCategory/${metal}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((products) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("selectedMetal",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by metal:", error);
+      });
   }else if(selectedStone !== null){
     const stone =encodeURIComponent(selectedStone); // Ensure category is URL-safe
 
@@ -187,7 +207,7 @@ function fetchProductsAndUpdateHTML() {
       })
       .catch((error) => {
         console.error("Error fetching products by stone:", error);
-      })
+      });
   }else if(selectedEngagementAndWedding!==null){
     const engagementAndWedding=encodeURIComponent(selectedEngagementAndWedding);
 
@@ -198,13 +218,30 @@ function fetchProductsAndUpdateHTML() {
         }
         return response.json();
       })
-      .then((product) => {
+      .then((products) => {
         updateHTMLWithProducts(products);
         sessionStorage.setItem("selectedEngagementAndWedding",null);
       })
       .catch((error) => {
         console.error("Error fetching products by Engagement And Wedding:", error);
-      })
+      });
+  }else if(selectedCollection!==null){
+    const collection=encodeURIComponent(selectedCollection);
+
+    fetch(`http://localhost:3001/Products/byCollection/${collection}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((products) => {
+      updateHTMLWithProducts(products);
+      sessionStorage.setItem("collection",null);
+    })
+    .catch((error) => {
+      console.error("Error fetching products by collection:", error);
+    });
   }else {
     return fetch("http://localhost:3001/Products")
       .then((response) => {

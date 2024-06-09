@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    Payment:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   }, {
     timestamps: false
   });
@@ -35,12 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'Invoice', // The foreign key in the InvoiceDetail model that references the Invoices model
       as: 'details', // Alias for the association (optional)
     });
-  };
-  // Define associations
-  Invoices.associate = (models) => {
     Invoices.belongsTo(models.Users, {
-      foreignKey: 'User', // The foreign key in the Invoices model that references the Users model
-      as: 'customer', // Alias for the association (optional)
+      foreignKey: 'User', 
+      as: 'customer',
     });
   };
 
