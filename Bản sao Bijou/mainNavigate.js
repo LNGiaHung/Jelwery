@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const shopByCategory = document.getElementById("shopByCategory");
     const shopByStone = document.getElementById("shopByStone");
     const engagementAndWedding = document.getElementById("engagementAndWedding");
-    const colleciton = document.getElementById("colleciton");
+    const collection = document.getElementById("collection");
     const metal = document.getElementById("metal");
 
     // Function to handle category click event
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         if(event.target.classList.contains('cta-context')){
-            var value = event.target.innerText.toLowerCase();
+            var value = event.target.innerText.toLowerCase().trim();
             console.log("collection: ", value);
 
             // Store the selected value in sessionStorage
@@ -129,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    if (colleciton) {
-        const collecitonSpans = colleciton.querySelectorAll('.cta-context');
+    if (collection) {
+        const collecitonSpans = collection.querySelectorAll('.cta-context');
         collecitonSpans.forEach(span => {
             span.addEventListener('click', handleCollectionClick);
         });

@@ -26,6 +26,85 @@ const fetchProductsAndUpdateHTMLWithCategory = async () => {
   }
 };
 
+// const initializeDropdowns = () => {
+//   const dropdowns = document.querySelectorAll(".dropdown");
+
+//   dropdowns.forEach((dropdown) => {
+//     const select = dropdown.querySelector(".select");
+//     const menu = dropdown.querySelector(".menu");
+//     const selected = dropdown.querySelector(".selected");
+
+//     select.addEventListener("click", () => {
+//       menu.classList.toggle("show");
+//     });
+
+//     menu.querySelectorAll("li").forEach((item) => {
+//       item.addEventListener("click", () => {
+//         selected.innerText = item.innerText;
+//         menu.classList.remove("show");
+
+//         const parentCategoryText = dropdown
+//           .querySelector(".select .selected")
+//           .innerText.toLowerCase();
+//         const selectedText = item.innerText.toLowerCase();
+//         console.log("Selected parentCategoryText:", parentCategoryText);
+//         // Check if the selected item is a parent category
+//         const possibleCategories = [
+//           "collections",
+//           "rings",
+//           "earrings",
+//           "bracelets",
+//           "necklaces",
+//         ];
+//         for (const a of possibleCategories) {
+//           console.log("Selected possibleCategories:", a);
+//           if (parentCategoryText.includes(a)) {
+//             if (a === "collections") {
+//               selectedCategory = "new-in";
+//             } else {
+//               selectedCategory = a;
+//             }
+//           }
+//         }
+//         console.log("Selected Category:", selectedCategory);
+//         // Check if the selected item is a material type
+//         const possibleMaterial = ["10k", "14k", "18k", "24k"];
+//         const possibleCollection = [
+//           "outstanding collections",
+//           "new collections",
+//           "wedding collections",
+//         ];
+//         if (selectedCategory != "new-in") {
+//           for (const a of possibleMaterial) {
+//             console.log("Selected possibleMaterial:", a);
+//             if (parentCategoryText.includes(a)) {
+//               selectedMaterialType = a;
+//             }
+//           }
+//         } else {
+//           for (const a of possibleCollection) {
+//             console.log("Selected possibleCollection:", a);
+//             if (parentCategoryText.includes(a)) {
+//               selectedMaterialType = a;
+//             }
+//           }
+//         }
+
+//         // Debugging logs to check the selected values
+//         console.log("Selected Category:", selectedCategory);
+//         console.log("Selected Material Type:", selectedMaterialType);
+
+//         // Call the API with the selected values
+//         if (!selectedCategory) {
+//           fetchProductsAndUpdateHTML();
+//         } else {
+//           fetchProductsAndUpdateHTMLWithCategory();
+//         }
+//       });
+//     });
+//   });
+// };
+
 const initializeDropdowns = () => {
   const dropdowns = document.querySelectorAll(".dropdown");
 
@@ -43,49 +122,37 @@ const initializeDropdowns = () => {
         selected.innerText = item.innerText;
         menu.classList.remove("show");
 
-        const parentCategoryText = dropdown
-          .querySelector(".select .selected")
-          .innerText.toLowerCase();
+        const parentCategoryText = dropdown.querySelector(".select .selected").innerText.toLowerCase();
         const selectedText = item.innerText.toLowerCase();
-        console.log("Selected parentCategoryText:", parentCategoryText);
+
         // Check if the selected item is a parent category
-        const possibleCategories = [
-          "collections",
-          "rings",
-          "earrings",
-          "bracelets",
-          "necklaces",
-        ];
-        for (const a of possibleCategories) {
-          console.log("Selected possibleCategories:", a);
-          if (parentCategoryText.includes(a)) {
-            if (a === "collections") {
-              selectedCategory = "new-in";
-            } else {
-              selectedCategory = a;
+        const possibleCategories = ["collections", "rings", "earrings", "bracelets", "necklaces"];
+        if (parentCategoryText.includes("collections")) {
+          selectedCategory = "new-in";
+        } else {
+          for (const category of possibleCategories) {
+            if (parentCategoryText.includes(category)) {
+              selectedCategory = category;
+              break;
             }
           }
         }
-        console.log("Selected Category:", selectedCategory);
-        // Check if the selected item is a material type
-        const possibleMaterial = ["10k", "14k", "18k", "24k"];
-        const possibleCollection = [
-          "outstanding collections",
-          "new collections",
-          "wedding collections",
-        ];
-        if (selectedCategory != "new-in") {
-          for (const a of possibleMaterial) {
-            console.log("Selected possibleMaterial:", a);
-            if (parentCategoryText.includes(a)) {
-              selectedMaterialType = a;
+
+        // Check if the selected item is a material type or a collection type
+        if (selectedCategory === "new-in") {
+          const possibleCollection = ["outstanding collections", "new collections", "wedding collections"];
+          for (const collection of possibleCollection) {
+            if (selectedText.includes(collection)) {
+              selectedMaterialType = collection;
+              break;
             }
           }
         } else {
-          for (const a of possibleCollection) {
-            console.log("Selected possibleCollection:", a);
-            if (parentCategoryText.includes(a)) {
-              selectedMaterialType = a;
+          const possibleMaterial = ["10k", "14k", "18k", "24k"];
+          for (const material of possibleMaterial) {
+            if (selectedText.includes(material)) {
+              selectedMaterialType = material;
+              break;
             }
           }
         }
@@ -94,11 +161,11 @@ const initializeDropdowns = () => {
         console.log("Selected Category:", selectedCategory);
         console.log("Selected Material Type:", selectedMaterialType);
 
-        // Call the API with the selected values
+        // Call the appropriate API function
         if (!selectedCategory) {
           fetchProductsAndUpdateHTML();
         } else {
-          fetchProductsAndUpdateHTMLWithCategory();
+          fetchProductsAndUpdateHTMLWithCategory(selectedCategory, selectedMaterialType);
         }
       });
     });
@@ -142,6 +209,8 @@ function fetchProductsAndUpdateHTML() {
   // console.log("keyWord.searchKeyword: ", keyWord);
   // console.log("selectedNavigate: ", selectedCategory);
   // console.log("selectedEngagementAndWedding: ", selectedEngagementAndWedding);
+  console.log("selectedCollection: ", selectedCollection);
+  // console.log("selectedMetal: ", selectedMetal);
   if (keyWord !== null) {
     // Fetch products by name
     fetch(
@@ -177,7 +246,7 @@ function fetchProductsAndUpdateHTML() {
   }else if(selectedMetal !== null){
     const metal =encodeURIComponent(selectedMetal);
 
-    fetch(`http://localhost:3001/Products/byCategory/${metal}`)
+    fetch(`http://localhost:3001/Products/byCategoryName/${metal}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -229,19 +298,19 @@ function fetchProductsAndUpdateHTML() {
     const collection=encodeURIComponent(selectedCollection);
 
     fetch(`http://localhost:3001/Products/byCollection/${collection}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((products) => {
-      updateHTMLWithProducts(products);
-      sessionStorage.setItem("collection",null);
-    })
-    .catch((error) => {
-      console.error("Error fetching products by collection:", error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((products) => {
+        updateHTMLWithProducts(products);
+        sessionStorage.setItem("collection",null);
+      })
+      .catch((error) => {
+        console.error("Error fetching products by collection:", error);
+      });
   }else {
     return fetch("http://localhost:3001/Products")
       .then((response) => {
@@ -259,6 +328,7 @@ function fetchProductsAndUpdateHTML() {
         console.error("Error fetching data:", error);
       });
   }
+  // sessionStorage.setItem("selectedMetal",null);
 }
 
 // Function to update HTML with products data
